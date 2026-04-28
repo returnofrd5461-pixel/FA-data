@@ -40,6 +40,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .pills{display:flex;gap:5px;flex-wrap:wrap}
 .pill{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1.5px solid #d3d1c7;background:#f5f4f0;color:#5f5e5a;user-select:none;transition:all .12s}
 .pill.on{background:#1a1a18;color:#fff;border-color:#1a1a18}
+.pill.dimmed{background:#fafaf8;color:#d8d6cf;border:1px dashed #e8e7e1}
+.pill.dimmed:hover{color:#a09e95;border-color:#d3d1c7;border-style:solid}
+.pill.dimmed.on{background:#a09e95;color:#fff;border:1px solid #a09e95}
 .sumbar{background:#fff;border-bottom:1px solid #e0dfd8;padding:9px 24px;display:flex;gap:16px;overflow-x:auto}
 .si{display:flex;flex-direction:column;min-width:fit-content}
 .si .v{font-size:16px;font-weight:500;line-height:1.1}.si .l{font-size:10px;color:#73726c;margin-top:3px}
@@ -169,10 +172,16 @@ table.rtbl tr:last-child td{border-bottom:none}
 <div class="ctrl">
   <div class="cr"><span class="cl">팀 필터</span><div id="teamBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div></div>
   <div class="cr">
+    <span class="cl">상태 필터</span>
+    <button class="tbtn on" id="st-all" onclick="setStatus('all')">전체</button>
+    <button class="tbtn" id="st-fa" onclick="setStatus('FA')">FA</button>
+    <button class="tbtn" id="st-ma" onclick="setStatus('MA')">MA</button>
+  </div>
+  <div class="cr">
     <span class="cl">기간 선택</span>
     <button class="qbtn" id="qAll" onclick="quickSelect('all')">전체</button>
-    <button class="qbtn" id="qQ1" onclick="quickSelect('q1')">1분기</button>
-    <button class="qbtn" id="qQ4" onclick="quickSelect('q4')">4분기</button>
+    <button class="qbtn" id="qQ4" onclick="quickSelect('q4')">25.4분기</button>
+    <button class="qbtn" id="qQ1" onclick="quickSelect('q1')">26.1분기</button>
     <button class="qbtn" id="qRecent" onclick="quickSelect('recent2')">최근2개월</button>
     <div class="divv"></div>
     <div id="monthBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div>
@@ -223,20 +232,21 @@ let D;
 let LOST;
 const MONTH_ORDER={'10':0,'11':1,'12':2,'01':3,'02':4,'03':5,'04':6,'05':7,'06':8,'07':9,'08':10,'09':11};
 let PERF;
+let TARGET;
 const ML_MAP={'01':'26.1월','02':'26.2월','03':'26.3월','04':'26.4월','05':'26.5월','06':'26.6월','07':'26.7월','08':'26.8월','09':'26.9월','10':'25.10월','11':'25.11월','12':'25.12월'};
 const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#faeeda','Team 4':'#eaf3de','강서지사':'#eeedfe','서울지사':'#fbeaf0','기타':'#f1efe8'};
 const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','Team 4':'#27500a','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
 const LOST_CHIP={'01_02':'background:#faeeda;color:#633806','02_03':'background:#fcebeb;color:#a32d2d','10_11':'background:#eeedfe;color:#3c3489','11_12':'background:#e1f5ee;color:#085041'};
 let AVAIL_MONTHS;
-let selMonths,sel,curTeam='전체',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc';
+let selMonths,sel,curTeam='전체',curStatus='all',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
 let ACT={}; // 활동량 데이터 {FA명: {월: 건수}}
 
 function actMths(){return AVAIL_MONTHS.filter(m=>selMonths.has(m));}
 function latestM(){const a=actMths();return a.length?a[a.length-1]:null;}
-function lr(d){for(const m of[...actMths()].reverse())if(d.months[m]?.rate_25!=null)return d.months[m].rate_25;return null;}
-function fr(d){for(const m of actMths())if(d.months[m]?.rate_25!=null)return d.months[m].rate_25;return null;}
+function lr(d){if(!d||!d.months)return null;for(const m of[...actMths()].reverse())if(d.months[m]?.rate_25!=null)return d.months[m].rate_25;return null;}
+function fr(d){if(!d||!d.months)return null;for(const m of actMths())if(d.months[m]?.rate_25!=null)return d.months[m].rate_25;return null;}
 function chg(d){const l=lr(d),f=fr(d);return(l!=null&&f!=null)?l-f:null;}
-function lmd(d){for(const m of[...actMths()].reverse())if(d.months[m]&&d.months[m].total_contracts)return d.months[m];return{};}
+function lmd(d){if(!d||!d.months)return{};for(const m of[...actMths()].reverse())if(d.months[m]&&d.months[m].total_contracts)return d.months[m];return{};}
 function rc(r){if(r==null)return'#5f5e5a';if(r>=95)return'#3b6d11';if(r>=85)return'#185fa5';if(r>=70)return'#854f0b';return'#a32d2d';}
 function fmtW(n){if(!n&&n!==0)return'—';return Math.round(n/10000).toLocaleString()+'만';}
 
@@ -270,7 +280,53 @@ function totalLostN(n){const L=LOST[n]||{};return Object.entries(L).filter(([k])
 function totalLostPerf(n){const L=LOST[n]||{};return Object.entries(L).filter(([k])=>lostPeriodActive(k)).flatMap(([,v])=>v).reduce((s,x)=>s+x.first_perf,0);}
 
 const ALL_TEAMS=['전체','Team 0','Team 1','Team 2','Team 3','Team 4','강서지사','서울지사','기타'];
-function filteredList(){return Object.values(D).filter(d=>curTeam==='전체'||d.team===curTeam);}
+// PERF에만 있는 사람을 위해 D에 placeholder 자동 생성 (fetch / 인라인 init 양쪽에서 호출)
+function ensureDPlaceholders(){
+  Object.keys(PERF||{}).forEach(n=>{
+    if(!D[n]){
+      D[n]={
+        name:n,
+        team:PERF[n].team||'기타',
+        status:PERF[n].status||'FA',
+        months:{}
+      };
+    }
+  });
+}
+
+// D ∪ PERF 합집합. D 우선, PERF에만 있으면 빈 months 가진 가상 객체 생성
+function allFAs(){
+  const out=[]; const seen=new Set();
+  Object.values(D).forEach(d=>{ if(seen.has(d.name))return; seen.add(d.name); out.push(d); });
+  Object.keys(PERF||{}).forEach(name=>{
+    if(seen.has(name))return; seen.add(name);
+    const p=PERF[name];
+    out.push({name, team: p.team||'기타', status: p.status||'FA', months:{}});
+  });
+  return out;
+}
+function filteredList(){
+  return allFAs().filter(d=>{
+    if(curTeam!=='전체'&&d.team!==curTeam) return false;
+    if(curStatus!=='all'){
+      const st=d.status||PERF[d.name]?.status||'FA';
+      if(st!==curStatus) return false;
+    }
+    return true;
+  });
+}
+// pill dimmed 판정 + sortedFiltered 공통 매칭 (팀+상태+이탈+등급)
+function passesFilters(d){
+  if(curTeam!=='전체'&&d.team!==curTeam) return false;
+  if(curStatus!=='all'){
+    const st=d.status||PERF[d.name]?.status||'FA';
+    if(st!==curStatus) return false;
+  }
+  if(lostFilter==='has_lost'&&!hasLost(d.name)) return false;
+  if(lostFilter==='no_lost'&&hasLost(d.name)) return false;
+  if(curGrade!=='all'&&getGrade(d)!==curGrade) return false;
+  return true;
+}
 function setGrade(g){
   curGrade=g;
   ['all','s','a','b','c','n'].forEach(x=>{
@@ -278,6 +334,13 @@ function setGrade(g){
     if(el){el.classList.toggle('on',x===g);if(x!=='all'&&x===g){el.style.background=el.style.borderColor;el.style.color='#fff';}else if(x!=='all'){el.style.background='#f5f4f0';}}
   });
   render();
+}
+function setStatus(s){
+  curStatus=s;
+  document.getElementById('st-all').classList.toggle('on',s==='all');
+  document.getElementById('st-fa').classList.toggle('on',s==='FA');
+  document.getElementById('st-ma').classList.toggle('on',s==='MA');
+  buildPills();render();
 }
 function getGrade(d){
   const r=lr(d);
@@ -289,10 +352,7 @@ function getGrade(d){
 }
 function sortedFiltered(){
   const s=document.getElementById('sortSel').value;
-  let list=filteredList().filter(d=>sel.has(d.name));
-  if(lostFilter==='has_lost')list=list.filter(d=>hasLost(d.name));
-  if(lostFilter==='no_lost')list=list.filter(d=>!hasLost(d.name));
-  if(curGrade!=='all')list=list.filter(d=>getGrade(d)===curGrade);
+  let list=allFAs().filter(d=>sel.has(d.name)&&passesFilters(d));
   return list.sort((a,b)=>{
     if(s==='name')return a.name.localeCompare(b.name,'ko');
     if(s==='rate_d')return(lr(b)??-1)-(lr(a)??-1);
@@ -307,13 +367,28 @@ function buildTeams(){
   const c=document.getElementById('teamBtns');c.innerHTML='';
   ALL_TEAMS.forEach(t=>{const b=document.createElement('button');b.className='tbtn'+(t===curTeam?' on':'');b.textContent=t;b.onclick=()=>{curTeam=t;buildTeams();buildPills();render();};c.appendChild(b);});
 }
+// pill 영역 거름: 팀/이탈/등급은 비매칭자 제외, 상태 필터만 dimmed로 표시
+function passesPillFilters(d){
+  if(curTeam!=='전체'&&d.team!==curTeam) return false;
+  if(lostFilter==='has_lost'&&!hasLost(d.name)) return false;
+  if(lostFilter==='no_lost'&&hasLost(d.name)) return false;
+  if(curGrade!=='all'&&getGrade(d)!==curGrade) return false;
+  return true;
+}
+function statusOf(d){return d.status||PERF[d.name]?.status||'FA';}
 function buildPills(){
   const c=document.getElementById('pillsWrap');c.innerHTML='';
-  filteredList().sort((a,b)=>a.name.localeCompare(b.name,'ko')).forEach(d=>{
-    const p=document.createElement('div');p.className='pill'+(sel.has(d.name)?' on':'');p.textContent=d.name;
-    p.onclick=()=>{sel.has(d.name)?sel.delete(d.name):sel.add(d.name);p.classList.toggle('on');render();};
-    c.appendChild(p);
-  });
+  allFAs()
+    .filter(passesPillFilters)
+    .sort((a,b)=>a.name.localeCompare(b.name,'ko'))
+    .forEach(d=>{
+      const stMatch=(curStatus==='all')||(statusOf(d)===curStatus);
+      const p=document.createElement('div');
+      p.className='pill'+(sel.has(d.name)?' on':'')+(stMatch?'':' dimmed');
+      p.textContent=d.name;
+      p.onclick=()=>{sel.has(d.name)?sel.delete(d.name):sel.add(d.name);p.classList.toggle('on');render();};
+      c.appendChild(p);
+    });
 }
 function selectAll(){filteredList().forEach(d=>sel.add(d.name));buildPills();render();}
 function clearAll(){filteredList().forEach(d=>sel.delete(d.name));buildPills();render();}
@@ -447,7 +522,54 @@ function metaBadges(name, pd) {
     else if(ret<80&&pd.lostRate>=5) badges.push({label:'🚩 유지·이탈 복합 위험', bg:'#fcebeb', color:'#7a0000', type:'cross'});
   }
 
+  // ── 목표/활동 분석 (TARGET 데이터 있을 때만) ──
+  const td=targetOfMths(name);
+  if(td&&td.anyMonthHasData){
+    if(td.ach!=null&&td.ach>=110)
+      badges.push({label:`🎯 목표초과달성 +${(td.ach-100).toFixed(0)}%`, bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
+    else if(td.ach!=null&&td.ach<70)
+      badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, bg:'#fcebeb', color:'#a32d2d', type:'neg'});
+    if(td.dbUse!=null&&td.dbUse<30&&td.db>0)
+      badges.push({label:'📋 DB 활용 부진', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+  }
+
   return badges;
+}
+
+// ─── 활동/목표 헬퍼 ─────────────────────────────────
+function targetOfMths(name) {
+  const t=TARGET&&TARGET[name];
+  if(!t) return null;
+  const aM=actMths();
+  let db=0,act=0,goal=0,anyMonthHasData=false;
+  aM.forEach(m=>{
+    const v=t[m];if(!v)return;
+    db+=v.db||0; act+=v.act||0; goal+=v.goal||0;
+    if((v.db||0)||(v.act||0)||(v.goal||0)) anyMonthHasData=true;
+  });
+  // 목표달성률은 월납보험료(prem) 기준 (인정실적이 아닌 보험 실무 기준)
+  const premSum=aM.reduce((s,m)=>s+(PERF[name]?.months[m]?.prem||0),0);
+  const ach=goal>0?(premSum/goal*100):null;
+  const dbUse=db>0?(act/db*100):null;
+  return {db,act,goal,premSum,ach,dbUse,anyMonthHasData,
+          avgDb:aM.length?Math.round(db/aM.length):0,
+          avgAct:aM.length?Math.round(act/aM.length):0};
+}
+
+// 달성률 색상
+function achColor(ach){
+  if(ach==null) return '#73726c';
+  if(ach>=110) return '#0f6e56';
+  if(ach>=90)  return '#854f0b';
+  if(ach>=70)  return '#c45050';
+  return '#a32d2d';
+}
+function achBg(ach){
+  if(ach==null) return 'transparent';
+  if(ach>=110) return '#e6f9f0';
+  if(ach>=90)  return '#fef9ec';
+  if(ach>=70)  return '#fff0f0';
+  return '#fcebeb';
 }
 
 // 카드 내 성과 섹션 HTML
@@ -456,6 +578,8 @@ function perfSectionHTML(name) {
   if(!pd||pd.cnt===0)
     return `<div class="perf-divider"><div class="perf-divider-left"><span class="perf-divider-icon">📊</span><span class="perf-divider-title">신계약 실적</span></div><span style="font-size:11px;color:#73726c;background:#f0efe9;padding:2px 8px;border-radius:10px">해당 기간 데이터 없음</span></div>`;
   const id=cardId(name);
+  const td=targetOfMths(name);
+  const tHas=td&&td.anyMonthHasData;
   const badges=metaBadges(name,pd);
   const posBadges=badges.filter(b=>b.type==='pos');
   const negBadges=badges.filter(b=>b.type==='neg');
@@ -508,11 +632,22 @@ function perfSectionHTML(name) {
       <div class="perf-kpi"><div class="pv">${fmtW(pd.perf)}</div><div class="pl">인정실적</div></div>
       <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStrRaw}</div><div class="pl">분기 성장 (25.4Q→26.1Q)</div></div>
     </div>
+    ${tHas?`<div class="perf-kpis">
+      <div class="perf-kpi"><div class="pv" style="color:#185fa5">${td.db}건</div><div class="pl">누적 DB배정</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:#0f6e56">${td.act}건</div><div class="pl">누적 외활</div></div>
+      <div class="perf-kpi"><div class="pv">${td.goal>0?fmtW(td.goal):'—'}</div><div class="pl">누적 마감목표</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${achColor(td.ach)}">${td.ach!=null?td.ach.toFixed(0)+'%':'—'}</div><div class="pl">평균 목표달성률</div></div>
+    </div>`:''}
     <div class="perf-charts">
       <div class="perf-cw"><div class="perf-ct">신계약 건수</div><div class="perf-cwrap"><canvas id="pc1${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">월납보험료 (만원)</div><div class="perf-cwrap"><canvas id="pc2${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">인정실적 (만원)</div><div class="perf-cwrap"><canvas id="pc3${id}"></canvas></div></div>
     </div>
+    ${tHas?`<div class="perf-charts">
+      <div class="perf-cw"><div class="perf-ct">DB배정</div><div class="perf-cwrap"><canvas id="pc4${id}"></canvas></div></div>
+      <div class="perf-cw"><div class="perf-ct">외활</div><div class="perf-cwrap"><canvas id="pc5${id}"></canvas></div></div>
+      <div class="perf-cw"><div class="perf-ct">마감목표 (만원) · 달성률</div><div class="perf-cwrap"><canvas id="pc6${id}"></canvas></div></div>
+    </div>`:''}
     <div class="perf-bottom">
       <div class="perf-portfolio">
         <div class="perf-ct" style="margin-bottom:5px">생/손보 구성 · 이탈 ${pd.lostRate}%${pd.delay>0?' · 유예 '+pd.delay+'건':''}</div>
@@ -538,7 +673,7 @@ function perfSectionHTML(name) {
 // 성과 차트 플러그인 (데이터 레이블)
 const cntLabelPlugin={id:'cntLbl',afterDatasetsDraw(chart){
   const{ctx,chartArea:ca}=chart;if(!ca)return;
-  ctx.save();ctx.font='bold 8px sans-serif';ctx.textAlign='center';ctx.fillStyle='#185fa5';
+  ctx.save();ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle='#185fa5';
   chart.getDatasetMeta(0).data.forEach((bar,i)=>{
     const v=chart.data.datasets[0].data[i];if(!v)return;
     const bH=Math.abs(bar.base-bar.y);
@@ -549,7 +684,7 @@ const cntLabelPlugin={id:'cntLbl',afterDatasetsDraw(chart){
 }};
 const premLabelPlugin2={id:'premLbl2',afterDatasetsDraw(chart){
   const{ctx,chartArea:ca}=chart;if(!ca)return;
-  ctx.save();ctx.font='bold 8px sans-serif';ctx.textAlign='center';ctx.fillStyle='rgba(255,255,255,.9)';
+  ctx.save();ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle='rgba(255,255,255,.9)';
   chart.getDatasetMeta(0).data.forEach((bar,i)=>{
     const v=chart.data.datasets[0].data[i];if(!v)return;
     const bH=Math.abs(bar.base-bar.y);
@@ -560,12 +695,55 @@ const premLabelPlugin2={id:'premLbl2',afterDatasetsDraw(chart){
 }};
 const perfLabelPlugin2={id:'perfLbl2',afterDatasetsDraw(chart){
   const{ctx,chartArea:ca}=chart;if(!ca)return;
-  ctx.save();ctx.font='bold 8px sans-serif';ctx.textAlign='center';ctx.fillStyle='rgba(255,255,255,.9)';
+  ctx.save();ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillStyle='rgba(255,255,255,.9)';
   chart.getDatasetMeta(0).data.forEach((bar,i)=>{
     const v=chart.data.datasets[0].data[i];if(!v)return;
     const bH=Math.abs(bar.base-bar.y);
     if(bH>=14){ctx.fillText(v.toLocaleString(),bar.x,bar.y+bH/2);}
     else{ctx.fillStyle='#0f6e56';ctx.fillText(v.toLocaleString(),bar.x,Math.max(ca.top+9,bar.y-3));}
+  });
+  ctx.restore();
+}};
+
+// 외활(초록) 막대 레이블
+const actLabelPlugin={id:'actLbl',afterDatasetsDraw(chart){
+  const{ctx,chartArea:ca}=chart;if(!ca)return;
+  ctx.save();ctx.font='bold 11px sans-serif';ctx.textAlign='center';
+  chart.getDatasetMeta(0).data.forEach((bar,i)=>{
+    const v=chart.data.datasets[0].data[i];if(!v)return;
+    const bH=Math.abs(bar.base-bar.y);
+    if(bH>=14){ctx.fillStyle='rgba(255,255,255,.95)';ctx.fillText(v,bar.x,bar.y+bH/2);}
+    else{ctx.fillStyle='#0f6e56';ctx.fillText(v,bar.x,Math.max(ca.top+9,bar.y-3));}
+  });
+  ctx.restore();
+}};
+
+// 마감목표 단일 차트: 막대 안에 목표 숫자, 차트 영역 바깥(위쪽 padding)에 달성률 %
+const goalAchLabelPlugin={id:'goalAchLbl',afterDatasetsDraw(chart){
+  const{ctx,chartArea:ca,data}=chart;if(!ca)return;
+  const opts=chart.options.plugins&&chart.options.plugins.goalAchLbl||{};
+  const perfArr=opts.perfData||[];
+  const goalMeta=chart.getDatasetMeta(0);
+  if(!goalMeta)return;
+  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+  goalMeta.data.forEach((bar,i)=>{
+    const goal=data.datasets[0].data[i]||0;
+    const perf=perfArr[i]||0;
+    if(!goal&&!perf)return;
+    const bH=Math.abs(bar.base-bar.y);
+    // 막대 안: 목표 숫자 (변경 X)
+    if(goal>0){
+      ctx.font='bold 11px sans-serif';
+      if(bH>=18){ctx.fillStyle='rgba(255,255,255,.95)';ctx.fillText(goal.toLocaleString(),bar.x,bar.y+bH/2);}
+      else{ctx.fillStyle='#854f0b';ctx.fillText(goal.toLocaleString(),bar.x,Math.max(ca.top+13,bar.y-3));}
+    }
+    // 차트 영역 "바깥 위쪽" padding 영역에 달성률 % — 모든 막대 동일 높이 가로 정렬
+    const ach=goal>0?(perf/goal*100):null;
+    if(ach!=null){
+      ctx.font='bold 11px sans-serif';
+      ctx.fillStyle=achColor(ach);
+      ctx.fillText(ach.toFixed(0)+'%',bar.x,ca.top-12);
+    }
   });
   ctx.restore();
 }};
@@ -583,14 +761,43 @@ function drawPerfCharts(d) {
       data:{labels:mL,datasets:[{data,backgroundColor:bg,borderRadius:3}]},
       plugins:[plugin],
       options:{responsive:true,maintainAspectRatio:false,animation:false,
+        devicePixelRatio:window.devicePixelRatio||2,
         plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw?fmt(c.raw):'0'}}},
-        layout:{padding:{top:18}},
+        layout:{padding:{top:20}},
         scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},
                 y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}}});
   };
   mkBar(`pc1${id}`,aM.map(m=>p.months[m]?.cnt||0),'rgba(55,138,221,.75)',cntLabelPlugin,v=>v+'건');
   mkBar(`pc2${id}`,aM.map(m=>Math.round((p.months[m]?.prem||0)/10000)),'rgba(186,117,23,.7)',premLabelPlugin2,v=>v+'만원');
   mkBar(`pc3${id}`,aM.map(m=>Math.round((p.months[m]?.perf||0)/10000)),'rgba(30,158,117,.7)',perfLabelPlugin2,v=>v+'만원');
+
+  // TARGET 데이터 차트 (pc4/pc5/pc6) — 데이터 있을 때만
+  const td=targetOfMths(d.name);
+  if(td&&td.anyMonthHasData){
+    const t=TARGET[d.name]||{};
+    mkBar(`pc4${id}`,aM.map(m=>t[m]?.db||0),'#185fa5',cntLabelPlugin,v=>v+'건');
+    mkBar(`pc5${id}`,aM.map(m=>t[m]?.act||0),'#0f6e56',actLabelPlugin,v=>v+'건');
+    const cid='pc6'+id;
+    const el=document.getElementById(cid);
+    if(el){
+      if(charts[cid]){try{charts[cid].destroy();}catch(e){}}
+      const goalData=aM.map(m=>Math.round((t[m]?.goal||0)/10000));
+      const perfData=aM.map(m=>Math.round((p.months[m]?.prem||0)/10000));
+      charts[cid]=new Chart(el,{type:'bar',
+        data:{labels:mL,datasets:[
+          {label:'마감목표',data:goalData,backgroundColor:'#854f0b',borderRadius:3}
+        ]},
+        plugins:[goalAchLabelPlugin],
+        options:{responsive:true,maintainAspectRatio:false,animation:false,
+          devicePixelRatio:window.devicePixelRatio||2,
+          plugins:{legend:{display:false},
+            tooltip:{callbacks:{label:c=>'마감목표: '+c.raw.toLocaleString()+'만원'}},
+            goalAchLbl:{perfData:perfData}},
+          layout:{padding:{top:40,bottom:0,left:0,right:0}},
+          scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},
+                  y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}}});
+    }
+  }
 }
 
 // ─── 성과 랭킹 뷰 ───────────────────────────────────
@@ -611,10 +818,16 @@ function renderPerfView(agents) {
   const lostR=totCnt>0?+(totLost/totCnt*100).toFixed(1):0;
   const avgP=totCnt>0?Math.round(totPerf/totCnt):0;
   
-  // 성과 카드 그리드
+  // 성과 카드 그리드 (perfSortCol/Dir 적용)
   const sorted=[...agents].sort((a,b)=>{
     const pa=perfOfMths(a.name),pb=perfOfMths(b.name);
-    return (pb?.perf||0)-(pa?.perf||0);
+    const ta=targetOfMths(a.name),tb=targetOfMths(b.name);
+    const dir=perfSortDir==='desc'?1:-1;
+    if(perfSortCol==='avgdb')   return ((tb?.avgDb||0)-(ta?.avgDb||0))*dir;
+    if(perfSortCol==='avgact')  return ((tb?.avgAct||0)-(ta?.avgAct||0))*dir;
+    if(perfSortCol==='goalsum') return ((tb?.goal||0)-(ta?.goal||0))*dir;
+    if(perfSortCol==='ach')     return (((tb?.ach)??-1)-((ta?.ach)??-1))*dir;
+    return ((pb?.perf||0)-(pa?.perf||0));
   });
   
   // 랭킹 테이블 + 카드 그리드 (두 패널)
@@ -623,11 +836,22 @@ function renderPerfView(agents) {
     const ret=lr(d);
     const team=d.team||'기타';
     
-    if(!pd||pd.cnt===0) return `<tr style="opacity:.45">
-      <td class="rnum">${i+1}</td>
-      <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
-      <td colspan="8" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
-    </tr>`;
+    if(!pd||pd.cnt===0){
+      const td2=targetOfMths(d.name);
+      const tHas2=td2&&td2.anyMonthHasData;
+      const ach2=tHas2&&td2.ach!=null?td2.ach.toFixed(0)+'%':'—';
+      const achC2=tHas2&&td2.ach!=null?achColor(td2.ach):'#a09f98';
+      const achB2=tHas2&&td2.ach!=null?achBg(td2.ach):'transparent';
+      return `<tr style="opacity:.55">
+        <td class="rnum">${i+1}</td>
+        <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
+        <td colspan="8" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
+        <td class="rnum-cell" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?td2.avgDb:'—'}</td>
+        <td class="rnum-cell" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?td2.avgAct:'—'}</td>
+        <td class="amt" style="color:${tHas2&&td2.goal>0?'#5f5e5a':'#a09f98'}">${tHas2&&td2.goal>0?fmtW(td2.goal):'—'}</td>
+        <td class="rnum-cell" style="background:${achB2};color:${achC2};font-weight:500">${ach2}</td>
+      </tr>`;
+    }
     
     const gc=pd.growth===null?null:pd.growth>=0?'#0f6e56':'#a32d2d';
     const growthStr=pd.growth===null?'—':(pd.growth>=0?`+${pd.growth}%`:`${pd.growth}%`);
@@ -644,6 +868,11 @@ function renderPerfView(agents) {
     const badges=metaBadges(d.name,pd);
     const topBadge=badges[0]?`<span class="mbadge" style="background:${badges[0].bg};color:${badges[0].color};font-size:10px">${badges[0].label}</span>`:'';
     
+    const td=targetOfMths(d.name);
+    const tHas=td&&td.anyMonthHasData;
+    const achStr=tHas&&td.ach!=null?td.ach.toFixed(0)+'%':'—';
+    const achC=tHas&&td.ach!=null?achColor(td.ach):'#a09f98';
+    const achB=tHas&&td.ach!=null?achBg(td.ach):'transparent';
     return `<tr>
       <td class="rnum">${i+1}</td>
       <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
@@ -655,6 +884,10 @@ function renderPerfView(agents) {
       <td class="rnum-cell" style="color:${pd.lostRate>=5?'#a32d2d':pd.lostRate>=2?'#854f0b':'#1a1a18'}">${pd.lostRate}%</td>
       <td class="rnum-cell" style="color:${retColor}">${ret!=null?ret.toFixed(1)+'%':'—'}</td>
       <td style="white-space:nowrap">${crossBadge}${topBadge?'&nbsp;'+topBadge:''}</td>
+      <td class="rnum-cell" style="color:${tHas?'#185fa5':'#a09f98'}">${tHas?td.avgDb:'—'}</td>
+      <td class="rnum-cell" style="color:${tHas?'#0f6e56':'#a09f98'}">${tHas?td.avgAct:'—'}</td>
+      <td class="amt" style="color:${tHas&&td.goal>0?'#5f5e5a':'#a09f98'}">${tHas&&td.goal>0?fmtW(td.goal):'—'}</td>
+      <td class="rnum-cell" style="background:${achB};color:${achC};font-weight:500">${achStr}</td>
     </tr>`;
   }).join('');
   
@@ -710,6 +943,10 @@ function renderPerfView(agents) {
             <th>조기이탈</th>
             <th>유지율</th>
             <th>메타분석</th>
+            <th onclick="perfSort('avgdb')" class="${perfSortCol==='avgdb'?'asc':''}">평균DB<span class="si2">${perfSortCol==='avgdb'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
+            <th onclick="perfSort('avgact')" class="${perfSortCol==='avgact'?'asc':''}">평균외활<span class="si2">${perfSortCol==='avgact'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
+            <th onclick="perfSort('goalsum')" class="${perfSortCol==='goalsum'?'asc':''}"><span class="amt">누적목표</span><span class="si2">${perfSortCol==='goalsum'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
+            <th onclick="perfSort('ach')" class="${perfSortCol==='ach'?'asc':''}">목표달성률<span class="si2">${perfSortCol==='ach'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
           </tr></thead>
           <tbody>${rows}</tbody>
         </table>
@@ -753,7 +990,9 @@ function renderPerfView(agents) {
         }).join('');
         
         const badgeHtml=badges.slice(0,3).map(b=>`<span class="mbadge" style="background:${b.bg};color:${b.color};font-size:10px">${b.label}</span>`).join('');
-        
+        const tdv=targetOfMths(d.name);
+        const tHasV=tdv&&tdv.anyMonthHasData;
+
         return `<div class="perf-view-card">
           <div class="pvc-header">
             <div>
@@ -772,11 +1011,22 @@ function renderPerfView(agents) {
             <div class="perf-kpi"><div class="pv">${fmtW(pd.perf)}</div><div class="pl">인정실적</div></div>
             <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStr}</div><div class="pl">분기성장 (25.4Q→26.1Q)</div></div>
           </div>
+          ${tHasV?`<div class="perf-kpis">
+            <div class="perf-kpi"><div class="pv" style="color:#185fa5">${tdv.db}건</div><div class="pl">누적 DB배정</div></div>
+            <div class="perf-kpi"><div class="pv" style="color:#0f6e56">${tdv.act}건</div><div class="pl">누적 외활</div></div>
+            <div class="perf-kpi"><div class="pv">${tdv.goal>0?fmtW(tdv.goal):'—'}</div><div class="pl">누적 마감목표</div></div>
+            <div class="perf-kpi"><div class="pv" style="color:${achColor(tdv.ach)}">${tdv.ach!=null?tdv.ach.toFixed(0)+'%':'—'}</div><div class="pl">평균 목표달성률</div></div>
+          </div>`:''}
           <div class="perf-charts">
             <div class="perf-cw"><div class="perf-ct">신계약 건수</div><div class="perf-cwrap"><canvas id="pvc1${id}"></canvas></div></div>
             <div class="perf-cw"><div class="perf-ct">월납보험료 (만원)</div><div class="perf-cwrap"><canvas id="pvc2${id}"></canvas></div></div>
             <div class="perf-cw"><div class="perf-ct">인정실적 (만원)</div><div class="perf-cwrap"><canvas id="pvc3${id}"></canvas></div></div>
           </div>
+          ${tHasV?`<div class="perf-charts">
+            <div class="perf-cw"><div class="perf-ct">DB배정</div><div class="perf-cwrap"><canvas id="pvc4${id}"></canvas></div></div>
+            <div class="perf-cw"><div class="perf-ct">외활</div><div class="perf-cwrap"><canvas id="pvc5${id}"></canvas></div></div>
+            <div class="perf-cw"><div class="perf-ct">마감목표 (만원) · 달성률</div><div class="perf-cwrap"><canvas id="pvc6${id}"></canvas></div></div>
+          </div>`:''}
           <div class="perf-portfolio">
             <div class="portfolio-bar">
               <div class="seg" style="width:${lifeW}%;background:rgba(133,58,165,.7)">${lifeW>20?'생보 '+lifeW+'%':''}</div>
@@ -807,13 +1057,42 @@ function renderPerfView(agents) {
         charts[cid]=new Chart(el,{type:'bar',data:{labels:mL,datasets:[{data,backgroundColor:bg,borderRadius:3}]},
           plugins:[lp],
           options:{responsive:true,maintainAspectRatio:false,animation:false,
-            plugins:{legend:{display:false}},layout:{padding:{top:18}},
+            devicePixelRatio:window.devicePixelRatio||2,
+            plugins:{legend:{display:false}},layout:{padding:{top:20}},
             scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},
                     y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}}});
       };
       mkPvBar(`pvc1${id}`,aM.map(m=>p.months[m]?.cnt||0),'rgba(55,138,221,.75)',cntLabelPlugin);
       mkPvBar(`pvc2${id}`,aM.map(m=>Math.round((p.months[m]?.prem||0)/10000)),'rgba(186,117,23,.7)',premLabelPlugin2);
       mkPvBar(`pvc3${id}`,aM.map(m=>Math.round((p.months[m]?.perf||0)/10000)),'rgba(30,158,117,.7)',perfLabelPlugin2);
+
+      // TARGET 차트 (pvc4/pvc5/pvc6)
+      const tdv=targetOfMths(d.name);
+      if(tdv&&tdv.anyMonthHasData){
+        const t=TARGET[d.name]||{};
+        mkPvBar(`pvc4${id}`,aM.map(m=>t[m]?.db||0),'#185fa5',cntLabelPlugin);
+        mkPvBar(`pvc5${id}`,aM.map(m=>t[m]?.act||0),'#0f6e56',actLabelPlugin);
+        const cid='pvc6'+id;
+        const el=document.getElementById(cid);
+        if(el){
+          if(charts[cid]){try{charts[cid].destroy();}catch(e){}}
+          const goalData=aM.map(m=>Math.round((t[m]?.goal||0)/10000));
+          const perfData=aM.map(m=>Math.round((p.months[m]?.prem||0)/10000));
+          charts[cid]=new Chart(el,{type:'bar',
+            data:{labels:mL,datasets:[
+              {label:'마감목표',data:goalData,backgroundColor:'#854f0b',borderRadius:3}
+            ]},
+            plugins:[goalAchLabelPlugin],
+            options:{responsive:true,maintainAspectRatio:false,animation:false,
+              devicePixelRatio:window.devicePixelRatio||2,
+              plugins:{legend:{display:false},
+                tooltip:{callbacks:{label:c=>'마감목표: '+c.raw.toLocaleString()+'만원'}},
+                goalAchLbl:{perfData:perfData}},
+              layout:{padding:{top:40,bottom:0,left:0,right:0}},
+              scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},
+                      y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}}});
+        }
+      }
     });
   },60);
 }
@@ -833,8 +1112,12 @@ const rateLabelPlugin={id:'rateLabels',afterDatasetsDraw(chart){
     if(v==null)return;
     const xp=x.getPixelForValue(i),yp=y.getPixelForValue(v);
     ctx.fillStyle=v>=95?'#3b6d11':v>=85?'#185fa5':v>=70?'#854f0b':'#a32d2d';
-    ctx.font='bold 8px sans-serif';ctx.textAlign='center';
-    ctx.fillText(v.toFixed(1)+'%',xp,Math.max(ca.top+8,yp-7));
+    ctx.font='600 9px sans-serif';ctx.textAlign='center';
+    // 짝수 인덱스(0,2,4)는 점 위, 홀수 인덱스(1,3,5)는 점 아래 — 라벨 겹침 회피
+    const yTxt = (i%2===0)
+      ? Math.max(ca.top+9, yp-11)
+      : Math.min(ca.bottom-3, yp+13);
+    ctx.fillText(v.toFixed(1)+'%',xp,yTxt);
   });
   ctx.restore();
 }};
@@ -856,10 +1139,16 @@ const statusLabelPlugin={id:'statusLabels',afterDatasetsDraw(chart){
 
 const premLabelPlugin={id:'premLabels',afterDatasetsDraw(chart){
   const{ctx,chartArea:ca}=chart;if(!ca)return;
-  ctx.save();ctx.font='bold 8px sans-serif';ctx.textAlign='center';ctx.fillStyle='#5f5e5a';
+  ctx.save();ctx.font='600 8px sans-serif';ctx.fillStyle='#5f5e5a';
   chart.getDatasetMeta(0).data.forEach((bar,i)=>{
     const v=chart.data.datasets[0].data[i];if(!v)return;
-    ctx.fillText(v.toLocaleString()+'만',bar.x,Math.max(ca.top+8,bar.y-3));
+    const yTxt=Math.max(ca.top+6,bar.y-4);
+    ctx.save();
+    ctx.translate(bar.x,yTxt);
+    ctx.rotate(-30*Math.PI/180);
+    ctx.textAlign='left';
+    ctx.fillText(v.toLocaleString()+'만',2,0);
+    ctx.restore();
   });
   ctx.restore();
 }};
@@ -922,13 +1211,13 @@ function drawCharts(d){
   const mk=(cid,type,data,opts,plugins)=>{
     const el=document.getElementById(cid);if(!el)return;
     if(charts[cid]){try{charts[cid].destroy();}catch(e){}}
-    charts[cid]=new Chart(el,{type,data,options:{responsive:true,maintainAspectRatio:false,animation:false,...opts},plugins:plugins||[]});
+    charts[cid]=new Chart(el,{type,data,options:{responsive:true,maintainAspectRatio:false,animation:false,devicePixelRatio:window.devicePixelRatio||2,...opts},plugins:plugins||[]});
   };
   const rates=aM.map(m=>d.months[m]?.rate_25??null);
-  mk(`r${id}`,'line',{labels:mL,datasets:[{data:rates,borderColor:'#378add',backgroundColor:'rgba(55,138,221,.12)',borderWidth:2,pointBackgroundColor:rates.map(v=>v==null?'transparent':rc(v)),pointRadius:4,tension:.3,spanGaps:true}]},{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw!=null?c.raw.toFixed(1)+'%':'—'}}},layout:{padding:{top:18}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},y:{min:0,max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c',callback:v=>v+'%'}}}},[rateLabelPlugin]);
+  mk(`r${id}`,'line',{labels:mL,datasets:[{data:rates,borderColor:'#378add',backgroundColor:'rgba(55,138,221,.12)',borderWidth:2,pointBackgroundColor:rates.map(v=>v==null?'transparent':rc(v)),pointRadius:4,tension:.3,spanGaps:true}]},{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw!=null?c.raw.toFixed(1)+'%':'—'}}},layout:{padding:{top:22,bottom:14}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},y:{min:0,max:100,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c',callback:v=>v+'%'}}}},[rateLabelPlugin]);
   mk(`s${id}`,'bar',{labels:mL,datasets:[{label:'정상',data:aM.map(m=>d.months[m]?.normal??0),backgroundColor:'rgba(55,138,221,.75)',borderRadius:2},{label:'실효',data:aM.map(m=>d.months[m]?.lapsed??0),backgroundColor:'rgba(224,75,74,.75)',borderRadius:2},{label:'해지',data:aM.map(m=>d.months[m]?.cancelled??0),backgroundColor:'rgba(186,117,23,.75)',borderRadius:2}]},{plugins:{legend:{display:true,position:'top',labels:{font:{size:9},boxWidth:9,padding:4}}},layout:{padding:{top:16}},scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},y:{stacked:true,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}},[statusLabelPlugin]);
   const prems=aM.map(m=>d.months[m]?.total_prem?Math.round(d.months[m].total_prem/10000):null);
-  mk(`p${id}`,'bar',{labels:mL,datasets:[{data:prems,backgroundColor:'rgba(30,158,117,.7)',borderRadius:3}]},{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw!=null?c.raw.toLocaleString()+'만원':'—'}}},layout:{padding:{top:18}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}},[premLabelPlugin]);
+  mk(`p${id}`,'bar',{labels:mL,datasets:[{data:prems,backgroundColor:'rgba(30,158,117,.7)',borderRadius:3}]},{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw!=null?c.raw.toLocaleString()+'만원':'—'}}},layout:{padding:{top:26,right:6}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}},[premLabelPlugin]);
 }
 
 function updateSum(agents){
@@ -999,6 +1288,11 @@ function rankSort(agents){
 function sortRank(col){
   if(rankSortCol===col)rankSortDir=rankSortDir==='desc'?'asc':'desc';
   else{rankSortCol=col;rankSortDir='desc';}
+  if(viewMode==='perf'){renderPerfView(sortedFiltered());}
+}
+function perfSort(col){
+  if(perfSortCol===col)perfSortDir=perfSortDir==='desc'?'asc':'desc';
+  else{perfSortCol=col;perfSortDir='desc';}
   if(viewMode==='perf'){renderPerfView(sortedFiltered());}
 }
 
@@ -1096,29 +1390,49 @@ function downloadHtml(){
   btn.textContent='⏳ 생성 중...';
 
   const agents=sortedFiltered();
-  // 필터된 에이전트만 포함한 D, LOST
-  const fD={};
-  agents.forEach(d=>{fD[d.name]=D[d.name];});
-  const fL={};
-  agents.forEach(d=>{if(LOST[d.name])fL[d.name]=LOST[d.name];});
+  // 필터된 에이전트만 포함한 D, LOST, PERF, TARGET
+  const fD={},fL={},fP={},fT={};
+  agents.forEach(d=>{
+    if(D[d.name]) fD[d.name]=D[d.name];
+    if(LOST&&LOST[d.name])fL[d.name]=LOST[d.name];
+    if(PERF&&PERF[d.name])fP[d.name]=PERF[d.name];
+    if(TARGET&&TARGET[d.name])fT[d.name]=TARGET[d.name];
+  });
 
-  // 현재 페이지 HTML 가져와서 데이터 교체
+  // 현재 페이지 HTML 가져오기
   let h='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
 
-  // D 교체
-  const dS=h.indexOf('const D=')+8, dE=h.indexOf(';\nconst LOST=');
-  h=h.slice(0,dS)+JSON.stringify(fD)+h.slice(dE);
-
-  // LOST 교체
-  const lS=h.indexOf('const LOST=')+11, lE=h.indexOf(';\nconst ML_MAP=');
-  h=h.slice(0,lS)+JSON.stringify(fL)+h.slice(lE);
-
-  // 초기 상태: 현재 필터 상태로 고정
+  // 초기 상태 인라인화 (fetch 블록 제거 + 직접 데이터 할당)
   const aNJ=JSON.stringify(agents.map(d=>d.name));
   const aMJ=JSON.stringify([...selMonths]);
   const cT=JSON.stringify(curTeam);
+  const cS=JSON.stringify(curStatus);
   const actJ=JSON.stringify(ACT);
-  h=h.replace(/let selMonths=new Set\(AVAIL_MONTHS\)[^;]+;[\s\S]*?let ACT=[^\n]*/,`let selMonths=new Set(${aMJ}),sel=new Set(${aNJ}),curTeam=${cT},lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc';\nlet ACT=${actJ};`);
+  const inlineInit=`(function(){
+    D=${JSON.stringify(fD)};
+    LOST=${JSON.stringify(fL)};
+    PERF=${JSON.stringify(fP)};
+    TARGET=${JSON.stringify(fT)};
+    ensureDPlaceholders();
+    AVAIL_MONTHS=[...new Set([
+      ...Object.values(D).flatMap(d=>Object.keys(d.months||{})),
+      ...Object.values(PERF||{}).flatMap(p=>Object.keys(p.months||{}))
+    ])].sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
+    selMonths=new Set(${aMJ});
+    sel=new Set(${aNJ});
+    curTeam=${cT};
+    curStatus=${cS};
+    ACT=${actJ};
+    buildTeams();buildPills();buildMonthBtns();
+    setStatus(${cS});
+  })();`;
+
+  // fetch 블록을 인라인 init으로 교체
+  const fS=h.indexOf("fetch('./data/data.json");
+  if(fS>=0){
+    const fE=h.indexOf('});',fS)+3;
+    h=h.slice(0,fS)+inlineInit+h.slice(fE);
+  }
 
   // 다운로드
   const blob=new Blob([h],{type:'text/html;charset=utf-8'});
@@ -1168,11 +1482,14 @@ function downloadImg(){
 fetch('./data/data.json?v='+Date.now())
   .then(r=>r.json())
   .then(data=>{
-    D=data.D; LOST=data.LOST; PERF=data.PERF;
-    AVAIL_MONTHS=[...new Set(Object.values(D).flatMap(d=>Object.keys(d.months)))]
-      .sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
+    D=data.D; LOST=data.LOST; PERF=data.PERF; TARGET=data.TARGET||{};
+    ensureDPlaceholders();
+    AVAIL_MONTHS=[...new Set([
+      ...Object.values(D).flatMap(d=>Object.keys(d.months||{})),
+      ...Object.values(PERF||{}).flatMap(p=>Object.keys(p.months||{}))
+    ])].sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
     selMonths=new Set(AVAIL_MONTHS);
-    sel=new Set(Object.keys(D));
+    sel=new Set([...Object.keys(D),...Object.keys(PERF||{})]);
     buildTeams();buildPills();buildMonthBtns();render();
   });
 </script>
