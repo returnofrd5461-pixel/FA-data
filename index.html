@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사원별 통산유지율 분석 대시보드</title>
+<title>상위 0.01% 통합 관리 시스템</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
@@ -132,8 +132,16 @@ table.rtbl tr:last-child td{border-bottom:none}
 .perf-ct{font-size:10px;font-weight:500;color:#73726c;letter-spacing:.03em;margin-bottom:7px}
 .perf-cwrap{position:relative;width:100%;height:96px}
 .perf-cwrap canvas{display:block;width:100%!important;height:96px!important}
-.perf-bottom{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #f0efe9;gap:0}
+.perf-bottom{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #f0efe9;gap:0;align-items:stretch}
+.perf-bottom.has-target{grid-template-columns:1.45fr 1fr}
+.perf-bottom-left{padding:10px 14px;border-right:0.5px solid #f0efe9;display:flex;flex-direction:column;max-height:180px;overflow:hidden}
+.perf-bottom-right{display:flex;flex-direction:column}
+.perf-bottom-right > div{flex:1}
+.perf-bottom-right > div + div{border-top:0.5px solid #f0efe9}
+.perf-cwrap-lg{position:relative;width:100%;height:160px;flex:1}
+.perf-cwrap-lg canvas{display:block;width:100%!important;height:160px!important}
 .perf-portfolio{padding:10px 14px;border-right:0.5px solid #f0efe9}
+.perf-bottom.has-target .perf-portfolio{border-right:none}
 .perf-products{padding:10px 14px}
 .portfolio-bar{display:flex;height:14px;border-radius:4px;overflow:hidden;margin-bottom:5px}
 .portfolio-bar .seg{display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:#fff;transition:width .3s;min-width:0;overflow:hidden}
@@ -154,20 +162,128 @@ table.rtbl tr:last-child td{border-bottom:none}
 .cb-warn{background:#fff3cd;color:#854f0b}
 .cb-danger{background:#fcebeb;color:#a32d2d}
 
+/* ── 가이드 패널 ── */
+.guide-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:1000;display:none}
+.guide-overlay.open{display:block}
+.guide-panel{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:92vw;background:#fff;z-index:1001;box-shadow:-4px 0 20px rgba(0,0,0,.15);transform:translateX(100%);transition:transform .25s ease;overflow-y:auto}
+.guide-panel.open{transform:translateX(0)}
+.guide-hd{background:#1a1a18;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1}
+.guide-hd h2{font-size:14px;font-weight:500}
+.guide-close{background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;padding:4px 10px;border-radius:4px;font-family:inherit}
+.guide-close:hover{background:rgba(255,255,255,.15)}
+.guide-body{padding:18px}
+.guide-section{margin-bottom:22px}
+.guide-section h3{font-size:13px;font-weight:600;margin-bottom:9px;color:#1a1a18;display:flex;align-items:center;gap:6px}
+.guide-tbl{width:100%;border-collapse:collapse;font-size:12px;border:1px solid #e0dfd8;border-radius:6px;overflow:hidden}
+.guide-tbl th{background:#f5f4f0;padding:7px 10px;text-align:left;font-weight:500;color:#5f5e5a;border-bottom:1px solid #e0dfd8;font-size:11px}
+.guide-tbl td{padding:7px 10px;border-bottom:0.5px solid #f0efe9;color:#1a1a18}
+.guide-tbl tr:last-child td{border-bottom:none}
+.guide-tbl td:first-child{white-space:nowrap;font-weight:500;width:1%}
+.guide-grade-cell{display:inline-flex;align-items:center;justify-content:center;min-width:24px;padding:2px 7px;border-radius:4px;font-weight:600;font-size:11px}
+
 </style>
 </head>
 <body>
 <div class="ph">
-  <div class="ph-l"><h1>사원별 통산유지율 분석 대시보드</h1><div class="sub" id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</div></div>
+  <div class="ph-l"><h1>상위 0.01% 통합 관리 시스템</h1><div class="sub"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span id="phUpdated" style="margin-left:10px;color:#888;font-size:11px"></span></div></div>
   <div class="ph-r">
     <div class="vtog">
       <button id="vCard" class="vtbtn on" onclick="setView('card')">카드 뷰</button>
       <button id="vPerf" class="vtbtn" onclick="setView('perf')">통합 뷰</button>
     </div>
+    <button class="btn-dl" onclick="toggleGuide()">📖 가이드</button>
     <button class="btn-dl" id="dlBtn" onclick="downloadImg()">↓ 이미지 저장</button>
     <button class="btn-dl" id="dlEachBtn" onclick="downloadEach()">↓ 개별 이미지</button>
   </div>
 </div>
+<div class="guide-overlay" id="guideOverlay" onclick="toggleGuide()"></div>
+<aside class="guide-panel" id="guidePanel">
+  <div class="guide-hd">
+    <h2>📖 키워드 & 등급 가이드</h2>
+    <button class="guide-close" onclick="toggleGuide()">×</button>
+  </div>
+  <div class="guide-body">
+    <div class="guide-section">
+      <h3>🏆 영예 칭호 (1위만 부여)</h3>
+      <table class="guide-tbl"><tbody>
+        <tr><td>👑 실적왕</td><td>누적 인정실적 1위</td></tr>
+        <tr><td>📋 신계약왕</td><td>신계약 건수 1위</td></tr>
+        <tr><td>💰 보험료왕</td><td>월납보험료 1위</td></tr>
+        <tr><td>🎯 DB왕</td><td>DB배정 1위</td></tr>
+        <tr><td>🚶 외활왕</td><td>외활 1위</td></tr>
+        <tr><td>💬 피드백왕</td><td>피드백(완료+보류) 1위</td></tr>
+        <tr><td>🛡️ 유지왕</td><td>유지율 1위 (계약 50건+)</td></tr>
+        <tr><td>🚀 성장왕</td><td>Q4→Q1 성장률 1위</td></tr>
+      </tbody></table>
+    </div>
+    <div class="guide-section">
+      <h3>💡 자동 분석 배지 <span style="font-weight:400;font-size:11px;color:#73726c">(조건 충족 시 자동 부여)</span></h3>
+      <div style="font-size:11px;font-weight:500;color:#0f6e56;margin:6px 0 4px">긍정 배지</div>
+      <table class="guide-tbl"><tbody>
+        <tr><td><span class="mbadge" style="background:#fef4e0;color:#7a4500">🏆 실적 1위권 TOP n</span></td><td>인정실적 상위 10%</td></tr>
+        <tr><td><span class="mbadge" style="background:#fef9ec;color:#854f0b">🥇 실적 상위 TOP n</span></td><td>인정실적 상위 25%</td></tr>
+        <tr><td><span class="mbadge" style="background:#e6f9f0;color:#0f6e56">🚀 폭발성장 +X%</span></td><td>Q4→Q1 성장 +100%↑</td></tr>
+        <tr><td><span class="mbadge" style="background:#eaf3de;color:#3b6d11">📈 고성장 +X%</span></td><td>Q4→Q1 성장 +50%↑</td></tr>
+        <tr><td><span class="mbadge" style="background:#eeedfe;color:#3c3489">📌 생보 전문가 X%</span></td><td>생보 비중 80%↑ · 계약 10건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#e6f1fb;color:#185fa5">🎯 생손 균형형</span></td><td>생보 60%↑ · 이탈 ≤2% · 10건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#f5f0ff;color:#5b21b6">💎 초고단가 건당 X만</span></td><td>건당 인정실적 100만↑</td></tr>
+        <tr><td><span class="mbadge" style="background:#eeedfe;color:#3c3489">⚡ 고단가 건당 X만</span></td><td>건당 인정실적 50만↑</td></tr>
+        <tr><td><span class="mbadge" style="background:#eaf3de;color:#3b6d11">🛡 조기이탈 0% 완벽</span></td><td>이탈률 0% · 계약 10건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#e6f9f0;color:#0f6e56">🔄 전월 꾸준한 활동</span></td><td>모든 선택월 활동 · 3개월+ · 15건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#e6f9f0;color:#0f6e56">🎯 목표초과달성 +X%</span></td><td>평균 목표달성률 110%↑</td></tr>
+      </tbody></table>
+
+      <div style="font-size:11px;font-weight:500;color:#a32d2d;margin:14px 0 4px">부정 배지</div>
+      <table class="guide-tbl"><tbody>
+        <tr><td><span class="mbadge" style="background:#fcebeb;color:#a32d2d">📉 급감 -X%</span></td><td>Q4→Q1 성장 -50%↓</td></tr>
+        <tr><td><span class="mbadge" style="background:#fff0f0;color:#c45050">📉 하락 -X%</span></td><td>Q4→Q1 성장 -25%↓</td></tr>
+        <tr><td><span class="mbadge" style="background:#faeeda;color:#633806">🏗 손보 편중 X%</span></td><td>손보 비중 80%↑ · 계약 10건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#f5f4f0;color:#73726c">💸 저단가 건당 X만</span></td><td>건당 10만원 미만 · 계약 10건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#fcebeb;color:#a32d2d">🚨 조기이탈 X% 위험</span></td><td>이탈률 10%↑</td></tr>
+        <tr><td><span class="mbadge" style="background:#fff0f0;color:#c45050">⚠️ 조기이탈 X%</span></td><td>이탈률 5%↑</td></tr>
+        <tr><td><span class="mbadge" style="background:#fff8e1;color:#854f0b">⏰ 유예 X건 점검필요</span></td><td>유예 계약 5건+</td></tr>
+        <tr><td><span class="mbadge" style="background:#f5f4f0;color:#73726c">⏸ 활동월 집중 (X개월)</span></td><td>활동월 1개월 이하 · 3개월+ 기간</td></tr>
+        <tr><td><span class="mbadge" style="background:#fcebeb;color:#a32d2d">⚠️ 목표미달 X%</span></td><td>평균 목표달성률 70% 미만</td></tr>
+        <tr><td><span class="mbadge" style="background:#fff3cd;color:#854f0b">📋 DB 활용 부진</span></td><td>외활/DB 비율 30% 미만</td></tr>
+      </tbody></table>
+
+      <div style="font-size:11px;font-weight:500;color:#185fa5;margin:14px 0 4px">교차 분석</div>
+      <table class="guide-tbl"><tbody>
+        <tr><td><span class="cross-badge cb-good">✅ 모집·유지 모두 우수</span></td><td>유지율 90%↑ · 인정실적 500만↑</td></tr>
+        <tr><td><span class="cross-badge cb-danger">⚠️ 고모집-저유지 점검</span></td><td>유지율 &lt;85% · 계약 20건+</td></tr>
+        <tr><td><span class="cross-badge cb-warn">🔍 유지 우수·모집 확대 여지</span></td><td>유지율 90%↑ · 실적 하위권</td></tr>
+        <tr><td><span class="mbadge" style="background:#fcebeb;color:#7a0000">🚩 유지·이탈 복합 위험</span></td><td>유지율 &lt;80% · 이탈률 5%↑</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="guide-section">
+      <h3>🛡️ 유지등급 <span style="font-weight:400;font-size:11px;color:#73726c">(선택월 마지막 월 기준)</span></h3>
+      <table class="guide-tbl"><tbody>
+        <tr><td><span class="guide-grade-cell" style="background:#e6f9f0;color:#0f6e56">S</span></td><td>유지율 95% 이상</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#eaf3de;color:#3b6d11">A</span></td><td>90% ~ 95%</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#fef9ec;color:#854f0b">B</span></td><td>85% ~ 90%</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#fff0f0;color:#c45050">C</span></td><td>80% ~ 85%</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#fcebeb;color:#a32d2d">D</span></td><td>80% 미만</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#f1efe8;color:#73726c">—</span></td><td>데이터 부족</td></tr>
+      </tbody></table>
+    </div>
+    <div class="guide-section">
+      <h3>📊 성과등급 <span style="font-weight:400;font-size:11px;color:#73726c">(건수/월납/실적 종합)</span></h3>
+      <table class="guide-tbl"><tbody>
+        <tr><td><span class="guide-grade-cell" style="background:#e6f9f0;color:#0f6e56">S</span></td><td>종합 점수 80 이상</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#eaf3de;color:#3b6d11">A</span></td><td>50 ~ 80</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#fef9ec;color:#854f0b">B</span></td><td>25 ~ 50</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#fff0f0;color:#c45050">C</span></td><td>10 ~ 25</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#fcebeb;color:#a32d2d">D</span></td><td>10 미만</td></tr>
+        <tr><td><span class="guide-grade-cell" style="background:#f1efe8;color:#73726c">—</span></td><td>활동 0 (평가 외)</td></tr>
+      </tbody></table>
+      <div style="font-size:10px;color:#73726c;margin-top:6px;line-height:1.5">
+        • 건수 만점 100건 / 월납 만점 1,000만원 / 실적 만점 1,000만원<br>
+        • 각 지표 점수 = min(값/만점×100, 100), 평균이 등급 결정
+      </div>
+    </div>
+  </div>
+</aside>
 <div class="ctrl">
   <div class="cr"><span class="cl">팀 필터</span><div id="teamBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div></div>
   <div class="cr">
@@ -196,10 +312,11 @@ table.rtbl tr:last-child td{border-bottom:none}
   <div class="cr">
     <span class="cl">등급 필터</span>
     <button class="tbtn on" id="gr-all" onclick="setGrade('all')">전체</button>
-    <button class="tbtn" id="gr-s" onclick="setGrade('s')" style="border-color:#3b6d11;color:#3b6d11">S등급 95%↑</button>
-    <button class="tbtn" id="gr-a" onclick="setGrade('a')" style="border-color:#185fa5;color:#185fa5">A등급 90-95%</button>
-    <button class="tbtn" id="gr-b" onclick="setGrade('b')" style="border-color:#854f0b;color:#854f0b">B등급 80-90%</button>
-    <button class="tbtn" id="gr-c" onclick="setGrade('c')" style="border-color:#a32d2d;color:#a32d2d">C등급 80%↓</button>
+    <button class="tbtn" id="gr-s" onclick="setGrade('s')" style="border-color:#0f6e56;color:#0f6e56">S 95%↑</button>
+    <button class="tbtn" id="gr-a" onclick="setGrade('a')" style="border-color:#3b6d11;color:#3b6d11">A 90~95%</button>
+    <button class="tbtn" id="gr-b" onclick="setGrade('b')" style="border-color:#854f0b;color:#854f0b">B 85~90%</button>
+    <button class="tbtn" id="gr-c" onclick="setGrade('c')" style="border-color:#c45050;color:#c45050">C 80~85%</button>
+    <button class="tbtn" id="gr-d" onclick="setGrade('d')" style="border-color:#a32d2d;color:#a32d2d">D 80%↓</button>
     <button class="tbtn" id="gr-n" onclick="setGrade('n')" style="border-color:#73726c;color:#73726c">데이터 부족</button>
   </div>
   <div class="cr">
@@ -232,6 +349,7 @@ let LOST;
 const MONTH_ORDER={'10':0,'11':1,'12':2,'01':3,'02':4,'03':5,'04':6,'05':7,'06':8,'07':9,'08':10,'09':11};
 let PERF;
 let TARGET;
+let FEEDBACK;
 const ML_MAP={'01':'26.1월','02':'26.2월','03':'26.3월','04':'26.4월','05':'26.5월','06':'26.6월','07':'26.7월','08':'26.8월','09':'26.9월','10':'25.10월','11':'25.11월','12':'25.12월'};
 const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#faeeda','Team 4':'#eaf3de','강서지사':'#eeedfe','서울지사':'#fbeaf0','기타':'#f1efe8'};
 const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','Team 4':'#27500a','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
@@ -239,6 +357,7 @@ const LOST_CHIP={'01_02':'background:#faeeda;color:#633806','02_03':'background:
 let AVAIL_MONTHS;
 let selMonths,sel,curTeam='전체',curStatus='all',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
 let ACT={}; // 활동량 데이터 {FA명: {월: 건수}}
+let kingsByName={}; // 1위 칭호 매핑 {FA명: ['👑 실적왕', ...]}
 
 function actMths(){return AVAIL_MONTHS.filter(m=>selMonths.has(m));}
 function latestM(){const a=actMths();return a.length?a[a.length-1]:null;}
@@ -328,7 +447,7 @@ function passesFilters(d){
 }
 function setGrade(g){
   curGrade=g;
-  ['all','s','a','b','c','n'].forEach(x=>{
+  ['all','s','a','b','c','d','n'].forEach(x=>{
     const el=document.getElementById('gr-'+x);
     if(el){el.classList.toggle('on',x===g);if(x!=='all'&&x===g){el.style.background=el.style.borderColor;el.style.color='#fff';}else if(x!=='all'){el.style.background='#f5f4f0';}}
   });
@@ -346,8 +465,21 @@ function getGrade(d){
   if(r==null) return 'n';
   if(r>=95) return 's';
   if(r>=90) return 'a';
-  if(r>=80) return 'b';
-  return 'c';
+  if(r>=85) return 'b';
+  if(r>=80) return 'c';
+  return 'd';
+}
+// 등급 라벨/색상 통합 헬퍼
+function gradeStyle(g){
+  const map={
+    s:{label:'S', bg:'#e6f9f0', color:'#0f6e56'},
+    a:{label:'A', bg:'#eaf3de', color:'#3b6d11'},
+    b:{label:'B', bg:'#fef9ec', color:'#854f0b'},
+    c:{label:'C', bg:'#fff0f0', color:'#c45050'},
+    d:{label:'D', bg:'#fcebeb', color:'#a32d2d'},
+    n:{label:'—', bg:'#f1efe8', color:'#73726c'}
+  };
+  return map[g]||map.n;
 }
 function sortedFiltered(){
   const s=document.getElementById('sortSel').value;
@@ -474,6 +606,11 @@ function metaBadges(name, pd) {
   const aM=actMths();
   const badges=[];
 
+  // ── 1위 칭호 (computeKings 결과) ──
+  (kingsByName[name]||[]).forEach(title=>{
+    badges.push({label:title, bg:'#fef4e0', color:'#7a4500', type:'pos'});
+  });
+
   // ── 실적 랭킹 ──
   const allPerfs=Object.entries(PERF).map(([n,ap])=>({n,v:ap.totals.perf})).filter(x=>x.v>0);
   allPerfs.sort((a,b)=>b.v-a.v);
@@ -555,6 +692,89 @@ function targetOfMths(name) {
           avgAct:aM.length?Math.round(act/aM.length):0};
 }
 
+// 영예 칭호 1위 계산 (선택월 기준, 표시 중인 사원 풀에서)
+function computeKings(agents){
+  kingsByName={};
+  if(!agents||!agents.length) return;
+  const stats=agents.map(d=>{
+    const pd=perfOfMths(d.name);
+    const td=targetOfMths(d.name);
+    const fd=feedbackOfMths(d.name);
+    const ret=lr(d);
+    const m=lmd(d);
+    return {
+      name:d.name,
+      perf:pd?.perf||0,
+      cnt:pd?.cnt||0,
+      prem:pd?.prem||0,
+      db:td?.db||0,
+      act:td?.act||0,
+      fb:fd?.total||0,
+      rate:ret,
+      cntForRate:m.total_contracts||0,
+      growth:pd?.growth
+    };
+  });
+  const findTops=(key,filter)=>{
+    const cands=filter?stats.filter(filter):stats;
+    if(!cands.length) return [];
+    const max=Math.max(...cands.map(s=>s[key]??-Infinity));
+    if(max<=0||max===-Infinity) return [];
+    return cands.filter(s=>s[key]===max).map(s=>s.name);
+  };
+  const kings={
+    '👑 실적왕':   findTops('perf'),
+    '📋 신계약왕': findTops('cnt'),
+    '💰 보험료왕': findTops('prem'),
+    '🎯 DB왕':     findTops('db'),
+    '🚶 외활왕':   findTops('act'),
+    '💬 피드백왕': findTops('fb'),
+    '🛡️ 유지왕':   findTops('rate', s=>s.cntForRate>=50&&s.rate!=null),
+    '🚀 성장왕':   findTops('growth', s=>s.growth!=null)
+  };
+  Object.entries(kings).forEach(([title,names])=>{
+    names.forEach(n=>{
+      if(!kingsByName[n]) kingsByName[n]=[];
+      kingsByName[n].push(title);
+    });
+  });
+}
+
+// 성과등급 (절대기준 — 건수/월납/실적 종합 점수)
+function perfGrade(name){
+  const p=PERF&&PERF[name]; if(!p) return null;
+  const aM=actMths();
+  const cnt=aM.reduce((s,m)=>s+(p.months[m]?.cnt||0),0);
+  const prem=aM.reduce((s,m)=>s+(p.months[m]?.prem||0),0);
+  const perf=aM.reduce((s,m)=>s+(p.months[m]?.perf||0),0);
+  if(cnt===0&&prem===0) return null;
+  const CNT_MAX=100, PREM_MAX=10000000, PERF_MAX=10000000;
+  const sCnt=Math.min(cnt/CNT_MAX*100,100);
+  const sPrem=Math.min(prem/PREM_MAX*100,100);
+  const sPerf=Math.min(perf/PERF_MAX*100,100);
+  const avg=(sCnt+sPrem+sPerf)/3;
+  if(avg>=80) return 's';
+  if(avg>=50) return 'a';
+  if(avg>=25) return 'b';
+  if(avg>=10) return 'c';
+  return 'd';
+}
+const GRADE_RANK={s:5,a:4,b:3,c:2,d:1,n:0};
+
+// 피드백 (done/hold) 헬퍼
+function feedbackOfMths(name){
+  const f=FEEDBACK&&FEEDBACK[name];
+  if(!f) return null;
+  const aM=actMths();
+  let done=0,hold=0,any=false;
+  aM.forEach(m=>{
+    const v=f[m]; if(!v) return;
+    done+=v.done||0; hold+=v.hold||0;
+    if((v.done||0)||(v.hold||0)) any=true;
+  });
+  return {done,hold,total:done+hold,anyMonthHasData:any};
+}
+
 // 달성률 색상
 function achColor(ach){
   if(ach==null) return '#73726c';
@@ -575,10 +795,11 @@ function achBg(ach){
 function perfSectionHTML(name) {
   const pd=perfOfMths(name);
   if(!pd||pd.cnt===0)
-    return `<div class="perf-divider"><div class="perf-divider-left"><span class="perf-divider-icon">📊</span><span class="perf-divider-title">신계약 실적</span></div><span style="font-size:11px;color:#73726c;background:#f0efe9;padding:2px 8px;border-radius:10px">해당 기간 데이터 없음</span></div>`;
+    return `<div class="perf-divider"><div class="perf-divider-left"><span class="perf-divider-icon">📊</span><span class="perf-divider-title">성과관리</span></div><span style="font-size:11px;color:#73726c;background:#f0efe9;padding:2px 8px;border-radius:10px">해당 기간 데이터 없음</span></div>`;
   const id=cardId(name);
   const td=targetOfMths(name);
   const tHas=td&&td.anyMonthHasData;
+  const fd=feedbackOfMths(name);
   const badges=metaBadges(name,pd);
   const posBadges=badges.filter(b=>b.type==='pos');
   const negBadges=badges.filter(b=>b.type==='neg');
@@ -615,10 +836,11 @@ function perfSectionHTML(name) {
   return `<div class="perf-divider">
     <div class="perf-divider-left">
       <span class="perf-divider-icon">📊</span>
-      <span class="perf-divider-title">신계약 실적</span>
+      <span class="perf-divider-title">성과관리</span>
       <span style="font-size:10px;color:#185fa5;background:#dbeafe;padding:2px 7px;border-radius:10px;font-weight:500">${periodStr}</span>
     </div>
     <div class="perf-chips">
+      ${(()=>{const pg=perfGrade(name);const ps=gradeStyle(pg||'n');return `<span class="pchip2" style="background:${ps.bg};color:${ps.color}">성과 ${ps.label}</span>`;})()}
       <span class="pchip2" style="background:#e6f1fb;color:#185fa5">${pd.cnt}건</span>
       <span class="pchip2" style="background:#eaf3de;color:#3b6d11">${fmtW(pd.perf)}</span>
       <span style="font-size:11px;font-weight:500;color:${gc||'#73726c'};background:${gc?gc==='#0f6e56'?'#e6f9f0':'#fcebeb':'#f5f4f0'};padding:2px 8px;border-radius:10px">${growthStr}</span>
@@ -631,9 +853,10 @@ function perfSectionHTML(name) {
       <div class="perf-kpi"><div class="pv">${fmtW(pd.perf)}</div><div class="pl">인정실적</div></div>
       <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStrRaw}</div><div class="pl">분기 성장 (25.4Q→26.1Q)</div></div>
     </div>
-    ${tHas?`<div class="perf-kpis">
+    ${tHas?`<div class="perf-kpis" style="grid-template-columns:repeat(5,1fr)">
       <div class="perf-kpi"><div class="pv" style="color:#185fa5">${td.db}건</div><div class="pl">누적 DB배정</div></div>
       <div class="perf-kpi"><div class="pv" style="color:#0f6e56">${td.act}건</div><div class="pl">누적 외활</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:#a04848">${fd?fd.total:0}건</div><div class="pl">누적 피드백</div></div>
       <div class="perf-kpi"><div class="pv">${td.goal>0?fmtW(td.goal):'—'}</div><div class="pl">누적 마감목표</div></div>
       <div class="perf-kpi"><div class="pv" style="color:${achColor(td.ach)}">${td.ach!=null?td.ach.toFixed(0)+'%':'—'}</div><div class="pl">평균 목표달성률</div></div>
     </div>`:''}
@@ -645,9 +868,32 @@ function perfSectionHTML(name) {
     ${tHas?`<div class="perf-charts">
       <div class="perf-cw"><div class="perf-ct">DB배정</div><div class="perf-cwrap"><canvas id="pc4${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">외활</div><div class="perf-cwrap"><canvas id="pc5${id}"></canvas></div></div>
-      <div class="perf-cw"><div class="perf-ct">마감목표 (만원) · 달성률</div><div class="perf-cwrap"><canvas id="pc6${id}"></canvas></div></div>
+      <div class="perf-cw"><div class="perf-ct">피드백</div><div class="perf-cwrap"><canvas id="pc7${id}"></canvas></div></div>
     </div>`:''}
-    <div class="perf-bottom">
+    ${tHas?`<div class="perf-bottom has-target">
+      <div class="perf-bottom-left">
+        <div class="perf-ct" style="margin-bottom:6px">마감목표 (만원) · 달성률</div>
+        <div class="perf-cwrap-lg"><canvas id="pc6${id}"></canvas></div>
+      </div>
+      <div class="perf-bottom-right">
+        <div class="perf-products">
+          <div class="perf-ct" style="margin-bottom:5px">상품군 분포</div>
+          ${topProdHTML}
+        </div>
+        <div class="perf-portfolio">
+          <div class="perf-ct" style="margin-bottom:5px">생/손보 구성 · 이탈 ${pd.lostRate}%${pd.delay>0?' · 유예 '+pd.delay+'건':''}</div>
+          <div class="portfolio-bar">
+            <div class="seg" style="width:${lifeW}%;background:rgba(133,58,165,.75)">${lifeW>20?'생보':''}  </div>
+            <div class="seg" style="width:${nlW}%;background:rgba(55,138,221,.75)">${nlW>20?'손보':''}  </div>
+          </div>
+          <div class="portfolio-legend">
+            <div class="pleg"><div class="pleg-dot" style="background:rgba(133,58,165,.75)"></div>생명 ${pd.life}건 (${lifeW}%)</div>
+            <div class="pleg"><div class="pleg-dot" style="background:rgba(55,138,221,.75)"></div>손해 ${pd.nonlife}건 (${nlW}%)</div>
+            ${pd.lostRate>0?`<div class="pleg" style="color:#a32d2d"><div class="pleg-dot" style="background:#fcebeb;border:1px solid #e24b4a"></div>조기이탈 ${pd.lostRate}%</div>`:''}
+          </div>
+        </div>
+      </div>
+    </div>`:`<div class="perf-bottom">
       <div class="perf-portfolio">
         <div class="perf-ct" style="margin-bottom:5px">생/손보 구성 · 이탈 ${pd.lostRate}%${pd.delay>0?' · 유예 '+pd.delay+'건':''}</div>
         <div class="portfolio-bar">
@@ -664,7 +910,7 @@ function perfSectionHTML(name) {
         <div class="perf-ct" style="margin-bottom:5px">상품군 분포</div>
         ${topProdHTML}
       </div>
-    </div>
+    </div>`}
     ${allBadgeHTML?`<div class="meta-badges">${allBadgeHTML}</div>`:''}
   </div>`;
 }
@@ -704,6 +950,60 @@ const perfLabelPlugin2={id:'perfLbl2',afterDatasetsDraw(chart){
   ctx.restore();
 }};
 
+// 피드백 stacked bar: 막대 위 총합(11px bold) + 막대 안 done/hold (9px)
+const fbStackedLabelPlugin={id:'fbStackedLbl',afterDatasetsDraw(chart){
+  const{ctx,chartArea:ca,data}=chart;if(!ca)return;
+  const doneMeta=chart.getDatasetMeta(0);
+  const holdMeta=chart.getDatasetMeta(1);
+  if(!doneMeta||!holdMeta)return;
+  ctx.save();ctx.textAlign='center';
+  // 1) 막대 위 총합
+  doneMeta.data.forEach((bar,i)=>{
+    const done=data.datasets[0].data[i]||0;
+    const hold=data.datasets[1].data[i]||0;
+    const total=done+hold;
+    if(!total)return;
+    const holdBar=holdMeta.data[i];
+    const yTop=Math.min(bar.y, holdBar?holdBar.y:bar.y);
+    ctx.font='bold 11px sans-serif';
+    ctx.fillStyle='#0f6e56';
+    ctx.fillText(total, bar.x, Math.max(ca.top+12, yTop-4));
+  });
+  // 2) 막대 안 done/hold 숫자 (충분히 크면)
+  ctx.font='600 9px sans-serif';
+  ctx.textBaseline='middle';
+  doneMeta.data.forEach((bar,i)=>{
+    const done=data.datasets[0].data[i]||0;
+    if(!done)return;
+    const bH=Math.abs(bar.base-bar.y);
+    if(bH<13)return;
+    ctx.fillStyle='rgba(255,255,255,.95)';
+    ctx.fillText(done, bar.x, bar.y+bH/2);
+  });
+  holdMeta.data.forEach((bar,i)=>{
+    const hold=data.datasets[1].data[i]||0;
+    if(!hold)return;
+    const bH=Math.abs(bar.base-bar.y);
+    if(bH<13)return;
+    ctx.fillStyle='#0f6e56';
+    ctx.fillText(hold, bar.x, bar.y+bH/2);
+  });
+  ctx.restore();
+}};
+
+// 피드백(붉은계열) 막대 레이블
+const fbLabelPlugin={id:'fbLbl',afterDatasetsDraw(chart){
+  const{ctx,chartArea:ca}=chart;if(!ca)return;
+  ctx.save();ctx.font='bold 11px sans-serif';ctx.textAlign='center';
+  chart.getDatasetMeta(0).data.forEach((bar,i)=>{
+    const v=chart.data.datasets[0].data[i];if(!v)return;
+    const bH=Math.abs(bar.base-bar.y);
+    if(bH>=14){ctx.fillStyle='rgba(255,255,255,.95)';ctx.fillText(v,bar.x,bar.y+bH/2);}
+    else{ctx.fillStyle='#a04848';ctx.fillText(v,bar.x,Math.max(ca.top+9,bar.y-3));}
+  });
+  ctx.restore();
+}};
+
 // 외활(초록) 막대 레이블
 const actLabelPlugin={id:'actLbl',afterDatasetsDraw(chart){
   const{ctx,chartArea:ca}=chart;if(!ca)return;
@@ -722,6 +1022,9 @@ const goalAchLabelPlugin={id:'goalAchLbl',afterDatasetsDraw(chart){
   const{ctx,chartArea:ca,data}=chart;if(!ca)return;
   const opts=chart.options.plugins&&chart.options.plugins.goalAchLbl||{};
   const perfArr=opts.perfData||[];
+  const fontSize=opts.fontSize||11;
+  const achFontSize=opts.achFontSize||11;
+  const achYOffset=opts.achYOffset||14;
   const goalMeta=chart.getDatasetMeta(0);
   if(!goalMeta)return;
   ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
@@ -730,18 +1033,18 @@ const goalAchLabelPlugin={id:'goalAchLbl',afterDatasetsDraw(chart){
     const perf=perfArr[i]||0;
     if(!goal&&!perf)return;
     const bH=Math.abs(bar.base-bar.y);
-    // 막대 안: 목표 숫자 (변경 X)
+    // 막대 안: 목표 숫자
     if(goal>0){
-      ctx.font='bold 11px sans-serif';
-      if(bH>=18){ctx.fillStyle='rgba(255,255,255,.95)';ctx.fillText(goal.toLocaleString(),bar.x,bar.y+bH/2);}
-      else{ctx.fillStyle='#854f0b';ctx.fillText(goal.toLocaleString(),bar.x,Math.max(ca.top+13,bar.y-3));}
+      ctx.font=`bold ${fontSize}px sans-serif`;
+      if(bH>=fontSize+6){ctx.fillStyle='rgba(255,255,255,.95)';ctx.fillText(goal.toLocaleString(),bar.x,bar.y+bH/2);}
+      else{ctx.fillStyle='#854f0b';ctx.fillText(goal.toLocaleString(),bar.x,Math.max(ca.top+fontSize+2,bar.y-3));}
     }
     // 차트 영역 "바깥 위쪽" padding 영역에 달성률 % — 모든 막대 동일 높이 가로 정렬
     const ach=goal>0?(perf/goal*100):null;
     if(ach!=null){
-      ctx.font='bold 11px sans-serif';
+      ctx.font=`bold ${achFontSize}px sans-serif`;
       ctx.fillStyle=achColor(ach);
-      ctx.fillText(ach.toFixed(0)+'%',bar.x,ca.top-12);
+      ctx.fillText(ach.toFixed(0)+'%',bar.x,ca.top-achYOffset);
     }
   });
   ctx.restore();
@@ -770,19 +1073,24 @@ function drawPerfCharts(d) {
   mkBar(`pc2${id}`,aM.map(m=>Math.round((p.months[m]?.prem||0)/10000)),'rgba(186,117,23,.7)',premLabelPlugin2,v=>v+'만원');
   mkBar(`pc3${id}`,aM.map(m=>Math.round((p.months[m]?.perf||0)/10000)),'rgba(30,158,117,.7)',perfLabelPlugin2,v=>v+'만원');
 
-  // TARGET 데이터 차트 (pc4/pc5/pc6) — 데이터 있을 때만
+  // TARGET 데이터 차트 (pc4/pc5/pc7/pc6) — 데이터 있을 때만
   const td=targetOfMths(d.name);
   if(td&&td.anyMonthHasData){
     const t=TARGET[d.name]||{};
+    const f=FEEDBACK&&FEEDBACK[d.name]||{};
     mkBar(`pc4${id}`,aM.map(m=>t[m]?.db||0),'#185fa5',cntLabelPlugin,v=>v+'건');
     mkBar(`pc5${id}`,aM.map(m=>t[m]?.act||0),'#0f6e56',actLabelPlugin,v=>v+'건');
-    const cid='pc6'+id;
-    const el=document.getElementById(cid);
-    if(el){
-      if(charts[cid]){try{charts[cid].destroy();}catch(e){}}
+    // pc7: 피드백 단일 막대 (done+hold 합산)
+    const fbData=aM.map(m=>(f[m]?.done||0)+(f[m]?.hold||0));
+    mkBar(`pc7${id}`,fbData,'#a04848',fbLabelPlugin,v=>v+'건');
+    // pc6: 마감목표·달성률 큰 차트 (perf-bottom 좌측)
+    const cid6='pc6'+id;
+    const el6=document.getElementById(cid6);
+    if(el6){
+      if(charts[cid6]){try{charts[cid6].destroy();}catch(e){}}
       const goalData=aM.map(m=>Math.round((t[m]?.goal||0)/10000));
       const perfData=aM.map(m=>Math.round((p.months[m]?.prem||0)/10000));
-      charts[cid]=new Chart(el,{type:'bar',
+      charts[cid6]=new Chart(el6,{type:'bar',
         data:{labels:mL,datasets:[
           {label:'마감목표',data:goalData,backgroundColor:'#854f0b',borderRadius:3}
         ]},
@@ -791,10 +1099,10 @@ function drawPerfCharts(d) {
           devicePixelRatio:window.devicePixelRatio||2,
           plugins:{legend:{display:false},
             tooltip:{callbacks:{label:c=>'마감목표: '+c.raw.toLocaleString()+'만원'}},
-            goalAchLbl:{perfData:perfData}},
-          layout:{padding:{top:40,bottom:0,left:0,right:0}},
-          scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},
-                  y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}}});
+            goalAchLbl:{perfData:perfData,fontSize:10,achFontSize:10,achYOffset:10}},
+          layout:{padding:{top:28,bottom:0,left:0,right:0}},
+          scales:{x:{grid:{display:false},ticks:{font:{size:10},color:'#73726c'}},
+                  y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10},color:'#73726c'}}}}});
     }
   }
 }
@@ -826,6 +1134,7 @@ function renderPerfView(agents) {
     if(perfSortCol==='avgact')  return ((tb?.avgAct||0)-(ta?.avgAct||0))*dir;
     if(perfSortCol==='goalsum') return ((tb?.goal||0)-(ta?.goal||0))*dir;
     if(perfSortCol==='ach')     return (((tb?.ach)??-1)-((ta?.ach)??-1))*dir;
+    if(perfSortCol==='pgrade')  return (GRADE_RANK[perfGrade(b.name)||'n']-GRADE_RANK[perfGrade(a.name)||'n'])*dir;
     return ((pb?.perf||0)-(pa?.perf||0));
   });
   
@@ -841,9 +1150,11 @@ function renderPerfView(agents) {
       const ach2=tHas2&&td2.ach!=null?td2.ach.toFixed(0)+'%':'—';
       const achC2=tHas2&&td2.ach!=null?achColor(td2.ach):'#a09f98';
       const achB2=tHas2&&td2.ach!=null?achBg(td2.ach):'transparent';
+      const pgs2=gradeStyle('n');
       return `<tr style="opacity:.55">
         <td class="rnum">${i+1}</td>
         <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
+        <td class="rnum-cell" style="background:${pgs2.bg};color:${pgs2.color};font-weight:500">—</td>
         <td colspan="8" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
         <td class="rnum-cell" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?td2.avgDb:'—'}</td>
         <td class="rnum-cell" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?td2.avgAct:'—'}</td>
@@ -872,9 +1183,12 @@ function renderPerfView(agents) {
     const achStr=tHas&&td.ach!=null?td.ach.toFixed(0)+'%':'—';
     const achC=tHas&&td.ach!=null?achColor(td.ach):'#a09f98';
     const achB=tHas&&td.ach!=null?achBg(td.ach):'transparent';
+    const pg=perfGrade(d.name);
+    const pgs=gradeStyle(pg||'n');
     return `<tr>
       <td class="rnum">${i+1}</td>
       <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
+      <td class="rnum-cell" style="background:${pgs.bg};color:${pgs.color};font-weight:600">${pgs.label}</td>
       <td class="rnum-cell" style="font-weight:500">${pd.cnt}건</td>
       <td class="rnum-cell" style="font-weight:500;color:#185fa5">${fmtW(pd.perf)}</td>
       <td class="rnum-cell" style="color:#73726c">${fmtW(pd.avgPerf)}</td>
@@ -892,11 +1206,11 @@ function renderPerfView(agents) {
   
   // ── 유지통계 테이블 생성 ──
   const ll=ML_MAP[latestM()]||'최신';
-  const gradeMap2={s:[],a:[],b:[],c:[],n:[]};
+  const gradeMap2={s:[],a:[],b:[],c:[],d:[],n:[]};
   agents.forEach(d=>gradeMap2[getGrade(d)].push(d));
-  const gradeLabels2={s:'S등급 (95%↑)',a:'A등급 (90~95%)',b:'B등급 (80~90%)',c:'C등급 (80%↓)',n:'데이터 부족'};
-  const gradeBg2={s:'#eaf3de',a:'#e6f1fb',b:'#faeeda',c:'#fcebeb',n:'#f5f4f0'};
-  const gradeColor2={s:'#3b6d11',a:'#185fa5',b:'#854f0b',c:'#a32d2d',n:'#73726c'};
+  const gradeLabels2={s:'S 95%↑',a:'A 90~95%',b:'B 85~90%',c:'C 80~85%',d:'D 80%↓',n:'데이터 부족'};
+  const gradeBg2={s:'#e6f9f0',a:'#eaf3de',b:'#fef9ec',c:'#fff0f0',d:'#fcebeb',n:'#f5f4f0'};
+  const gradeColor2={s:'#0f6e56',a:'#3b6d11',b:'#854f0b',c:'#c45050',d:'#a32d2d',n:'#73726c'};
   const gradeAvg2=(arr)=>{const vals=arr.map(d=>lr(d)).filter(v=>v!=null);return vals.length?+(vals.reduce((s,v)=>s+v,0)/vals.length).toFixed(1):null;};
   const gradeSummary2=Object.entries(gradeMap2).filter(([,arr])=>arr.length>0).map(([g,arr])=>{
     const avg=gradeAvg2(arr);
@@ -913,7 +1227,7 @@ function renderPerfView(agents) {
     const mCells=aM2pv.map(mo=>{const v=d.months[mo]?.rate_25;return`<td class="rmonth" style="color:${rc(v)}">${v!=null?v.toFixed(1)+'%':'—'}</td>`;}).join('');
     const ln=totalLostN(d.name);
     const lBg=ln>0?'background:#fcebeb;color:#a32d2d':'background:#f1efe8;color:#73726c';
-    const grd=getGrade(d);const gBdr=grd==='s'?'border-left:3px solid #3b6d11':grd==='a'?'border-left:3px solid #185fa5':grd==='b'?'border-left:3px solid #854f0b':grd==='c'?'border-left:3px solid #a32d2d':'border-left:3px solid #d3d1c7';
+    const grd=getGrade(d);const gBdr=`border-left:3px solid ${gradeStyle(grd).color}`;
     return`<tr style="${gBdr}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team2]||'#444441'}">${team2}</div></td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m2.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m2.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m2.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m2.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m2.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="rnum-cell" style="color:${actOfMths(d.name)?'#0f6e56':'#a09f98'}">${actOfMths(d.name)?actOfMths(d.name).cnt:'—'}</td><td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
   }).join('');
   const rankTableHTML=`<div class="rank-panel" style="margin-bottom:12px"><div class="rank-panel-hd"><div><div class="rank-panel-title">🛡️ 유지율 통계 — ${ll} 기준</div><div class="rank-panel-sub">헤더 클릭 정렬 · ${rankAgents2.length}명</div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">${gradeSummary2}</div></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap"><span style="font-size:11px;color:#73726c">위험도(최종납입):</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤13회 부활필수</span><span style="background:#faeeda;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤25회 고객관리강화</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤7회 매우위험</span><span style="background:#faeeda;color:#633806;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤13회 위험</span><span style="background:#fff8e1;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤18회 주의</span><span style="background:#e6f1fb;color:#185fa5;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤25회 고객관리강화</span></div></div><div class="rank-tbl-wrap"><table class="rtbl"><thead><tr><th class="rnum">#</th><th onclick="sortRank('name')" class="${rankSortCol==='name'?'asc':''}">사원<span class="si2">${rankSortCol==='name'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th><th onclick="sortRank('rate')" class="${rankSortCol==='rate'?'asc':''}">유지율 바<span class="si2">${rankSortCol==='rate'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th>${mHeaders2}<th onclick="sortRank('chg')" class="${rankSortCol==='chg'?'asc':''}">변화<span class="si2">↕</span></th><th onclick="sortRank('cnt')" class="${rankSortCol==='cnt'?'asc':''}">계약<span class="si2">↕</span></th><th onclick="sortRank('lapsed')" class="${rankSortCol==='lapsed'?'asc':''}">실효<span class="si2">↕</span></th><th onclick="sortRank('cancelled')" class="${rankSortCol==='cancelled'?'asc':''}">해지<span class="si2">↕</span></th><th onclick="sortRank('lost')" class="${rankSortCol==='lost'?'asc':''}">이탈건<span class="si2">↕</span></th><th onclick="sortRank('act')" class="${rankSortCol==='act'?'asc':''}">활동량<span class="si2">↕</span></th><th onclick="sortRank('lostperf')" class="${rankSortCol==='lostperf'?'asc':''}"><span class="amt">이탈실적</span><span class="si2">↕</span></th></tr></thead><tbody>${rankRows}</tbody></table></div></div>`;
@@ -921,7 +1235,7 @@ function renderPerfView(agents) {
   container.innerHTML=`
     <div class="rank-panel" style="margin-bottom:12px">
       <div class="rank-panel-hd">
-        <div><div class="rank-panel-title">📊 신계약 실적 분석 — ${ML_MAP[actMths()[0]]||''} ~ ${ML_MAP[actMths().slice(-1)[0]]||''}</div>
+        <div><div class="rank-panel-title">📊 성과관리 — ${ML_MAP[actMths()[0]]||''} ~ ${ML_MAP[actMths().slice(-1)[0]]||''}</div>
         <div class="rank-panel-sub">${agents.length}명 · 총 ${totCnt}건 · 인정실적 ${fmtW(totPerf)} · 생보비중 ${lifeR}% · 조기이탈 ${lostR}%</div></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:10px;align-items:center">
           <span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:4px;font-weight:500">⚠️ 저유지고모집: 신계약多&유지율<85%</span>
@@ -934,6 +1248,7 @@ function renderPerfView(agents) {
           <thead><tr>
             <th class="rnum">#</th>
             <th>사원</th>
+            <th onclick="perfSort('pgrade')" class="${perfSortCol==='pgrade'?'asc':''}">성과등급<span class="si2">${perfSortCol==='pgrade'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
             <th>건수</th>
             <th>인정실적</th>
             <th>건당단가</th>
@@ -991,6 +1306,7 @@ function renderPerfView(agents) {
         const badgeHtml=badges.slice(0,3).map(b=>`<span class="mbadge" style="background:${b.bg};color:${b.color};font-size:10px">${b.label}</span>`).join('');
         const tdv=targetOfMths(d.name);
         const tHasV=tdv&&tdv.anyMonthHasData;
+        const fdv=feedbackOfMths(d.name);
 
         return `<div class="perf-view-card">
           <div class="pvc-header">
@@ -1001,6 +1317,7 @@ function renderPerfView(agents) {
             <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
               <span style="background:${TC[team]||'#f1efe8'};color:${TT[team]||'#444441'};padding:2px 7px;border-radius:4px;font-size:11px;font-weight:500">${team}</span>
               ${xBadge}
+              ${(()=>{const pg=perfGrade(d.name);const ps=gradeStyle(pg||'n');return `<span style="font-size:11px;background:${ps.bg};color:${ps.color};padding:2px 7px;border-radius:4px;font-weight:600">성과 ${ps.label}</span>`;})()}
               <span style="font-size:11px;color:${retColor};font-weight:500">유지율 ${retStr}</span>
             </div>
           </div>
@@ -1010,9 +1327,10 @@ function renderPerfView(agents) {
             <div class="perf-kpi"><div class="pv">${fmtW(pd.perf)}</div><div class="pl">인정실적</div></div>
             <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStr}</div><div class="pl">분기성장 (25.4Q→26.1Q)</div></div>
           </div>
-          ${tHasV?`<div class="perf-kpis">
+          ${tHasV?`<div class="perf-kpis" style="grid-template-columns:repeat(5,1fr)">
             <div class="perf-kpi"><div class="pv" style="color:#185fa5">${tdv.db}건</div><div class="pl">누적 DB배정</div></div>
             <div class="perf-kpi"><div class="pv" style="color:#0f6e56">${tdv.act}건</div><div class="pl">누적 외활</div></div>
+            <div class="perf-kpi"><div class="pv" style="color:#a04848">${fdv?fdv.total:0}건</div><div class="pl">누적 피드백</div></div>
             <div class="perf-kpi"><div class="pv">${tdv.goal>0?fmtW(tdv.goal):'—'}</div><div class="pl">누적 마감목표</div></div>
             <div class="perf-kpi"><div class="pv" style="color:${achColor(tdv.ach)}">${tdv.ach!=null?tdv.ach.toFixed(0)+'%':'—'}</div><div class="pl">평균 목표달성률</div></div>
           </div>`:''}
@@ -1024,9 +1342,28 @@ function renderPerfView(agents) {
           ${tHasV?`<div class="perf-charts">
             <div class="perf-cw"><div class="perf-ct">DB배정</div><div class="perf-cwrap"><canvas id="pvc4${id}"></canvas></div></div>
             <div class="perf-cw"><div class="perf-ct">외활</div><div class="perf-cwrap"><canvas id="pvc5${id}"></canvas></div></div>
-            <div class="perf-cw"><div class="perf-ct">마감목표 (만원) · 달성률</div><div class="perf-cwrap"><canvas id="pvc6${id}"></canvas></div></div>
+            <div class="perf-cw"><div class="perf-ct">피드백</div><div class="perf-cwrap"><canvas id="pvc7${id}"></canvas></div></div>
           </div>`:''}
-          <div class="perf-portfolio">
+          ${tHasV?`<div class="perf-bottom has-target">
+            <div class="perf-bottom-left">
+              <div class="perf-ct" style="margin-bottom:6px">마감목표 (만원) · 달성률</div>
+              <div class="perf-cwrap-lg"><canvas id="pvc6${id}"></canvas></div>
+            </div>
+            <div class="perf-bottom-right">
+              <div class="perf-portfolio" style="border-right:none">
+                <div class="portfolio-bar">
+                  <div class="seg" style="width:${lifeW}%;background:rgba(133,58,165,.7)">${lifeW>20?'생보 '+lifeW+'%':''}</div>
+                  <div class="seg" style="width:${100-lifeW}%;background:rgba(55,138,221,.7)">${(100-lifeW)>20?'손보 '+(100-lifeW)+'%':''}</div>
+                </div>
+                <div class="portfolio-legend" style="margin-top:4px">
+                  <div class="pleg"><div class="pleg-dot" style="background:rgba(133,58,165,.7)"></div>생명보험 ${pd.life}건</div>
+                  <div class="pleg"><div class="pleg-dot" style="background:rgba(55,138,221,.7)"></div>손해보험 ${pd.nonlife}건</div>
+                  ${pd.lostRate>0?`<div class="pleg"><div class="pleg-dot" style="background:#fcebeb"></div><span style="color:#a32d2d">조기이탈 ${pd.lostRate}%</span></div>`:''}
+                  ${pd.delay>0?`<div class="pleg"><div class="pleg-dot" style="background:#fff8e1"></div><span style="color:#854f0b">유예 ${pd.delay}건</span></div>`:''}
+                </div>
+              </div>
+            </div>
+          </div>`:`<div class="perf-portfolio">
             <div class="portfolio-bar">
               <div class="seg" style="width:${lifeW}%;background:rgba(133,58,165,.7)">${lifeW>20?'생보 '+lifeW+'%':''}</div>
               <div class="seg" style="width:${100-lifeW}%;background:rgba(55,138,221,.7)">${(100-lifeW)>20?'손보 '+(100-lifeW)+'%':''}</div>
@@ -1037,7 +1374,7 @@ function renderPerfView(agents) {
               ${pd.lostRate>0?`<div class="pleg"><div class="pleg-dot" style="background:#fcebeb"></div><span style="color:#a32d2d">조기이탈 ${pd.lostRate}%</span></div>`:''}
               ${pd.delay>0?`<div class="pleg"><div class="pleg-dot" style="background:#fff8e1"></div><span style="color:#854f0b">유예 ${pd.delay}건</span></div>`:''}
             </div>
-          </div>
+          </div>`}
           ${badgeHtml?`<div class="meta-badges">${badgeHtml}</div>`:''}
         </div>`;
       }).join('')}
@@ -1065,19 +1402,24 @@ function renderPerfView(agents) {
       mkPvBar(`pvc2${id}`,aM.map(m=>Math.round((p.months[m]?.prem||0)/10000)),'rgba(186,117,23,.7)',premLabelPlugin2);
       mkPvBar(`pvc3${id}`,aM.map(m=>Math.round((p.months[m]?.perf||0)/10000)),'rgba(30,158,117,.7)',perfLabelPlugin2);
 
-      // TARGET 차트 (pvc4/pvc5/pvc6)
+      // TARGET 차트 (pvc4/pvc5/pvc7/pvc6)
       const tdv=targetOfMths(d.name);
       if(tdv&&tdv.anyMonthHasData){
         const t=TARGET[d.name]||{};
+        const f=FEEDBACK&&FEEDBACK[d.name]||{};
         mkPvBar(`pvc4${id}`,aM.map(m=>t[m]?.db||0),'#185fa5',cntLabelPlugin);
         mkPvBar(`pvc5${id}`,aM.map(m=>t[m]?.act||0),'#0f6e56',actLabelPlugin);
-        const cid='pvc6'+id;
-        const el=document.getElementById(cid);
-        if(el){
-          if(charts[cid]){try{charts[cid].destroy();}catch(e){}}
+        // pvc7: 피드백 단일 막대
+        const fbDataV=aM.map(m=>(f[m]?.done||0)+(f[m]?.hold||0));
+        mkPvBar(`pvc7${id}`,fbDataV,'#a04848',fbLabelPlugin);
+        // pvc6: 마감목표 큰 차트 (perf-bottom 좌측)
+        const cid6='pvc6'+id;
+        const el6=document.getElementById(cid6);
+        if(el6){
+          if(charts[cid6]){try{charts[cid6].destroy();}catch(e){}}
           const goalData=aM.map(m=>Math.round((t[m]?.goal||0)/10000));
           const perfData=aM.map(m=>Math.round((p.months[m]?.prem||0)/10000));
-          charts[cid]=new Chart(el,{type:'bar',
+          charts[cid6]=new Chart(el6,{type:'bar',
             data:{labels:mL,datasets:[
               {label:'마감목표',data:goalData,backgroundColor:'#854f0b',borderRadius:3}
             ]},
@@ -1086,10 +1428,10 @@ function renderPerfView(agents) {
               devicePixelRatio:window.devicePixelRatio||2,
               plugins:{legend:{display:false},
                 tooltip:{callbacks:{label:c=>'마감목표: '+c.raw.toLocaleString()+'만원'}},
-                goalAchLbl:{perfData:perfData}},
-              layout:{padding:{top:40,bottom:0,left:0,right:0}},
-              scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#73726c'}},
-                      y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:9},color:'#73726c'}}}}});
+                goalAchLbl:{perfData:perfData,fontSize:10,achFontSize:10,achYOffset:10}},
+              layout:{padding:{top:28,bottom:0,left:0,right:0}},
+              scales:{x:{grid:{display:false},ticks:{font:{size:10},color:'#73726c'}},
+                      y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10},color:'#73726c'}}}}});
         }
       }
     });
@@ -1101,6 +1443,11 @@ function setView(v){
   document.getElementById('vCard').classList.toggle('on',v==='card');
   document.getElementById('vPerf').classList.toggle('on',v==='perf');
   render();
+}
+
+function toggleGuide(){
+  document.getElementById('guidePanel').classList.toggle('open');
+  document.getElementById('guideOverlay').classList.toggle('open');
 }
 
 // ─── 차트 데이터 레이블 플러그인 ───
@@ -1196,9 +1543,11 @@ function cardHTML(d){
   const _L=LOST[d.name]||{};const _aP=sortPeriodKeys(Object.keys(_L).filter(k=>lostPeriodActive(k)));
   const _tN=_aP.reduce((s,k)=>s+(_L[k]||[]).length,0);
   const _tP=_aP.reduce((s,k)=>(_L[k]||[]).reduce((ss,x)=>ss+x.first_perf,s),0);
-  const _mChips=_tN>0
+  const _gs=gradeStyle(getGrade(d));
+  const _gradeChip=`<span class="pchip2" style="background:${_gs.bg};color:${_gs.color}">유지 ${_gs.label}</span>`;
+  const _mChips=_gradeChip+(_tN>0
     ?`<span class="pchip2" style="background:#fcebeb;color:#a32d2d">${_tN}건 이탈</span><span class="pchip2" style="background:#faeeda;color:#854f0b">${fmtW(_tP)} 소멸</span>`
-    :`<span class="pchip2" style="background:#eaf3de;color:#3b6d11">이탈 없음</span>`;
+    :`<span class="pchip2" style="background:#eaf3de;color:#3b6d11">이탈 없음</span>`);
   const mgmtDiv=`<div class="perf-divider" style="background:linear-gradient(135deg,#fff5f5 0%,#fef5ed 100%);border-top:2px solid #a32d2d"><div class="perf-divider-left"><span class="perf-divider-icon">🛡️</span><span class="perf-divider-title" style="color:#a32d2d">고객관리</span><span style="font-size:10px;color:#a32d2d;background:#fce8e8;padding:2px 7px;border-radius:10px;font-weight:500">${aM.length>0?(ML_MAP[aM[0]]||aM[0])+(aM.length>1?' ~ '+(ML_MAP[aM[aM.length-1]]||aM[aM.length-1]):''):'—'}</span></div><div class="perf-chips">${_mChips}</div></div>`;
   return`<div class="card"><div class="ch"><div><div class="cname">${d.name}</div><div class="csub">${team} · 계약 ${m.total_contracts??'—'}건</div></div><div class="cbadges">${teamBadge}${rBadge}${tBadge}</div></div>${mgmtDiv}<div class="ckpis"><div class="kpi"><div class="kv" style="color:${rc(r)}">${r!=null?r.toFixed(1)+'%':'—'}</div><div class="kl">${ll} 유지율</div></div><div class="kpi"><div class="kv">${m.total_contracts??'—'}</div><div class="kl">계약건수</div></div><div class="kpi"><div class="kv" style="color:${lc}">${m.lapsed??'—'}</div><div class="kl">실효</div></div><div class="kpi"><div class="kv" style="color:${cc}">${m.cancelled??'—'}</div><div class="kl">해지</div></div></div><div class="ccharts"><div class="cw"><div class="ct">25회 통산유지율</div><div class="cwrap"><canvas id="r${id}"></canvas></div></div><div class="cw"><div class="ct">계약 상태 추이</div><div class="cwrap"><canvas id="s${id}"></canvas></div></div><div class="cw"><div class="ct">25회 월보험료합계 (만원)</div><div class="cwrap"><canvas id="p${id}"></canvas></div></div></div><div class="ctrend">${trend||'<span style="color:#a09f98;font-size:11px">데이터 없음</span>'}</div>${lostSectionHTML(d.name)}<div style="height:6px;background:#e8e7e1"></div>${perfSectionHTML(d.name)}</div>`;
 }
@@ -1261,7 +1610,7 @@ function renderRankView(agents){
     const mCells=aM.map(mo=>{const v=d.months[mo]?.rate_25;return`<td class="rmonth" style="color:${rc(v)}">${v!=null?v.toFixed(1)+'%':'—'}</td>`;}).join('');
     const ln=totalLostN(d.name);
     const lBg=ln>0?'background:#fcebeb;color:#a32d2d':'background:#f1efe8;color:#73726c';
-    const grd=getGrade(d);const gBdr=grd==='s'?'border-left:3px solid #3b6d11':grd==='a'?'border-left:3px solid #185fa5':grd==='b'?'border-left:3px solid #854f0b':grd==='c'?'border-left:3px solid #a32d2d':'border-left:3px solid #d3d1c7';
+    const grd=getGrade(d);const gBdr=`border-left:3px solid ${gradeStyle(grd).color}`;
     return`<tr style="${gBdr}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="rnum-cell" style="color:${actOfMths(d.name)?'#0f6e56':'#a09f98'}">${actOfMths(d.name)?actOfMths(d.name).cnt:'—'}</td>
       <td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
   }).join('');
@@ -1299,6 +1648,7 @@ function render(){
   Object.values(charts).forEach(c=>{try{c.destroy();}catch(e){}});
   charts={};
   const agents=sortedFiltered();
+  computeKings(agents);
   updateSum(agents);
   if(viewMode==='card'){
     document.getElementById('cardViewArea').style.display='';
@@ -1398,7 +1748,7 @@ async function downloadEach(){
     try{
       const canvas=await html2canvas(card,{scale:2,backgroundColor:'#fff',useCORS:true,logging:false});
       const a=document.createElement('a');
-      a.download=`${name}_유지율분석_${period}.png`;
+      a.download=`상위0.01%_통합관리_${name}_${period}.png`;
       a.href=canvas.toDataURL('image/png');
       a.click();
       await new Promise(r=>setTimeout(r,300));
@@ -1412,7 +1762,7 @@ function downloadImg(){
   html2canvas(document.getElementById('captureArea'),{scale:2,backgroundColor:'#f0efe9',useCORS:true,logging:false}).then(canvas=>{
     const a=document.createElement('a');
     const period=actMths().map(m=>ML_MAP[m]).join('_');
-    a.download=`유지율분석_${viewMode}_${period}.png`;a.href=canvas.toDataURL('image/png');a.click();
+    a.download=`상위0.01%_통합관리_${viewMode}_${period}.png`;a.href=canvas.toDataURL('image/png');a.click();
     btn.textContent='↓ 이미지 저장';
   });
 }
@@ -1420,7 +1770,16 @@ function downloadImg(){
 fetch('./data/data.json?v='+Date.now())
   .then(r=>r.json())
   .then(data=>{
-    D=data.D; LOST=data.LOST; PERF=data.PERF; TARGET=data.TARGET||{};
+    D=data.D; LOST=data.LOST; PERF=data.PERF; TARGET=data.TARGET||{}; FEEDBACK=data.FEEDBACK||{};
+    // 최종 업데이트 시각 표시
+    const lu=data._meta&&data._meta.lastUpdated;
+    if(lu){
+      const dt=new Date(lu);
+      const pad=n=>String(n).padStart(2,'0');
+      const fmt=`${dt.getFullYear()}.${pad(dt.getMonth()+1)}.${pad(dt.getDate())} ${pad(dt.getHours())}:${pad(dt.getMinutes())}`;
+      const el=document.getElementById('phUpdated');
+      if(el) el.textContent=`📅 최종 업데이트: ${fmt}`;
+    }
     ensureDPlaceholders();
     AVAIL_MONTHS=[...new Set([
       ...Object.values(D).flatMap(d=>Object.keys(d.months||{})),
