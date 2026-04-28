@@ -279,7 +279,7 @@ function hasLost(n){const L=LOST[n]||{};return Object.keys(L).filter(k=>lostPeri
 function totalLostN(n){const L=LOST[n]||{};return Object.entries(L).filter(([k])=>lostPeriodActive(k)).reduce((s,[,v])=>s+v.length,0);}
 function totalLostPerf(n){const L=LOST[n]||{};return Object.entries(L).filter(([k])=>lostPeriodActive(k)).flatMap(([,v])=>v).reduce((s,x)=>s+x.first_perf,0);}
 
-const ALL_TEAMS=['전체','Team 0','Team 1','Team 2','Team 3','Team 4','강서지사','서울지사','기타'];
+const ALL_TEAMS=['전체','Team 0','Team 1','Team 2','Team 3','Team 4','강서지사','서울지사'];
 // PERF에만 있는 사람을 위해 D에 placeholder 자동 생성 (fetch / 인라인 init 양쪽에서 호출)
 function ensureDPlaceholders(){
   Object.keys(PERF||{}).forEach(n=>{

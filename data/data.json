@@ -1087,7 +1087,7 @@
       },
       "team": "Team 1",
       "name": "심예영",
-      "status": "FA"
+      "status": "MA"
     },
     "오하늘": {
       "months": {
@@ -1982,7 +1982,7 @@
       },
       "team": "Team 1",
       "name": "성윤석",
-      "status": "FA"
+      "status": "MA"
     },
     "전지웅": {
       "months": {
@@ -2043,7 +2043,7 @@
       },
       "team": "Team 1",
       "name": "전지웅",
-      "status": "FA"
+      "status": "MA"
     },
     "손이삭": {
       "months": {
@@ -4741,7 +4741,7 @@
         "ABL생명": 1
       },
       "team": "Team 1",
-      "status": "FA"
+      "status": "MA"
     },
     "손영준": {
       "name": "손영준",
@@ -6567,7 +6567,7 @@
         "동양생명": 1
       },
       "team": "Team 1",
-      "status": "FA"
+      "status": "MA"
     },
     "정민욱": {
       "name": "정민욱",
