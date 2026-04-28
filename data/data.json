@@ -1,0 +1,7170 @@
+{
+  "D": {
+    "윤영주": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1322755.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1322755.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1322755.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1322755.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1322755.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1322755.0
+        }
+      },
+      "team": "Team 3",
+      "name": "윤영주"
+    },
+    "김미란": {
+      "months": {
+        "03": {
+          "rate_25": 100.0,
+          "team": "서울지사",
+          "total_contracts": 3,
+          "normal": 3,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 457437.0
+        }
+      },
+      "team": "서울지사",
+      "name": "김미란"
+    },
+    "이은정": {
+      "months": {
+        "01": {
+          "rate_25": 68.05,
+          "team": "Team 4",
+          "total_contracts": 9,
+          "normal": 6,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 634264.0
+        },
+        "02": {
+          "rate_25": 68.05,
+          "team": "Team 4",
+          "total_contracts": 9,
+          "normal": 6,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 634264.0
+        },
+        "03": {
+          "rate_25": 68.05,
+          "team": "Team 4",
+          "total_contracts": 9,
+          "normal": 6,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 634264.0
+        },
+        "10": {
+          "rate_25": 68.05,
+          "team": "Team 4",
+          "total_contracts": 9,
+          "normal": 6,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 634264.0
+        },
+        "11": {
+          "rate_25": 68.05,
+          "team": "Team 4",
+          "total_contracts": 9,
+          "normal": 6,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 634264.0
+        },
+        "12": {
+          "rate_25": 68.05,
+          "team": "Team 4",
+          "total_contracts": 9,
+          "normal": 6,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 634264.0
+        }
+      },
+      "team": "Team 4",
+      "name": "이은정"
+    },
+    "박준호": {
+      "months": {
+        "01": {
+          "rate_25": 90.58,
+          "team": "Team 1",
+          "total_contracts": 135,
+          "normal": 122,
+          "lapsed": 3,
+          "cancelled": 10,
+          "total_prem": 9030864.0
+        },
+        "02": {
+          "rate_25": 91.23,
+          "team": "Team 1",
+          "total_contracts": 139,
+          "normal": 127,
+          "lapsed": 3,
+          "cancelled": 9,
+          "total_prem": 9447759.0
+        },
+        "03": {
+          "rate_25": 92.54,
+          "team": "Team 1",
+          "total_contracts": 139,
+          "normal": 128,
+          "lapsed": 2,
+          "cancelled": 9,
+          "total_prem": 9451635.0
+        },
+        "10": {
+          "rate_25": 95.6,
+          "team": "Team 1",
+          "total_contracts": 137,
+          "normal": 126,
+          "lapsed": 1,
+          "cancelled": 10,
+          "total_prem": 11249890.0
+        },
+        "11": {
+          "rate_25": 91.59,
+          "team": "Team 1",
+          "total_contracts": 141,
+          "normal": 125,
+          "lapsed": 3,
+          "cancelled": 13,
+          "total_prem": 11406785.0
+        },
+        "12": {
+          "rate_25": 93.39,
+          "team": "Team 1",
+          "total_contracts": 146,
+          "normal": 129,
+          "lapsed": 4,
+          "cancelled": 13,
+          "total_prem": 11796338.0
+        }
+      },
+      "team": "Team 1",
+      "name": "박준호"
+    },
+    "이민형": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
+        }
+      },
+      "team": "Team 2",
+      "name": "이민형"
+    },
+    "권희정": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 4,
+          "normal": 4,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1913006.0
+        },
+        "02": {
+          "team": "Team 0"
+        },
+        "03": {
+          "team": "Team 0"
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 4,
+          "normal": 4,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1913006.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 4,
+          "normal": 4,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1913006.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 4,
+          "normal": 4,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1913006.0
+        }
+      },
+      "team": "Team 0",
+      "name": "권희정"
+    },
+    "마영주": {
+      "months": {
+        "01": {
+          "team": "Team 0"
+        },
+        "02": {
+          "team": "Team 0"
+        },
+        "03": {
+          "team": "Team 0"
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 10846.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 10846.0
+        },
+        "12": {
+          "rate_25": null,
+          "team": "Team 0",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 10846.0
+        }
+      },
+      "team": "Team 0",
+      "name": "마영주"
+    },
+    "김성현": {
+      "months": {
+        "02": {
+          "rate_25": 77.2,
+          "team": "Team 2",
+          "total_contracts": 12,
+          "normal": 10,
+          "lapsed": 2,
+          "cancelled": 0,
+          "total_prem": 702294.0
+        },
+        "03": {
+          "rate_25": 71.41,
+          "team": "Team 2",
+          "total_contracts": 12,
+          "normal": 9,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 702294.0
+        }
+      },
+      "team": "Team 2",
+      "name": "김성현"
+    },
+    "이지현": {
+      "months": {
+        "01": {
+          "rate_25": 92.43,
+          "team": "서울지사",
+          "total_contracts": 7,
+          "normal": 6,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 1018410.0
+        },
+        "02": {
+          "rate_25": 95.6,
+          "team": "서울지사",
+          "total_contracts": 16,
+          "normal": 15,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 1675659.0
+        },
+        "03": {
+          "rate_25": 68.05,
+          "team": "서울지사",
+          "total_contracts": 19,
+          "normal": 16,
+          "lapsed": 0,
+          "cancelled": 3,
+          "total_prem": 1879449.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "서울지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 31070.0
+        }
+      },
+      "team": "서울지사",
+      "name": "이지현"
+    },
+    "신지원": {
+      "months": {
+        "01": {
+          "rate_25": 97.5,
+          "team": "강서지사",
+          "total_contracts": 144,
+          "normal": 139,
+          "lapsed": 3,
+          "cancelled": 2,
+          "total_prem": 16991452.0
+        },
+        "02": {
+          "rate_25": 97.64,
+          "team": "강서지사",
+          "total_contracts": 167,
+          "normal": 162,
+          "lapsed": 3,
+          "cancelled": 2,
+          "total_prem": 18066619.0
+        },
+        "03": {
+          "rate_25": 96.46,
+          "team": "강서지사",
+          "total_contracts": 176,
+          "normal": 170,
+          "lapsed": 4,
+          "cancelled": 2,
+          "total_prem": 18552205.0
+        },
+        "10": {
+          "rate_25": 97.14,
+          "team": "강서지사",
+          "total_contracts": 110,
+          "normal": 105,
+          "lapsed": 3,
+          "cancelled": 2,
+          "total_prem": 14721554.0
+        },
+        "11": {
+          "rate_25": 97.31,
+          "team": "강서지사",
+          "total_contracts": 126,
+          "normal": 121,
+          "lapsed": 3,
+          "cancelled": 2,
+          "total_prem": 15619807.0
+        },
+        "12": {
+          "rate_25": 97.37,
+          "team": "강서지사",
+          "total_contracts": 134,
+          "normal": 129,
+          "lapsed": 3,
+          "cancelled": 2,
+          "total_prem": 16087279.0
+        }
+      },
+      "team": "강서지사",
+      "name": "신지원"
+    },
+    "배수현": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 62,
+          "normal": 62,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 5190974.0
+        },
+        "02": {
+          "rate_25": 99.98,
+          "team": "Team 3",
+          "total_contracts": 77,
+          "normal": 77,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 6385640.0
+        },
+        "03": {
+          "rate_25": 99.98,
+          "team": "Team 3",
+          "total_contracts": 86,
+          "normal": 86,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 7019825.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 27,
+          "normal": 27,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2046865.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 34,
+          "normal": 34,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2685915.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 44,
+          "normal": 44,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3357909.0
+        }
+      },
+      "team": "Team 3",
+      "name": "배수현"
+    },
+    "박윤솔": {
+      "months": {
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 68340.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 68340.0
+        }
+      },
+      "team": "Team 1",
+      "name": "박윤솔"
+    },
+    "이승목": {
+      "months": {
+        "01": {
+          "rate_25": 88.68,
+          "team": "Team 4",
+          "total_contracts": 83,
+          "normal": 73,
+          "lapsed": 5,
+          "cancelled": 5,
+          "total_prem": 12373599.0
+        },
+        "02": {
+          "rate_25": 86.68,
+          "team": "Team 4",
+          "total_contracts": 83,
+          "normal": 71,
+          "lapsed": 5,
+          "cancelled": 7,
+          "total_prem": 11531640.0
+        },
+        "03": {
+          "rate_25": 81.03,
+          "team": "Team 4",
+          "total_contracts": 81,
+          "normal": 67,
+          "lapsed": 6,
+          "cancelled": 8,
+          "total_prem": 10785063.0
+        },
+        "10": {
+          "rate_25": 91.85,
+          "team": "Team 4",
+          "total_contracts": 83,
+          "normal": 75,
+          "lapsed": 5,
+          "cancelled": 3,
+          "total_prem": 12384831.0
+        },
+        "11": {
+          "rate_25": 91.04,
+          "team": "Team 4",
+          "total_contracts": 84,
+          "normal": 75,
+          "lapsed": 5,
+          "cancelled": 4,
+          "total_prem": 12685625.0
+        },
+        "12": {
+          "rate_25": 91.1,
+          "team": "Team 4",
+          "total_contracts": 86,
+          "normal": 77,
+          "lapsed": 5,
+          "cancelled": 4,
+          "total_prem": 12805645.0
+        }
+      },
+      "team": "Team 4",
+      "name": "이승목"
+    },
+    "백경민": {
+      "months": {
+        "01": {
+          "rate_25": 68.63,
+          "team": "Team 1",
+          "total_contracts": 104,
+          "normal": 79,
+          "lapsed": 7,
+          "cancelled": 18,
+          "total_prem": 9632158.0
+        },
+        "02": {
+          "rate_25": 72.67,
+          "team": "Team 1",
+          "total_contracts": 121,
+          "normal": 96,
+          "lapsed": 3,
+          "cancelled": 22,
+          "total_prem": 10759577.0
+        },
+        "03": {
+          "rate_25": 73.33,
+          "team": "Team 1",
+          "total_contracts": 123,
+          "normal": 98,
+          "lapsed": 3,
+          "cancelled": 22,
+          "total_prem": 11204176.0
+        },
+        "10": {
+          "rate_25": 77.85,
+          "team": "Team 1",
+          "total_contracts": 123,
+          "normal": 97,
+          "lapsed": 8,
+          "cancelled": 18,
+          "total_prem": 12291472.0
+        },
+        "11": {
+          "rate_25": 76.55,
+          "team": "Team 1",
+          "total_contracts": 123,
+          "normal": 96,
+          "lapsed": 8,
+          "cancelled": 19,
+          "total_prem": 12291472.0
+        },
+        "12": {
+          "rate_25": 71.07,
+          "team": "Team 1",
+          "total_contracts": 123,
+          "normal": 93,
+          "lapsed": 9,
+          "cancelled": 21,
+          "total_prem": 12291472.0
+        }
+      },
+      "team": "Team 1",
+      "name": "백경민"
+    },
+    "용은정": {
+      "months": {
+        "01": {
+          "rate_25": 87.35,
+          "team": "Team 4",
+          "total_contracts": 76,
+          "normal": 69,
+          "lapsed": 3,
+          "cancelled": 4,
+          "total_prem": 8692315.0
+        },
+        "02": {
+          "rate_25": 89.55,
+          "team": "Team 4",
+          "total_contracts": 95,
+          "normal": 88,
+          "lapsed": 3,
+          "cancelled": 4,
+          "total_prem": 10522712.0
+        },
+        "03": {
+          "rate_25": 91.47,
+          "team": "Team 4",
+          "total_contracts": 116,
+          "normal": 109,
+          "lapsed": 3,
+          "cancelled": 4,
+          "total_prem": 13038316.0
+        },
+        "10": {
+          "rate_25": 78.12,
+          "team": "Team 4",
+          "total_contracts": 28,
+          "normal": 24,
+          "lapsed": 4,
+          "cancelled": 0,
+          "total_prem": 3961938.0
+        },
+        "11": {
+          "rate_25": 70.86,
+          "team": "Team 4",
+          "total_contracts": 28,
+          "normal": 20,
+          "lapsed": 5,
+          "cancelled": 3,
+          "total_prem": 3961938.0
+        },
+        "12": {
+          "rate_25": 78.54,
+          "team": "Team 4",
+          "total_contracts": 47,
+          "normal": 40,
+          "lapsed": 3,
+          "cancelled": 4,
+          "total_prem": 5004244.0
+        }
+      },
+      "team": "Team 4",
+      "name": "용은정"
+    },
+    "김혜진": {
+      "months": {
+        "01": {
+          "rate_25": 99.82,
+          "team": "Team 1",
+          "total_contracts": 119,
+          "normal": 119,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 13093974.0
+        },
+        "02": {
+          "rate_25": 99.82,
+          "team": "Team 1",
+          "total_contracts": 123,
+          "normal": 123,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 13356867.0
+        },
+        "03": {
+          "rate_25": 99.82,
+          "team": "Team 1",
+          "total_contracts": 125,
+          "normal": 125,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 13503598.0
+        },
+        "10": {
+          "rate_25": 99.81,
+          "team": "Team 1",
+          "total_contracts": 110,
+          "normal": 110,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 12381935.0
+        },
+        "11": {
+          "rate_25": 99.81,
+          "team": "Team 1",
+          "total_contracts": 112,
+          "normal": 112,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 12489465.0
+        },
+        "12": {
+          "rate_25": 99.82,
+          "team": "Team 1",
+          "total_contracts": 118,
+          "normal": 118,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 13072333.0
+        }
+      },
+      "team": "Team 1",
+      "name": "김혜진"
+    },
+    "황지영": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
+        }
+      },
+      "team": "기타",
+      "name": "황지영"
+    },
+    "조신일": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 4",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 11660.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 4",
+          "total_contracts": 13,
+          "normal": 13,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 462366.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 4",
+          "total_contracts": 17,
+          "normal": 17,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 730130.0
+        }
+      },
+      "team": "Team 4",
+      "name": "조신일"
+    },
+    "강상우": {
+      "months": {
+        "01": {
+          "rate_25": 93.87,
+          "team": "Team 3",
+          "total_contracts": 129,
+          "normal": 124,
+          "lapsed": 0,
+          "cancelled": 5,
+          "total_prem": 17090684.0
+        },
+        "02": {
+          "rate_25": 94.47,
+          "team": "Team 3",
+          "total_contracts": 146,
+          "normal": 141,
+          "lapsed": 0,
+          "cancelled": 5,
+          "total_prem": 18787535.0
+        },
+        "03": {
+          "rate_25": 94.54,
+          "team": "Team 3",
+          "total_contracts": 149,
+          "normal": 144,
+          "lapsed": 0,
+          "cancelled": 5,
+          "total_prem": 19346821.0
+        },
+        "10": {
+          "rate_25": 96.33,
+          "team": "Team 3",
+          "total_contracts": 110,
+          "normal": 107,
+          "lapsed": 0,
+          "cancelled": 3,
+          "total_prem": 15604967.0
+        },
+        "11": {
+          "rate_25": 94.62,
+          "team": "Team 3",
+          "total_contracts": 114,
+          "normal": 110,
+          "lapsed": 1,
+          "cancelled": 3,
+          "total_prem": 15863116.0
+        },
+        "12": {
+          "rate_25": 92.82,
+          "team": "Team 3",
+          "total_contracts": 115,
+          "normal": 110,
+          "lapsed": 1,
+          "cancelled": 4,
+          "total_prem": 15876466.0
+        }
+      },
+      "team": "Team 3",
+      "name": "강상우"
+    },
+    "이지은": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        }
+      },
+      "team": "강서지사",
+      "name": "이지은"
+    },
+    "심예영": {
+      "months": {
+        "01": {
+          "rate_25": 68.19,
+          "team": "Team 1",
+          "total_contracts": 57,
+          "normal": 39,
+          "lapsed": 9,
+          "cancelled": 9,
+          "total_prem": 3339924.0
+        },
+        "02": {
+          "rate_25": 83.37,
+          "team": "Team 1",
+          "total_contracts": 49,
+          "normal": 38,
+          "lapsed": 4,
+          "cancelled": 7,
+          "total_prem": 2808532.0
+        },
+        "03": {
+          "rate_25": 85.13,
+          "team": "Team 1",
+          "total_contracts": 40,
+          "normal": 33,
+          "lapsed": 2,
+          "cancelled": 5,
+          "total_prem": 2515596.0
+        },
+        "10": {
+          "rate_25": 61.74,
+          "team": "Team 1",
+          "total_contracts": 70,
+          "normal": 48,
+          "lapsed": 12,
+          "cancelled": 10,
+          "total_prem": 4973152.0
+        },
+        "11": {
+          "rate_25": 62.48,
+          "team": "Team 1",
+          "total_contracts": 70,
+          "normal": 51,
+          "lapsed": 9,
+          "cancelled": 10,
+          "total_prem": 4973152.0
+        },
+        "12": {
+          "rate_25": 68.55,
+          "team": "Team 1",
+          "total_contracts": 70,
+          "normal": 46,
+          "lapsed": 13,
+          "cancelled": 11,
+          "total_prem": 4973152.0
+        }
+      },
+      "team": "Team 1",
+      "name": "심예영"
+    },
+    "오하늘": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 10,
+          "normal": 10,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1942566.0
+        },
+        "02": {
+          "rate_25": 98.92,
+          "team": "Team 1",
+          "total_contracts": 14,
+          "normal": 14,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2146033.0
+        },
+        "03": {
+          "rate_25": 98.92,
+          "team": "Team 1",
+          "total_contracts": 14,
+          "normal": 14,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2146033.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 10,
+          "normal": 10,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1942566.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 10,
+          "normal": 10,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1942566.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 10,
+          "normal": 10,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1942566.0
+        }
+      },
+      "team": "Team 1",
+      "name": "오하늘"
+    },
+    "정민욱": {
+      "months": {
+        "01": {
+          "rate_25": 87.76,
+          "team": "강서지사",
+          "total_contracts": 297,
+          "normal": 258,
+          "lapsed": 7,
+          "cancelled": 32,
+          "total_prem": 40037964.0
+        },
+        "02": {
+          "rate_25": 87.1,
+          "team": "강서지사",
+          "total_contracts": 328,
+          "normal": 281,
+          "lapsed": 15,
+          "cancelled": 32,
+          "total_prem": 41683884.0
+        },
+        "03": {
+          "rate_25": 81.92,
+          "team": "강서지사",
+          "total_contracts": 337,
+          "normal": 281,
+          "lapsed": 20,
+          "cancelled": 36,
+          "total_prem": 40967404.0
+        },
+        "10": {
+          "rate_25": 86.18,
+          "team": "강서지사",
+          "total_contracts": 286,
+          "normal": 252,
+          "lapsed": 5,
+          "cancelled": 29,
+          "total_prem": 39717461.0
+        },
+        "11": {
+          "rate_25": 87.04,
+          "team": "강서지사",
+          "total_contracts": 293,
+          "normal": 257,
+          "lapsed": 6,
+          "cancelled": 30,
+          "total_prem": 40253349.0
+        },
+        "12": {
+          "rate_25": 88.77,
+          "team": "강서지사",
+          "total_contracts": 309,
+          "normal": 272,
+          "lapsed": 6,
+          "cancelled": 31,
+          "total_prem": 44036511.0
+        }
+      },
+      "team": "강서지사",
+      "name": "정민욱"
+    },
+    "정율": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
+        }
+      },
+      "team": "Team 0",
+      "name": "정율"
+    },
+    "원수빈": {
+      "months": {
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 4",
+          "total_contracts": 3,
+          "normal": 3,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 170415.0
+        }
+      },
+      "team": "Team 4",
+      "name": "원수빈"
+    },
+    "유수환": {
+      "months": {
+        "01": {
+          "rate_25": 97.64,
+          "team": "Team 1",
+          "total_contracts": 129,
+          "normal": 122,
+          "lapsed": 3,
+          "cancelled": 4,
+          "total_prem": 15103348.0
+        },
+        "02": {
+          "rate_25": 97.7,
+          "team": "Team 1",
+          "total_contracts": 136,
+          "normal": 130,
+          "lapsed": 2,
+          "cancelled": 4,
+          "total_prem": 14841859.0
+        },
+        "03": {
+          "rate_25": 96.92,
+          "team": "Team 1",
+          "total_contracts": 133,
+          "normal": 125,
+          "lapsed": 5,
+          "cancelled": 3,
+          "total_prem": 15038099.0
+        },
+        "10": {
+          "rate_25": 91.02,
+          "team": "Team 1",
+          "total_contracts": 127,
+          "normal": 114,
+          "lapsed": 9,
+          "cancelled": 4,
+          "total_prem": 17506278.0
+        },
+        "11": {
+          "rate_25": 90.76,
+          "team": "Team 1",
+          "total_contracts": 130,
+          "normal": 118,
+          "lapsed": 8,
+          "cancelled": 4,
+          "total_prem": 17626945.0
+        },
+        "12": {
+          "rate_25": 95.7,
+          "team": "Team 1",
+          "total_contracts": 135,
+          "normal": 123,
+          "lapsed": 8,
+          "cancelled": 4,
+          "total_prem": 17999889.0
+        }
+      },
+      "team": "Team 1",
+      "name": "유수환"
+    },
+    "이도헌": {
+      "months": {
+        "01": {
+          "rate_25": 62.27,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 16,
+          "lapsed": 5,
+          "cancelled": 4,
+          "total_prem": 5280452.0
+        },
+        "02": {
+          "rate_25": 46.92,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 10,
+          "lapsed": 11,
+          "cancelled": 4,
+          "total_prem": 5280452.0
+        },
+        "03": {
+          "rate_25": 46.92,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 10,
+          "lapsed": 11,
+          "cancelled": 4,
+          "total_prem": 5280452.0
+        },
+        "10": {
+          "rate_25": 62.27,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 16,
+          "lapsed": 5,
+          "cancelled": 4,
+          "total_prem": 5280452.0
+        },
+        "11": {
+          "rate_25": 62.27,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 16,
+          "lapsed": 5,
+          "cancelled": 4,
+          "total_prem": 5280452.0
+        },
+        "12": {
+          "rate_25": 62.27,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 16,
+          "lapsed": 5,
+          "cancelled": 4,
+          "total_prem": 5280452.0
+        }
+      },
+      "team": "Team 0",
+      "name": "이도헌"
+    },
+    "신수정": {
+      "months": {
+        "01": {
+          "rate_25": 0.0,
+          "team": "Team 4",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 513700.0
+        },
+        "02": {
+          "rate_25": 0.0,
+          "team": "Team 4",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 513700.0
+        },
+        "03": {
+          "rate_25": 0.0,
+          "team": "Team 4",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 513700.0
+        },
+        "10": {
+          "rate_25": 0.0,
+          "team": "Team 4",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 513700.0
+        },
+        "11": {
+          "rate_25": 0.0,
+          "team": "Team 4",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 513700.0
+        },
+        "12": {
+          "rate_25": 0.0,
+          "team": "Team 4",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 513700.0
+        }
+      },
+      "team": "Team 4",
+      "name": "신수정"
+    },
+    "변호인": {
+      "months": {
+        "02": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 11000.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 11000.0
+        }
+      },
+      "team": "기타",
+      "name": "변호인"
+    },
+    "정소희": {
+      "months": {
+        "01": {
+          "rate_25": 89.37,
+          "team": "Team 3",
+          "total_contracts": 38,
+          "normal": 31,
+          "lapsed": 0,
+          "cancelled": 7,
+          "total_prem": 4596834.0
+        },
+        "02": {
+          "rate_25": 90.85,
+          "team": "Team 3",
+          "total_contracts": 56,
+          "normal": 48,
+          "lapsed": 0,
+          "cancelled": 8,
+          "total_prem": 6273569.0
+        },
+        "03": {
+          "rate_25": 90.34,
+          "team": "Team 3",
+          "total_contracts": 61,
+          "normal": 52,
+          "lapsed": 1,
+          "cancelled": 8,
+          "total_prem": 6537542.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 27,
+          "normal": 27,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3481424.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 28,
+          "normal": 28,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3558964.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 33,
+          "normal": 33,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3897104.0
+        }
+      },
+      "team": "Team 3",
+      "name": "정소희"
+    },
+    "손영준": {
+      "months": {
+        "01": {
+          "rate_25": 87.35,
+          "team": "Team 3",
+          "total_contracts": 88,
+          "normal": 79,
+          "lapsed": 2,
+          "cancelled": 7,
+          "total_prem": 8414001.0
+        },
+        "02": {
+          "rate_25": 77.25,
+          "team": "Team 3",
+          "total_contracts": 100,
+          "normal": 81,
+          "lapsed": 6,
+          "cancelled": 13,
+          "total_prem": 9530921.0
+        },
+        "03": {
+          "rate_25": 74.89,
+          "team": "Team 3",
+          "total_contracts": 117,
+          "normal": 95,
+          "lapsed": 8,
+          "cancelled": 14,
+          "total_prem": 10944040.0
+        },
+        "10": {
+          "rate_25": 91.36,
+          "team": "Team 3",
+          "total_contracts": 63,
+          "normal": 57,
+          "lapsed": 0,
+          "cancelled": 6,
+          "total_prem": 5243767.0
+        },
+        "11": {
+          "rate_25": 83.96,
+          "team": "Team 3",
+          "total_contracts": 68,
+          "normal": 61,
+          "lapsed": 1,
+          "cancelled": 6,
+          "total_prem": 5491353.0
+        },
+        "12": {
+          "rate_25": 93.12,
+          "team": "Team 3",
+          "total_contracts": 74,
+          "normal": 68,
+          "lapsed": 0,
+          "cancelled": 6,
+          "total_prem": 6676339.0
+        }
+      },
+      "team": "Team 3",
+      "name": "손영준"
+    },
+    "민선경": {
+      "months": {
+        "01": {
+          "rate_25": 98.13,
+          "team": "Team 0",
+          "total_contracts": 100,
+          "normal": 94,
+          "lapsed": 6,
+          "cancelled": 0,
+          "total_prem": 17253373.0
+        },
+        "02": {
+          "rate_25": 97.69,
+          "team": "Team 0",
+          "total_contracts": 93,
+          "normal": 86,
+          "lapsed": 7,
+          "cancelled": 0,
+          "total_prem": 16239997.0
+        },
+        "03": {
+          "rate_25": 92.24,
+          "team": "Team 0",
+          "total_contracts": 92,
+          "normal": 83,
+          "lapsed": 9,
+          "cancelled": 0,
+          "total_prem": 9345162.0
+        },
+        "10": {
+          "rate_25": 96.17,
+          "team": "Team 0",
+          "total_contracts": 126,
+          "normal": 116,
+          "lapsed": 8,
+          "cancelled": 2,
+          "total_prem": 22204973.0
+        },
+        "11": {
+          "rate_25": 95.89,
+          "team": "Team 0",
+          "total_contracts": 126,
+          "normal": 116,
+          "lapsed": 8,
+          "cancelled": 2,
+          "total_prem": 22204973.0
+        },
+        "12": {
+          "rate_25": 96.65,
+          "team": "Team 0",
+          "total_contracts": 126,
+          "normal": 116,
+          "lapsed": 8,
+          "cancelled": 2,
+          "total_prem": 22204973.0
+        }
+      },
+      "team": "Team 0",
+      "name": "민선경"
+    },
+    "이연식": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 32,
+          "normal": 32,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3232687.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 42,
+          "normal": 42,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3886334.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 42,
+          "normal": 42,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3886334.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 17,
+          "normal": 17,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1279606.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 21,
+          "normal": 21,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1617914.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 25,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2548274.0
+        }
+      },
+      "team": "Team 0",
+      "name": "이연식"
+    },
+    "김서우": {
+      "months": {
+        "01": {
+          "rate_25": 86.64,
+          "team": "Team 1",
+          "total_contracts": 21,
+          "normal": 18,
+          "lapsed": 2,
+          "cancelled": 1,
+          "total_prem": 2419999.0
+        },
+        "02": {
+          "rate_25": 85.33,
+          "team": "Team 1",
+          "total_contracts": 22,
+          "normal": 18,
+          "lapsed": 3,
+          "cancelled": 1,
+          "total_prem": 2526244.0
+        },
+        "03": {
+          "rate_25": 85.33,
+          "team": "Team 1",
+          "total_contracts": 22,
+          "normal": 18,
+          "lapsed": 3,
+          "cancelled": 1,
+          "total_prem": 2526244.0
+        },
+        "10": {
+          "rate_25": 86.64,
+          "team": "Team 1",
+          "total_contracts": 21,
+          "normal": 18,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 2419999.0
+        },
+        "11": {
+          "rate_25": 84.7,
+          "team": "Team 1",
+          "total_contracts": 21,
+          "normal": 17,
+          "lapsed": 3,
+          "cancelled": 1,
+          "total_prem": 2419999.0
+        },
+        "12": {
+          "rate_25": 86.64,
+          "team": "Team 1",
+          "total_contracts": 21,
+          "normal": 18,
+          "lapsed": 2,
+          "cancelled": 1,
+          "total_prem": 2419999.0
+        }
+      },
+      "team": "Team 1",
+      "name": "김서우"
+    },
+    "이민하": {
+      "months": {
+        "01": {
+          "rate_25": 98.77,
+          "team": "Team 3",
+          "total_contracts": 48,
+          "normal": 47,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 7341079.0
+        },
+        "02": {
+          "rate_25": 94.38,
+          "team": "Team 3",
+          "total_contracts": 62,
+          "normal": 60,
+          "lapsed": 0,
+          "cancelled": 2,
+          "total_prem": 9356758.0
+        },
+        "03": {
+          "rate_25": 94.85,
+          "team": "Team 3",
+          "total_contracts": 78,
+          "normal": 75,
+          "lapsed": 0,
+          "cancelled": 3,
+          "total_prem": 11767836.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 33,
+          "normal": 33,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 5682369.0
+        },
+        "11": {
+          "rate_25": 98.49,
+          "team": "Team 3",
+          "total_contracts": 37,
+          "normal": 36,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 5987199.0
+        },
+        "12": {
+          "rate_25": 98.65,
+          "team": "Team 3",
+          "total_contracts": 43,
+          "normal": 42,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 6720689.0
+        }
+      },
+      "team": "Team 3",
+      "name": "이민하"
+    },
+    "정유림": {
+      "months": {
+        "01": {
+          "rate_25": 82.79,
+          "team": "Team 2",
+          "total_contracts": 141,
+          "normal": 108,
+          "lapsed": 7,
+          "cancelled": 26,
+          "total_prem": 26215726.0
+        },
+        "02": {
+          "rate_25": 84.86,
+          "team": "Team 2",
+          "total_contracts": 139,
+          "normal": 108,
+          "lapsed": 8,
+          "cancelled": 23,
+          "total_prem": 29623741.0
+        },
+        "03": {
+          "rate_25": 84.72,
+          "team": "Team 2",
+          "total_contracts": 136,
+          "normal": 106,
+          "lapsed": 8,
+          "cancelled": 22,
+          "total_prem": 28404129.0
+        },
+        "10": {
+          "rate_25": 85.45,
+          "team": "Team 2",
+          "total_contracts": 159,
+          "normal": 133,
+          "lapsed": 10,
+          "cancelled": 16,
+          "total_prem": 29390275.0
+        },
+        "11": {
+          "rate_25": 85.4,
+          "team": "Team 2",
+          "total_contracts": 161,
+          "normal": 133,
+          "lapsed": 10,
+          "cancelled": 18,
+          "total_prem": 29302753.0
+        },
+        "12": {
+          "rate_25": 85.13,
+          "team": "Team 2",
+          "total_contracts": 164,
+          "normal": 132,
+          "lapsed": 11,
+          "cancelled": 21,
+          "total_prem": 30402713.0
+        }
+      },
+      "team": "Team 2",
+      "name": "정유림"
+    },
+    "성윤석": {
+      "months": {
+        "01": {
+          "rate_25": 97.79,
+          "team": "Team 4",
+          "total_contracts": 132,
+          "normal": 128,
+          "lapsed": 1,
+          "cancelled": 3,
+          "total_prem": 12065570.0
+        },
+        "02": {
+          "rate_25": 96.56,
+          "team": "Team 4",
+          "total_contracts": 141,
+          "normal": 137,
+          "lapsed": 0,
+          "cancelled": 4,
+          "total_prem": 12229270.0
+        },
+        "03": {
+          "rate_25": 96.6,
+          "team": "Team 4",
+          "total_contracts": 147,
+          "normal": 143,
+          "lapsed": 0,
+          "cancelled": 4,
+          "total_prem": 12494581.0
+        },
+        "10": {
+          "rate_25": 98.03,
+          "team": "Team 4",
+          "total_contracts": 118,
+          "normal": 115,
+          "lapsed": 0,
+          "cancelled": 3,
+          "total_prem": 11615889.0
+        },
+        "11": {
+          "rate_25": 98.06,
+          "team": "Team 4",
+          "total_contracts": 122,
+          "normal": 119,
+          "lapsed": 0,
+          "cancelled": 3,
+          "total_prem": 11787811.0
+        },
+        "12": {
+          "rate_25": 97.85,
+          "team": "Team 4",
+          "total_contracts": 131,
+          "normal": 127,
+          "lapsed": 1,
+          "cancelled": 3,
+          "total_prem": 12053890.0
+        }
+      },
+      "team": "Team 4",
+      "name": "성윤석"
+    },
+    "서범석": {
+      "months": {
+        "01": {
+          "rate_25": 98.06,
+          "total_contracts": 40,
+          "normal": 39,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 4178090.0
+        },
+        "02": {
+          "rate_25": 96.49,
+          "total_contracts": 35,
+          "normal": 34,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 2476969.0
+        },
+        "03": {
+          "rate_25": 95.06,
+          "total_contracts": 32,
+          "normal": 31,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 1846169.0
+        },
+        "10": {
+          "rate_25": 98.64,
+          "total_contracts": 41,
+          "normal": 40,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 5680414.0
+        },
+        "11": {
+          "rate_25": 98.64,
+          "total_contracts": 41,
+          "normal": 40,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 5680414.0
+        },
+        "12": {
+          "rate_25": 98.64,
+          "total_contracts": 41,
+          "normal": 40,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 5680414.0
+        }
+      },
+      "team": "기타",
+      "name": "서범석"
+    },
+    "전지웅": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 30,
+          "normal": 30,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1681243.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 32,
+          "normal": 32,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2083916.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 32,
+          "normal": 32,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2083916.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 26,
+          "normal": 26,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1366649.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 29,
+          "normal": 29,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1572851.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 29,
+          "normal": 29,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1572851.0
+        }
+      },
+      "team": "Team 1",
+      "name": "전지웅"
+    },
+    "손이삭": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 19,
+          "normal": 19,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2053808.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 26,
+          "normal": 26,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2642481.0
+        },
+        "03": {
+          "rate_25": 95.3,
+          "team": "Team 1",
+          "total_contracts": 26,
+          "normal": 25,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 2642481.0
+        },
+        "10": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1266600.0
+        },
+        "11": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 13,
+          "normal": 13,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1576642.0
+        },
+        "12": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 13,
+          "normal": 13,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1576642.0
+        }
+      },
+      "team": "Team 1",
+      "name": "손이삭"
+    },
+    "유수민": {
+      "months": {
+        "01": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 3,
+          "normal": 3,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 650196.0
+        },
+        "02": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 4,
+          "normal": 4,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 661230.0
+        },
+        "03": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 5,
+          "normal": 5,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 867340.0
+        }
+      },
+      "team": "Team 0",
+      "name": "유수민"
+    }
+  },
+  "LOST": {
+    "이승목": {
+      "01_02": [
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "전수민",
+          "first_perf": 75902,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-10",
+          "start_date": "2024-06-26",
+          "paid_round": 20
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 간편N 내가고른 건강보험",
+          "holder": "전수민",
+          "first_perf": 71487,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-10",
+          "start_date": "2024-07-19",
+          "paid_round": 19
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "처브라이프",
+          "product": "Chubb 수(秀)정기보험",
+          "holder": "정종훈",
+          "first_perf": 254800,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-09-11",
+          "paid_round": 17
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "김명희",
+          "first_perf": 200521,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-20",
+          "start_date": "2025-01-31",
+          "paid_round": 13
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "하나손보",
+          "product": "(무) 하나로 시작하는 건강보험 1종",
+          "holder": "김가영",
+          "first_perf": 101018,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-13",
+          "start_date": "2024-07-19",
+          "paid_round": 16
+        }
+      ]
+    },
+    "박준호": {
+      "01_02": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "황수빈",
+          "first_perf": 22160,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-29",
+          "paid_round": 3
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사꼭필요한치아보험",
+          "holder": "김유림",
+          "first_perf": 25200,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2023-12-06",
+          "paid_round": 22
+        },
+        {
+          "insurer": "DB생명",
+          "product": "(무)뉴-암종신보험",
+          "holder": "박건호",
+          "first_perf": 75720,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-26",
+          "start_date": "2023-09-27",
+          "paid_round": 26
+        },
+        {
+          "insurer": "DB생명",
+          "product": "(무)뉴-암종신보험",
+          "holder": "박건호",
+          "first_perf": 155452,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-26",
+          "start_date": "2023-10-04",
+          "paid_round": 25
+        },
+        {
+          "insurer": "롯데손보",
+          "product": "무배당 let:play 종합건강보험(토닥토닥)",
+          "holder": "박건호",
+          "first_perf": 159768,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-28",
+          "start_date": "2023-10-05",
+          "paid_round": 25
+        },
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나로 THE 연결된 종신보험",
+          "holder": "이수애",
+          "first_perf": 122148,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-01-27",
+          "paid_round": 21
+        }
+      ],
+      "11_12": [
+        {
+          "insurer": "흥국생명",
+          "product": "(무)다재다능1540보험(해약환급금 미지급형)",
+          "holder": "정민경",
+          "first_perf": 48563,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-04-30",
+          "paid_round": 7
+        }
+      ]
+    },
+    "손영준": {
+      "01_02": [
+        {
+          "insurer": "DB생명",
+          "product": "암걱정말아요 암보험",
+          "holder": "홍명성",
+          "first_perf": 129859,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-03",
+          "start_date": "2025-01-24",
+          "paid_round": 13
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "김나현",
+          "first_perf": 50717,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-07-22",
+          "paid_round": 6
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "이로운",
+          "first_perf": 132980,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-20",
+          "start_date": "2025-08-07",
+          "paid_round": 6
+        },
+        {
+          "insurer": "동양생명",
+          "product": " (무)수호천사치매간병은동양생명보험(무해지형)",
+          "holder": "김나현",
+          "first_perf": 49016,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-07-22",
+          "paid_round": 6
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "홍현숙",
+          "first_perf": 167475,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-12-11",
+          "paid_round": 13
+        },
+        {
+          "insurer": "한화생명",
+          "product": "(무) H 건강보험(Basic)",
+          "holder": "홍명성",
+          "first_perf": 112969,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-03",
+          "start_date": "2025-01-22",
+          "paid_round": 13
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "오튼튼5.10.5건강보험(해약환급금미지급형)",
+          "holder": "이로운",
+          "first_perf": 53350,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-20",
+          "start_date": "2025-08-07",
+          "paid_round": 6
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 뉴-알차고 행복한 Plus 종신보험(일반심사형",
+          "holder": "홍현숙",
+          "first_perf": 171410,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-12-11",
+          "paid_round": 13
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "홍명성",
+          "first_perf": 83390,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-03",
+          "start_date": "2025-01-24",
+          "paid_round": 13
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "미래에셋",
+          "product": "M-케어 간편 건강보험[해지환급금이 없는 유형]",
+          "holder": "정란숙",
+          "first_perf": 105060,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-05",
+          "start_date": "2025-09-29",
+          "paid_round": 6
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 간편한355건강보험",
+          "holder": "홍현숙",
+          "first_perf": 142440,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-12-11",
+          "paid_round": 14
+        },
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "공해주",
+          "first_perf": 319242,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-26",
+          "paid_round": 3
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "홍현숙",
+          "first_perf": 412977,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-12-31",
+          "paid_round": 10
+        }
+      ]
+    },
+    "이도헌": {
+      "01_02": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 간편한 3.10.5 건강보험",
+          "holder": "이유진",
+          "first_perf": 164360,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-12-31",
+          "paid_round": 13
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 간편N 내가고른 건강보험",
+          "holder": "이유진",
+          "first_perf": 149986,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-01-14",
+          "paid_round": 12
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "이현종",
+          "first_perf": 83553,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-01-10",
+          "paid_round": 12
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "메리츠 운전자 상해 종합보험",
+          "holder": "이현종",
+          "first_perf": 11450,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-01-09",
+          "paid_round": 12
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "이현종",
+          "first_perf": 200700,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-01-09",
+          "paid_round": 12
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "이유진",
+          "first_perf": 125043,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-01-14",
+          "paid_round": 12
+        }
+      ]
+    },
+    "정민욱": {
+      "01_02": [
+        {
+          "insurer": "메리츠화재",
+          "product": "메리츠 운전자 상해 종합보험",
+          "holder": "최민기",
+          "first_perf": 23780,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-07-23",
+          "paid_round": 6
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "(무)다사랑355간편건강보험(해약환급금 미지급형)",
+          "holder": "최민기",
+          "first_perf": 73018,
+          "curr_status": "실효",
+          "cancel_date": "2026-03-05",
+          "start_date": "2025-07-22",
+          "paid_round": 6
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "최민기",
+          "first_perf": 129750,
+          "curr_status": "실효",
+          "cancel_date": "2026-03-05",
+          "start_date": "2025-07-23",
+          "paid_round": 6
+        },
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 내가만드는보장보험(비갱신)_무해지",
+          "holder": "정민욱",
+          "first_perf": 10745,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-03-29",
+          "paid_round": 22
+        },
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 누구나 필요한 수술치료보험(무해지형)",
+          "holder": "정민욱",
+          "first_perf": 56039,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-04-05",
+          "paid_round": 21
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 간편N 내가고른 건강보험",
+          "holder": "최민기",
+          "first_perf": 114232,
+          "curr_status": "실효",
+          "cancel_date": "2026-03-05",
+          "start_date": "2025-07-22",
+          "paid_round": 6
+        },
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 내가만드는보장보험(비갱신)_무해지",
+          "holder": "유인경",
+          "first_perf": 103693,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-28",
+          "paid_round": 17
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "DB생명",
+          "product": "암걱정말아요 암보험",
+          "holder": "최형락",
+          "first_perf": 236352,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-21",
+          "paid_round": 18
+        },
+        {
+          "insurer": "현대해상",
+          "product": "무배당 성공마스터재산종합보험",
+          "holder": "김소형",
+          "first_perf": 31815,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-07-08",
+          "paid_round": 19
+        },
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 간편내가만드는보장보험(비갱신)_무",
+          "holder": "조진숙",
+          "first_perf": 207146,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-21",
+          "paid_round": 18
+        },
+        {
+          "insurer": "삼성생명",
+          "product": "다모은 건강보험",
+          "holder": "성주현",
+          "first_perf": 115691,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-04-23",
+          "paid_round": 22
+        },
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "박경아",
+          "first_perf": 853927,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-27",
+          "start_date": "2025-10-29",
+          "paid_round": 5
+        },
+        {
+          "insurer": "삼성생명",
+          "product": "경증간편 다모은 건강보험",
+          "holder": "조진숙",
+          "first_perf": 97585,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-21",
+          "paid_round": 18
+        },
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 내가만드는보장보험(비갱신)_무해지",
+          "holder": "최형락",
+          "first_perf": 144014,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-21",
+          "paid_round": 18
+        },
+        {
+          "insurer": "롯데손보",
+          "product": "(무) let:simple 간편3.N.10 건강보험",
+          "holder": "박경아",
+          "first_perf": 100420,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-06",
+          "paid_round": 3
+        },
+        {
+          "insurer": "DB생명",
+          "product": "암걱정말아요 암보험",
+          "holder": "유인경",
+          "first_perf": 113099,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-28",
+          "paid_round": 18
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 수술만 묻는 간편한 355건강",
+          "holder": "유인경",
+          "first_perf": 133720,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-28",
+          "paid_round": 18
+        },
+        {
+          "insurer": "삼성생명",
+          "product": "다모은 건강보험",
+          "holder": "신경화",
+          "first_perf": 185847,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-25",
+          "start_date": "2024-05-09",
+          "paid_round": 22
+        },
+        {
+          "insurer": "롯데손보",
+          "product": "(무) let:play 1540 종합보험",
+          "holder": "박경아",
+          "first_perf": 149052,
+          "curr_status": "실효",
+          "cancel_date": "2026-03-05",
+          "start_date": "2025-11-05",
+          "paid_round": 3
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "신경화",
+          "first_perf": 181053,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-28",
+          "start_date": "2024-05-17",
+          "paid_round": 18
+        },
+        {
+          "insurer": "라이나생명",
+          "product": "(무)THE건강한치아보험 (갱신형)",
+          "holder": "서진숙",
+          "first_perf": 15700,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-02-16",
+          "paid_round": 20
+        }
+      ],
+      "11_12": [
+        {
+          "insurer": "흥국생명",
+          "product": "다사랑 3.10.5 간편건강보험(해약환급금미지급형)",
+          "holder": "최명지",
+          "first_perf": 21625,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-07-30",
+          "paid_round": 4
+        },
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 간편내가만드는보장보험(비갱신)_무",
+          "holder": "진윤헌",
+          "first_perf": 177630,
+          "curr_status": "해지",
+          "cancel_date": "2025-12-11",
+          "start_date": "2024-02-28",
+          "paid_round": 22
+        }
+      ]
+    },
+    "성윤석": {
+      "01_02": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "변호인",
+          "first_perf": 170545,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-27",
+          "start_date": "2024-12-27",
+          "paid_round": 13
+        }
+      ],
+      "11_12": [
+        {
+          "insurer": "현대해상",
+          "product": "(무)굿앤굿 우리펫보험",
+          "holder": "NAKAMURA HIKARI",
+          "first_perf": 26340,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-09-30",
+          "paid_round": 14
+        }
+      ]
+    },
+    "김서우": {
+      "01_02": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "김세준",
+          "first_perf": 47520,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-11-25",
+          "paid_round": 14
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "김세준",
+          "first_perf": 47520,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-11-25",
+          "paid_round": 12
+        }
+      ]
+    },
+    "정유림": {
+      "01_02": [
+        {
+          "insurer": "신한라이프",
+          "product": "모아더드림종신Plus보험",
+          "holder": "김용진",
+          "first_perf": 500000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-09",
+          "paid_round": 1
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나로 THE 연결된 종신보험",
+          "holder": "정유민",
+          "first_perf": 252590,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-03-31",
+          "paid_round": 11
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "메리츠 운전자 상해 종합보험",
+          "holder": "강헌근",
+          "first_perf": 13310,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-20",
+          "start_date": "2025-02-06",
+          "paid_round": 13
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "김성준",
+          "first_perf": 132980,
+          "curr_status": "해지",
+          "cancel_date": "2025-10-30",
+          "start_date": "2025-02-26",
+          "paid_round": 9
+        },
+        {
+          "insurer": "NH농협생명",
+          "product": "투스텝NH종신보험 1종 스마트페이",
+          "holder": "이용인",
+          "first_perf": 53640,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-17",
+          "start_date": "2025-04-24",
+          "paid_round": 7
+        }
+      ],
+      "11_12": [
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나로 THE 연결된 종신보험",
+          "holder": "김민건",
+          "first_perf": 120200,
+          "curr_status": "해지",
+          "cancel_date": "2025-12-10",
+          "start_date": "2024-01-25",
+          "paid_round": 23
+        },
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나로 THE 연결된 종신보험",
+          "holder": "김민건",
+          "first_perf": 302058,
+          "curr_status": "해지",
+          "cancel_date": "2025-12-10",
+          "start_date": "2023-12-27",
+          "paid_round": 24
+        },
+        {
+          "insurer": "KB손보",
+          "product": "(무)KB 플러스 운전자상해보험",
+          "holder": "박종선",
+          "first_perf": 14919,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-19",
+          "start_date": "2023-09-13",
+          "paid_round": 27
+        },
+        {
+          "insurer": "하나손보",
+          "product": "(무) 하나로 시작하는 건강보험 1종",
+          "holder": "정유민",
+          "first_perf": 100000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-30",
+          "paid_round": 15
+        }
+      ]
+    },
+    "정소희": {
+      "01_02": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "박세권",
+          "first_perf": 80770,
+          "curr_status": "해지",
+          "cancel_date": "2026-01-07",
+          "start_date": "2025-08-21",
+          "paid_round": 6
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "흥국생명",
+          "product": "다사랑 3.10.5 간편건강보험(해약환급금미지급형)",
+          "holder": "박세권",
+          "first_perf": 57360,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-08-21",
+          "paid_round": 6
+        }
+      ]
+    },
+    "백경민": {
+      "01_02": [
+        {
+          "insurer": "하나손보",
+          "product": "(무) 하나 가득담은 운전자상해종합보험",
+          "holder": "윤정순",
+          "first_perf": 15519,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-24",
+          "start_date": "2024-08-26",
+          "paid_round": 18
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "미래에셋",
+          "product": "M-케어 건강보험[해지환급금이 없는 유형]",
+          "holder": "오점자",
+          "first_perf": 56838,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-20",
+          "start_date": "2025-07-09",
+          "paid_round": 8
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 간편내가만드는보장보험(비갱신)_무",
+          "holder": "배병율",
+          "first_perf": 275468,
+          "curr_status": "해지",
+          "cancel_date": "2025-10-16",
+          "start_date": "2024-03-20",
+          "paid_round": 20
+        },
+        {
+          "insurer": "삼성화재",
+          "product": "(무) 건강보험 마이헬스 파트너",
+          "holder": "신지율",
+          "first_perf": 10000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-01-31",
+          "paid_round": 23
+        }
+      ],
+      "11_12": [
+        {
+          "insurer": "롯데손보",
+          "product": "무배당 let:play 종합건강보험(토닥토닥)",
+          "holder": "최효정",
+          "first_perf": 72063,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2023-10-05",
+          "paid_round": 25
+        },
+        {
+          "insurer": "KB손보",
+          "product": "(무)KB 플러스 운전자상해보험",
+          "holder": "백경민",
+          "first_perf": 15062,
+          "curr_status": "해지",
+          "cancel_date": "2025-12-08",
+          "start_date": "2023-09-21",
+          "paid_round": 27
+        },
+        {
+          "insurer": "DB생명",
+          "product": "(무)뉴-암종신보험",
+          "holder": "최효정",
+          "first_perf": 164992,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2023-10-24",
+          "paid_round": 25
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "곽노신",
+          "first_perf": 185670,
+          "curr_status": "해지",
+          "cancel_date": "2025-12-24",
+          "start_date": "2025-07-31",
+          "paid_round": 5
+        }
+      ]
+    },
+    "민선경": {
+      "01_02": [
+        {
+          "insurer": "DB생명",
+          "product": "암걱정말아요 암보험",
+          "holder": "김재영",
+          "first_perf": 55420,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-03-31",
+          "paid_round": 10
+        }
+      ],
+      "02_03": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "김성현",
+          "first_perf": 124890,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-03-31",
+          "paid_round": 11
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "박시우",
+          "first_perf": 135040,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-08-31",
+          "paid_round": 6
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보",
+          "holder": "박현우",
+          "first_perf": 127630,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-08-31",
+          "paid_round": 6
+        }
+      ]
+    },
+    "유수환": {
+      "02_03": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 5.10.5 보장보험",
+          "holder": "유우성",
+          "first_perf": 97540,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-05-30",
+          "paid_round": 9
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "유우성",
+          "first_perf": 59011,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-05-30",
+          "paid_round": 9
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "메리츠 운전자 상해 종합보험",
+          "holder": "유우성",
+          "first_perf": 17390,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-05-30",
+          "paid_round": 9
+        }
+      ]
+    },
+    "이지현": {
+      "02_03": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "강봉녀",
+          "first_perf": 437934,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-03",
+          "start_date": "2025-11-27",
+          "paid_round": 4
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "(무)흥국생명다(多)사랑통합보험(해약환급금 미지급형)",
+          "holder": "강봉녀",
+          "first_perf": 54830,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-06",
+          "start_date": "2025-11-05",
+          "paid_round": 4
+        }
+      ]
+    },
+    "신지원": {
+      "02_03": [
+        {
+          "insurer": "DB생명",
+          "product": "(무) 뉴-올케어 암종신보험",
+          "holder": "정초희",
+          "first_perf": 218472,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-10-09",
+          "paid_round": 16
+        }
+      ]
+    },
+    "손이삭": {
+      "02_03": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "엄정용",
+          "first_perf": 108418,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-16",
+          "start_date": "2025-08-28",
+          "paid_round": 7
+        }
+      ]
+    },
+    "이민하": {
+      "02_03": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "박도원",
+          "first_perf": 81570,
+          "curr_status": "해지",
+          "cancel_date": "2026-02-20",
+          "start_date": "2025-11-27",
+          "paid_round": 4
+        }
+      ],
+      "10_11": [
+        {
+          "insurer": "동양생명",
+          "product": " (무)수호천사치매간병은동양생명보험(무해지형)",
+          "holder": "김희애",
+          "first_perf": 81405,
+          "curr_status": "해지",
+          "cancel_date": "2025-11-25",
+          "start_date": "2025-04-24",
+          "paid_round": 7
+        }
+      ]
+    },
+    "김성현": {
+      "02_03": [
+        {
+          "insurer": "농협손보",
+          "product": "NH굿스타트건강보험",
+          "holder": "장유빈",
+          "first_perf": 40670,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-12-03",
+          "paid_round": 1
+        }
+      ]
+    },
+    "용은정": {
+      "10_11": [
+        {
+          "insurer": "미래에셋",
+          "product": "M-케어 간편 건강보험[해지환급금이 없는 유형]",
+          "holder": "김선희",
+          "first_perf": 61882,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-07-22",
+          "paid_round": 3
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "김선희",
+          "first_perf": 80610,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-06-05",
+          "paid_round": 6
+        },
+        {
+          "insurer": "KB손보",
+          "product": "(무)KB The간편건강보험",
+          "holder": "용동중",
+          "first_perf": 39855,
+          "curr_status": "실효",
+          "cancel_date": "2025-12-19",
+          "start_date": "2025-06-26",
+          "paid_round": 4
+        },
+        {
+          "insurer": "미래에셋",
+          "product": "M-케어 간편 건강보험[해지환급금이 없는 유형]",
+          "holder": "김선희",
+          "first_perf": 105464,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-06-05",
+          "paid_round": 4
+        }
+      ]
+    },
+    "강상우": {
+      "10_11": [
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 알뜰플러스종신보험_해약환급금일부지",
+          "holder": "김혜정",
+          "first_perf": 256032,
+          "curr_status": "실효",
+          "cancel_date": "2025-12-17",
+          "start_date": "2024-08-20",
+          "paid_round": 14
+        }
+      ],
+      "11_12": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)간편가입 백만인을위한 달러종신보험Plus",
+          "holder": "강서우",
+          "first_perf": 259870,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-14",
+          "paid_round": 15
+        }
+      ]
+    },
+    "심예영": {
+      "11_12": [
+        {
+          "insurer": "삼성화재",
+          "product": "(무) 건강보험 마이헬스 파트너",
+          "holder": "박지은",
+          "first_perf": 10000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-01-31",
+          "paid_round": 22
+        },
+        {
+          "insurer": "삼성화재",
+          "product": "(무)삼성화재 간편보험 새로고침100세 1종",
+          "holder": "최고은",
+          "first_perf": 15000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-01-31",
+          "paid_round": 22
+        },
+        {
+          "insurer": "DB손보",
+          "product": "만상형통상해보험",
+          "holder": "백승덕",
+          "first_perf": 10000,
+          "curr_status": "해지",
+          "cancel_date": "2025-12-01",
+          "start_date": "2024-04-14",
+          "paid_round": 20
+        },
+        {
+          "insurer": "삼성화재",
+          "product": "(무)삼성화재 간편보험 새로고침100세 1종",
+          "holder": "최고은",
+          "first_perf": 15000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-01-31",
+          "paid_round": 22
+        },
+        {
+          "insurer": "삼성화재",
+          "product": "(무)삼성화재 간편보험 새로고침100세 1종",
+          "holder": "최고은",
+          "first_perf": 15000,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-01-31",
+          "paid_round": 22
+        }
+      ]
+    }
+  },
+  "PERF": {
+    "강다솔": {
+      "name": "강다솔",
+      "months": {
+        "03": {
+          "cnt": 7,
+          "prem": 516832,
+          "perf": 488923,
+          "hwan": 803424,
+          "life": 5,
+          "nonlife": 2,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "보장성": 2,
+            "종신/CI": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 7,
+        "prem": 516832,
+        "perf": 488923,
+        "hwan": 803424,
+        "life": 5,
+        "nonlife": 2,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 69846,
+        "life_ratio": 71.4,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 7,
+        "q4_perf": 0,
+        "q1_perf": 488923,
+        "growth": null,
+        "top_products": {
+          "기타(보장성)": 4,
+          "보장성": 2,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 2,
+        "DB생명": 2,
+        "흥국생명": 2,
+        "메트라이프": 1
+      }
+    },
+    "강상우": {
+      "name": "강상우",
+      "months": {
+        "01": {
+          "cnt": 3,
+          "prem": 578356,
+          "perf": 578356,
+          "hwan": 1613664,
+          "life": 3,
+          "nonlife": 0,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3
+          }
+        },
+        "02": {
+          "cnt": 8,
+          "prem": 1298858,
+          "perf": 1274614,
+          "hwan": 2816160,
+          "life": 7,
+          "nonlife": 1,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7,
+            "단독실손": 1
+          }
+        },
+        "03": {
+          "cnt": 20,
+          "prem": 2409817,
+          "perf": 2409817,
+          "hwan": 4329186,
+          "life": 13,
+          "nonlife": 7,
+          "status": {
+            "정상": 20,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 13,
+            "어린이": 4,
+            "보장성": 2,
+            "운전자": 1
+          }
+        },
+        "10": {
+          "cnt": 1,
+          "prem": 13350,
+          "perf": 13350,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1
+          }
+        },
+        "11": {
+          "cnt": 15,
+          "prem": 1251940,
+          "perf": 1227520,
+          "hwan": 2101334,
+          "life": 11,
+          "nonlife": 4,
+          "status": {
+            "정상": 14,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 11,
+            "보장성": 2,
+            "단독실손": 1,
+            "운전자": 1
+          }
+        },
+        "12": {
+          "cnt": 18,
+          "prem": 1712827,
+          "perf": 1696851,
+          "hwan": 2600774,
+          "life": 12,
+          "nonlife": 6,
+          "status": {
+            "정상": 17,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 12,
+            "보장성": 2,
+            "운전자": 2,
+            "어린이": 1,
+            "단독실손(태아)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 65,
+        "prem": 7265148,
+        "perf": 7200508,
+        "hwan": 13461118,
+        "life": 46,
+        "nonlife": 19,
+        "lost": 0,
+        "delay": 1,
+        "avg_perf": 110777,
+        "life_ratio": 70.8,
+        "lost_rate": 0.0,
+        "q4_cnt": 34,
+        "q1_cnt": 31,
+        "q4_perf": 2937721,
+        "q1_perf": 4262787,
+        "growth": 45.1,
+        "top_products": {
+          "기타(보장성)": 46,
+          "보장성": 6,
+          "어린이": 5,
+          "운전자": 5,
+          "단독실손": 2
+        }
+      },
+      "insurers": {
+        "메리츠화재": 11,
+        "DB생명": 10,
+        "흥국생명": 9,
+        "ABL생명": 6,
+        "KDB생명": 6,
+        "KB손보": 5,
+        "하나생명": 5,
+        "동양생명": 4
+      }
+    },
+    "김미란": {
+      "name": "김미란",
+      "months": {
+        "01": {
+          "cnt": 3,
+          "prem": 457437,
+          "perf": 457437,
+          "hwan": 779688,
+          "life": 3,
+          "nonlife": 0,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3
+          }
+        },
+        "02": {
+          "cnt": 7,
+          "prem": 1194215,
+          "perf": 1194215,
+          "hwan": 2422787,
+          "life": 7,
+          "nonlife": 0,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7
+          }
+        },
+        "03": {
+          "cnt": 9,
+          "prem": 838276,
+          "perf": 838276,
+          "hwan": 1252206,
+          "life": 6,
+          "nonlife": 3,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "보장성": 3
+          }
+        }
+      },
+      "totals": {
+        "cnt": 19,
+        "prem": 2489928,
+        "perf": 2489928,
+        "hwan": 4454681,
+        "life": 16,
+        "nonlife": 3,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 131048,
+        "life_ratio": 84.2,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 19,
+        "q4_perf": 0,
+        "q1_perf": 2489928,
+        "growth": null,
+        "top_products": {
+          "기타(보장성)": 16,
+          "보장성": 3
+        }
+      },
+      "insurers": {
+        "흥국생명": 8,
+        "DB생명": 4,
+        "메리츠화재": 3,
+        "KDB생명": 2,
+        "ABL생명": 1,
+        "미래에셋": 1
+      }
+    },
+    "김서우": {
+      "name": "김서우",
+      "months": {
+        "02": {
+          "cnt": 1,
+          "prem": 19010,
+          "perf": 19010,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1
+          }
+        },
+        "12": {
+          "cnt": 1,
+          "prem": 106245,
+          "perf": 106245,
+          "hwan": 115603,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 2,
+        "prem": 125255,
+        "perf": 125255,
+        "hwan": 115603,
+        "life": 1,
+        "nonlife": 1,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 62627,
+        "life_ratio": 50.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 1,
+        "q1_cnt": 1,
+        "q4_perf": 106245,
+        "q1_perf": 19010,
+        "growth": -82.1,
+        "top_products": {
+          "운전자": 1,
+          "기타(보장성)": 1
+        }
+      },
+      "insurers": {
+        "흥국생명": 1,
+        "메리츠화재": 1
+      }
+    },
+    "김성한": {
+      "name": "김성한",
+      "months": {
+        "03": {
+          "cnt": 5,
+          "prem": 758320,
+          "perf": 677906,
+          "hwan": 887079,
+          "life": 3,
+          "nonlife": 2,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1,
+            "운전자": 1,
+            "종신/CI": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 5,
+        "prem": 758320,
+        "perf": 677906,
+        "hwan": 887079,
+        "life": 3,
+        "nonlife": 2,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 135581,
+        "life_ratio": 60.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 5,
+        "q4_perf": 0,
+        "q1_perf": 677906,
+        "growth": null,
+        "top_products": {
+          "기타(보장성)": 2,
+          "보장성": 1,
+          "운전자": 1,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 2,
+        "라이나생명": 1,
+        "메트라이프": 1,
+        "흥국생명": 1
+      }
+    },
+    "김성현": {
+      "name": "김성현",
+      "months": {
+        "02": {
+          "cnt": 1,
+          "prem": 104025,
+          "perf": 104025,
+          "hwan": 147766,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        },
+        "12": {
+          "cnt": 12,
+          "prem": 702294,
+          "perf": 702294,
+          "hwan": 898041,
+          "life": 6,
+          "nonlife": 6,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 3
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "어린이": 2,
+            "보장성": 2,
+            "운전자": 2
+          }
+        }
+      },
+      "totals": {
+        "cnt": 13,
+        "prem": 806319,
+        "perf": 806319,
+        "hwan": 1045807,
+        "life": 7,
+        "nonlife": 6,
+        "lost": 3,
+        "delay": 0,
+        "avg_perf": 62024,
+        "life_ratio": 53.8,
+        "lost_rate": 23.1,
+        "q4_cnt": 12,
+        "q1_cnt": 1,
+        "q4_perf": 702294,
+        "q1_perf": 104025,
+        "growth": -85.2,
+        "top_products": {
+          "기타(보장성)": 7,
+          "어린이": 2,
+          "보장성": 2,
+          "운전자": 2
+        }
+      },
+      "insurers": {
+        "메리츠화재": 3,
+        "DB생명": 2,
+        "미래에셋": 2,
+        "흥국생명": 2,
+        "KB손보": 1,
+        "농협손보": 1,
+        "하나손보": 1,
+        "하나생명": 1
+      }
+    },
+    "김혜진": {
+      "name": "김혜진",
+      "months": {
+        "01": {
+          "cnt": 2,
+          "prem": 146731,
+          "perf": 146731,
+          "hwan": 195405,
+          "life": 1,
+          "nonlife": 1,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "03": {
+          "cnt": 1,
+          "prem": 129440,
+          "perf": 129440,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 1
+          }
+        },
+        "10": {
+          "cnt": 6,
+          "prem": 582868,
+          "perf": 639298,
+          "hwan": 831270,
+          "life": 4,
+          "nonlife": 2,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "보장성": 1,
+            "운전자": 1,
+            "종신/CI": 1
+          }
+        },
+        "11": {
+          "cnt": 1,
+          "prem": 21641,
+          "perf": 21641,
+          "hwan": 59727,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        },
+        "12": {
+          "cnt": 4,
+          "prem": 261887,
+          "perf": 261887,
+          "hwan": 257130,
+          "life": 2,
+          "nonlife": 2,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1,
+            "운전자": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 14,
+        "prem": 1142567,
+        "perf": 1198997,
+        "hwan": 1343532,
+        "life": 8,
+        "nonlife": 6,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 85642,
+        "life_ratio": 57.1,
+        "lost_rate": 0.0,
+        "q4_cnt": 11,
+        "q1_cnt": 3,
+        "q4_perf": 922826,
+        "q1_perf": 276171,
+        "growth": -70.1,
+        "top_products": {
+          "기타(보장성)": 7,
+          "운전자": 3,
+          "보장성": 3,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 5,
+        "흥국생명": 3,
+        "DB생명": 2,
+        "하나손보": 1,
+        "동양생명": 1,
+        "메트라이프": 1,
+        "미래에셋": 1
+      }
+    },
+    "민선경": {
+      "name": "민선경",
+      "months": {
+        "01": {
+          "cnt": 10,
+          "prem": 824822,
+          "perf": 824822,
+          "hwan": 1146560,
+          "life": 8,
+          "nonlife": 2,
+          "status": {
+            "정상": 10,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 8,
+            "보장성": 2
+          }
+        },
+        "02": {
+          "cnt": 2,
+          "prem": 109065,
+          "perf": 109065,
+          "hwan": 227370,
+          "life": 2,
+          "nonlife": 0,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2
+          }
+        },
+        "03": {
+          "cnt": 2,
+          "prem": 159139,
+          "perf": 159139,
+          "hwan": 230519,
+          "life": 1,
+          "nonlife": 1,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "11": {
+          "cnt": 2,
+          "prem": 118300,
+          "perf": 118300,
+          "hwan": 207820,
+          "life": 1,
+          "nonlife": 1,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "12": {
+          "cnt": 1,
+          "prem": 30525,
+          "perf": 30525,
+          "hwan": 47360,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 17,
+        "prem": 1241851,
+        "perf": 1241851,
+        "hwan": 1859629,
+        "life": 13,
+        "nonlife": 4,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 73050,
+        "life_ratio": 76.5,
+        "lost_rate": 0.0,
+        "q4_cnt": 3,
+        "q1_cnt": 14,
+        "q4_perf": 148825,
+        "q1_perf": 1093026,
+        "growth": 634.4,
+        "top_products": {
+          "기타(보장성)": 13,
+          "보장성": 3,
+          "운전자": 1
+        }
+      },
+      "insurers": {
+        "흥국생명": 5,
+        "메리츠화재": 4,
+        "DB생명": 4,
+        "미래에셋": 3,
+        "KDB생명": 1
+      }
+    },
+    "박윤솔": {
+      "name": "박윤솔",
+      "months": {
+        "02": {
+          "cnt": 2,
+          "prem": 386629,
+          "perf": 386629,
+          "hwan": 623526,
+          "life": 2,
+          "nonlife": 0,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2
+          }
+        },
+        "12": {
+          "cnt": 1,
+          "prem": 68340,
+          "perf": 68340,
+          "hwan": 188616,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 3,
+        "prem": 454969,
+        "perf": 454969,
+        "hwan": 812142,
+        "life": 3,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 151656,
+        "life_ratio": 100.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 1,
+        "q1_cnt": 2,
+        "q4_perf": 68340,
+        "q1_perf": 386629,
+        "growth": 465.7,
+        "top_products": {
+          "기타(보장성)": 3
+        }
+      },
+      "insurers": {
+        "DB생명": 1,
+        "미래에셋": 1,
+        "흥국생명": 1
+      }
+    },
+    "박준호": {
+      "name": "박준호",
+      "months": {
+        "01": {
+          "cnt": 6,
+          "prem": 387987,
+          "perf": 320377,
+          "hwan": 355201,
+          "life": 3,
+          "nonlife": 3,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "보장성": 2,
+            "단독실손": 1
+          }
+        },
+        "02": {
+          "cnt": 2,
+          "prem": 34510,
+          "perf": 24410,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "재물": 1,
+            "운전자": 1
+          }
+        },
+        "03": {
+          "cnt": 9,
+          "prem": 336044,
+          "perf": 336044,
+          "hwan": 584381,
+          "life": 8,
+          "nonlife": 1,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 8,
+            "운전자": 1
+          }
+        },
+        "10": {
+          "cnt": 6,
+          "prem": 391713,
+          "perf": 424155,
+          "hwan": 579268,
+          "life": 3,
+          "nonlife": 3,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 2
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "운전자": 1,
+            "단독실손": 1,
+            "보장성": 1,
+            "종신/CI": 1
+          }
+        },
+        "11": {
+          "cnt": 10,
+          "prem": 572135,
+          "perf": 572135,
+          "hwan": 659867,
+          "life": 4,
+          "nonlife": 6,
+          "status": {
+            "정상": 10,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 5,
+            "기타(보장성)": 4,
+            "보장성": 1
+          }
+        },
+        "12": {
+          "cnt": 9,
+          "prem": 764745,
+          "perf": 758000,
+          "hwan": 1359621,
+          "life": 6,
+          "nonlife": 3,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "재물": 1,
+            "보장성": 1,
+            "운전자": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 42,
+        "prem": 2487134,
+        "perf": 2435121,
+        "hwan": 3538338,
+        "life": 24,
+        "nonlife": 18,
+        "lost": 2,
+        "delay": 0,
+        "avg_perf": 57979,
+        "life_ratio": 57.1,
+        "lost_rate": 4.8,
+        "q4_cnt": 25,
+        "q1_cnt": 17,
+        "q4_perf": 1754290,
+        "q1_perf": 680831,
+        "growth": -61.2,
+        "top_products": {
+          "기타(보장성)": 23,
+          "운전자": 9,
+          "보장성": 5,
+          "단독실손": 2,
+          "재물": 2
+        }
+      },
+      "insurers": {
+        "흥국생명": 16,
+        "메리츠화재": 13,
+        "미래에셋": 2,
+        "한화생명": 2,
+        "흥국화재": 2,
+        "DB손보": 1,
+        "하나손보": 1,
+        "DB생명": 1
+      }
+    },
+    "배수현": {
+      "name": "배수현",
+      "months": {
+        "01": {
+          "cnt": 9,
+          "prem": 634185,
+          "perf": 634185,
+          "hwan": 828384,
+          "life": 4,
+          "nonlife": 5,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "운전자": 3,
+            "보장성": 2
+          }
+        },
+        "02": {
+          "cnt": 8,
+          "prem": 446736,
+          "perf": 446736,
+          "hwan": 327978,
+          "life": 3,
+          "nonlife": 5,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 3,
+            "기타(보장성)": 3,
+            "운전자": 2
+          }
+        },
+        "03": {
+          "cnt": 8,
+          "prem": 658802,
+          "perf": 658802,
+          "hwan": 785548,
+          "life": 4,
+          "nonlife": 4,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "보장성": 3,
+            "운전자": 1
+          }
+        },
+        "10": {
+          "cnt": 10,
+          "prem": 663994,
+          "perf": 622037,
+          "hwan": 918637,
+          "life": 6,
+          "nonlife": 4,
+          "status": {
+            "정상": 3,
+            "유예": 7,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 5,
+            "운전자": 2,
+            "보장성": 2,
+            "종신/CI": 1
+          }
+        },
+        "11": {
+          "cnt": 20,
+          "prem": 1967325,
+          "perf": 1833065,
+          "hwan": 2777169,
+          "life": 14,
+          "nonlife": 6,
+          "status": {
+            "정상": 17,
+            "유예": 3,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 14,
+            "운전자": 2,
+            "보장성": 2,
+            "단독실손": 2
+          }
+        },
+        "12": {
+          "cnt": 18,
+          "prem": 1265816,
+          "perf": 1195796,
+          "hwan": 1675077,
+          "life": 10,
+          "nonlife": 8,
+          "status": {
+            "정상": 15,
+            "유예": 3,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 10,
+            "보장성": 3,
+            "단독실손": 3,
+            "운전자": 2
+          }
+        }
+      },
+      "totals": {
+        "cnt": 73,
+        "prem": 5636858,
+        "perf": 5390621,
+        "hwan": 7312793,
+        "life": 41,
+        "nonlife": 32,
+        "lost": 0,
+        "delay": 13,
+        "avg_perf": 73844,
+        "life_ratio": 56.2,
+        "lost_rate": 0.0,
+        "q4_cnt": 48,
+        "q1_cnt": 25,
+        "q4_perf": 3650898,
+        "q1_perf": 1739723,
+        "growth": -52.3,
+        "top_products": {
+          "기타(보장성)": 40,
+          "보장성": 15,
+          "운전자": 12,
+          "단독실손": 5,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 21,
+        "흥국생명": 19,
+        "하나손보": 7,
+        "DB생명": 7,
+        "미래에셋": 7,
+        "신한라이프": 4,
+        "현대해상": 3,
+        "KDB생명": 1
+      }
+    },
+    "백경민": {
+      "name": "백경민",
+      "months": {
+        "01": {
+          "cnt": 6,
+          "prem": 484599,
+          "perf": 474599,
+          "hwan": 940654,
+          "life": 5,
+          "nonlife": 1,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 5,
+            "재물": 1
+          }
+        },
+        "03": {
+          "cnt": 6,
+          "prem": 719354,
+          "perf": 719354,
+          "hwan": 1270467,
+          "life": 6,
+          "nonlife": 0,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6
+          }
+        },
+        "10": {
+          "cnt": 1,
+          "prem": 70980,
+          "perf": 0,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "단독실손": 1
+          }
+        },
+        "11": {
+          "cnt": 4,
+          "prem": 458411,
+          "perf": 458411,
+          "hwan": 246082,
+          "life": 1,
+          "nonlife": 3,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "운전자": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "12": {
+          "cnt": 22,
+          "prem": 1690945,
+          "perf": 1569236,
+          "hwan": 1981061,
+          "life": 14,
+          "nonlife": 8,
+          "status": {
+            "정상": 21,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 10,
+            "운전자": 6,
+            "종신/CI": 3,
+            "보장성": 2,
+            "연금": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 39,
+        "prem": 19424289,
+        "perf": 3221600,
+        "hwan": 4438264,
+        "life": 26,
+        "nonlife": 13,
+        "lost": 0,
+        "delay": 1,
+        "avg_perf": 82605,
+        "life_ratio": 66.7,
+        "lost_rate": 0.0,
+        "q4_cnt": 27,
+        "q1_cnt": 12,
+        "q4_perf": 2027647,
+        "q1_perf": 1193953,
+        "growth": -41.1,
+        "top_products": {
+          "기타(보장성)": 22,
+          "운전자": 7,
+          "보장성": 4,
+          "종신/CI": 3,
+          "재물": 1
+        }
+      },
+      "insurers": {
+        "하나손보": 7,
+        "흥국생명": 7,
+        "메리츠화재": 6,
+        "동양생명": 5,
+        "미래에셋": 5,
+        "DB생명": 4,
+        "메트라이프": 3,
+        "교보생명": 1
+      }
+    },
+    "변호인": {
+      "name": "변호인",
+      "months": {
+        "12": {
+          "cnt": 1,
+          "prem": 11000,
+          "perf": 11000,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 1,
+        "prem": 11000,
+        "perf": 11000,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 1,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 11000,
+        "life_ratio": 0.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 1,
+        "q1_cnt": 0,
+        "q4_perf": 11000,
+        "q1_perf": 0,
+        "growth": -100.0,
+        "top_products": {
+          "운전자": 1
+        }
+      },
+      "insurers": {
+        "한화손보": 1
+      }
+    },
+    "성윤석": {
+      "name": "성윤석",
+      "months": {
+        "01": {
+          "cnt": 6,
+          "prem": 270481,
+          "perf": 270481,
+          "hwan": 130088,
+          "life": 2,
+          "nonlife": 4,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 3,
+            "기타(보장성)": 2,
+            "운전자": 1
+          }
+        },
+        "03": {
+          "cnt": 1,
+          "prem": 132320,
+          "perf": 132320,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 1
+          }
+        },
+        "10": {
+          "cnt": 9,
+          "prem": 267432,
+          "perf": 256932,
+          "hwan": 461476,
+          "life": 7,
+          "nonlife": 2,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7,
+            "재물": 1,
+            "보장성": 1
+          }
+        },
+        "11": {
+          "cnt": 2,
+          "prem": 29479,
+          "perf": 11680,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1,
+            "단독실손": 1
+          }
+        },
+        "12": {
+          "cnt": 10,
+          "prem": 183950,
+          "perf": 163700,
+          "hwan": 69720,
+          "life": 1,
+          "nonlife": 9,
+          "status": {
+            "정상": 9,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 7,
+            "보장성": 1,
+            "단독실손": 1,
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 28,
+        "prem": 883662,
+        "perf": 835113,
+        "hwan": 661284,
+        "life": 10,
+        "nonlife": 18,
+        "lost": 0,
+        "delay": 1,
+        "avg_perf": 29825,
+        "life_ratio": 35.7,
+        "lost_rate": 0.0,
+        "q4_cnt": 21,
+        "q1_cnt": 7,
+        "q4_perf": 432312,
+        "q1_perf": 402801,
+        "growth": -6.8,
+        "top_products": {
+          "기타(보장성)": 10,
+          "운전자": 9,
+          "보장성": 6,
+          "단독실손": 2,
+          "재물": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 15,
+        "라이나생명": 4,
+        "흥국생명": 4,
+        "농협손보": 1,
+        "삼성화재": 1,
+        "한화손보": 1,
+        "DB생명": 1,
+        "ABL생명": 1
+      }
+    },
+    "손영준": {
+      "name": "손영준",
+      "months": {
+        "01": {
+          "cnt": 17,
+          "prem": 1407052,
+          "perf": 1407052,
+          "hwan": 1941568,
+          "life": 9,
+          "nonlife": 8,
+          "status": {
+            "정상": 14,
+            "유예": 3,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 9,
+            "보장성": 7,
+            "운전자": 1
+          }
+        },
+        "02": {
+          "cnt": 7,
+          "prem": 1312330,
+          "perf": 1312330,
+          "hwan": 2459444,
+          "life": 7,
+          "nonlife": 0,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7
+          }
+        },
+        "03": {
+          "cnt": 8,
+          "prem": 1291043,
+          "perf": 1148228,
+          "hwan": 1984013,
+          "life": 8,
+          "nonlife": 0,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7,
+            "종신/CI": 1
+          }
+        },
+        "10": {
+          "cnt": 7,
+          "prem": 1198353,
+          "perf": 1037986,
+          "hwan": 1547014,
+          "life": 5,
+          "nonlife": 2,
+          "status": {
+            "정상": 3,
+            "유예": 4,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "종신/CI": 2,
+            "보장성": 1,
+            "단독실손": 1
+          }
+        },
+        "11": {
+          "cnt": 14,
+          "prem": 1737662,
+          "perf": 1676854,
+          "hwan": 2517843,
+          "life": 13,
+          "nonlife": 1,
+          "status": {
+            "정상": 8,
+            "유예": 4,
+            "해지": 1,
+            "실효": 1
+          },
+          "products": {
+            "기타(보장성)": 12,
+            "보장성": 1,
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 13,
+          "prem": 1133035,
+          "perf": 1075186,
+          "hwan": 1682484,
+          "life": 10,
+          "nonlife": 3,
+          "status": {
+            "정상": 11,
+            "유예": 1,
+            "해지": 1,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 9,
+            "운전자": 2,
+            "단독실손": 1,
+            "종신/CI": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 66,
+        "prem": 8079475,
+        "perf": 7657636,
+        "hwan": 12132366,
+        "life": 52,
+        "nonlife": 14,
+        "lost": 3,
+        "delay": 12,
+        "avg_perf": 116024,
+        "life_ratio": 78.8,
+        "lost_rate": 4.5,
+        "q4_cnt": 34,
+        "q1_cnt": 32,
+        "q4_perf": 3790026,
+        "q1_perf": 3867610,
+        "growth": 2.0,
+        "top_products": {
+          "기타(보장성)": 47,
+          "보장성": 9,
+          "종신/CI": 5,
+          "운전자": 3,
+          "단독실손": 2
+        }
+      },
+      "insurers": {
+        "흥국생명": 21,
+        "메리츠화재": 11,
+        "DB생명": 10,
+        "KDB생명": 7,
+        "메트라이프": 5,
+        "미래에셋": 4,
+        "삼성화재": 2,
+        "동양생명": 2
+      }
+    },
+    "손이삭": {
+      "name": "손이삭",
+      "months": {
+        "02": {
+          "cnt": 1,
+          "prem": 12770,
+          "perf": 12770,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1
+          }
+        },
+        "11": {
+          "cnt": 7,
+          "prem": 488836,
+          "perf": 477166,
+          "hwan": 793433,
+          "life": 5,
+          "nonlife": 2,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 5,
+            "보장성": 1,
+            "단독실손": 1
+          }
+        },
+        "12": {
+          "cnt": 8,
+          "prem": 597896,
+          "perf": 588673,
+          "hwan": 735136,
+          "life": 5,
+          "nonlife": 3,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 5,
+            "보장성": 1,
+            "단독실손": 1,
+            "운전자": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 16,
+        "prem": 1099502,
+        "perf": 1078609,
+        "hwan": 1528569,
+        "life": 10,
+        "nonlife": 6,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 67413,
+        "life_ratio": 62.5,
+        "lost_rate": 0.0,
+        "q4_cnt": 15,
+        "q1_cnt": 1,
+        "q4_perf": 1065839,
+        "q1_perf": 12770,
+        "growth": -98.8,
+        "top_products": {
+          "기타(보장성)": 10,
+          "운전자": 2,
+          "보장성": 2,
+          "단독실손": 2
+        }
+      },
+      "insurers": {
+        "메리츠화재": 3,
+        "DB생명": 3,
+        "흥국생명": 3,
+        "삼성화재": 2,
+        "하나생명": 2,
+        "현대해상": 1,
+        "동양생명": 1,
+        "한화생명": 1
+      }
+    },
+    "신지원": {
+      "name": "신지원",
+      "months": {
+        "01": {
+          "cnt": 9,
+          "prem": 494058,
+          "perf": 461114,
+          "hwan": 496544,
+          "life": 3,
+          "nonlife": 6,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 3,
+            "기타(보장성)": 3,
+            "보장성": 2,
+            "재물": 1
+          }
+        },
+        "02": {
+          "cnt": 4,
+          "prem": 3070910,
+          "perf": 4570910,
+          "hwan": 3433500,
+          "life": 2,
+          "nonlife": 2,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "기타(보장성)": 1,
+            "종신/CI": 1
+          }
+        },
+        "03": {
+          "cnt": 8,
+          "prem": 500435,
+          "perf": 466743,
+          "hwan": 745324,
+          "life": 4,
+          "nonlife": 4,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "운전자": 3,
+            "재물": 1
+          }
+        },
+        "10": {
+          "cnt": 8,
+          "prem": 467472,
+          "perf": 407502,
+          "hwan": 253028,
+          "life": 2,
+          "nonlife": 6,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 5,
+            "기타(보장성)": 2,
+            "운전자": 1
+          }
+        },
+        "11": {
+          "cnt": 11,
+          "prem": 913903,
+          "perf": 811712,
+          "hwan": 1274960,
+          "life": 7,
+          "nonlife": 4,
+          "status": {
+            "정상": 9,
+            "유예": 2,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "운전자": 2,
+            "보장성": 1,
+            "단독실손": 1,
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 24,
+          "prem": 1120747,
+          "perf": 1011128,
+          "hwan": 441920,
+          "life": 4,
+          "nonlife": 20,
+          "status": {
+            "정상": 24,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 11,
+            "보장성": 8,
+            "기타(보장성)": 2,
+            "종신/CI": 2,
+            "단독실손": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 64,
+        "prem": 6567525,
+        "perf": 7729109,
+        "hwan": 6645276,
+        "life": 22,
+        "nonlife": 42,
+        "lost": 0,
+        "delay": 2,
+        "avg_perf": 120767,
+        "life_ratio": 34.4,
+        "lost_rate": 0.0,
+        "q4_cnt": 43,
+        "q1_cnt": 21,
+        "q4_perf": 2230342,
+        "q1_perf": 5498767,
+        "growth": 146.5,
+        "top_products": {
+          "운전자": 20,
+          "기타(보장성)": 18,
+          "보장성": 18,
+          "종신/CI": 4,
+          "재물": 2
+        }
+      },
+      "insurers": {
+        "메리츠화재": 13,
+        "하나손보": 12,
+        "롯데손보": 5,
+        "흥국생명": 5,
+        "라이나생명": 4,
+        "미래에셋": 4,
+        "DB손보": 3,
+        "메트라이프": 3
+      }
+    },
+    "오하늘": {
+      "name": "오하늘",
+      "months": {
+        "02": {
+          "cnt": 1,
+          "prem": 15930,
+          "perf": 7965,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "재물": 1
+          }
+        },
+        "03": {
+          "cnt": 4,
+          "prem": 190107,
+          "perf": 190107,
+          "hwan": 259935,
+          "life": 2,
+          "nonlife": 2,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "운전자": 1,
+            "보장성": 1
+          }
+        },
+        "12": {
+          "cnt": 4,
+          "prem": 225913,
+          "perf": 225913,
+          "hwan": 304448,
+          "life": 2,
+          "nonlife": 2,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "운전자": 1,
+            "보장성": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 9,
+        "prem": 431950,
+        "perf": 423985,
+        "hwan": 564383,
+        "life": 4,
+        "nonlife": 5,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 47109,
+        "life_ratio": 44.4,
+        "lost_rate": 0.0,
+        "q4_cnt": 4,
+        "q1_cnt": 5,
+        "q4_perf": 225913,
+        "q1_perf": 198072,
+        "growth": -12.3,
+        "top_products": {
+          "기타(보장성)": 4,
+          "운전자": 2,
+          "보장성": 2,
+          "재물": 1
+        }
+      },
+      "insurers": {
+        "흥국생명": 3,
+        "메리츠화재": 3,
+        "하나손보": 1,
+        "현대해상": 1,
+        "신한라이프": 1
+      }
+    },
+    "용은정": {
+      "name": "용은정",
+      "months": {
+        "01": {
+          "cnt": 22,
+          "prem": 2590614,
+          "perf": 2318297,
+          "hwan": 2417698,
+          "life": 11,
+          "nonlife": 11,
+          "status": {
+            "정상": 22,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 8,
+            "기타(보장성)": 8,
+            "종신/CI": 3,
+            "운전자": 2,
+            "단독실손": 1
+          }
+        },
+        "02": {
+          "cnt": 12,
+          "prem": 1341168,
+          "perf": 1341168,
+          "hwan": 593662,
+          "life": 5,
+          "nonlife": 7,
+          "status": {
+            "정상": 12,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 7,
+            "기타(보장성)": 5
+          }
+        },
+        "03": {
+          "cnt": 20,
+          "prem": 1273504,
+          "perf": 2596875,
+          "hwan": 2696162,
+          "life": 9,
+          "nonlife": 11,
+          "status": {
+            "정상": 20,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 6,
+            "기타(보장성)": 5,
+            "운전자": 2,
+            "단독실손": 2,
+            "연금": 2,
+            "종신/CI": 2
+          }
+        },
+        "10": {
+          "cnt": 19,
+          "prem": 1042306,
+          "perf": 1042306,
+          "hwan": 1275394,
+          "life": 9,
+          "nonlife": 10,
+          "status": {
+            "정상": 19,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 9,
+            "보장성": 5,
+            "운전자": 4,
+            "어린이": 1
+          }
+        },
+        "11": {
+          "cnt": 32,
+          "prem": 3727037,
+          "perf": 3611919,
+          "hwan": 4515926,
+          "life": 20,
+          "nonlife": 12,
+          "status": {
+            "정상": 30,
+            "유예": 2,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 16,
+            "보장성": 8,
+            "종신/CI": 3,
+            "운전자": 2,
+            "단독실손": 2,
+            "연금": 1
+          }
+        },
+        "12": {
+          "cnt": 19,
+          "prem": 1834922,
+          "perf": 1834922,
+          "hwan": 3253363,
+          "life": 16,
+          "nonlife": 3,
+          "status": {
+            "정상": 19,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 16,
+            "운전자": 2,
+            "보장성": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 124,
+        "prem": 336809551,
+        "perf": 12745487,
+        "hwan": 14752205,
+        "life": 70,
+        "nonlife": 54,
+        "lost": 0,
+        "delay": 2,
+        "avg_perf": 102786,
+        "life_ratio": 56.5,
+        "lost_rate": 0.0,
+        "q4_cnt": 70,
+        "q1_cnt": 54,
+        "q4_perf": 6489147,
+        "q1_perf": 6256340,
+        "growth": -3.6,
+        "top_products": {
+          "기타(보장성)": 59,
+          "보장성": 35,
+          "운전자": 12,
+          "종신/CI": 8,
+          "단독실손": 5
+        }
+      },
+      "insurers": {
+        "메리츠화재": 32,
+        "흥국생명": 22,
+        "DB생명": 13,
+        "메트라이프": 8,
+        "한화손보": 7,
+        "미래에셋": 7,
+        "삼성화재": 5,
+        "신한라이프": 5
+      }
+    },
+    "원수빈": {
+      "name": "원수빈",
+      "months": {
+        "01": {
+          "cnt": 3,
+          "prem": 170415,
+          "perf": 170415,
+          "hwan": 167497,
+          "life": 2,
+          "nonlife": 1,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1
+          }
+        },
+        "02": {
+          "cnt": 3,
+          "prem": 115794,
+          "perf": 66824,
+          "hwan": 55590,
+          "life": 1,
+          "nonlife": 2,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "단독실손": 1,
+            "어린이": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "03": {
+          "cnt": 6,
+          "prem": 391442,
+          "perf": 391442,
+          "hwan": 341105,
+          "life": 4,
+          "nonlife": 2,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "보장성": 2
+          }
+        }
+      },
+      "totals": {
+        "cnt": 12,
+        "prem": 677651,
+        "perf": 628681,
+        "hwan": 564192,
+        "life": 7,
+        "nonlife": 5,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 52390,
+        "life_ratio": 58.3,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 12,
+        "q4_perf": 0,
+        "q1_perf": 628681,
+        "growth": null,
+        "top_products": {
+          "기타(보장성)": 7,
+          "보장성": 3,
+          "단독실손": 1,
+          "어린이": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 3,
+        "미래에셋": 3,
+        "흥국생명": 3,
+        "DB손보": 1,
+        "롯데손보": 1,
+        "라이나생명": 1
+      }
+    },
+    "유수민": {
+      "name": "유수민",
+      "months": {
+        "01": {
+          "cnt": 1,
+          "prem": 206110,
+          "perf": 247332,
+          "hwan": 296583,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "종신/CI": 1
+          }
+        },
+        "02": {
+          "cnt": 3,
+          "prem": 143918,
+          "perf": 143918,
+          "hwan": 206984,
+          "life": 2,
+          "nonlife": 1,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1
+          }
+        },
+        "03": {
+          "cnt": 9,
+          "prem": 941778,
+          "perf": 892024,
+          "hwan": 1346136,
+          "life": 7,
+          "nonlife": 2,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "보장성": 2,
+            "종신/CI": 1
+          }
+        },
+        "11": {
+          "cnt": 3,
+          "prem": 650196,
+          "perf": 583559,
+          "hwan": 978812,
+          "life": 3,
+          "nonlife": 0,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 1,
+          "prem": 11034,
+          "perf": 11034,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 17,
+        "prem": 1953036,
+        "perf": 1877867,
+        "hwan": 2828515,
+        "life": 13,
+        "nonlife": 4,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 110462,
+        "life_ratio": 76.5,
+        "lost_rate": 0.0,
+        "q4_cnt": 4,
+        "q1_cnt": 13,
+        "q4_perf": 594593,
+        "q1_perf": 1283274,
+        "growth": 115.8,
+        "top_products": {
+          "기타(보장성)": 10,
+          "종신/CI": 3,
+          "보장성": 3,
+          "운전자": 1
+        }
+      },
+      "insurers": {
+        "흥국생명": 5,
+        "메트라이프": 3,
+        "메리츠화재": 3,
+        "신한라이프": 2,
+        "하나손보": 1,
+        "DB생명": 1,
+        "KB라이프생명": 1,
+        "동양생명": 1
+      }
+    },
+    "유수환": {
+      "name": "유수환",
+      "months": {
+        "01": {
+          "cnt": 4,
+          "prem": 347429,
+          "perf": 325291,
+          "hwan": 215689,
+          "life": 1,
+          "nonlife": 3,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 1,
+            "어린이": 1,
+            "단독실손": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "02": {
+          "cnt": 5,
+          "prem": 328566,
+          "perf": 328566,
+          "hwan": 210556,
+          "life": 2,
+          "nonlife": 3,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "기타(보장성)": 2,
+            "운전자": 1
+          }
+        },
+        "03": {
+          "cnt": 7,
+          "prem": 1491388,
+          "perf": 1303617,
+          "hwan": 1426910,
+          "life": 2,
+          "nonlife": 5,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "운전자": 1,
+            "어린이": 1,
+            "단독실손(태아)": 1,
+            "종신/CI": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "10": {
+          "cnt": 5,
+          "prem": 372944,
+          "perf": 372944,
+          "hwan": 556681,
+          "life": 2,
+          "nonlife": 3,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 2,
+            "기타(보장성)": 2,
+            "보장성": 1
+          }
+        },
+        "11": {
+          "cnt": 14,
+          "prem": 712430,
+          "perf": 552045,
+          "hwan": 513401,
+          "life": 4,
+          "nonlife": 10,
+          "status": {
+            "정상": 13,
+            "유예": 0,
+            "해지": 0,
+            "실효": 1
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "보장성": 3,
+            "단독실손": 3,
+            "운전자": 2,
+            "어린이": 1,
+            "재물": 1
+          }
+        },
+        "12": {
+          "cnt": 17,
+          "prem": 1140607,
+          "perf": 1026283,
+          "hwan": 1341997,
+          "life": 7,
+          "nonlife": 10,
+          "status": {
+            "정상": 17,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "운전자": 4,
+            "단독실손": 2,
+            "어린이": 2,
+            "단독실손(태아)": 1,
+            "보장성": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 52,
+        "prem": 4393364,
+        "perf": 3908746,
+        "hwan": 4265234,
+        "life": 18,
+        "nonlife": 34,
+        "lost": 1,
+        "delay": 0,
+        "avg_perf": 75168,
+        "life_ratio": 34.6,
+        "lost_rate": 1.9,
+        "q4_cnt": 36,
+        "q1_cnt": 16,
+        "q4_perf": 1951272,
+        "q1_perf": 1957474,
+        "growth": 0.3,
+        "top_products": {
+          "기타(보장성)": 16,
+          "보장성": 10,
+          "운전자": 10,
+          "단독실손": 6,
+          "어린이": 5
+        }
+      },
+      "insurers": {
+        "메리츠화재": 22,
+        "KB손보": 8,
+        "DB생명": 5,
+        "흥국생명": 5,
+        "삼성화재": 4,
+        "미래에셋": 4,
+        "메트라이프": 2,
+        "한화생명": 2
+      }
+    },
+    "이민하": {
+      "name": "이민하",
+      "months": {
+        "01": {
+          "cnt": 16,
+          "prem": 2410956,
+          "perf": 2361105,
+          "hwan": 4405678,
+          "life": 15,
+          "nonlife": 1,
+          "status": {
+            "정상": 15,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 14,
+            "보장성": 1,
+            "종신/CI": 1
+          }
+        },
+        "02": {
+          "cnt": 14,
+          "prem": 2320266,
+          "perf": 2320266,
+          "hwan": 4370153,
+          "life": 13,
+          "nonlife": 1,
+          "status": {
+            "정상": 13,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 13,
+            "보장성": 1
+          }
+        },
+        "03": {
+          "cnt": 19,
+          "prem": 2374613,
+          "perf": 2374613,
+          "hwan": 4732870,
+          "life": 16,
+          "nonlife": 3,
+          "status": {
+            "정상": 19,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 16,
+            "보장성": 2,
+            "운전자": 1
+          }
+        },
+        "10": {
+          "cnt": 6,
+          "prem": 733490,
+          "perf": 660749,
+          "hwan": 1056311,
+          "life": 5,
+          "nonlife": 1,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "보장성": 1,
+            "종신/CI": 1
+          }
+        },
+        "11": {
+          "cnt": 5,
+          "prem": 620390,
+          "perf": 592817,
+          "hwan": 1011413,
+          "life": 4,
+          "nonlife": 1,
+          "status": {
+            "정상": 3,
+            "유예": 1,
+            "해지": 1,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "보장성": 1,
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 17,
+          "prem": 2111719,
+          "perf": 1889579,
+          "hwan": 2813449,
+          "life": 8,
+          "nonlife": 9,
+          "status": {
+            "정상": 16,
+            "유예": 0,
+            "해지": 1,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "운전자": 3,
+            "보장성": 3,
+            "단독실손": 3,
+            "종신/CI": 2
+          }
+        }
+      },
+      "totals": {
+        "cnt": 77,
+        "prem": 10571434,
+        "perf": 10199129,
+        "hwan": 18389874,
+        "life": 61,
+        "nonlife": 16,
+        "lost": 2,
+        "delay": 3,
+        "avg_perf": 132456,
+        "life_ratio": 79.2,
+        "lost_rate": 2.6,
+        "q4_cnt": 28,
+        "q1_cnt": 49,
+        "q4_perf": 3143145,
+        "q1_perf": 7055984,
+        "growth": 124.5,
+        "top_products": {
+          "기타(보장성)": 56,
+          "보장성": 9,
+          "종신/CI": 5,
+          "운전자": 4,
+          "단독실손": 3
+        }
+      },
+      "insurers": {
+        "흥국생명": 20,
+        "메리츠화재": 16,
+        "DB생명": 12,
+        "KDB생명": 8,
+        "ABL생명": 6,
+        "메트라이프": 5,
+        "미래에셋": 4,
+        "신한라이프": 2
+      }
+    },
+    "이민형": {
+      "name": "이민형",
+      "months": {
+        "03": {
+          "cnt": 2,
+          "prem": 36690,
+          "perf": 21050,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 1,
+            "단독실손": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 2,
+        "prem": 36690,
+        "perf": 21050,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 2,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 10525,
+        "life_ratio": 0.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 2,
+        "q4_perf": 0,
+        "q1_perf": 21050,
+        "growth": null,
+        "top_products": {
+          "보장성": 1,
+          "단독실손": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 2
+      }
+    },
+    "이승목": {
+      "name": "이승목",
+      "months": {
+        "01": {
+          "cnt": 3,
+          "prem": 334942,
+          "perf": 334942,
+          "hwan": 480352,
+          "life": 2,
+          "nonlife": 1,
+          "status": {
+            "정상": 2,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1
+          }
+        },
+        "02": {
+          "cnt": 1,
+          "prem": 319394,
+          "perf": 319394,
+          "hwan": 447151,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        },
+        "03": {
+          "cnt": 5,
+          "prem": 314815,
+          "perf": 314815,
+          "hwan": 277613,
+          "life": 3,
+          "nonlife": 2,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "보장성": 2
+          }
+        },
+        "10": {
+          "cnt": 2,
+          "prem": 120020,
+          "perf": 120020,
+          "hwan": 70724,
+          "life": 1,
+          "nonlife": 1,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "어린이": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "11": {
+          "cnt": 1,
+          "prem": 312640,
+          "perf": 262618,
+          "hwan": 375794,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 0,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 3,
+          "prem": 158886,
+          "perf": 158886,
+          "hwan": 239026,
+          "life": 1,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 2,
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 15,
+        "prem": 1560697,
+        "perf": 1510675,
+        "hwan": 1890660,
+        "life": 9,
+        "nonlife": 6,
+        "lost": 0,
+        "delay": 3,
+        "avg_perf": 100711,
+        "life_ratio": 60.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 6,
+        "q1_cnt": 9,
+        "q4_perf": 541524,
+        "q1_perf": 969151,
+        "growth": 79.0,
+        "top_products": {
+          "기타(보장성)": 8,
+          "보장성": 3,
+          "운전자": 2,
+          "어린이": 1,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "흥국생명": 3,
+        "메리츠화재": 3,
+        "하나손보": 2,
+        "KB손보": 1,
+        "메트라이프": 1,
+        "하나생명": 1,
+        "DB생명": 1,
+        "KDB생명": 1
+      }
+    },
+    "이연식": {
+      "name": "이연식",
+      "months": {
+        "10": {
+          "cnt": 4,
+          "prem": 930360,
+          "perf": 781503,
+          "hwan": 1167734,
+          "life": 4,
+          "nonlife": 0,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "종신/CI": 4
+          }
+        },
+        "11": {
+          "cnt": 7,
+          "prem": 684413,
+          "perf": 620624,
+          "hwan": 792469,
+          "life": 3,
+          "nonlife": 4,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "운전자": 2,
+            "기타(보장성)": 2,
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 10,
+          "prem": 653647,
+          "perf": 613069,
+          "hwan": 821648,
+          "life": 5,
+          "nonlife": 5,
+          "status": {
+            "정상": 10,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "운전자": 3,
+            "보장성": 2,
+            "종신/CI": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 21,
+        "prem": 2268420,
+        "perf": 2015196,
+        "hwan": 2781851,
+        "life": 12,
+        "nonlife": 9,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 95961,
+        "life_ratio": 57.1,
+        "lost_rate": 0.0,
+        "q4_cnt": 21,
+        "q1_cnt": 0,
+        "q4_perf": 2015196,
+        "q1_perf": 0,
+        "growth": -100.0,
+        "top_products": {
+          "종신/CI": 6,
+          "기타(보장성)": 6,
+          "운전자": 5,
+          "보장성": 4
+        }
+      },
+      "insurers": {
+        "메리츠화재": 6,
+        "메트라이프": 6,
+        "하나손보": 3,
+        "DB생명": 3,
+        "흥국생명": 2,
+        "신한라이프": 1
+      }
+    },
+    "이은정": {
+      "name": "이은정",
+      "months": {
+        "02": {
+          "cnt": 2,
+          "prem": 61500,
+          "perf": 42239,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "어린이": 1,
+            "단독실손(태아)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 2,
+        "prem": 61500,
+        "perf": 42239,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 2,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 21119,
+        "life_ratio": 0.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 2,
+        "q4_perf": 0,
+        "q1_perf": 42239,
+        "growth": null,
+        "top_products": {
+          "어린이": 1,
+          "단독실손(태아)": 1
+        }
+      },
+      "insurers": {
+        "KB손보": 2
+      }
+    },
+    "이지현": {
+      "name": "이지현",
+      "months": {
+        "01": {
+          "cnt": 4,
+          "prem": 203790,
+          "perf": 363790,
+          "hwan": 96000,
+          "life": 1,
+          "nonlife": 3,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 3,
+            "연금": 1
+          }
+        },
+        "02": {
+          "cnt": 6,
+          "prem": 972057,
+          "perf": 1098593,
+          "hwan": 1527529,
+          "life": 6,
+          "nonlife": 0,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "종신/CI": 2,
+            "연금": 1
+          }
+        },
+        "03": {
+          "cnt": 5,
+          "prem": 292345,
+          "perf": 270540,
+          "hwan": 272229,
+          "life": 2,
+          "nonlife": 3,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "운전자": 1,
+            "기타(보장성)": 1,
+            "종신/CI": 1
+          }
+        },
+        "10": {
+          "cnt": 1,
+          "prem": 31070,
+          "perf": 31070,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 1
+          }
+        },
+        "11": {
+          "cnt": 6,
+          "prem": 987340,
+          "perf": 870530,
+          "hwan": 1096899,
+          "life": 4,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 4,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "종신/CI": 2,
+            "기타(보장성)": 2
+          }
+        },
+        "12": {
+          "cnt": 9,
+          "prem": 650914,
+          "perf": 650914,
+          "hwan": 1059157,
+          "life": 6,
+          "nonlife": 3,
+          "status": {
+            "정상": 9,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "보장성": 2,
+            "운전자": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 31,
+        "prem": 85137516,
+        "perf": 3285437,
+        "hwan": 4051814,
+        "life": 19,
+        "nonlife": 12,
+        "lost": 4,
+        "delay": 0,
+        "avg_perf": 105981,
+        "life_ratio": 61.3,
+        "lost_rate": 12.9,
+        "q4_cnt": 16,
+        "q1_cnt": 15,
+        "q4_perf": 1552514,
+        "q1_perf": 1732923,
+        "growth": 11.6,
+        "top_products": {
+          "기타(보장성)": 12,
+          "보장성": 10,
+          "종신/CI": 5,
+          "연금": 2,
+          "운전자": 2
+        }
+      },
+      "insurers": {
+        "메리츠화재": 9,
+        "흥국생명": 7,
+        "메트라이프": 5,
+        "DB생명": 2,
+        "교보생명": 2,
+        "하나손보": 1,
+        "현대해상": 1,
+        "하나생명": 1
+      }
+    },
+    "전지웅": {
+      "name": "전지웅",
+      "months": {
+        "02": {
+          "cnt": 2,
+          "prem": 228907,
+          "perf": 160360,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "단독실손": 1,
+            "보장성": 1
+          }
+        },
+        "03": {
+          "cnt": 5,
+          "prem": 370723,
+          "perf": 370723,
+          "hwan": 553117,
+          "life": 4,
+          "nonlife": 1,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "보장성": 1
+          }
+        },
+        "11": {
+          "cnt": 1,
+          "prem": 108392,
+          "perf": 108392,
+          "hwan": 191177,
+          "life": 1,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 1
+          }
+        },
+        "12": {
+          "cnt": 2,
+          "prem": 402673,
+          "perf": 354015,
+          "hwan": 582386,
+          "life": 2,
+          "nonlife": 0,
+          "status": {
+            "정상": 1,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "종신/CI": 1,
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 10,
+        "prem": 1110695,
+        "perf": 993490,
+        "hwan": 1326680,
+        "life": 7,
+        "nonlife": 3,
+        "lost": 0,
+        "delay": 1,
+        "avg_perf": 99349,
+        "life_ratio": 70.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 3,
+        "q1_cnt": 7,
+        "q4_perf": 462407,
+        "q1_perf": 531083,
+        "growth": 14.9,
+        "top_products": {
+          "기타(보장성)": 6,
+          "보장성": 2,
+          "단독실손": 1,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "흥국생명": 3,
+        "메리츠화재": 2,
+        "메트라이프": 1,
+        "하나생명": 1,
+        "롯데손보": 1,
+        "DB생명": 1,
+        "동양생명": 1
+      }
+    },
+    "정민욱": {
+      "name": "정민욱",
+      "months": {
+        "01": {
+          "cnt": 21,
+          "prem": 2620207,
+          "perf": 2592401,
+          "hwan": 3622430,
+          "life": 17,
+          "nonlife": 4,
+          "status": {
+            "정상": 20,
+            "유예": 0,
+            "해지": 1,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 15,
+            "보장성": 4,
+            "종신/CI": 2
+          }
+        },
+        "02": {
+          "cnt": 12,
+          "prem": 964704,
+          "perf": 940204,
+          "hwan": 1536053,
+          "life": 7,
+          "nonlife": 5,
+          "status": {
+            "정상": 10,
+            "유예": 2,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7,
+            "보장성": 3,
+            "재물": 1,
+            "운전자": 1
+          }
+        },
+        "03": {
+          "cnt": 32,
+          "prem": 2471003,
+          "perf": 2372809,
+          "hwan": 3996919,
+          "life": 30,
+          "nonlife": 2,
+          "status": {
+            "정상": 32,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 28,
+            "보장성": 2,
+            "종신/CI": 2
+          }
+        },
+        "10": {
+          "cnt": 17,
+          "prem": 3802206,
+          "perf": 3567148,
+          "hwan": 4571720,
+          "life": 7,
+          "nonlife": 10,
+          "status": {
+            "정상": 16,
+            "유예": 0,
+            "해지": 1,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 6,
+            "종신/CI": 4,
+            "운전자": 3,
+            "기타(보장성)": 3,
+            "단독실손": 1
+          }
+        },
+        "11": {
+          "cnt": 24,
+          "prem": 1966296,
+          "perf": 1794200,
+          "hwan": 1059206,
+          "life": 3,
+          "nonlife": 21,
+          "status": {
+            "정상": 22,
+            "유예": 0,
+            "해지": 1,
+            "실효": 1
+          },
+          "products": {
+            "보장성": 11,
+            "운전자": 4,
+            "단독실손": 2,
+            "종신/CI": 2,
+            "재물": 1,
+            "어린이(태아)": 1
+          }
+        },
+        "12": {
+          "cnt": 43,
+          "prem": 3958350,
+          "perf": 4201328,
+          "hwan": 2637751,
+          "life": 8,
+          "nonlife": 35,
+          "status": {
+            "정상": 41,
+            "유예": 1,
+            "해지": 1,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 19,
+            "보장성": 16,
+            "기타(보장성)": 4,
+            "종신/CI": 4
+          }
+        }
+      },
+      "totals": {
+        "cnt": 149,
+        "prem": 15782766,
+        "perf": 15468090,
+        "hwan": 17424079,
+        "life": 72,
+        "nonlife": 77,
+        "lost": 5,
+        "delay": 3,
+        "avg_perf": 103812,
+        "life_ratio": 48.3,
+        "lost_rate": 3.4,
+        "q4_cnt": 84,
+        "q1_cnt": 65,
+        "q4_perf": 9562676,
+        "q1_perf": 5905414,
+        "growth": -38.2,
+        "top_products": {
+          "기타(보장성)": 57,
+          "보장성": 42,
+          "운전자": 27,
+          "종신/CI": 14,
+          "단독실손": 3
+        }
+      },
+      "insurers": {
+        "하나손보": 26,
+        "롯데손보": 22,
+        "흥국생명": 17,
+        "DB생명": 15,
+        "메트라이프": 11,
+        "KB손보": 10,
+        "ABL생명": 10,
+        "동양생명": 10
+      }
+    },
+    "정소희": {
+      "name": "정소희",
+      "months": {
+        "01": {
+          "cnt": 5,
+          "prem": 263973,
+          "perf": 263973,
+          "hwan": 347380,
+          "life": 2,
+          "nonlife": 3,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 2,
+            "기타(보장성)": 2,
+            "보장성": 1
+          }
+        },
+        "02": {
+          "cnt": 2,
+          "prem": 122600,
+          "perf": 122600,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 2,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2
+          }
+        },
+        "03": {
+          "cnt": 10,
+          "prem": 587966,
+          "perf": 547521,
+          "hwan": 866309,
+          "life": 7,
+          "nonlife": 3,
+          "status": {
+            "정상": 10,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 7,
+            "보장성": 2,
+            "단독실손": 1
+          }
+        },
+        "10": {
+          "cnt": 7,
+          "prem": 447615,
+          "perf": 330140,
+          "hwan": 451917,
+          "life": 2,
+          "nonlife": 5,
+          "status": {
+            "정상": 7,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "단독실손": 2,
+            "운전자": 2,
+            "기타(보장성)": 2,
+            "보장성": 1
+          }
+        },
+        "11": {
+          "cnt": 5,
+          "prem": 699730,
+          "perf": 699730,
+          "hwan": 1608151,
+          "life": 4,
+          "nonlife": 1,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "운전자": 1
+          }
+        },
+        "12": {
+          "cnt": 19,
+          "prem": 1703025,
+          "perf": 1628181,
+          "hwan": 2269290,
+          "life": 11,
+          "nonlife": 8,
+          "status": {
+            "정상": 17,
+            "유예": 2,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 10,
+            "보장성": 4,
+            "운전자": 3,
+            "단독실손": 1,
+            "종신/CI": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 48,
+        "prem": 3824909,
+        "perf": 3592145,
+        "hwan": 5543047,
+        "life": 26,
+        "nonlife": 22,
+        "lost": 0,
+        "delay": 2,
+        "avg_perf": 74836,
+        "life_ratio": 54.2,
+        "lost_rate": 0.0,
+        "q4_cnt": 31,
+        "q1_cnt": 17,
+        "q4_perf": 2658051,
+        "q1_perf": 934094,
+        "growth": -64.9,
+        "top_products": {
+          "기타(보장성)": 25,
+          "보장성": 10,
+          "운전자": 8,
+          "단독실손": 4,
+          "종신/CI": 1
+        }
+      },
+      "insurers": {
+        "메리츠화재": 14,
+        "흥국생명": 10,
+        "DB생명": 6,
+        "신한라이프": 3,
+        "농협손보": 2,
+        "하나손보": 2,
+        "동양생명": 2,
+        "미래에셋": 2
+      }
+    },
+    "정유림": {
+      "name": "정유림",
+      "months": {
+        "01": {
+          "cnt": 6,
+          "prem": 316336,
+          "perf": 616336,
+          "hwan": 762956,
+          "life": 4,
+          "nonlife": 2,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "운전자": 2,
+            "연금": 1
+          }
+        },
+        "02": {
+          "cnt": 8,
+          "prem": 1237693,
+          "perf": 1237693,
+          "hwan": 1858746,
+          "life": 6,
+          "nonlife": 2,
+          "status": {
+            "정상": 7,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 6,
+            "보장성": 1,
+            "어린이": 1
+          }
+        },
+        "03": {
+          "cnt": 8,
+          "prem": 1135370,
+          "perf": 1534570,
+          "hwan": 1584315,
+          "life": 8,
+          "nonlife": 0,
+          "status": {
+            "정상": 8,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 4,
+            "연금": 3,
+            "종신/CI": 1
+          }
+        },
+        "10": {
+          "cnt": 3,
+          "prem": 1123390,
+          "perf": 623390,
+          "hwan": 359460,
+          "life": 2,
+          "nonlife": 1,
+          "status": {
+            "정상": 2,
+            "유예": 0,
+            "해지": 0,
+            "실효": 1
+          },
+          "products": {
+            "보장성": 1,
+            "종신/CI": 1,
+            "기타(보장성)": 1
+          }
+        },
+        "11": {
+          "cnt": 3,
+          "prem": 811570,
+          "perf": 591570,
+          "hwan": 332000,
+          "life": 2,
+          "nonlife": 1,
+          "status": {
+            "정상": 3,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1,
+            "연금": 1,
+            "종신/CI": 1
+          }
+        },
+        "12": {
+          "cnt": 5,
+          "prem": 4128097,
+          "perf": 4734097,
+          "hwan": 2943263,
+          "life": 4,
+          "nonlife": 1,
+          "status": {
+            "정상": 5,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1,
+            "연금": 1,
+            "종신/CI": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 33,
+        "prem": 450752456,
+        "perf": 9337656,
+        "hwan": 7840740,
+        "life": 26,
+        "nonlife": 7,
+        "lost": 1,
+        "delay": 1,
+        "avg_perf": 282959,
+        "life_ratio": 78.8,
+        "lost_rate": 3.0,
+        "q4_cnt": 11,
+        "q1_cnt": 22,
+        "q4_perf": 5949057,
+        "q1_perf": 3388599,
+        "growth": -43.0,
+        "top_products": {
+          "기타(보장성)": 16,
+          "연금": 6,
+          "종신/CI": 4,
+          "운전자": 3,
+          "보장성": 3
+        }
+      },
+      "insurers": {
+        "메리츠화재": 7,
+        "교보생명": 6,
+        "흥국생명": 6,
+        "DB생명": 5,
+        "신한라이프": 4,
+        "KDB생명": 2,
+        "ABL생명": 1,
+        "동양생명": 1
+      }
+    },
+    "조신일": {
+      "name": "조신일",
+      "months": {
+        "01": {
+          "cnt": 4,
+          "prem": 267764,
+          "perf": 267764,
+          "hwan": 240442,
+          "life": 2,
+          "nonlife": 2,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "보장성": 2,
+            "기타(보장성)": 2
+          }
+        },
+        "02": {
+          "cnt": 6,
+          "prem": 432209,
+          "perf": 410299,
+          "hwan": 410427,
+          "life": 4,
+          "nonlife": 2,
+          "status": {
+            "정상": 6,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 3,
+            "보장성": 2,
+            "종신/CI": 1
+          }
+        },
+        "03": {
+          "cnt": 4,
+          "prem": 424192,
+          "perf": 388269,
+          "hwan": 538690,
+          "life": 3,
+          "nonlife": 1,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "기타(보장성)": 2,
+            "보장성": 1,
+            "종신/CI": 1
+          }
+        },
+        "11": {
+          "cnt": 1,
+          "prem": 11660,
+          "perf": 11660,
+          "hwan": 0,
+          "life": 0,
+          "nonlife": 1,
+          "status": {
+            "정상": 1,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 1
+          }
+        },
+        "12": {
+          "cnt": 12,
+          "prem": 445912,
+          "perf": 445912,
+          "hwan": 673632,
+          "life": 4,
+          "nonlife": 8,
+          "status": {
+            "정상": 11,
+            "유예": 1,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "운전자": 8,
+            "기타(보장성)": 4
+          }
+        }
+      },
+      "totals": {
+        "cnt": 27,
+        "prem": 1581737,
+        "perf": 1523904,
+        "hwan": 1863191,
+        "life": 13,
+        "nonlife": 14,
+        "lost": 0,
+        "delay": 1,
+        "avg_perf": 56440,
+        "life_ratio": 48.1,
+        "lost_rate": 0.0,
+        "q4_cnt": 13,
+        "q1_cnt": 14,
+        "q4_perf": 457572,
+        "q1_perf": 1066332,
+        "growth": 133.0,
+        "top_products": {
+          "기타(보장성)": 11,
+          "운전자": 9,
+          "보장성": 5,
+          "종신/CI": 2
+        }
+      },
+      "insurers": {
+        "메리츠화재": 13,
+        "흥국생명": 5,
+        "DB생명": 2,
+        "미래에셋": 2,
+        "메트라이프": 2,
+        "하나손보": 1,
+        "하나생명": 1,
+        "동양생명": 1
+      }
+    },
+    "한주희": {
+      "name": "한주희",
+      "months": {
+        "03": {
+          "cnt": 4,
+          "prem": 981741,
+          "perf": 843647,
+          "hwan": 1270053,
+          "life": 4,
+          "nonlife": 0,
+          "status": {
+            "정상": 4,
+            "유예": 0,
+            "해지": 0,
+            "실효": 0
+          },
+          "products": {
+            "종신/CI": 3,
+            "기타(보장성)": 1
+          }
+        }
+      },
+      "totals": {
+        "cnt": 4,
+        "prem": 981741,
+        "perf": 843647,
+        "hwan": 1270053,
+        "life": 4,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 210911,
+        "life_ratio": 100.0,
+        "lost_rate": 0.0,
+        "q4_cnt": 0,
+        "q1_cnt": 4,
+        "q4_perf": 0,
+        "q1_perf": 843647,
+        "growth": null,
+        "top_products": {
+          "종신/CI": 3,
+          "기타(보장성)": 1
+        }
+      },
+      "insurers": {
+        "메트라이프": 3,
+        "KDB생명": 1
+      }
+    }
+  }
+}
