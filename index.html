@@ -164,7 +164,6 @@ table.rtbl tr:last-child td{border-bottom:none}
       <button id="vCard" class="vtbtn on" onclick="setView('card')">카드 뷰</button>
       <button id="vPerf" class="vtbtn" onclick="setView('perf')">통합 뷰</button>
     </div>
-    <button class="btn-dl" id="dlHtmlBtn" onclick="downloadHtml()" style="background:rgba(99,186,125,.25);border-color:rgba(99,186,125,.5)">↓ HTML 저장</button>
     <button class="btn-dl" id="dlBtn" onclick="downloadImg()">↓ 이미지 저장</button>
     <button class="btn-dl" id="dlEachBtn" onclick="downloadEach()">↓ 개별 이미지</button>
   </div>
@@ -1383,67 +1382,6 @@ async function loadActivityData() {
     btn.disabled=false;
     btn.style.background='rgba(224,75,74,.2)';
   }
-}
-
-function downloadHtml(){
-  const btn=document.getElementById('dlHtmlBtn');
-  btn.textContent='⏳ 생성 중...';
-
-  const agents=sortedFiltered();
-  // 필터된 에이전트만 포함한 D, LOST, PERF, TARGET
-  const fD={},fL={},fP={},fT={};
-  agents.forEach(d=>{
-    if(D[d.name]) fD[d.name]=D[d.name];
-    if(LOST&&LOST[d.name])fL[d.name]=LOST[d.name];
-    if(PERF&&PERF[d.name])fP[d.name]=PERF[d.name];
-    if(TARGET&&TARGET[d.name])fT[d.name]=TARGET[d.name];
-  });
-
-  // 현재 페이지 HTML 가져오기
-  let h='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-
-  // 초기 상태 인라인화 (fetch 블록 제거 + 직접 데이터 할당)
-  const aNJ=JSON.stringify(agents.map(d=>d.name));
-  const aMJ=JSON.stringify([...selMonths]);
-  const cT=JSON.stringify(curTeam);
-  const cS=JSON.stringify(curStatus);
-  const actJ=JSON.stringify(ACT);
-  const inlineInit=`(function(){
-    D=${JSON.stringify(fD)};
-    LOST=${JSON.stringify(fL)};
-    PERF=${JSON.stringify(fP)};
-    TARGET=${JSON.stringify(fT)};
-    ensureDPlaceholders();
-    AVAIL_MONTHS=[...new Set([
-      ...Object.values(D).flatMap(d=>Object.keys(d.months||{})),
-      ...Object.values(PERF||{}).flatMap(p=>Object.keys(p.months||{}))
-    ])].sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
-    selMonths=new Set(${aMJ});
-    sel=new Set(${aNJ});
-    curTeam=${cT};
-    curStatus=${cS};
-    ACT=${actJ};
-    buildTeams();buildPills();buildMonthBtns();
-    setStatus(${cS});
-  })();`;
-
-  // fetch 블록을 인라인 init으로 교체
-  const fS=h.indexOf("fetch('./data/data.json");
-  if(fS>=0){
-    const fE=h.indexOf('});',fS)+3;
-    h=h.slice(0,fS)+inlineInit+h.slice(fE);
-  }
-
-  // 다운로드
-  const blob=new Blob([h],{type:'text/html;charset=utf-8'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  const tl=curTeam!=='전체'?curTeam+'_':'';
-  const period=actMths().map(m=>ML_MAP[m]).join('_');
-  a.download=`유지율대시보드_${tl}${period}.html`;
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-  btn.textContent='↓ HTML 저장';
 }
 
 async function downloadEach(){
