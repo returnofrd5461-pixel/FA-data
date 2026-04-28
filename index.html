@@ -538,7 +538,7 @@ function buildMonthBtns(){
 function toggleMonth(m){
   if(selMonths.has(m)){if(selMonths.size<=1)return;selMonths.delete(m);}else selMonths.add(m);
   const b=document.getElementById('mbtn_'+m);if(b)b.classList.toggle('on',selMonths.has(m));
-  updatePeriodBadge();updateQuickBtns();render();
+  updatePeriodBadge();updateQuickBtns();computeKings();render();
 }
 function quickSelect(t){
   const Q1=['01','02','03'],Q4=['10','11','12'];
@@ -546,7 +546,7 @@ function quickSelect(t){
   else if(t==='q1')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q1.includes(m)));
   else if(t==='q4')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q4.includes(m)));
   else if(t==='recent2'){const a=AVAIL_MONTHS;selMonths=new Set(a.slice(-2));}
-  buildMonthBtns();render();
+  buildMonthBtns();computeKings();render();
 }
 function updatePeriodBadge(){
   const a=actMths();const lbl=a.length===AVAIL_MONTHS.length?'전체 기간':a.map(m=>ML_MAP[m]||m).join(' · ');
@@ -692,11 +692,13 @@ function targetOfMths(name) {
           avgAct:aM.length?Math.round(act/aM.length):0};
 }
 
-// 영예 칭호 1위 계산 (선택월 기준, 표시 중인 사원 풀에서)
-function computeKings(agents){
+// 영예 칭호 1위 계산 (선택월 기준, 전체 D∪PERF 사원 풀)
+// 필터(팀/상태/이탈/등급)와 무관 — 월 필터만 영향
+function computeKings(){
   kingsByName={};
-  if(!agents||!agents.length) return;
-  const stats=agents.map(d=>{
+  const pool=allFAs();
+  if(!pool.length) return;
+  const stats=pool.map(d=>{
     const pd=perfOfMths(d.name);
     const td=targetOfMths(d.name);
     const fd=feedbackOfMths(d.name);
@@ -1648,7 +1650,6 @@ function render(){
   Object.values(charts).forEach(c=>{try{c.destroy();}catch(e){}});
   charts={};
   const agents=sortedFiltered();
-  computeKings(agents);
   updateSum(agents);
   if(viewMode==='card'){
     document.getElementById('cardViewArea').style.display='';
@@ -1787,6 +1788,7 @@ fetch('./data/data.json?v='+Date.now())
     ])].sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
     selMonths=new Set(AVAIL_MONTHS);
     sel=new Set([...Object.keys(D),...Object.keys(PERF||{})]);
+    computeKings();
     buildTeams();buildPills();buildMonthBtns();render();
   });
 </script>
