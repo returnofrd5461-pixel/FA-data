@@ -13,6 +13,7 @@ raw/ 폴더의 Excel 파일 3종을 읽어 data/data.json을 갱신한다.
 
 from __future__ import annotations
 
+import datetime
 import glob
 import json
 import os
@@ -194,11 +195,27 @@ def main():
     LOST = build_LOST(f_lost)
     PERF = build_PERF(f_perf)
 
+    # 기존 data.json 의 TARGET / FEEDBACK 등 다른 키는 보존
+    existing = {}
+    if OUT.exists():
+        try:
+            existing = json.loads(OUT.read_text(encoding="utf-8"))
+        except Exception:
+            existing = {}
+
+    kst = datetime.timezone(datetime.timedelta(hours=9))
+    now_kst = datetime.datetime.now(kst).replace(microsecond=0)
+
+    out = {"_meta": {"lastUpdated": now_kst.isoformat()}, "D": D, "LOST": LOST, "PERF": PERF}
+    for k in ("TARGET", "FEEDBACK"):
+        if k in existing:
+            out[k] = existing[k]
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", encoding="utf-8") as fh:
-        json.dump({"D": D, "LOST": LOST, "PERF": PERF}, fh, ensure_ascii=False, indent=2)
+        json.dump(out, fh, ensure_ascii=False, indent=2)
 
-    print(f"✅ {OUT} 갱신 완료")
+    print(f"✅ {OUT} 갱신 완료 ({now_kst.isoformat()})")
     print(f"   D={len(D)}명  LOST={len(LOST)}명  PERF={len(PERF)}명")
 
 
