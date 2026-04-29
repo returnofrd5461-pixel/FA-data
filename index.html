@@ -9,14 +9,18 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;background:#f0efe9;color:#1a1a18;font-size:14px}
-.ph{background:#1a1a18;color:#fff;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;gap:12px}
-.ph-l{min-width:0}.ph h1{font-size:15px;font-weight:500}.ph .sub{font-size:11px;color:#888;margin-top:2px}
-.ph-r{display:flex;gap:8px;align-items:center;flex-shrink:0}
-.vtog{display:flex;background:rgba(255,255,255,.12);border-radius:6px;padding:2px;gap:2px}
-.vtbtn{padding:5px 13px;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:rgba(255,255,255,.65);font-family:inherit;transition:all .15s;white-space:nowrap}
-.vtbtn.on{background:#fff;color:#1a1a18}
-.btn-dl{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap}
-.btn-dl:hover{background:rgba(255,255,255,.25)}
+.ph{background:#fff;color:#1a1816;padding:18px 24px 0;display:flex;align-items:flex-end;justify-content:space-between;position:sticky;top:0;z-index:200;gap:12px;border-bottom:1px solid #e8e5dc}
+.ph-l{min-width:0;flex:1;border-bottom:3px solid #1a1816;padding-bottom:14px;margin-right:16px}
+.ph-l .main-title{font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;margin:0}
+.ph-l .main-title .title-accent{color:#c8975c;font-style:italic;font-weight:900}
+.ph-l .main-title .title-main{color:#1a1816}
+.ph-l .sub{font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:10px}
+.ph-r{display:flex;gap:8px;align-items:center;flex-shrink:0;padding-bottom:14px}
+.vtog{display:flex;background:#f0eee9;border-radius:6px;padding:2px;gap:2px}
+.vtbtn{padding:5px 13px;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:#888;font-family:inherit;transition:all .15s;white-space:nowrap}
+.vtbtn.on{background:#1a1816;color:#fff}
+.btn-dl{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;background:#f0eee9;color:#1a1816;border:1px solid #e0dfd8;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn-dl:hover{background:#e8e5dc}
 .ctrl{background:#fff;border-bottom:1px solid #e0dfd8;padding:11px 24px;display:flex;flex-direction:column;gap:8px}
 .cr{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .cl{font-size:11px;font-weight:500;color:#73726c;min-width:56px;flex-shrink:0}
@@ -89,6 +93,12 @@ table.lt tr:hover td{background:#fdf9f9}
 .lost-period-block{background:#fff}
 .lost-period-block--sep{border-top:3px solid #e8e7e1;margin-top:0}
 .lost-period-block--sep .lost-ph{background:#f5f4f0}
+/* ── Editorial 섹션 타이틀 ── */
+.section-title{padding:24px 0 12px;border-bottom:1px solid #1a1816;margin:18px 0 14px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.section-title .section-num{font-size:32px;font-weight:900;color:#c8975c;font-variant-numeric:tabular-nums;line-height:1;letter-spacing:-1px}
+.section-title h3{font-size:22px;font-weight:800;letter-spacing:-0.3px;margin:0;color:#1a1816}
+.section-title .section-meta{color:#888;font-size:12px;margin-left:auto;font-weight:500}
+
 .rank-panel{background:#fff;border-radius:10px;border:0.5px solid #e0dfd8;overflow:hidden;margin-bottom:16px}
 .rank-panel-hd{padding:14px 18px 10px;border-bottom:1px solid #f0efe9;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .rank-panel-title{font-size:13px;font-weight:500}.rank-panel-sub{font-size:11px;color:#73726c;margin-top:2px}
@@ -151,23 +161,40 @@ table.rtbl tr:last-child td{border-bottom:none}
 .meta-badges{padding:8px 16px;display:flex;gap:5px;flex-wrap:wrap;background:#f5f8ff;border-top:1px solid #e6eef8}
 .mbadge{font-size:11px;padding:3px 8px;border-radius:12px;font-weight:500;line-height:1.4}
 
-/* ── 성과 독립 뷰 — 미니카드 (좌:유지 / 우:성과) ── */
-.perf-view-grid{display:grid;grid-template-columns:1fr;gap:10px}
-.pmc{background:#fff;border:0.5px solid #e0dfd8;border-radius:10px;overflow:hidden}
-.pmc-hd{padding:9px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f0efe9;gap:10px;flex-wrap:wrap}
-.pmc-hd-l{display:flex;align-items:center;gap:8px;flex-shrink:0;min-width:0;flex-wrap:wrap}
-.pmc-hd-r{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
-.pmc-name{font-size:15px;font-weight:600;white-space:nowrap}
-.pmc-body{display:grid;grid-template-columns:1fr 1fr}
-.pmc-left{background:#fdf6f0;padding:10px 14px;border-right:0.5px solid #f0efe9}
-.pmc-right{background:#f0f7fd;padding:10px 14px}
-.pmc-sec-hd{font-size:11px;font-weight:500;color:#5f5e5a;margin-bottom:6px;display:flex;align-items:center;gap:5px}
-.pmc-kpis{display:flex;gap:14px;margin-bottom:4px;flex-wrap:wrap}
-.pmc-kpi{display:flex;flex-direction:column;min-width:0}
-.pmc-kpi .kv{font-size:14px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
-.pmc-kpi .kl{font-size:10px;color:#73726c;margin-top:2px}
-.pmc-spark{position:relative;width:100%;height:34px;margin-top:6px}
-.pmc-spark canvas{display:block;width:100%!important;height:34px!important}
+/* ── Bloomberg-Lite 미니카드 ── */
+.perf-view-grid{display:grid;grid-template-columns:1fr;gap:0}
+.pmc{background:#fff;border:1px solid #e8e5dc;border-radius:8px;overflow:hidden;margin-bottom:14px}
+.pmc-head{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(90deg,#faf8f3 0%,#fff 100%);border-bottom:1px solid #ede9dd}
+.pmc-rank{background:#1a1816;color:#f5d97c;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.pmc-name-block{min-width:0;flex:1}
+.pmc-name{font-size:16px;font-weight:700;color:#1a1816;line-height:1}
+.pmc-meta{color:#888;font-size:12px;margin-top:3px}
+.pmc-grades{margin-left:auto;display:flex;gap:6px;flex-shrink:0}
+.pmc-grade{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:0.3px}
+.pmc-grade.s{background:#e6f9f0;color:#0f6e56}
+.pmc-grade.a{background:#f0f7e6;color:#3b6d11}
+.pmc-grade.b{background:#fef4e0;color:#854f0b}
+.pmc-grade.c{background:#fce8d4;color:#c45050}
+.pmc-grade.d{background:#fcebeb;color:#a32d2d}
+.pmc-grade.empty{background:#f0eee9;color:#999}
+.pmc-titles{display:flex;gap:6px;flex-wrap:wrap;padding:10px 18px 0}
+.pmc-title-badge{background:linear-gradient(135deg,#fef4e0 0%,#fbe6b8 100%);color:#7a4500;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;border:1px solid #f5d97c}
+.pmc-body{display:grid;grid-template-rows:auto auto;padding:12px 18px 16px;gap:8px}
+.pmc-row{display:grid;grid-template-columns:120px 1fr 90px;gap:16px;align-items:center;padding:12px 14px;border-radius:6px}
+.pmc-row.pmc-maint{background:linear-gradient(90deg,#fdf6f0 0%,#faf2e8 100%);border-left:3px solid #c8975c}
+.pmc-row.pmc-perf{background:linear-gradient(90deg,#f0f7fd 0%,#e8f1fb 100%);border-left:3px solid #5c93c8}
+.pmc-section-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.pmc-row.pmc-maint .pmc-section-label{color:#854f0b}
+.pmc-row.pmc-perf .pmc-section-label{color:#1a4d7d}
+.pmc-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pmc-kpi{display:flex;flex-direction:column;gap:2px}
+.pmc-num{font-size:17px;font-weight:800;color:#1a1816;font-variant-numeric:tabular-nums;line-height:1.1}
+.pmc-num.success{color:#0f6e56}
+.pmc-num.danger{color:#a32d2d}
+.pmc-num.warning{color:#854f0b}
+.pmc-num.muted{color:#888}
+.pmc-label{font-size:10px;color:#888}
+.pmc-spark{width:90px!important;height:30px!important}
 .cross-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:500}
 .cb-good{background:#e6f9f0;color:#0f6e56}
 .cb-warn{background:#fff3cd;color:#854f0b}
@@ -196,7 +223,7 @@ table.rtbl tr:last-child td{border-bottom:none}
 </head>
 <body>
 <div class="ph">
-  <div class="ph-l"><h1>상위 0.01% 통합 관리 시스템</h1><div class="sub"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span id="phUpdated" style="margin-left:10px;color:#888;font-size:11px"></span></div></div>
+  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span id="phUpdated" style="margin-left:10px;color:#888;font-size:11px;letter-spacing:0;text-transform:none"></span></div></div>
   <div class="ph-r">
     <div class="vtog">
       <button id="vCard" class="vtbtn on" onclick="setView('card')">카드 뷰</button>
@@ -1243,13 +1270,20 @@ function renderPerfView(agents) {
     const grd=getGrade(d);const gBdr=`border-left:3px solid ${gradeStyle(grd).color}`;
     return`<tr style="${gBdr}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team2]||'#444441'}">${team2}</div></td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m2.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m2.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m2.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m2.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m2.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="rnum-cell" style="color:${actOfMths(d.name)?'#0f6e56':'#a09f98'}">${actOfMths(d.name)?actOfMths(d.name).cnt:'—'}</td><td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
   }).join('');
-  const rankTableHTML=`<div class="rank-panel" style="margin-bottom:12px"><div class="rank-panel-hd"><div><div class="rank-panel-title">🛡️ 유지관리 — ${ll} 기준</div><div class="rank-panel-sub">헤더 클릭 정렬 · ${rankAgents2.length}명</div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">${gradeSummary2}</div></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap"><span style="font-size:11px;color:#73726c">위험도(최종납입):</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤13회 부활필수</span><span style="background:#faeeda;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤25회 고객관리강화</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤7회 매우위험</span><span style="background:#faeeda;color:#633806;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤13회 위험</span><span style="background:#fff8e1;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤18회 주의</span><span style="background:#e6f1fb;color:#185fa5;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤25회 고객관리강화</span></div></div><div class="rank-tbl-wrap"><table class="rtbl"><thead><tr><th class="rnum">#</th><th onclick="sortRank('name')" class="${rankSortCol==='name'?'asc':''}">사원<span class="si2">${rankSortCol==='name'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th><th onclick="sortRank('rate')" class="${rankSortCol==='rate'?'asc':''}">유지율 바<span class="si2">${rankSortCol==='rate'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th>${mHeaders2}<th onclick="sortRank('chg')" class="${rankSortCol==='chg'?'asc':''}">변화<span class="si2">↕</span></th><th onclick="sortRank('cnt')" class="${rankSortCol==='cnt'?'asc':''}">계약<span class="si2">↕</span></th><th onclick="sortRank('lapsed')" class="${rankSortCol==='lapsed'?'asc':''}">실효<span class="si2">↕</span></th><th onclick="sortRank('cancelled')" class="${rankSortCol==='cancelled'?'asc':''}">해지<span class="si2">↕</span></th><th onclick="sortRank('lost')" class="${rankSortCol==='lost'?'asc':''}">이탈건<span class="si2">↕</span></th><th onclick="sortRank('act')" class="${rankSortCol==='act'?'asc':''}">활동량<span class="si2">↕</span></th><th onclick="sortRank('lostperf')" class="${rankSortCol==='lostperf'?'asc':''}"><span class="amt">이탈실적</span><span class="si2">↕</span></th></tr></thead><tbody>${rankRows}</tbody></table></div></div>`;
+  const maintAvg=gradeAvg2(rankAgents2.filter(d=>lr(d)!=null));
+  const sectionTitle2=`<div class="section-title"><span class="section-num">02</span><h3>🛡️ 유지관리</h3><span class="section-meta">${ll} 기준 · ${rankAgents2.length}명${maintAvg!=null?' · 평균 '+maintAvg+'%':''}</span></div>`;
+  const rankTableHTML=sectionTitle2+`<div class="rank-panel" style="margin-bottom:12px"><div class="rank-panel-hd"><div><div class="rank-panel-title" style="font-size:12px;color:#73726c">상세 데이터 — 헤더 클릭 정렬</div><div class="rank-panel-sub">${rankAgents2.length}명</div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">${gradeSummary2}</div></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap"><span style="font-size:11px;color:#73726c">위험도(최종납입):</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤13회 부활필수</span><span style="background:#faeeda;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤25회 고객관리강화</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤7회 매우위험</span><span style="background:#faeeda;color:#633806;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤13회 위험</span><span style="background:#fff8e1;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤18회 주의</span><span style="background:#e6f1fb;color:#185fa5;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤25회 고객관리강화</span></div></div><div class="rank-tbl-wrap"><table class="rtbl"><thead><tr><th class="rnum">#</th><th onclick="sortRank('name')" class="${rankSortCol==='name'?'asc':''}">사원<span class="si2">${rankSortCol==='name'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th><th onclick="sortRank('rate')" class="${rankSortCol==='rate'?'asc':''}">유지율 바<span class="si2">${rankSortCol==='rate'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th>${mHeaders2}<th onclick="sortRank('chg')" class="${rankSortCol==='chg'?'asc':''}">변화<span class="si2">↕</span></th><th onclick="sortRank('cnt')" class="${rankSortCol==='cnt'?'asc':''}">계약<span class="si2">↕</span></th><th onclick="sortRank('lapsed')" class="${rankSortCol==='lapsed'?'asc':''}">실효<span class="si2">↕</span></th><th onclick="sortRank('cancelled')" class="${rankSortCol==='cancelled'?'asc':''}">해지<span class="si2">↕</span></th><th onclick="sortRank('lost')" class="${rankSortCol==='lost'?'asc':''}">이탈건<span class="si2">↕</span></th><th onclick="sortRank('act')" class="${rankSortCol==='act'?'asc':''}">활동량<span class="si2">↕</span></th><th onclick="sortRank('lostperf')" class="${rankSortCol==='lostperf'?'asc':''}"><span class="amt">이탈실적</span><span class="si2">↕</span></th></tr></thead><tbody>${rankRows}</tbody></table></div></div>`;
 
   container.innerHTML=`
+    <div class="section-title">
+      <span class="section-num">01</span>
+      <h3>📊 성과관리</h3>
+      <span class="section-meta">${ML_MAP[actMths()[0]]||''} ~ ${ML_MAP[actMths().slice(-1)[0]]||''} · ${agents.length}명 · 총 ${totCnt}건 · 인정실적 ${fmtW(totPerf)}</span>
+    </div>
     <div class="rank-panel" style="margin-bottom:12px">
       <div class="rank-panel-hd">
-        <div><div class="rank-panel-title">📊 성과관리 — ${ML_MAP[actMths()[0]]||''} ~ ${ML_MAP[actMths().slice(-1)[0]]||''}</div>
-        <div class="rank-panel-sub">${agents.length}명 · 총 ${totCnt}건 · 인정실적 ${fmtW(totPerf)} · 생보비중 ${lifeR}% · 조기이탈 ${lostR}%</div></div>
+        <div><div class="rank-panel-title" style="font-size:12px;color:#73726c">상세 데이터 — 헤더 클릭 정렬</div>
+        <div class="rank-panel-sub">생보비중 ${lifeR}% · 조기이탈 ${lostR}%</div></div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:10px;align-items:center">
           <span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:4px;font-weight:500">⚠️ 저유지고모집: 신계약多&유지율<85%</span>
           <span style="background:#e6f9f0;color:#0f6e56;padding:2px 7px;border-radius:4px;font-weight:500">✅ 균형성장: 신계약多&유지율90%↑</span>
@@ -1280,66 +1314,71 @@ function renderPerfView(agents) {
       </div>
     </div>
     ${rankTableHTML}
-    <div class="rank-panel-hd" style="border-radius:10px 10px 0 0;border:0.5px solid #e0dfd8;background:#fff">
-      <div><div class="rank-panel-title">🃏 FA별 상세카드</div>
-      <div class="rank-panel-sub">인정실적 순 · 신계약×유지율 교차분석 포함</div></div>
+    <div class="section-title">
+      <span class="section-num">03</span>
+      <h3>🃏 FA별 상세카드</h3>
+      <span class="section-meta">인정실적 순 · ${sorted.length}명</span>
     </div>
-    <div class="perf-view-grid" style="border:0.5px solid #e0dfd8;border-top:none;border-radius:0 0 10px 10px;padding:16px;background:#f9f8f5">
-      ${sorted.map(d=>{
+    <div class="perf-view-grid">
+      ${sorted.map((d,i)=>{
         const pd=perfOfMths(d.name);
         const ret=lr(d);
         const team=d.team||'기타';
+        const status=d.status||PERF[d.name]?.status||'FA';
         const id=cardId(d.name);
         const m=lmd(d);
         const lostN=totalLostN(d.name);
         const grd=getGrade(d);
-        const gs=gradeStyle(grd);
         const pg=perfGrade(d.name);
-        const ps=gradeStyle(pg||'n');
-        const retC=ret==null?'#73726c':rc(ret);
+        const gradeKey=g=>g==='n'?'empty':g;
         const retStr=ret!=null?ret.toFixed(1)+'%':'—';
-        const gcM=pd?.growth==null?null:pd.growth>=0?'#0f6e56':'#a32d2d';
-        const growthStrM=pd?.growth==null?'—':(pd.growth>=0?`+${pd.growth}%`:`${pd.growth}%`);
+        const retCls=ret==null?'muted':ret>=95?'success':ret<85?'danger':'';
+        const lostCls=lostN>0?'danger':'';
+        const lapsedV=m.lapsed??0, cancelledV=m.cancelled??0;
+        const growthStr=pd?.growth==null?'—':(pd.growth>=0?`+${pd.growth}%`:`${pd.growth}%`);
+        const growthCls=pd?.growth==null?'muted':pd.growth>0?'success':pd.growth<0?'danger':'';
 
-        // 메타배지: 영예칭호(👑📋💰🎯🚶💬🛡🚀) 우선 + 일반 pos로 채워 최대 3개
+        // 영예칭호(👑📋💰🎯🚶💬🛡🚀) 우선 + 일반 pos
         const badges=metaBadges(d.name, pd);
         const KING_RE=/[👑📋💰🎯🚶💬🛡🚀]/u;
         const kingB=badges.filter(b=>KING_RE.test(b.label));
         const otherB=badges.filter(b=>!kingB.includes(b)&&b.type!=='neg');
-        const topB=[...kingB, ...otherB].slice(0,3);
-        const badgeHtml=topB.map(b=>`<span class="mbadge" style="background:${b.bg};color:${b.color};font-size:10px">${b.label}</span>`).join('');
+        const topB=[...kingB, ...otherB].slice(0,4);
+        const titlesHtml=topB.map(b=>`<span class="pmc-title-badge">${b.label}</span>`).join('');
 
         return `<div class="pmc">
-          <div class="pmc-hd">
-            <div class="pmc-hd-l">
-              <span style="background:${TC[team]||'#f1efe8'};color:${TT[team]||'#444441'};padding:2px 7px;border-radius:4px;font-size:11px;font-weight:500">${team}</span>
-              <span class="pmc-name">${d.name}</span>
-              <span class="pchip2" style="background:${gs.bg};color:${gs.color}">유지 ${gs.label}</span>
-              <span class="pchip2" style="background:${ps.bg};color:${ps.color}">성과 ${ps.label}</span>
+          <div class="pmc-head">
+            <div class="pmc-rank">${i+1}</div>
+            <div class="pmc-name-block">
+              <div class="pmc-name">${d.name}</div>
+              <div class="pmc-meta">${team} · ${status}</div>
             </div>
-            <div class="pmc-hd-r">${badgeHtml}</div>
+            <div class="pmc-grades">
+              <span class="pmc-grade ${gradeKey(pg||'n')}">성과 ${gradeStyle(pg||'n').label}</span>
+              <span class="pmc-grade ${gradeKey(grd)}">유지 ${gradeStyle(grd).label}</span>
+            </div>
           </div>
+          ${titlesHtml?`<div class="pmc-titles">${titlesHtml}</div>`:''}
           <div class="pmc-body">
-            <div class="pmc-left">
-              <div class="pmc-sec-hd">🛡️ 유지관리</div>
+            <div class="pmc-row pmc-maint">
+              <div class="pmc-section-label">🛡 유지관리</div>
               <div class="pmc-kpis">
-                <div class="pmc-kpi"><span class="kv" style="color:${retC}">${retStr}</span><span class="kl">유지율</span></div>
-                <div class="pmc-kpi"><span class="kv">${m.total_contracts??'—'}</span><span class="kl">계약</span></div>
-                <div class="pmc-kpi"><span class="kv" style="color:${lostN>0?'#a32d2d':'#1a1a18'}">${lostN}</span><span class="kl">이탈</span></div>
-                <div class="pmc-kpi"><span class="kv" style="color:#854f0b">${m.lapsed??0}</span><span class="kl">실효</span></div>
-                <div class="pmc-kpi"><span class="kv" style="color:#a32d2d">${m.cancelled??0}</span><span class="kl">해지</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${retCls}">${retStr}</span><span class="pmc-label">유지율</span></div>
+                <div class="pmc-kpi"><span class="pmc-num">${m.total_contracts??'—'}</span><span class="pmc-label">계약</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${lostCls}">${lostN}건</span><span class="pmc-label">이탈</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${lapsedV>0?'warning':''}">${lapsedV}</span><span class="pmc-label">실효</span></div>
               </div>
-              <div class="pmc-spark"><canvas id="spr${id}"></canvas></div>
+              <canvas class="pmc-spark" id="spr${id}"></canvas>
             </div>
-            <div class="pmc-right">
-              <div class="pmc-sec-hd">📊 성과관리</div>
+            <div class="pmc-row pmc-perf">
+              <div class="pmc-section-label">📊 성과관리</div>
               <div class="pmc-kpis">
-                <div class="pmc-kpi"><span class="kv" style="color:#185fa5">${pd?pd.cnt+'건':'—'}</span><span class="kl">신계약</span></div>
-                <div class="pmc-kpi"><span class="kv">${pd?fmtW(pd.prem):'—'}</span><span class="kl">월납</span></div>
-                <div class="pmc-kpi"><span class="kv">${pd?fmtW(pd.perf):'—'}</span><span class="kl">실적</span></div>
-                <div class="pmc-kpi"><span class="kv" style="color:${gcM||'#73726c'}">${growthStrM}</span><span class="kl">분기성장</span></div>
+                <div class="pmc-kpi"><span class="pmc-num">${pd?pd.cnt+'건':'—'}</span><span class="pmc-label">신계약</span></div>
+                <div class="pmc-kpi"><span class="pmc-num">${pd?fmtW(pd.prem):'—'}</span><span class="pmc-label">월납</span></div>
+                <div class="pmc-kpi"><span class="pmc-num">${pd?fmtW(pd.perf):'—'}</span><span class="pmc-label">실적</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${growthCls}">${growthStr}</span><span class="pmc-label">분기성장</span></div>
               </div>
-              <div class="pmc-spark"><canvas id="spp${id}"></canvas></div>
+              <canvas class="pmc-spark" id="spp${id}"></canvas>
             </div>
           </div>
         </div>`;
