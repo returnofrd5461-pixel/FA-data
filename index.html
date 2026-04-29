@@ -111,6 +111,12 @@ table.rtbl th.asc{color:#1a1a18}.table.rtbl th.asc .si2{opacity:1}
 table.rtbl td{padding:9px 12px;border-bottom:0.5px solid #f0efe9;vertical-align:middle}
 table.rtbl tr:hover td{background:#faf9f7}
 table.rtbl tr:last-child td{border-bottom:none}
+table.rtbl tr.grade-s td:first-child{border-left:3px solid #0f6e56}
+table.rtbl tr.grade-a td:first-child{border-left:3px solid #3b6d11}
+table.rtbl tr.grade-b td:first-child{border-left:3px solid #854f0b}
+table.rtbl tr.grade-c td:first-child{border-left:3px solid #c45050}
+table.rtbl tr.grade-d td:first-child{border-left:3px solid #a32d2d}
+table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 .rtbl .rnum{text-align:center;color:#a09f98;font-size:11px;width:28px}
 .rtbl .rname{font-weight:500;font-size:13px}.rtbl .rsub{font-size:10px;margin-top:2px}
 .rtbl .rbar-wrap{min-width:90px;position:relative;height:20px;background:#f5f4f0;border-radius:3px;overflow:hidden}
@@ -1199,7 +1205,7 @@ function renderPerfView(agents) {
       const fdR2=feedbackOfMths(d.name);
       const aMlen2=actMths().length;
       const fbAvg2=fdR2&&aMlen2>0?Math.round(fdR2.total/aMlen2):null;
-      return `<tr style="opacity:.55">
+      return `<tr class="grade-empty" style="opacity:.55">
         <td class="rnum">${i+1}</td>
         <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
         <td class="rnum-cell" style="background:${pgs2.bg};color:${pgs2.color};font-weight:500">—</td>
@@ -1234,10 +1240,11 @@ function renderPerfView(agents) {
     const achB=tHas&&td.ach!=null?achBg(td.ach):'transparent';
     const pg=perfGrade(d.name);
     const pgs=gradeStyle(pg||'n');
+    const pgCls=`grade-${pg||'empty'}`;
     const fdR=feedbackOfMths(d.name);
     const aMlen=actMths().length;
     const fbAvg=fdR&&aMlen>0?Math.round(fdR.total/aMlen):null;
-    return `<tr>
+    return `<tr class="${pgCls}">
       <td class="rnum">${i+1}</td>
       <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
       <td class="rnum-cell" style="background:${pgs.bg};color:${pgs.color};font-weight:600">${pgs.label}</td>
@@ -1280,9 +1287,10 @@ function renderPerfView(agents) {
     const mCells=aM2pv.map(mo=>{const v=d.months[mo]?.rate_25;return`<td class="rmonth" style="color:${rc(v)}">${v!=null?v.toFixed(1)+'%':'—'}</td>`;}).join('');
     const ln=totalLostN(d.name);
     const lBg=ln>0?'background:#fcebeb;color:#a32d2d':'background:#f1efe8;color:#73726c';
-    const grd=getGrade(d);const gBdr=`border-left:3px solid ${gradeStyle(grd).color}`;
+    const grd=getGrade(d);
+    const grdCls=`grade-${grd==='n'?'empty':grd}`;
     const gsR=gradeStyle(grd);
-    return`<tr style="${gBdr}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team2]||'#444441'}">${team2}</div></td><td class="rnum-cell" style="background:${gsR.bg};color:${gsR.color};font-weight:600">${gsR.label}</td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m2.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m2.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m2.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m2.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m2.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
+    return`<tr class="${grdCls}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team2]||'#444441'}">${team2}</div></td><td class="rnum-cell" style="background:${gsR.bg};color:${gsR.color};font-weight:600">${gsR.label}</td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m2.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m2.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m2.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m2.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m2.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
   }).join('');
   const maintAvg=gradeAvg2(rankAgents2.filter(d=>lr(d)!=null));
   const _aMpv=actMths();
