@@ -1205,18 +1205,19 @@ function renderPerfView(agents) {
       const achB2=tHas2&&td2.ach!=null?achBg(td2.ach):'transparent';
       const pgs2=gradeStyle('n');
       const fdR2=feedbackOfMths(d.name);
-      const aMlen2=actMths().length;
-      const fbAvg2=fdR2&&aMlen2>0?Math.round(fdR2.total/aMlen2):null;
       return `<tr class="grade-empty" style="opacity:.55">
         <td class="rnum">${i+1}</td>
         <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
         <td class="rnum-cell" style="background:${pgs2.bg};color:${pgs2.color};font-weight:500">—</td>
-        <td colspan="8" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
-        <td class="rnum-cell" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?td2.avgDb:'—'}</td>
-        <td class="rnum-cell" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?td2.avgAct:'—'}</td>
-        <td class="rnum-cell" style="color:${fbAvg2!=null&&fbAvg2>0?'#a04848':'#a09f98'}">${fbAvg2!=null?fbAvg2:'—'}</td>
+        <td colspan="5" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
+        <td class="rnum-cell" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?td2.db:'—'}</td>
+        <td class="rnum-cell" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?td2.act:'—'}</td>
+        <td class="rnum-cell" style="color:${fdR2&&fdR2.total>0?'#a04848':'#a09f98'}">${fdR2&&fdR2.total>0?fdR2.total:'—'}</td>
         <td class="amt" style="color:${tHas2&&td2.goal>0?'#5f5e5a':'#a09f98'}">${tHas2&&td2.goal>0?fmtW(td2.goal):'—'}</td>
         <td class="rnum-cell" style="background:${achB2};color:${achC2};font-weight:500">${ach2}</td>
+        <td class="rnum-cell" style="color:#a09f98">—</td>
+        <td class="rnum-cell" style="color:#a09f98">—</td>
+        <td style="color:#a09f98">—</td>
       </tr>`;
     }
     
@@ -1244,25 +1245,24 @@ function renderPerfView(agents) {
     const pgs=gradeStyle(pg||'n');
     const pgCls=`grade-${pg||'empty'}`;
     const fdR=feedbackOfMths(d.name);
-    const aMlen=actMths().length;
-    const fbAvg=fdR&&aMlen>0?Math.round(fdR.total/aMlen):null;
+    const nonRatio=pd.cnt>0?Math.round(pd.nonlife/pd.cnt*100):0;
     return `<tr class="${pgCls}">
       <td class="rnum">${i+1}</td>
       <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
       <td class="rnum-cell" style="background:${pgs.bg};color:${pgs.color};font-weight:600">${pgs.label}</td>
       <td class="rnum-cell" style="font-weight:500">${pd.cnt}건</td>
+      <td class="rnum-cell" style="font-weight:500;color:#3c3489">${fmtW(pd.prem)}</td>
       <td class="rnum-cell" style="font-weight:500;color:#185fa5">${fmtW(pd.perf)}</td>
       <td class="rnum-cell" style="color:#73726c">${fmtW(pd.avgPerf)}</td>
-      <td class="rnum-cell">${pd.lifeRatio}%</td>
       <td class="rnum-cell" style="color:${gc||'#1a1a18'}">${growthStr}</td>
-      <td class="rnum-cell" style="color:${pd.lostRate>=5?'#a32d2d':pd.lostRate>=2?'#854f0b':'#1a1a18'}">${pd.lostRate}%</td>
-      <td class="rnum-cell" style="color:${retColor}">${ret!=null?ret.toFixed(1)+'%':'—'}</td>
-      <td style="white-space:nowrap">${crossBadge}${topBadge?'&nbsp;'+topBadge:''}</td>
-      <td class="rnum-cell" style="color:${tHas?'#185fa5':'#a09f98'}">${tHas?td.avgDb:'—'}</td>
-      <td class="rnum-cell" style="color:${tHas?'#0f6e56':'#a09f98'}">${tHas?td.avgAct:'—'}</td>
-      <td class="rnum-cell" style="color:${fbAvg!=null&&fbAvg>0?'#a04848':'#a09f98'}">${fbAvg!=null?fbAvg:'—'}</td>
+      <td class="rnum-cell" style="color:${tHas?'#185fa5':'#a09f98'}">${tHas?td.db:'—'}</td>
+      <td class="rnum-cell" style="color:${tHas?'#0f6e56':'#a09f98'}">${tHas?td.act:'—'}</td>
+      <td class="rnum-cell" style="color:${fdR&&fdR.total>0?'#a04848':'#a09f98'}">${fdR&&fdR.total>0?fdR.total:'—'}</td>
       <td class="amt" style="color:${tHas&&td.goal>0?'#5f5e5a':'#a09f98'}">${tHas&&td.goal>0?fmtW(td.goal):'—'}</td>
       <td class="rnum-cell" style="background:${achB};color:${achC};font-weight:500">${achStr}</td>
+      <td class="rnum-cell">${pd.lifeRatio}%</td>
+      <td class="rnum-cell">${nonRatio}%</td>
+      <td style="white-space:nowrap">${crossBadge}${topBadge?'&nbsp;'+topBadge:''}</td>
     </tr>`;
   }).join('');
   
@@ -1324,18 +1324,18 @@ function renderPerfView(agents) {
             <th>사원</th>
             <th onclick="perfSort('pgrade')" class="${perfSortCol==='pgrade'?'asc':''}">성과등급<span class="si2">${perfSortCol==='pgrade'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
             <th>건수</th>
+            <th>월납보험료</th>
             <th>인정실적</th>
             <th>건당단가</th>
-            <th>생보비중</th>
             <th>분기성장<br><span style="font-weight:400;font-size:9px;color:#a09f98">25.4Q→26.1Q</span></th>
-            <th>조기이탈</th>
-            <th>유지율</th>
+            <th>DB</th>
+            <th>외활</th>
+            <th>피드백</th>
+            <th><span class="amt">누적목표</span></th>
+            <th>목표달성률</th>
+            <th>생보비중</th>
+            <th>손보비중</th>
             <th>메타분석</th>
-            <th onclick="perfSort('avgdb')" class="${perfSortCol==='avgdb'?'asc':''}">평균DB<span class="si2">${perfSortCol==='avgdb'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
-            <th onclick="perfSort('avgact')" class="${perfSortCol==='avgact'?'asc':''}">평균외활<span class="si2">${perfSortCol==='avgact'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
-            <th onclick="perfSort('avgfb')" class="${perfSortCol==='avgfb'?'asc':''}">평균피드백<span class="si2">${perfSortCol==='avgfb'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
-            <th onclick="perfSort('goalsum')" class="${perfSortCol==='goalsum'?'asc':''}"><span class="amt">누적목표</span><span class="si2">${perfSortCol==='goalsum'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
-            <th onclick="perfSort('ach')" class="${perfSortCol==='ach'?'asc':''}">목표달성률<span class="si2">${perfSortCol==='ach'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
           </tr></thead>
           <tbody>${rows}</tbody>
         </table>
