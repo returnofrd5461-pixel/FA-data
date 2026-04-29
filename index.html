@@ -55,7 +55,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:16px}
 .card{background:#fff;border-radius:10px;border:0.5px solid #e0dfd8;overflow:hidden}
 .ch{padding:13px 16px 10px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid #f0efe9}
-.cname{font-size:15px;font-weight:500}.csub{font-size:11px;color:#73726c;margin-top:2px}
+.cname{font-size:19px;font-weight:700;letter-spacing:-0.3px}.csub{font-size:12px;color:#73726c;margin-top:3px}
 .cbadges{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;align-items:center;margin-top:2px}
 .badge{display:inline-flex;align-items:center;padding:3px 7px;border-radius:4px;font-size:11px;font-weight:500}
 .b-up{background:#eaf3de;color:#3b6d11}.b-dn{background:#fcebeb;color:#a32d2d}.b-flat{background:#f5f4f0;color:#5f5e5a}
@@ -71,7 +71,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .ctrend{padding:9px 16px;background:#f9f8f5;display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:11px;color:#5f5e5a;border-bottom:1px solid #f0efe9}
 .tm{display:flex;align-items:center;gap:3px}.tr{font-weight:500;font-size:12px}.ta{color:#c0bfba;font-size:11px}
 .lost-hd{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;background:#fff}
-.lost-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500;color:#5f5e5a}
+.lost-title{display:flex;align-items:center;gap:7px;font-size:16px;font-weight:800;color:#5f5e5a;letter-spacing:-0.2px}
 .lost-title .dot{width:6px;height:6px;border-radius:50%}
 .lost-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .lchip{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
@@ -127,7 +127,7 @@ table.rtbl tr:last-child td{border-bottom:none}
 .perf-divider{display:flex;align-items:center;justify-content:space-between;padding:9px 16px 8px;background:linear-gradient(135deg,#eef5ff 0%,#f0f9f5 100%);border-top:2px solid #185fa5;margin-top:0}
 .perf-divider-left{display:flex;align-items:center;gap:8px}
 .perf-divider-icon{font-size:14px}
-.perf-divider-title{font-size:12px;font-weight:600;color:#185fa5;letter-spacing:.02em}
+.perf-divider-title{font-size:16px;font-weight:800;color:#185fa5;letter-spacing:-0.2px}
 .perf-chips{display:flex;gap:5px;flex-wrap:wrap}
 .pchip2{font-size:11px;padding:2px 7px;border-radius:12px;font-weight:500}
 .perf-body{background:#fff}
@@ -161,40 +161,42 @@ table.rtbl tr:last-child td{border-bottom:none}
 .meta-badges{padding:8px 16px;display:flex;gap:5px;flex-wrap:wrap;background:#f5f8ff;border-top:1px solid #e6eef8}
 .mbadge{font-size:11px;padding:3px 8px;border-radius:12px;font-weight:500;line-height:1.4}
 
-/* ── Bloomberg-Lite 미니카드 ── */
-.perf-view-grid{display:grid;grid-template-columns:1fr;gap:0}
-.pmc{background:#fff;border:1px solid #e8e5dc;border-radius:8px;overflow:hidden;margin-bottom:14px}
-.pmc-head{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(90deg,#faf8f3 0%,#fff 100%);border-bottom:1px solid #ede9dd}
-.pmc-rank{background:#1a1816;color:#f5d97c;width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;font-variant-numeric:tabular-nums}
+/* ── Bloomberg-Lite 미니카드 (2열) ── */
+.perf-view-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pmc{background:#fff;border:1px solid #e8e5dc;border-radius:8px;overflow:hidden}
+.pmc-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(90deg,#faf8f3 0%,#fff 100%);border-bottom:1px solid #ede9dd}
+.pmc-rank{background:#1a1816;color:#f5d97c;width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .pmc-name-block{min-width:0;flex:1}
-.pmc-name{font-size:16px;font-weight:700;color:#1a1816;line-height:1}
-.pmc-meta{color:#888;font-size:12px;margin-top:3px}
-.pmc-grades{margin-left:auto;display:flex;gap:6px;flex-shrink:0}
-.pmc-grade{padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:0.3px}
+.pmc-name{font-size:15px;font-weight:700;color:#1a1816;line-height:1}
+.pmc-meta{color:#888;font-size:11px;margin-top:2px}
+.pmc-period{font-size:10px;color:#888;background:#f5f4f0;padding:2px 6px;border-radius:8px;border:1px solid #ede9dd;white-space:nowrap}
+.pmc-grades{margin-left:auto;display:flex;gap:4px;flex-shrink:0}
+.pmc-grade{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.3px}
 .pmc-grade.s{background:#e6f9f0;color:#0f6e56}
 .pmc-grade.a{background:#f0f7e6;color:#3b6d11}
 .pmc-grade.b{background:#fef4e0;color:#854f0b}
 .pmc-grade.c{background:#fce8d4;color:#c45050}
 .pmc-grade.d{background:#fcebeb;color:#a32d2d}
 .pmc-grade.empty{background:#f0eee9;color:#999}
-.pmc-titles{display:flex;gap:6px;flex-wrap:wrap;padding:10px 18px 0}
-.pmc-title-badge{background:linear-gradient(135deg,#fef4e0 0%,#fbe6b8 100%);color:#7a4500;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;border:1px solid #f5d97c}
-.pmc-body{display:grid;grid-template-rows:auto auto;padding:12px 18px 16px;gap:8px}
-.pmc-row{display:grid;grid-template-columns:120px 1fr 90px;gap:16px;align-items:center;padding:12px 14px;border-radius:6px}
+.pmc-titles{display:flex;gap:5px;flex-wrap:wrap;padding:8px 14px 0}
+.pmc-title-badge{padding:3px 8px;border-radius:4px;font-size:10px;font-weight:600;line-height:1.4}
+.pmc-title-badge.king{background:linear-gradient(135deg,#fef4e0 0%,#fbe6b8 100%);color:#7a4500;border:1px solid #f5d97c;font-weight:700}
+.pmc-body{display:grid;grid-template-rows:auto auto;padding:10px 14px 12px;gap:6px}
+.pmc-row{display:grid;grid-template-columns:80px 1fr 60px;gap:10px;align-items:center;padding:10px 12px;border-radius:6px}
 .pmc-row.pmc-maint{background:linear-gradient(90deg,#fdf6f0 0%,#faf2e8 100%);border-left:3px solid #c8975c}
 .pmc-row.pmc-perf{background:linear-gradient(90deg,#f0f7fd 0%,#e8f1fb 100%);border-left:3px solid #5c93c8}
-.pmc-section-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.pmc-section-label{font-size:10px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase}
 .pmc-row.pmc-maint .pmc-section-label{color:#854f0b}
 .pmc-row.pmc-perf .pmc-section-label{color:#1a4d7d}
-.pmc-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.pmc-kpi{display:flex;flex-direction:column;gap:2px}
-.pmc-num{font-size:17px;font-weight:800;color:#1a1816;font-variant-numeric:tabular-nums;line-height:1.1}
+.pmc-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.pmc-kpi{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pmc-num{font-size:15px;font-weight:800;color:#1a1816;font-variant-numeric:tabular-nums;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pmc-num.success{color:#0f6e56}
 .pmc-num.danger{color:#a32d2d}
 .pmc-num.warning{color:#854f0b}
 .pmc-num.muted{color:#888}
-.pmc-label{font-size:10px;color:#888}
-.pmc-spark{width:90px!important;height:30px!important}
+.pmc-label{font-size:9px;color:#888;letter-spacing:0.2px}
+.pmc-spark{width:60px!important;height:28px!important}
 .cross-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:500}
 .cb-good{background:#e6f9f0;color:#0f6e56}
 .cb-warn{background:#fff3cd;color:#854f0b}
@@ -223,7 +225,7 @@ table.rtbl tr:last-child td{border-bottom:none}
 </head>
 <body>
 <div class="ph">
-  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span id="phUpdated" style="margin-left:10px;color:#888;font-size:11px;letter-spacing:0;text-transform:none"></span></div></div>
+  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span id="phUpdated" style="color:#888;font-size:11px;letter-spacing:0;text-transform:none;font-weight:500"></span></div></div>
   <div class="ph-r">
     <div class="vtog">
       <button id="vCard" class="vtbtn on" onclick="setView('card')">카드 뷰</button>
@@ -1172,6 +1174,7 @@ function renderPerfView(agents) {
     const dir=perfSortDir==='desc'?1:-1;
     if(perfSortCol==='avgdb')   return ((tb?.avgDb||0)-(ta?.avgDb||0))*dir;
     if(perfSortCol==='avgact')  return ((tb?.avgAct||0)-(ta?.avgAct||0))*dir;
+    if(perfSortCol==='avgfb'){const fa=feedbackOfMths(a.name)?.total||0,fb=feedbackOfMths(b.name)?.total||0;return (fb-fa)*dir;}
     if(perfSortCol==='goalsum') return ((tb?.goal||0)-(ta?.goal||0))*dir;
     if(perfSortCol==='ach')     return (((tb?.ach)??-1)-((ta?.ach)??-1))*dir;
     if(perfSortCol==='pgrade')  return (GRADE_RANK[perfGrade(b.name)||'n']-GRADE_RANK[perfGrade(a.name)||'n'])*dir;
@@ -1191,6 +1194,9 @@ function renderPerfView(agents) {
       const achC2=tHas2&&td2.ach!=null?achColor(td2.ach):'#a09f98';
       const achB2=tHas2&&td2.ach!=null?achBg(td2.ach):'transparent';
       const pgs2=gradeStyle('n');
+      const fdR2=feedbackOfMths(d.name);
+      const aMlen2=actMths().length;
+      const fbAvg2=fdR2&&aMlen2>0?Math.round(fdR2.total/aMlen2):null;
       return `<tr style="opacity:.55">
         <td class="rnum">${i+1}</td>
         <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
@@ -1198,6 +1204,7 @@ function renderPerfView(agents) {
         <td colspan="8" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
         <td class="rnum-cell" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?td2.avgDb:'—'}</td>
         <td class="rnum-cell" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?td2.avgAct:'—'}</td>
+        <td class="rnum-cell" style="color:${fbAvg2!=null&&fbAvg2>0?'#a04848':'#a09f98'}">${fbAvg2!=null?fbAvg2:'—'}</td>
         <td class="amt" style="color:${tHas2&&td2.goal>0?'#5f5e5a':'#a09f98'}">${tHas2&&td2.goal>0?fmtW(td2.goal):'—'}</td>
         <td class="rnum-cell" style="background:${achB2};color:${achC2};font-weight:500">${ach2}</td>
       </tr>`;
@@ -1225,6 +1232,9 @@ function renderPerfView(agents) {
     const achB=tHas&&td.ach!=null?achBg(td.ach):'transparent';
     const pg=perfGrade(d.name);
     const pgs=gradeStyle(pg||'n');
+    const fdR=feedbackOfMths(d.name);
+    const aMlen=actMths().length;
+    const fbAvg=fdR&&aMlen>0?Math.round(fdR.total/aMlen):null;
     return `<tr>
       <td class="rnum">${i+1}</td>
       <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
@@ -1239,6 +1249,7 @@ function renderPerfView(agents) {
       <td style="white-space:nowrap">${crossBadge}${topBadge?'&nbsp;'+topBadge:''}</td>
       <td class="rnum-cell" style="color:${tHas?'#185fa5':'#a09f98'}">${tHas?td.avgDb:'—'}</td>
       <td class="rnum-cell" style="color:${tHas?'#0f6e56':'#a09f98'}">${tHas?td.avgAct:'—'}</td>
+      <td class="rnum-cell" style="color:${fbAvg!=null&&fbAvg>0?'#a04848':'#a09f98'}">${fbAvg!=null?fbAvg:'—'}</td>
       <td class="amt" style="color:${tHas&&td.goal>0?'#5f5e5a':'#a09f98'}">${tHas&&td.goal>0?fmtW(td.goal):'—'}</td>
       <td class="rnum-cell" style="background:${achB};color:${achC};font-weight:500">${achStr}</td>
     </tr>`;
@@ -1268,15 +1279,17 @@ function renderPerfView(agents) {
     const ln=totalLostN(d.name);
     const lBg=ln>0?'background:#fcebeb;color:#a32d2d':'background:#f1efe8;color:#73726c';
     const grd=getGrade(d);const gBdr=`border-left:3px solid ${gradeStyle(grd).color}`;
-    return`<tr style="${gBdr}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team2]||'#444441'}">${team2}</div></td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m2.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m2.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m2.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m2.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m2.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="rnum-cell" style="color:${actOfMths(d.name)?'#0f6e56':'#a09f98'}">${actOfMths(d.name)?actOfMths(d.name).cnt:'—'}</td><td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
+    const pgR=perfGrade(d.name); const pgsR=gradeStyle(pgR||'n');
+    return`<tr style="${gBdr}"><td class="rnum">${i+1}</td><td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team2]||'#444441'}">${team2}</div></td><td class="rnum-cell" style="background:${pgsR.bg};color:${pgsR.color};font-weight:600">${pgsR.label}</td><td><div class="rbar-wrap"><div class="rbar-fill" style="width:${bw}%;background:${bc}">${r!=null?r.toFixed(1)+'%':''}</div></div></td>${mCells}<td class="rdiff">${ds}</td><td class="rnum-cell">${m2.total_contracts??'—'}</td><td class="rnum-cell" style="color:${(m2.lapsed||0)>0?'#854f0b':'#1a1a18'}">${m2.lapsed??'—'}</td><td class="rnum-cell" style="color:${(m2.cancelled||0)>0?'#a32d2d':'#1a1a18'}">${m2.cancelled??'—'}</td><td class="rnum-cell"><span class="lost-cnt" style="${lBg}">${ln}</span></td><td class="amt" style="color:${totalLostPerf(d.name)>0?'#a32d2d':'#5f5e5a'}">${fmtW(totalLostPerf(d.name))}</td></tr>`;
   }).join('');
   const maintAvg=gradeAvg2(rankAgents2.filter(d=>lr(d)!=null));
-  const sectionTitle2=`<div class="section-title"><span class="section-num">02</span><h3>🛡️ 유지관리</h3><span class="section-meta">${ll} 기준 · ${rankAgents2.length}명${maintAvg!=null?' · 평균 '+maintAvg+'%':''}</span></div>`;
-  const rankTableHTML=sectionTitle2+`<div class="rank-panel" style="margin-bottom:12px"><div class="rank-panel-hd"><div><div class="rank-panel-title" style="font-size:12px;color:#73726c">상세 데이터 — 헤더 클릭 정렬</div><div class="rank-panel-sub">${rankAgents2.length}명</div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">${gradeSummary2}</div></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap"><span style="font-size:11px;color:#73726c">위험도(최종납입):</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤13회 부활필수</span><span style="background:#faeeda;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤25회 고객관리강화</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤7회 매우위험</span><span style="background:#faeeda;color:#633806;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤13회 위험</span><span style="background:#fff8e1;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤18회 주의</span><span style="background:#e6f1fb;color:#185fa5;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤25회 고객관리강화</span></div></div><div class="rank-tbl-wrap"><table class="rtbl"><thead><tr><th class="rnum">#</th><th onclick="sortRank('name')" class="${rankSortCol==='name'?'asc':''}">사원<span class="si2">${rankSortCol==='name'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th><th onclick="sortRank('rate')" class="${rankSortCol==='rate'?'asc':''}">유지율 바<span class="si2">${rankSortCol==='rate'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th>${mHeaders2}<th onclick="sortRank('chg')" class="${rankSortCol==='chg'?'asc':''}">변화<span class="si2">↕</span></th><th onclick="sortRank('cnt')" class="${rankSortCol==='cnt'?'asc':''}">계약<span class="si2">↕</span></th><th onclick="sortRank('lapsed')" class="${rankSortCol==='lapsed'?'asc':''}">실효<span class="si2">↕</span></th><th onclick="sortRank('cancelled')" class="${rankSortCol==='cancelled'?'asc':''}">해지<span class="si2">↕</span></th><th onclick="sortRank('lost')" class="${rankSortCol==='lost'?'asc':''}">이탈건<span class="si2">↕</span></th><th onclick="sortRank('act')" class="${rankSortCol==='act'?'asc':''}">활동량<span class="si2">↕</span></th><th onclick="sortRank('lostperf')" class="${rankSortCol==='lostperf'?'asc':''}"><span class="amt">이탈실적</span><span class="si2">↕</span></th></tr></thead><tbody>${rankRows}</tbody></table></div></div>`;
+  const sectionTitle1=`<div class="section-title"><span class="section-num">01</span><h3>🛡 고객관리</h3><span class="section-meta">${ll} 기준 · ${rankAgents2.length}명${maintAvg!=null?' · 평균 '+maintAvg+'%':''}</span></div>`;
+  const rankTableHTML=sectionTitle1+`<div class="rank-panel" style="margin-bottom:12px"><div class="rank-panel-hd"><div><div class="rank-panel-title" style="font-size:12px;color:#73726c">상세 데이터 — 헤더 클릭 정렬</div><div class="rank-panel-sub">${rankAgents2.length}명</div><div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">${gradeSummary2}</div></div><div style="display:flex;gap:6px;align-items:center;flex-shrink:0;flex-wrap:wrap"><span style="font-size:11px;color:#73726c">위험도(최종납입):</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤13회 부활필수</span><span style="background:#faeeda;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">실효 ≤25회 고객관리강화</span><span style="background:#fcebeb;color:#a32d2d;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤7회 매우위험</span><span style="background:#faeeda;color:#633806;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤13회 위험</span><span style="background:#fff8e1;color:#854f0b;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤18회 주의</span><span style="background:#e6f1fb;color:#185fa5;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:500">해지 ≤25회 고객관리강화</span></div></div><div class="rank-tbl-wrap"><table class="rtbl"><thead><tr><th class="rnum">#</th><th onclick="sortRank('name')" class="${rankSortCol==='name'?'asc':''}">사원<span class="si2">${rankSortCol==='name'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th><th onclick="sortRank('pgrade')" class="${rankSortCol==='pgrade'?'asc':''}">성과등급<span class="si2">${rankSortCol==='pgrade'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th><th onclick="sortRank('rate')" class="${rankSortCol==='rate'?'asc':''}">유지율 바<span class="si2">${rankSortCol==='rate'?(rankSortDir==='desc'?'▼':'▲'):'↕'}</span></th>${mHeaders2}<th onclick="sortRank('chg')" class="${rankSortCol==='chg'?'asc':''}">변화<span class="si2">↕</span></th><th onclick="sortRank('cnt')" class="${rankSortCol==='cnt'?'asc':''}">계약<span class="si2">↕</span></th><th onclick="sortRank('lapsed')" class="${rankSortCol==='lapsed'?'asc':''}">실효<span class="si2">↕</span></th><th onclick="sortRank('cancelled')" class="${rankSortCol==='cancelled'?'asc':''}">해지<span class="si2">↕</span></th><th onclick="sortRank('lost')" class="${rankSortCol==='lost'?'asc':''}">이탈건<span class="si2">↕</span></th><th onclick="sortRank('lostperf')" class="${rankSortCol==='lostperf'?'asc':''}"><span class="amt">이탈실적</span><span class="si2">↕</span></th></tr></thead><tbody>${rankRows}</tbody></table></div></div>`;
 
   container.innerHTML=`
+    ${rankTableHTML}
     <div class="section-title">
-      <span class="section-num">01</span>
+      <span class="section-num">02</span>
       <h3>📊 성과관리</h3>
       <span class="section-meta">${ML_MAP[actMths()[0]]||''} ~ ${ML_MAP[actMths().slice(-1)[0]]||''} · ${agents.length}명 · 총 ${totCnt}건 · 인정실적 ${fmtW(totPerf)}</span>
     </div>
@@ -1306,6 +1319,7 @@ function renderPerfView(agents) {
             <th>메타분석</th>
             <th onclick="perfSort('avgdb')" class="${perfSortCol==='avgdb'?'asc':''}">평균DB<span class="si2">${perfSortCol==='avgdb'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
             <th onclick="perfSort('avgact')" class="${perfSortCol==='avgact'?'asc':''}">평균외활<span class="si2">${perfSortCol==='avgact'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
+            <th onclick="perfSort('avgfb')" class="${perfSortCol==='avgfb'?'asc':''}">평균피드백<span class="si2">${perfSortCol==='avgfb'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
             <th onclick="perfSort('goalsum')" class="${perfSortCol==='goalsum'?'asc':''}"><span class="amt">누적목표</span><span class="si2">${perfSortCol==='goalsum'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
             <th onclick="perfSort('ach')" class="${perfSortCol==='ach'?'asc':''}">목표달성률<span class="si2">${perfSortCol==='ach'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
           </tr></thead>
@@ -1313,14 +1327,16 @@ function renderPerfView(agents) {
         </table>
       </div>
     </div>
-    ${rankTableHTML}
     <div class="section-title">
       <span class="section-num">03</span>
       <h3>🃏 FA별 상세카드</h3>
-      <span class="section-meta">인정실적 순 · ${sorted.length}명</span>
+      <span class="section-meta">${ML_MAP[actMths()[0]]||''} ~ ${ML_MAP[actMths().slice(-1)[0]]||''} · 인정실적 순 · ${sorted.length}명</span>
     </div>
     <div class="perf-view-grid">
-      ${sorted.map((d,i)=>{
+      ${(()=>{
+        const _aM=actMths();
+        const _ps=_aM.length>0?(ML_MAP[_aM[0]]||_aM[0]).replace('월','')+'~'+(ML_MAP[_aM[_aM.length-1]]||_aM[_aM.length-1]).replace('월','')+'월':'';
+        return sorted.map((d,i)=>{
         const pd=perfOfMths(d.name);
         const ret=lr(d);
         const team=d.team||'기타';
@@ -1338,20 +1354,26 @@ function renderPerfView(agents) {
         const growthStr=pd?.growth==null?'—':(pd.growth>=0?`+${pd.growth}%`:`${pd.growth}%`);
         const growthCls=pd?.growth==null?'muted':pd.growth>0?'success':pd.growth<0?'danger':'';
 
-        // 영예칭호(👑📋💰🎯🚶💬🛡🚀) 우선 + 일반 pos
+        // 영예칭호(왕) 우선 + 긍정/교차 + 부정 순서, 최대 4개
         const badges=metaBadges(d.name, pd);
-        const KING_RE=/[👑📋💰🎯🚶💬🛡🚀]/u;
-        const kingB=badges.filter(b=>KING_RE.test(b.label));
-        const otherB=badges.filter(b=>!kingB.includes(b)&&b.type!=='neg');
-        const topB=[...kingB, ...otherB].slice(0,4);
-        const titlesHtml=topB.map(b=>`<span class="pmc-title-badge">${b.label}</span>`).join('');
+        const KING_LABELS=['실적왕','신계약왕','보험료왕','DB왕','외활왕','피드백왕','유지왕','성장왕'];
+        const isKing=b=>KING_LABELS.some(k=>b.label.includes(k));
+        const kingB=badges.filter(isKing);
+        const posB=badges.filter(b=>!isKing(b)&&b.type==='pos');
+        const crossB=badges.filter(b=>b.type==='cross');
+        const negB=badges.filter(b=>b.type==='neg');
+        const topB=[...kingB,...posB,...crossB,...negB].slice(0,4);
+        const titlesHtml=topB.map(b=>{
+          if(isKing(b)) return `<span class="pmc-title-badge king">${b.label}</span>`;
+          return `<span class="pmc-title-badge" style="background:${b.bg};color:${b.color}">${b.label}</span>`;
+        }).join('');
 
         return `<div class="pmc">
           <div class="pmc-head">
             <div class="pmc-rank">${i+1}</div>
             <div class="pmc-name-block">
               <div class="pmc-name">${d.name}</div>
-              <div class="pmc-meta">${team} · ${status}</div>
+              <div class="pmc-meta">${team} · ${status}${_ps?' · <span class="pmc-period">'+_ps+'</span>':''}</div>
             </div>
             <div class="pmc-grades">
               <span class="pmc-grade ${gradeKey(pg||'n')}">성과 ${gradeStyle(pg||'n').label}</span>
@@ -1361,7 +1383,7 @@ function renderPerfView(agents) {
           ${titlesHtml?`<div class="pmc-titles">${titlesHtml}</div>`:''}
           <div class="pmc-body">
             <div class="pmc-row pmc-maint">
-              <div class="pmc-section-label">🛡 유지관리</div>
+              <div class="pmc-section-label">🛡 고객관리</div>
               <div class="pmc-kpis">
                 <div class="pmc-kpi"><span class="pmc-num ${retCls}">${retStr}</span><span class="pmc-label">유지율</span></div>
                 <div class="pmc-kpi"><span class="pmc-num">${m.total_contracts??'—'}</span><span class="pmc-label">계약</span></div>
@@ -1382,7 +1404,8 @@ function renderPerfView(agents) {
             </div>
           </div>
         </div>`;
-      }).join('')}
+      }).join('');
+      })()}
     </div>`;
   
   // 미니카드 sparkline 그리기 (좌:유지율 line / 우:인정실적 bar)
@@ -1622,6 +1645,7 @@ function rankSort(agents){
     if(rankSortCol==='lost')return(totalLostN(b.name)-totalLostN(a.name))*d;
     if(rankSortCol==='act')return((actOfMths(b.name)?.cnt||0)-(actOfMths(a.name)?.cnt||0))*d;
     if(rankSortCol==='lostperf')return(totalLostPerf(b.name)-totalLostPerf(a.name))*d;
+    if(rankSortCol==='pgrade')return(GRADE_RANK[perfGrade(b.name)||'n']-GRADE_RANK[perfGrade(a.name)||'n'])*d;
     if(rankSortCol.startsWith('m')){const m=rankSortCol.slice(1);return((b.months[m]?.rate_25??-1)-(a.months[m]?.rate_25??-1))*d;}
     return 0;
   });
