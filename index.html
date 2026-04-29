@@ -782,7 +782,7 @@ function computeKings(){
   });
 }
 
-// 성과등급 (절대기준 — 건수/월납/실적 종합 점수)
+// 성과등급 (선택 기간 기준 — 건수/월납/실적 종합 점수, 만점은 6개월 환산)
 function perfGrade(name){
   const p=PERF&&PERF[name]; if(!p) return null;
   const aM=actMths();
@@ -790,7 +790,9 @@ function perfGrade(name){
   const prem=aM.reduce((s,m)=>s+(p.months[m]?.prem||0),0);
   const perf=aM.reduce((s,m)=>s+(p.months[m]?.perf||0),0);
   if(cnt===0&&prem===0) return null;
-  const CNT_MAX=100, PREM_MAX=10000000, PERF_MAX=10000000;
+  const monthCount=Math.max(aM.length,1);
+  const scale=monthCount/6;
+  const CNT_MAX=100*scale, PREM_MAX=10000000*scale, PERF_MAX=10000000*scale;
   const sCnt=Math.min(cnt/CNT_MAX*100,100);
   const sPrem=Math.min(prem/PREM_MAX*100,100);
   const sPerf=Math.min(perf/PERF_MAX*100,100);
