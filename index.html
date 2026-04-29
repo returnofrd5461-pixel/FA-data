@@ -14,7 +14,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .ph-l .main-title{font-size:36px;font-weight:900;letter-spacing:-1.5px;line-height:1;margin:0}
 .ph-l .main-title .title-accent{color:#c8975c;font-style:italic;font-weight:900}
 .ph-l .main-title .title-main{color:#1a1816}
-.ph-l .sub{font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:10px}
+.ph-l .sub{font-size:11px;color:#888;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-top:10px;display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.ph-l .sub-divider{color:#ccc;margin:0 8px;letter-spacing:0}
+#phUpdated{color:#888;font-size:11px;font-weight:500;letter-spacing:0;text-transform:none}
 .ph-r{display:flex;gap:8px;align-items:center;flex-shrink:0;padding-bottom:14px}
 .vtog{display:flex;background:#f0eee9;border-radius:6px;padding:2px;gap:2px}
 .vtbtn{padding:5px 13px;border-radius:4px;font-size:12px;font-weight:500;cursor:pointer;border:none;background:transparent;color:#888;font-family:inherit;transition:all .15s;white-space:nowrap}
@@ -231,7 +233,7 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 </head>
 <body>
 <div class="ph">
-  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span id="phUpdated" style="color:#888;font-size:11px;letter-spacing:0;text-transform:none;font-weight:500"></span></div></div>
+  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span class="sub-divider">|</span><span id="phUpdated">📅 최종 업데이트: —</span></div></div>
   <div class="ph-r">
     <div class="vtog">
       <button id="vCard" class="vtbtn on" onclick="setView('card')">카드 뷰</button>
@@ -1818,6 +1820,11 @@ fetch('./data/data.json?v='+Date.now())
     sel=new Set([...Object.keys(D),...Object.keys(PERF||{})]);
     computeKings();
     buildTeams();buildPills();buildMonthBtns();render();
+  })
+  .catch(err=>{
+    console.error('data load failed',err);
+    const el=document.getElementById('phUpdated');
+    if(el) el.textContent='⚠️ 데이터 로드 실패';
   });
 </script>
 </body>
