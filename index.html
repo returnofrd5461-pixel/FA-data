@@ -1184,13 +1184,21 @@ function renderPerfView(agents) {
   const sorted=[...agents].sort((a,b)=>{
     const pa=perfOfMths(a.name),pb=perfOfMths(b.name);
     const ta=targetOfMths(a.name),tb=targetOfMths(b.name);
+    const fa=feedbackOfMths(a.name),fb_=feedbackOfMths(b.name);
     const dir=perfSortDir==='desc'?1:-1;
-    if(perfSortCol==='avgdb')   return ((tb?.avgDb||0)-(ta?.avgDb||0))*dir;
-    if(perfSortCol==='avgact')  return ((tb?.avgAct||0)-(ta?.avgAct||0))*dir;
-    if(perfSortCol==='avgfb'){const fa=feedbackOfMths(a.name)?.total||0,fb=feedbackOfMths(b.name)?.total||0;return (fb-fa)*dir;}
-    if(perfSortCol==='goalsum') return ((tb?.goal||0)-(ta?.goal||0))*dir;
-    if(perfSortCol==='ach')     return (((tb?.ach)??-1)-((ta?.ach)??-1))*dir;
-    if(perfSortCol==='pgrade')  return (GRADE_RANK[perfGrade(b.name)||'n']-GRADE_RANK[perfGrade(a.name)||'n'])*dir;
+    if(perfSortCol==='pgrade') return (GRADE_RANK[perfGrade(b.name)||'n']-GRADE_RANK[perfGrade(a.name)||'n'])*dir;
+    if(perfSortCol==='cnt')    return ((pb?.cnt||0)-(pa?.cnt||0))*dir;
+    if(perfSortCol==='prem')   return ((pb?.prem||0)-(pa?.prem||0))*dir;
+    if(perfSortCol==='perf')   return ((pb?.perf||0)-(pa?.perf||0))*dir;
+    if(perfSortCol==='unit')   return ((pb?.avgPerf||0)-(pa?.avgPerf||0))*dir;
+    if(perfSortCol==='growth') return (((pb?.growth)??-9999)-((pa?.growth)??-9999))*dir;
+    if(perfSortCol==='db')     return ((tb?.db||0)-(ta?.db||0))*dir;
+    if(perfSortCol==='ext')    return ((tb?.act||0)-(ta?.act||0))*dir;
+    if(perfSortCol==='fb')     return ((fb_?.total||0)-(fa?.total||0))*dir;
+    if(perfSortCol==='target') return ((tb?.goal||0)-(ta?.goal||0))*dir;
+    if(perfSortCol==='achv')   return (((tb?.ach)??-1)-((ta?.ach)??-1))*dir;
+    if(perfSortCol==='life')   return ((pb?.lifeRatio||0)-(pa?.lifeRatio||0))*dir;
+    if(perfSortCol==='non'){const rb=pb?.cnt>0?(pb.nonlife/pb.cnt):0,ra=pa?.cnt>0?(pa.nonlife/pa.cnt):0;return (rb-ra)*dir;}
     return ((pb?.perf||0)-(pa?.perf||0));
   });
   
@@ -1332,19 +1340,19 @@ function renderPerfView(agents) {
           <thead><tr>
             <th class="rnum">#</th>
             <th>사원</th>
-            <th onclick="perfSort('pgrade')" class="${perfSortCol==='pgrade'?'asc':''}">성과등급<span class="si2">${perfSortCol==='pgrade'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
-            <th>건수<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
-            <th>월납보험료<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
-            <th>인정실적<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
-            <th>건당단가</th>
-            <th>분기성장<br><span style="font-weight:400;font-size:9px;color:#a09f98">25.4Q→26.1Q</span></th>
-            <th>DB<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
-            <th>외활<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
-            <th>피드백<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
-            <th><span class="amt">누적목표</span></th>
-            <th>목표달성률</th>
-            <th>생보비중</th>
-            <th>손보비중</th>
+            <th onclick="perfSort('pgrade')" class="${perfSortCol==='pgrade'?'asc':''}">성과등급<span class="si2">${perfSortCol==='pgrade'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('cnt')" class="${perfSortCol==='cnt'?'asc':''}">건수<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='cnt'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('prem')" class="${perfSortCol==='prem'?'asc':''}">월납보험료<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='prem'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('perf')" class="${perfSortCol==='perf'?'asc':''}">인정실적<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='perf'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('unit')" class="${perfSortCol==='unit'?'asc':''}">건당단가<span class="si2">${perfSortCol==='unit'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('growth')" class="${perfSortCol==='growth'?'asc':''}">분기성장<br><span style="font-weight:400;font-size:9px;color:#a09f98">25.4Q→26.1Q</span><span class="si2">${perfSortCol==='growth'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('db')" class="${perfSortCol==='db'?'asc':''}">DB<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='db'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('ext')" class="${perfSortCol==='ext'?'asc':''}">외활<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='ext'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('fb')" class="${perfSortCol==='fb'?'asc':''}">피드백<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='fb'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('target')" class="${perfSortCol==='target'?'asc':''}"><span class="amt">누적목표</span><span class="si2">${perfSortCol==='target'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('achv')" class="${perfSortCol==='achv'?'asc':''}">목표달성률<span class="si2">${perfSortCol==='achv'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('life')" class="${perfSortCol==='life'?'asc':''}">생보비중<span class="si2">${perfSortCol==='life'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('non')" class="${perfSortCol==='non'?'asc':''}">손보비중<span class="si2">${perfSortCol==='non'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
             <th>메타분석</th>
           </tr></thead>
           <tbody>${rows}</tbody>
