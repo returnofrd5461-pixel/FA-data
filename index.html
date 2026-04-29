@@ -1776,14 +1776,19 @@ async function downloadEach(){
     const card=cards[i];
     const name=card.querySelector('.cname')?.textContent||('FA_'+(i+1));
     btn.textContent=`⏳ ${i+1}/${cards.length} ${name}`;
+    const origAS=card.style.alignSelf;
+    card.style.alignSelf='start';
+    void card.offsetHeight;
     try{
-      const canvas=await html2canvas(card,{scale:2,backgroundColor:'#fff',useCORS:true,logging:false});
+      const h=card.scrollHeight;
+      const canvas=await html2canvas(card,{scale:2,backgroundColor:'#fff',useCORS:true,logging:false,height:h,windowHeight:h});
       const a=document.createElement('a');
       a.download=`상위0.01%_통합관리_${name}_${period}.png`;
       a.href=canvas.toDataURL('image/png');
       a.click();
       await new Promise(r=>setTimeout(r,300));
     }catch(e){console.error('캡처 실패:',name,e);}
+    card.style.alignSelf=origAS;
   }
   btn.textContent='✅ 완료';btn.disabled=false;
   setTimeout(()=>{btn.textContent='↓ 개별 이미지';},2000);
