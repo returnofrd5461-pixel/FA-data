@@ -119,6 +119,9 @@ table.rtbl tr.grade-b td:first-child{border-left:3px solid #854f0b}
 table.rtbl tr.grade-c td:first-child{border-left:3px solid #c45050}
 table.rtbl tr.grade-d td:first-child{border-left:3px solid #a32d2d}
 table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
+.cell-dual{line-height:1.3;text-align:center}
+.cell-dual .cell-main{font-size:13px;font-weight:600}
+.cell-dual .cell-sub{font-size:10px;color:#999;font-weight:500;margin-top:2px}
 .rtbl .rnum{text-align:center;color:#a09f98;font-size:11px;width:28px}
 .rtbl .rname{font-weight:500;font-size:13px}.rtbl .rsub{font-size:10px;margin-top:2px}
 .rtbl .rbar-wrap{min-width:90px;position:relative;height:20px;background:#f5f4f0;border-radius:3px;overflow:hidden}
@@ -1197,6 +1200,7 @@ function renderPerfView(agents) {
     const ret=lr(d);
     const team=d.team||'기타';
     
+    const mc=Math.max(actMths().length,1);
     if(!pd||pd.cnt===0){
       const td2=targetOfMths(d.name);
       const tHas2=td2&&td2.anyMonthHasData;
@@ -1210,9 +1214,9 @@ function renderPerfView(agents) {
         <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
         <td class="rnum-cell" style="background:${pgs2.bg};color:${pgs2.color};font-weight:500">—</td>
         <td colspan="5" style="font-size:11px;color:#a09f98;text-align:center">해당기간 신계약 없음</td>
-        <td class="rnum-cell" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?td2.db:'—'}</td>
-        <td class="rnum-cell" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?td2.act:'—'}</td>
-        <td class="rnum-cell" style="color:${fdR2&&fdR2.total>0?'#a04848':'#a09f98'}">${fdR2&&fdR2.total>0?fdR2.total:'—'}</td>
+        <td class="rnum-cell cell-dual" style="color:${tHas2?'#185fa5':'#a09f98'}">${tHas2?`<div class="cell-main">${td2.db}</div><div class="cell-sub">평균 ${(td2.db/mc).toFixed(1)}</div>`:'—'}</td>
+        <td class="rnum-cell cell-dual" style="color:${tHas2?'#0f6e56':'#a09f98'}">${tHas2?`<div class="cell-main">${td2.act}</div><div class="cell-sub">평균 ${(td2.act/mc).toFixed(1)}</div>`:'—'}</td>
+        <td class="rnum-cell cell-dual" style="color:${fdR2&&fdR2.total>0?'#a04848':'#a09f98'}">${fdR2&&fdR2.total>0?`<div class="cell-main">${fdR2.total}</div><div class="cell-sub">평균 ${(fdR2.total/mc).toFixed(1)}</div>`:'—'}</td>
         <td class="amt" style="color:${tHas2&&td2.goal>0?'#5f5e5a':'#a09f98'}">${tHas2&&td2.goal>0?fmtW(td2.goal):'—'}</td>
         <td class="rnum-cell" style="background:${achB2};color:${achC2};font-weight:500">${ach2}</td>
         <td class="rnum-cell" style="color:#a09f98">—</td>
@@ -1246,18 +1250,24 @@ function renderPerfView(agents) {
     const pgCls=`grade-${pg||'empty'}`;
     const fdR=feedbackOfMths(d.name);
     const nonRatio=pd.cnt>0?Math.round(pd.nonlife/pd.cnt*100):0;
+    const avgCntStr=(pd.cnt/mc).toFixed(1);
+    const avgPremV=pd.prem/mc;
+    const avgPerfMonV=pd.perf/mc;
+    const avgDbStr=tHas?(td.db/mc).toFixed(1):null;
+    const avgActStr=tHas?(td.act/mc).toFixed(1):null;
+    const avgFbStr=fdR&&fdR.total>0?(fdR.total/mc).toFixed(1):null;
     return `<tr class="${pgCls}">
       <td class="rnum">${i+1}</td>
       <td><div class="rname">${d.name}</div><div class="rsub" style="color:${TT[team]||'#444441'}">${team}</div></td>
       <td class="rnum-cell" style="background:${pgs.bg};color:${pgs.color};font-weight:600">${pgs.label}</td>
-      <td class="rnum-cell" style="font-weight:500">${pd.cnt}건</td>
-      <td class="rnum-cell" style="font-weight:500;color:#3c3489">${fmtW(pd.prem)}</td>
-      <td class="rnum-cell" style="font-weight:500;color:#185fa5">${fmtW(pd.perf)}</td>
+      <td class="rnum-cell cell-dual"><div class="cell-main">${pd.cnt}건</div><div class="cell-sub">평균 ${avgCntStr}</div></td>
+      <td class="rnum-cell cell-dual" style="color:#3c3489"><div class="cell-main">${fmtW(pd.prem)}</div><div class="cell-sub">평균 ${fmtW(avgPremV)}</div></td>
+      <td class="rnum-cell cell-dual" style="color:#185fa5"><div class="cell-main">${fmtW(pd.perf)}</div><div class="cell-sub">평균 ${fmtW(avgPerfMonV)}</div></td>
       <td class="rnum-cell" style="color:#73726c">${fmtW(pd.avgPerf)}</td>
       <td class="rnum-cell" style="color:${gc||'#1a1a18'}">${growthStr}</td>
-      <td class="rnum-cell" style="color:${tHas?'#185fa5':'#a09f98'}">${tHas?td.db:'—'}</td>
-      <td class="rnum-cell" style="color:${tHas?'#0f6e56':'#a09f98'}">${tHas?td.act:'—'}</td>
-      <td class="rnum-cell" style="color:${fdR&&fdR.total>0?'#a04848':'#a09f98'}">${fdR&&fdR.total>0?fdR.total:'—'}</td>
+      <td class="rnum-cell cell-dual" style="color:${tHas?'#185fa5':'#a09f98'}">${tHas?`<div class="cell-main">${td.db}</div><div class="cell-sub">평균 ${avgDbStr}</div>`:'—'}</td>
+      <td class="rnum-cell cell-dual" style="color:${tHas?'#0f6e56':'#a09f98'}">${tHas?`<div class="cell-main">${td.act}</div><div class="cell-sub">평균 ${avgActStr}</div>`:'—'}</td>
+      <td class="rnum-cell cell-dual" style="color:${fdR&&fdR.total>0?'#a04848':'#a09f98'}">${fdR&&fdR.total>0?`<div class="cell-main">${fdR.total}</div><div class="cell-sub">평균 ${avgFbStr}</div>`:'—'}</td>
       <td class="amt" style="color:${tHas&&td.goal>0?'#5f5e5a':'#a09f98'}">${tHas&&td.goal>0?fmtW(td.goal):'—'}</td>
       <td class="rnum-cell" style="background:${achB};color:${achC};font-weight:500">${achStr}</td>
       <td class="rnum-cell">${pd.lifeRatio}%</td>
@@ -1323,14 +1333,14 @@ function renderPerfView(agents) {
             <th class="rnum">#</th>
             <th>사원</th>
             <th onclick="perfSort('pgrade')" class="${perfSortCol==='pgrade'?'asc':''}">성과등급<span class="si2">${perfSortCol==='pgrade'?(perfSortDir==='desc'?'▼':'▲'):'↕'}</span></th>
-            <th>건수</th>
-            <th>월납보험료</th>
-            <th>인정실적</th>
+            <th>건수<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
+            <th>월납보험료<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
+            <th>인정실적<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
             <th>건당단가</th>
             <th>분기성장<br><span style="font-weight:400;font-size:9px;color:#a09f98">25.4Q→26.1Q</span></th>
-            <th>DB</th>
-            <th>외활</th>
-            <th>피드백</th>
+            <th>DB<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
+            <th>외활<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
+            <th>피드백<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div></th>
             <th><span class="amt">누적목표</span></th>
             <th>목표달성률</th>
             <th>생보비중</th>
