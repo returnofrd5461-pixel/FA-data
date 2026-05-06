@@ -371,7 +371,7 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     <button class="lfbtn lf-no" id="lf-no" onclick="setLostFilter('no_lost')">이탈 없음</button>
   </div>
   <div class="cr">
-    <span class="cl">등급 필터</span>
+    <span class="cl">유지등급</span>
     <button class="tbtn on" id="gr-all" onclick="setGrade('all')">전체</button>
     <button class="tbtn" id="gr-s" onclick="setGrade('s')" style="border-color:#0f6e56;color:#0f6e56">S 95%↑</button>
     <button class="tbtn" id="gr-a" onclick="setGrade('a')" style="border-color:#3b6d11;color:#3b6d11">A 90~95%</button>
@@ -379,6 +379,14 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     <button class="tbtn" id="gr-c" onclick="setGrade('c')" style="border-color:#c45050;color:#c45050">C 80~85%</button>
     <button class="tbtn" id="gr-d" onclick="setGrade('d')" style="border-color:#a32d2d;color:#a32d2d">D 80%↓</button>
     <button class="tbtn" id="gr-n" onclick="setGrade('n')" style="border-color:#73726c;color:#73726c">데이터 부족</button>
+  </div>
+  <div class="cr">
+    <span class="cl">성과등급</span>
+    <button class="tbtn on" id="pg-all" onclick="setPGrade('all')">전체</button>
+    <button class="tbtn" id="pg-s" onclick="setPGrade('s')" style="border-color:#0f6e56;color:#0f6e56">S</button>
+    <button class="tbtn" id="pg-a" onclick="setPGrade('a')" style="border-color:#3b6d11;color:#3b6d11">A</button>
+    <button class="tbtn" id="pg-b" onclick="setPGrade('b')" style="border-color:#854f0b;color:#854f0b">B</button>
+    <button class="tbtn" id="pg-c" onclick="setPGrade('c')" style="border-color:#c45050;color:#c45050">C</button>
   </div>
   <div class="cr">
     <span class="cl">사원 선택</span>
@@ -431,7 +439,7 @@ function kangseoLastSort(a,b){
   return 0;
 }
 let AVAIL_MONTHS;
-let selMonths,sel,curTeam='전체',curStatus='FA',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
+let selMonths,sel,curTeam='전체',curStatus='FA',lostFilter='all',curGrade='all',curPGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
 let ACT={}; // 활동량 데이터 {FA명: {월: 건수}}
 let kingsByName={}; // 1위 칭호 매핑 {FA명: ['👑 실적왕', ...]}
 let rankBadgesByName={}; // 자동 랭킹 배지 매핑 {FA명: [{label,bg,color,type}, ...]}
@@ -520,12 +528,21 @@ function passesFilters(d){
   if(lostFilter==='has_lost'&&!hasLost(d.name)) return false;
   if(lostFilter==='no_lost'&&hasLost(d.name)) return false;
   if(curGrade!=='all'&&getGrade(d)!==curGrade) return false;
+  if(curPGrade!=='all'&&(perfGrade(d.name)||'n')!==curPGrade) return false;
   return true;
 }
 function setGrade(g){
   curGrade=g;
   ['all','s','a','b','c','d','n'].forEach(x=>{
     const el=document.getElementById('gr-'+x);
+    if(el){el.classList.toggle('on',x===g);if(x!=='all'&&x===g){el.style.background=el.style.borderColor;el.style.color='#fff';}else if(x!=='all'){el.style.background='#f5f4f0';}}
+  });
+  render();
+}
+function setPGrade(g){
+  curPGrade=g;
+  ['all','s','a','b','c'].forEach(x=>{
+    const el=document.getElementById('pg-'+x);
     if(el){el.classList.toggle('on',x===g);if(x!=='all'&&x===g){el.style.background=el.style.borderColor;el.style.color='#fff';}else if(x!=='all'){el.style.background='#f5f4f0';}}
   });
   render();
@@ -581,6 +598,7 @@ function passesPillFilters(d){
   if(lostFilter==='has_lost'&&!hasLost(d.name)) return false;
   if(lostFilter==='no_lost'&&hasLost(d.name)) return false;
   if(curGrade!=='all'&&getGrade(d)!==curGrade) return false;
+  if(curPGrade!=='all'&&(perfGrade(d.name)||'n')!==curPGrade) return false;
   return true;
 }
 function statusOf(d){return d.status||PERF[d.name]?.status||'FA';}
