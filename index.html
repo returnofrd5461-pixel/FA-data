@@ -977,7 +977,7 @@ function newFASectionHTML(name) {
   const tHas=td&&td.anyMonthHasData;
   const fd=feedbackOfMths(name);
   const kang=isKangseo(name);
-  const kangNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">🚫 강서지사 소속 — 표시 제외</div>';
+  const kangNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">🚫 표시 제외</div>';
   const aM2=actMths();
   const periodStr=aM2.length>0?(ML_MAP[aM2[0]]||aM2[0])+(aM2.length>1?' ~ '+(ML_MAP[aM2[aM2.length-1]]||aM2[aM2.length-1]):''):'—';
   return `<div class="perf-divider">
@@ -1024,7 +1024,7 @@ function perfSectionHTML(name) {
   const tHas=td&&td.anyMonthHasData;
   const fd=feedbackOfMths(name);
   const kang=isKangseo(name);
-  const kangNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">🚫 강서지사 소속 — 표시 제외</div>';
+  const kangNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">🚫 표시 제외</div>';
   const badges=metaBadges(name,pd);
   const posBadges=badges.filter(b=>b.type==='pos');
   const negBadges=badges.filter(b=>b.type==='neg');
