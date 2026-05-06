@@ -414,6 +414,7 @@ const ML_MAP={'01':'26.1월','02':'26.2월','03':'26.3월','04':'26.4월','05':'
 const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#faeeda','Team 4':'#eaf3de','강서지사':'#eeedfe','서울지사':'#fbeaf0','기타':'#f1efe8'};
 const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','Team 4':'#27500a','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
 const LOST_CHIP={'01_02':'background:#faeeda;color:#633806','02_03':'background:#fcebeb;color:#a32d2d','10_11':'background:#eeedfe;color:#3c3489','11_12':'background:#e1f5ee;color:#085041'};
+const DB_EXCLUDE=new Set(['신지원','정민욱','이연식','김성한']); // DB 산정 제외 대상 (DB왕/DB 풍부/DB 효율형/DB 활용 부진 모두 미적용)
 let AVAIL_MONTHS;
 let selMonths,sel,curTeam='전체',curStatus='all',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
 let ACT={}; // 활동량 데이터 {FA명: {월: 건수}}
@@ -731,7 +732,7 @@ function metaBadges(name, pd) {
       badges.push({label:`🎯 목표초과달성 +${(td.ach-100).toFixed(0)}%`, bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
     else if(td.ach!=null&&td.ach<70)
       badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, bg:'#fcebeb', color:'#a32d2d', type:'neg'});
-    if(td.dbUse!=null&&td.dbUse<30&&td.db>0)
+    if(td.dbUse!=null&&td.dbUse<30&&td.db>0&&!DB_EXCLUDE.has(name))
       badges.push({label:'📋 DB 활용 부진', bg:'#fff3cd', color:'#854f0b', type:'neg'});
   }
 
@@ -794,7 +795,7 @@ function computeKings(){
     '👑 실적왕':   findTops('perf'),
     '📋 신계약왕': findTops('cnt'),
     '💰 보험료왕': findTops('prem'),
-    '🎯 DB왕':     findTops('db'),
+    '🎯 DB왕':     findTops('db', s=>!DB_EXCLUDE.has(s.name)),
     '🚶 외활왕':   findTops('act'),
     '💬 피드백왕': findTops('fb'),
     '🛡️ 유지왕':   findTops('rate', s=>s.cntForRate>=50&&s.rate!=null),
@@ -842,9 +843,9 @@ function computeRankBadges(){
     r=>({label:`📋 신계약 활발 TOP${r}`,bg:'#fef9ec',color:'#7a4500',type:'pos'})
   );
 
-  // 2) DB 배정
+  // 2) DB 배정 (DB_EXCLUDE 4명은 v=0 처리로 자연 제외)
   rankByPool(
-    n=>{const t=targetOfMths(n)||{};return t.db||0;},
+    n=>{ if(DB_EXCLUDE.has(n)) return 0; const t=targetOfMths(n)||{}; return t.db||0; },
     50,30,
     r=>({label:`🎯 DB 풍부 TOP${r}`,bg:'#e6f1fb',color:'#185fa5',type:'pos'}),
     r=>({label:`🎲 DB 양호 TOP${r}`,bg:'#eef5fc',color:'#0c447c',type:'pos'})
@@ -884,8 +885,9 @@ function computeRankBadges(){
     });
   }
 
-  // 5) DB 효율형 (랭킹 아님, 절대 비율 임계만)
+  // 5) DB 효율형 (랭킹 아님, 절대 비율 임계만) — DB_EXCLUDE 4명 제외
   pool.forEach(n=>{
+    if(DB_EXCLUDE.has(n)) return;
     const t=targetOfMths(n)||{};
     const db=t.db||0, act=t.act||0;
     if(db>=10&&(act/db)>=0.7){
