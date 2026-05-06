@@ -348,8 +348,8 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
   <div class="cr"><span class="cl">팀 필터</span><div id="teamBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div></div>
   <div class="cr">
     <span class="cl">상태 필터</span>
-    <button class="tbtn on" id="st-all" onclick="setStatus('all')">전체</button>
-    <button class="tbtn" id="st-fa" onclick="setStatus('FA')">FA</button>
+    <button class="tbtn" id="st-all" onclick="setStatus('all')">전체</button>
+    <button class="tbtn on" id="st-fa" onclick="setStatus('FA')">FA</button>
     <button class="tbtn" id="st-ma" onclick="setStatus('MA')">MA</button>
   </div>
   <div class="cr">
@@ -431,7 +431,7 @@ function kangseoLastSort(a,b){
   return 0;
 }
 let AVAIL_MONTHS;
-let selMonths,sel,curTeam='전체',curStatus='all',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
+let selMonths,sel,curTeam='전체',curStatus='FA',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
 let ACT={}; // 활동량 데이터 {FA명: {월: 건수}}
 let kingsByName={}; // 1위 칭호 매핑 {FA명: ['👑 실적왕', ...]}
 let rankBadgesByName={}; // 자동 랭킹 배지 매핑 {FA명: [{label,bg,color,type}, ...]}
