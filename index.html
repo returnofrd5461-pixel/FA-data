@@ -1750,8 +1750,14 @@ function lostSectionHTML(name){
 
 function cardHTML(d){
   const id=cardId(d.name);
-  const aM=actMths(),r=lr(d),f=fr(d),c=chg(d),m=lmd(d),team=d.team||'기타';
-  const ll=ML_MAP[latestM()]||'최신';
+  const aM=actMths(),f=fr(d),c=chg(d),team=d.team||'기타';
+  // 유지율 라벨 — D[name].months 의 실제 마지막 데이터 월 기준 (selMonths 무관)
+  const dataMonthKeys=d&&d.months?Object.keys(d.months).filter(mo=>d.months[mo]?.rate_25!=null):[];
+  const sortedDataMonths=dataMonthKeys.sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
+  const lastDataMonth=sortedDataMonths.length?sortedDataMonths[sortedDataMonths.length-1]:null;
+  const r=lastDataMonth?d.months[lastDataMonth].rate_25:null;
+  const m=lastDataMonth?d.months[lastDataMonth]:{};
+  const ll=lastDataMonth?(ML_MAP[lastDataMonth]||lastDataMonth):null;
   let tBadge='';
   if(c!=null&&aM.length>=2){if(c>1)tBadge=`<span class="badge b-up">▲ ${c.toFixed(1)}%p</span>`;else if(c<-1)tBadge=`<span class="badge b-dn">▼ ${Math.abs(c).toFixed(1)}%p</span>`;else tBadge=`<span class="badge b-flat">─ 유지</span>`;}
   const rcls=r==null?'b-flat':r>=95?'b-g':r>=85?'b-b':r>=70?'b-w':'b-r';
@@ -1769,7 +1775,7 @@ function cardHTML(d){
     ?`<span class="pchip2" style="background:#fcebeb;color:#a32d2d">${_tN}건 이탈</span><span class="pchip2" style="background:#faeeda;color:#854f0b">${fmtW(_tP)} 소멸</span>`
     :`<span class="pchip2" style="background:#eaf3de;color:#3b6d11">이탈 없음</span>`);
   const mgmtDiv=`<div class="perf-divider" style="background:linear-gradient(135deg,#fff5f5 0%,#fef5ed 100%);border-top:2px solid #a32d2d"><div class="perf-divider-left"><span class="perf-divider-icon">🛡️</span><span class="perf-divider-title" style="color:#a32d2d">고객관리</span><span style="font-size:10px;color:#a32d2d;background:#fce8e8;padding:2px 7px;border-radius:10px;font-weight:500">${aM.length>0?(ML_MAP[aM[0]]||aM[0])+(aM.length>1?' ~ '+(ML_MAP[aM[aM.length-1]]||aM[aM.length-1]):''):'—'}</span></div><div class="perf-chips">${_mChips}</div></div>`;
-  return`<div class="card"><div class="ch"><div><div class="cname">${d.name}</div><div class="csub">${team} · 계약 ${m.total_contracts??'—'}건</div></div><div class="cbadges">${teamBadge}${rBadge}${tBadge}</div></div>${mgmtDiv}<div class="ckpis"><div class="kpi"><div class="kv" style="color:${rc(r)}">${r!=null?r.toFixed(1)+'%':'—'}</div><div class="kl">${ll} 유지율</div></div><div class="kpi"><div class="kv">${m.total_contracts??'—'}</div><div class="kl">계약건수</div></div><div class="kpi"><div class="kv" style="color:${lc}">${m.lapsed??'—'}</div><div class="kl">실효</div></div><div class="kpi"><div class="kv" style="color:${cc}">${m.cancelled??'—'}</div><div class="kl">해지</div></div></div><div class="ccharts"><div class="cw"><div class="ct">25회 통산유지율</div><div class="cwrap"><canvas id="r${id}"></canvas></div></div><div class="cw"><div class="ct">계약 상태 추이</div><div class="cwrap"><canvas id="s${id}"></canvas></div></div><div class="cw"><div class="ct">25회 월보험료합계 (만원)</div><div class="cwrap"><canvas id="p${id}"></canvas></div></div></div><div class="ctrend">${trend||'<span style="color:#a09f98;font-size:11px">데이터 없음</span>'}</div>${lostSectionHTML(d.name)}<div style="height:6px;background:#e8e7e1"></div>${perfSectionHTML(d.name)}</div>`;
+  return`<div class="card"><div class="ch"><div><div class="cname">${d.name}</div><div class="csub">${team} · 계약 ${m.total_contracts??'—'}건</div></div><div class="cbadges">${teamBadge}${rBadge}${tBadge}</div></div>${mgmtDiv}<div class="ckpis"><div class="kpi"><div class="kv" style="color:${rc(r)}">${r!=null?r.toFixed(1)+'%':'—'}</div><div class="kl">${ll?ll+' 유지율':'유지율 — (데이터 없음)'}</div></div><div class="kpi"><div class="kv">${m.total_contracts??'—'}</div><div class="kl">계약건수</div></div><div class="kpi"><div class="kv" style="color:${lc}">${m.lapsed??'—'}</div><div class="kl">실효</div></div><div class="kpi"><div class="kv" style="color:${cc}">${m.cancelled??'—'}</div><div class="kl">해지</div></div></div><div class="ccharts"><div class="cw"><div class="ct">25회 통산유지율</div><div class="cwrap"><canvas id="r${id}"></canvas></div></div><div class="cw"><div class="ct">계약 상태 추이</div><div class="cwrap"><canvas id="s${id}"></canvas></div></div><div class="cw"><div class="ct">25회 월보험료합계 (만원)</div><div class="cwrap"><canvas id="p${id}"></canvas></div></div></div><div class="ctrend">${trend||'<span style="color:#a09f98;font-size:11px">데이터 없음</span>'}</div>${lostSectionHTML(d.name)}<div style="height:6px;background:#e8e7e1"></div>${perfSectionHTML(d.name)}</div>`;
 }
 
 function drawCharts(d){
