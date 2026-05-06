@@ -967,9 +967,55 @@ function achBg(ach){
   return '#fcebeb';
 }
 
+// 신규 합류 FA (PERF.totals.cnt===0) 전용 섹션 HTML
+// — 신계약/월납/실적 영역 숨김, 활동 데이터(DB/외활/피드백/마감목표)만 표시
+function newFASectionHTML(name) {
+  const id=cardId(name);
+  const td=targetOfMths(name);
+  const tHas=td&&td.anyMonthHasData;
+  const fd=feedbackOfMths(name);
+  const kang=isKangseo(name);
+  const kangNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">🚫 강서지사 소속 — 표시 제외</div>';
+  const aM2=actMths();
+  const periodStr=aM2.length>0?(ML_MAP[aM2[0]]||aM2[0])+(aM2.length>1?' ~ '+(ML_MAP[aM2[aM2.length-1]]||aM2[aM2.length-1]):''):'—';
+  return `<div class="perf-divider">
+    <div class="perf-divider-left">
+      <span class="perf-divider-icon">📊</span>
+      <span class="perf-divider-title">성과관리</span>
+      <span style="font-size:10px;color:#3c3489;background:#eeedfe;padding:2px 8px;border-radius:10px;font-weight:600">🆕 신규 합류</span>
+      <span style="font-size:10px;color:#185fa5;background:#dbeafe;padding:2px 7px;border-radius:10px;font-weight:500">${periodStr}</span>
+    </div>
+    <div class="perf-chips">
+      <span style="font-size:11px;color:#73726c">실적 데이터 미수집 — 활동 지표만 표시</span>
+    </div>
+  </div>
+  <div class="perf-body">
+    ${tHas?`<div class="perf-kpis" style="grid-template-columns:repeat(4,1fr)">
+      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#185fa5'}">${kang?'—':td.db+'건'}</div><div class="pl">누적 DB배정</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#0f6e56'}">${kang?'—':td.act+'건'}</div><div class="pl">누적 외활</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#a04848'}">${kang?'—':(fd?fd.total:0)+'건'}</div><div class="pl">누적 피드백</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'inherit'}">${kang?'—':(td.goal>0?fmtW(td.goal):'—')}</div><div class="pl">누적 마감목표</div></div>
+    </div>`:'<div style="padding:20px;text-align:center;font-size:12px;color:#a09f98">활동 데이터 없음</div>'}
+    ${tHas?(kang?`<div style="padding:8px 18px">${kangNotice}</div>`:`<div class="perf-charts">
+      <div class="perf-cw"><div class="perf-ct">DB배정</div><div class="perf-cwrap"><canvas id="pc4${id}"></canvas></div></div>
+      <div class="perf-cw"><div class="perf-ct">외활</div><div class="perf-cwrap"><canvas id="pc5${id}"></canvas></div></div>
+      <div class="perf-cw"><div class="perf-ct">피드백</div><div class="perf-cwrap"><canvas id="pc7${id}"></canvas></div></div>
+    </div>`):''}
+    ${tHas&&td.goal>0?`<div class="perf-bottom has-target" style="grid-template-columns:1fr">
+      <div class="perf-bottom-left">
+        <div class="perf-ct" style="margin-bottom:6px">마감목표 (만원) · 달성률</div>
+        ${kang?kangNotice:`<div class="perf-cwrap-lg"><canvas id="pc6${id}"></canvas></div>`}
+      </div>
+    </div>`:''}
+  </div>`;
+}
+
 // 카드 내 성과 섹션 HTML
 function perfSectionHTML(name) {
   const pd=perfOfMths(name);
+  const p=PERF[name];
+  const isNewFA=p&&p.totals&&p.totals.cnt===0;
+  if(isNewFA) return newFASectionHTML(name);
   if(!pd||pd.cnt===0)
     return `<div class="perf-divider"><div class="perf-divider-left"><span class="perf-divider-icon">📊</span><span class="perf-divider-title">성과관리</span></div><span style="font-size:11px;color:#73726c;background:#f0efe9;padding:2px 8px;border-radius:10px">해당 기간 데이터 없음</span></div>`;
   const id=cardId(name);
