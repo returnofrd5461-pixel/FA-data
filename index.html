@@ -411,8 +411,8 @@ let PERF;
 let TARGET;
 let FEEDBACK;
 const ML_MAP={'01':'26.1월','02':'26.2월','03':'26.3월','04':'26.4월','05':'26.5월','06':'26.6월','07':'26.7월','08':'26.8월','09':'26.9월','10':'25.10월','11':'25.11월','12':'25.12월'};
-const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#faeeda','Team 4':'#eaf3de','강서지사':'#eeedfe','서울지사':'#fbeaf0','기타':'#f1efe8'};
-const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','Team 4':'#27500a','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
+const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#faeeda','강서지사':'#eeedfe','서울지사':'#fbeaf0','기타':'#f1efe8'};
+const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
 const LOST_CHIP={'01_02':'background:#faeeda;color:#633806','02_03':'background:#fcebeb;color:#a32d2d','10_11':'background:#eeedfe;color:#3c3489','11_12':'background:#e1f5ee;color:#085041'};
 const KANGSEO='강서지사';
 function getTeam(name){
@@ -473,7 +473,7 @@ function hasLost(n){const L=LOST[n]||{};return Object.keys(L).filter(k=>lostPeri
 function totalLostN(n){const L=LOST[n]||{};return Object.entries(L).filter(([k])=>lostPeriodActive(k)).reduce((s,[,v])=>s+v.length,0);}
 function totalLostPerf(n){const L=LOST[n]||{};return Object.entries(L).filter(([k])=>lostPeriodActive(k)).flatMap(([,v])=>v).reduce((s,x)=>s+x.first_perf,0);}
 
-const ALL_TEAMS=['전체','Team 0','Team 1','Team 2','Team 3','Team 4','강서지사','서울지사'];
+const ALL_TEAMS=['전체','Team 0','Team 1','Team 2','Team 3','강서지사','서울지사'];
 // PERF에만 있는 사람을 위해 D에 placeholder 자동 생성 (fetch / 인라인 init 양쪽에서 호출)
 function ensureDPlaceholders(){
   Object.keys(PERF||{}).forEach(n=>{
