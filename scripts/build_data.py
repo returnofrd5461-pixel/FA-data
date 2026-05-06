@@ -344,6 +344,54 @@ def merge_PERF(existing: dict, fragment: dict, D_merged: dict) -> dict:
     return out
 
 
+def ensure_manual_only_perf(PERF: dict, TARGET: dict, FEEDBACK: dict, D: dict) -> list:
+    """
+    manual.json 으로만 등장한 FA (TARGET/FEEDBACK 에는 있지만 PERF/D 에는 없음)
+    에게 빈 PERF entry 자동 생성. 카드 렌더 invariant 유지를 위함.
+
+    team 은 '미배정' 디폴트. 추후 손생보합산(D) 데이터가 들어오면
+    sync_team_from_D() 가 갱신.
+
+    반환: 새로 추가한 FA 이름 리스트.
+    """
+    manual_names = set(TARGET.keys()) | set(FEEDBACK.keys())
+    existing_names = set(PERF.keys()) | set(D.keys())
+    new_names = sorted(manual_names - existing_names)
+
+    for name in new_names:
+        PERF[name] = {
+            "name":     name,
+            "team":     "미배정",
+            "status":   "FA",
+            "months":   {},
+            "totals": {
+                "cnt": 0, "prem": 0, "perf": 0, "hwan": 0,
+                "life": 0, "nonlife": 0, "lost": 0, "delay": 0,
+                "avg_perf": 0, "life_ratio": 0, "lost_rate": 0,
+                "q4_cnt": 0, "q1_cnt": 0,
+                "q4_perf": 0, "q1_perf": 0,
+                "growth": None,
+                "top_products": {},
+            },
+            "insurers": {},
+        }
+    return new_names
+
+
+def sync_team_from_D(PERF: dict, D: dict) -> int:
+    """team 이 비어있거나 '미배정'인 PERF entry 를 D 의 team 으로 보강."""
+    fixed = 0
+    for name, p in PERF.items():
+        cur = p.get("team")
+        if cur and cur != "미배정":
+            continue
+        d_team = (D.get(name) or {}).get("team")
+        if d_team:
+            p["team"] = d_team
+            fixed += 1
+    return fixed
+
+
 def merge_manual(TARGET: dict, FEEDBACK: dict, path: Path) -> dict:
     """
     manual.json 한 개 파일을 TARGET / FEEDBACK 에 머지.
@@ -500,6 +548,15 @@ def main():
         print(f"    TARGET 갱신:   {m}월, FA {stats['target_count']}명 "
               f"(DB 강제 0: {stats['db_excluded']}명)")
         print(f"    FEEDBACK 갱신: {m}월, FA {stats['feedback_count']}명")
+
+    # manual-only FA 빈 PERF entry 자동 생성 (카드 렌더 invariant)
+    new_fa = ensure_manual_only_perf(PERF_merged, TARGET_merged, FEEDBACK_merged, D_merged)
+    if new_fa:
+        print(f"\n[manual-only FA] {len(new_fa)}명 빈 PERF entry 자동 생성: {', '.join(new_fa)}")
+    # team='미배정' entry 가 D에 실제 team을 가지게 되면 자동 보강
+    fixed = sync_team_from_D(PERF_merged, D_merged)
+    if fixed:
+        print(f"[team sync] {fixed}명의 PERF.team 을 D 데이터로 보강")
 
     # 일시납 요약
     print()
