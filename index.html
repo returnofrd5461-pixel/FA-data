@@ -409,6 +409,7 @@ let AVAIL_MONTHS;
 let selMonths,sel,curTeam='전체',curStatus='all',lostFilter='all',curGrade='all',viewMode='card',charts={},rankSortCol='rate',rankSortDir='desc',perfSortCol='perf',perfSortDir='desc';
 let ACT={}; // 활동량 데이터 {FA명: {월: 건수}}
 let kingsByName={}; // 1위 칭호 매핑 {FA명: ['👑 실적왕', ...]}
+let rankBadgesByName={}; // 자동 랭킹 배지 매핑 {FA명: [{label,bg,color,type}, ...]}
 
 function actMths(){return AVAIL_MONTHS.filter(m=>selMonths.has(m));}
 function latestM(){const a=actMths();return a.length?a[a.length-1]:null;}
@@ -662,6 +663,11 @@ function metaBadges(name, pd) {
     badges.push({label:title, bg:'#fef4e0', color:'#7a4500', type:'pos'});
   });
 
+  // ── 신계약/DB/피드백/유지 자동 랭킹 배지 (영예 칭호 연동) ──
+  if(rankBadgesByName[name]){
+    rankBadgesByName[name].forEach(b=>badges.push(b));
+  }
+
   // ── 실적 랭킹 ──
   const allPerfs=Object.entries(PERF).map(([n,ap])=>({n,v:ap.totals.perf})).filter(x=>x.v>0);
   allPerfs.sort((a,b)=>b.v-a.v);
@@ -790,6 +796,96 @@ function computeKings(){
       if(!kingsByName[n]) kingsByName[n]=[];
       kingsByName[n].push(title);
     });
+  });
+  computeRankBadges();
+}
+
+// 자동 랭킹 배지 (신계약/DB/피드백/유지 + DB효율형) — 영예 칭호와 동일 풀 사용
+function computeRankBadges(){
+  rankBadgesByName={};
+  const pool=allFAs().map(d=>d.name);
+  if(!pool.length) return;
+
+  // 헬퍼: 상위% + 절대값 컷 동시 충족 시 배지 부여
+  function rankByPool(getValue,t10Abs,t25Abs,label10Fn,label25Fn){
+    const arr=pool.map(n=>({n,v:getValue(n)})).filter(x=>x.v>0);
+    arr.sort((a,b)=>b.v-a.v);
+    const total=arr.length;
+    if(total===0) return;
+    arr.forEach((x,i)=>{
+      const rank=i+1;
+      const pct=rank/total;
+      let b=null;
+      if(pct<=0.10&&x.v>=t10Abs) b=label10Fn(rank,x.v);
+      else if(pct<=0.25&&x.v>=t25Abs) b=label25Fn(rank,x.v);
+      if(b){
+        if(!rankBadgesByName[x.n]) rankBadgesByName[x.n]=[];
+        rankBadgesByName[x.n].push(b);
+      }
+    });
+  }
+
+  // 1) 신계약 건수 (선택 기간 합)
+  rankByPool(
+    n=>{const pd=perfOfMths(n);return pd?.cnt||0;},
+    50,30,
+    r=>({label:`🥇 신계약 다발 TOP${r}`,bg:'#fef4e0',color:'#854f0b',type:'pos'}),
+    r=>({label:`📋 신계약 활발 TOP${r}`,bg:'#fef9ec',color:'#7a4500',type:'pos'})
+  );
+
+  // 2) DB 배정
+  rankByPool(
+    n=>{const t=targetOfMths(n)||{};return t.db||0;},
+    50,30,
+    r=>({label:`🎯 DB 풍부 TOP${r}`,bg:'#e6f1fb',color:'#185fa5',type:'pos'}),
+    r=>({label:`🎲 DB 양호 TOP${r}`,bg:'#eef5fc',color:'#0c447c',type:'pos'})
+  );
+
+  // 3) 피드백 (완료+보류)
+  rankByPool(
+    n=>{const f=feedbackOfMths(n)||{};return (f.done||0)+(f.hold||0);},
+    30,15,
+    r=>({label:`💬 피드백 충실 TOP${r}`,bg:'#f5e8f0',color:'#8b1e58',type:'pos'}),
+    r=>({label:`📞 피드백 활발 TOP${r}`,bg:'#fbeaf0',color:'#72243e',type:'pos'})
+  );
+
+  // 4) 유지율 (마지막 선택월 rate_25, 계약 30건+)
+  const aM=actMths();
+  const lastM=aM&&aM.length?aM[aM.length-1]:null;
+  if(lastM){
+    const retArr=pool.map(n=>{
+      const m=D[n]&&D[n].months&&D[n].months[lastM];
+      if(!m) return null;
+      if((m.total_contracts||0)<30) return null;
+      if(m.rate_25==null) return null;
+      return {n,v:m.rate_25};
+    }).filter(Boolean);
+    retArr.sort((a,b)=>b.v-a.v);
+    const retTotal=retArr.length;
+    retArr.forEach((x,i)=>{
+      const rank=i+1;
+      const pct=rank/retTotal;
+      let b=null;
+      if(pct<=0.10) b={label:`🔒 유지 안정형 TOP${rank}`,bg:'#e6f9f0',color:'#0f6e56',type:'pos'};
+      else if(pct<=0.25) b={label:`🔰 유지 양호 TOP${rank}`,bg:'#eaf3de',color:'#3b6d11',type:'pos'};
+      if(b){
+        if(!rankBadgesByName[x.n]) rankBadgesByName[x.n]=[];
+        rankBadgesByName[x.n].push(b);
+      }
+    });
+  }
+
+  // 5) DB 효율형 (랭킹 아님, 절대 비율 임계만)
+  pool.forEach(n=>{
+    const t=targetOfMths(n)||{};
+    const db=t.db||0, act=t.act||0;
+    if(db>=10&&(act/db)>=0.7){
+      if(!rankBadgesByName[n]) rankBadgesByName[n]=[];
+      rankBadgesByName[n].push({
+        label:`⚡ DB 효율형 ${Math.round(act/db*100)}%`,
+        bg:'#eaf3de',color:'#3b6d11',type:'pos'
+      });
+    }
   });
 }
 
