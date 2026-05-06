@@ -40,8 +40,17 @@ RAW = ROOT / "raw"
 OUT = ROOT / "data" / "data.json"
 LOG_DIR = ROOT / "logs"
 
-Q4_MONTHS = ["10", "11", "12"]
-Q1_MONTHS = ["01", "02", "03"]
+# 회계년도 기준 월 정렬 (10월 시작)
+MONTH_ORDER = {'10': 0, '11': 1, '12': 2, '01': 3, '02': 4, '03': 5,
+               '04': 6, '05': 7, '06': 8, '07': 9, '08': 10, '09': 11}
+
+# 표시용 월 라벨 (25.4Q→26.1Q 회계년도 가정)
+MONTH_LABEL_PREFIX = {
+    '10': '25.10', '11': '25.11', '12': '25.12',
+    '01': '26.1',  '02': '26.2',  '03': '26.3',
+    '04': '26.4',  '05': '26.5',  '06': '26.6',
+    '07': '26.7',  '08': '26.8',  '09': '26.9',
+}
 
 # DB 배정 산정에서 무조건 제외할 FA.
 # manual.json 에 db 값이 있어도 강제로 0 으로 덮어씀.
@@ -368,9 +377,8 @@ def ensure_manual_only_perf(PERF: dict, TARGET: dict, FEEDBACK: dict, D: dict) -
                 "cnt": 0, "prem": 0, "perf": 0, "hwan": 0,
                 "life": 0, "nonlife": 0, "lost": 0, "delay": 0,
                 "avg_perf": 0, "life_ratio": 0, "lost_rate": 0,
-                "q4_cnt": 0, "q1_cnt": 0,
-                "q4_perf": 0, "q1_perf": 0,
                 "growth": None,
+                "growth_label": None,
                 "top_products": {},
             },
             "insurers": {},
@@ -442,8 +450,27 @@ def merge_manual(TARGET: dict, FEEDBACK: dict, path: Path) -> dict:
     }
 
 
+def get_recent_window(months: dict) -> dict | None:
+    """
+    months keys 를 회계년도 순 정렬 후 마지막 6개월에 데이터가 있으면
+    {prev3, last3, label} 반환. 6개월 미만이면 None.
+    label: 'YY.M~YY.M' (prev3 첫 월 ~ last3 마지막 월)
+    """
+    sorted_keys = sorted(
+        [m for m in months.keys() if m in MONTH_ORDER],
+        key=lambda m: MONTH_ORDER[m]
+    )
+    if len(sorted_keys) < 6:
+        return None
+    prev3 = sorted_keys[-6:-3]
+    last3 = sorted_keys[-3:]
+    label = f"{MONTH_LABEL_PREFIX.get(prev3[0], prev3[0])}~{MONTH_LABEL_PREFIX.get(last3[-1], last3[-1])}"
+    return {"prev3": prev3, "last3": last3, "label": label}
+
+
 def recompute_totals(entry: dict) -> None:
-    """PERF[name] 의 totals 를 months 데이터로부터 새로 계산."""
+    """PERF[name] 의 totals 를 months 데이터로부터 새로 계산.
+    growth 는 6개월 슬라이딩 윈도우 (prev 3개월 vs 최근 3개월) 기준."""
     months = entry.get("months", {}) or {}
 
     cnt     = sum(m.get("cnt", 0)     for m in months.values())
@@ -463,11 +490,16 @@ def recompute_totals(entry: dict) -> None:
     life_ratio = round(life / (life + nonlife) * 100, 1) if (life + nonlife) > 0 else 0
     lost_rate  = round(lost / cnt * 100, 1) if cnt > 0 else 0
 
-    q4_cnt  = sum(months.get(m, {}).get("cnt", 0)  for m in Q4_MONTHS)
-    q1_cnt  = sum(months.get(m, {}).get("cnt", 0)  for m in Q1_MONTHS)
-    q4_perf = sum(months.get(m, {}).get("perf", 0) for m in Q4_MONTHS)
-    q1_perf = sum(months.get(m, {}).get("perf", 0) for m in Q1_MONTHS)
-    growth  = round((q1_perf - q4_perf) / q4_perf * 100) if q4_perf > 0 else None
+    # 슬라이딩 윈도우 성장률 (6개월 미만이면 null)
+    window = get_recent_window(months)
+    if window:
+        prev_perf = sum(months.get(m, {}).get("perf", 0) for m in window["prev3"])
+        last_perf = sum(months.get(m, {}).get("perf", 0) for m in window["last3"])
+        growth = round((last_perf - prev_perf) / prev_perf * 100) if prev_perf > 0 else None
+        growth_label = window["label"]
+    else:
+        growth = None
+        growth_label = None
 
     top_products: dict = {}
     for m_data in months.values():
@@ -479,9 +511,8 @@ def recompute_totals(entry: dict) -> None:
         "cnt": cnt, "prem": prem, "perf": perf, "hwan": hwan,
         "life": life, "nonlife": nonlife, "lost": lost, "delay": delay,
         "avg_perf": avg_perf, "life_ratio": life_ratio, "lost_rate": lost_rate,
-        "q4_cnt": q4_cnt, "q1_cnt": q1_cnt,
-        "q4_perf": q4_perf, "q1_perf": q1_perf,
         "growth": growth,
+        "growth_label": growth_label,
         "top_products": top_products,
     }
 

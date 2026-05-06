@@ -666,9 +666,10 @@ function perfOfMths(name) {
   const products={};
   aM.forEach(m=>{Object.entries(p.months[m]?.products||{}).forEach(([k,v])=>{products[k]=(products[k]||0)+v;});});
   const topProds=Object.entries(products).sort((a,b)=>b[1]-a[1]).slice(0,6);
-  const q4p=p.totals.q4_perf||0,q1p=p.totals.q1_perf||0;
-  const growth=q4p>0?Math.round((q1p-q4p)/q4p*100):null;
-  return {cnt,perf,prem,hwan,life,nonlife,lost,delay,topProds,growth,
+  // 성장률은 PERF.totals 의 슬라이딩 윈도우(직전 3M vs 최근 3M) 값을 그대로 사용
+  const growth=p.totals?.growth ?? null;
+  const growthLabel=p.totals?.growth_label || null;
+  return {cnt,perf,prem,hwan,life,nonlife,lost,delay,topProds,growth,growthLabel,
           lifeRatio:cnt>0?Math.round(life/cnt*100):0,
           lostRate:cnt>0?+(lost/cnt*100).toFixed(1):0,
           avgPerf:cnt>0?Math.round(perf/cnt):0};
@@ -702,10 +703,11 @@ function metaBadges(name, pd) {
 
   // ── 성장성 ──
   if(pd.growth!==null){
-    if(pd.growth>=100) badges.push({label:`🚀 폭발성장(25.4Q→26.1Q) +${pd.growth}%`, bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
-    else if(pd.growth>=50) badges.push({label:`📈 고성장(25.4Q→26.1Q) +${pd.growth}%`, bg:'#eaf3de', color:'#3b6d11', type:'pos'});
-    else if(pd.growth<=-50) badges.push({label:`📉 급감(25.4Q→26.1Q) ${pd.growth}%`, bg:'#fcebeb', color:'#a32d2d', type:'neg'});
-    else if(pd.growth<=-25) badges.push({label:`📉 하락(25.4Q→26.1Q) ${pd.growth}%`, bg:'#fff0f0', color:'#c45050', type:'neg'});
+    const gw=pd.growthLabel?`(${pd.growthLabel})`:'';
+    if(pd.growth>=100) badges.push({label:`🚀 폭발성장${gw} +${pd.growth}%`, bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
+    else if(pd.growth>=50) badges.push({label:`📈 고성장${gw} +${pd.growth}%`, bg:'#eaf3de', color:'#3b6d11', type:'pos'});
+    else if(pd.growth<=-50) badges.push({label:`📉 급감${gw} ${pd.growth}%`, bg:'#fcebeb', color:'#a32d2d', type:'neg'});
+    else if(pd.growth<=-25) badges.push({label:`📉 하락${gw} ${pd.growth}%`, bg:'#fff0f0', color:'#c45050', type:'neg'});
   }
 
   // ── 포트폴리오 품질 ──
@@ -1042,8 +1044,8 @@ function perfSectionHTML(name) {
   }).join('');
   const gc=pd.growth===null?null:pd.growth>=0?'#0f6e56':'#a32d2d';
   const growthStrRaw=pd.growth===null?'—':(pd.growth>=0?`+${pd.growth}%`:`${pd.growth}%`);
-  const growthStr=pd.growth===null?'—':`${growthStrRaw}`;
-  const growthKpiStr=pd.growth===null?'—':`25.4Q→26.1Q ${growthStrRaw}`;
+  const growthStr=growthStrRaw;
+  const growthKpiLabel=pd.growth===null?'성장률 (데이터 부족)':`성장률 (${pd.growthLabel||''})`;
   const allBadgeHTML=[...posBadges,...crossBadges,...negBadges]
     .map(b=>`<span class="mbadge" style="background:${b.bg};color:${b.color}">${b.label}</span>`).join('');
   // 기간 레이블: 선택된 첫월 ~ 마지막월
@@ -1075,7 +1077,7 @@ function perfSectionHTML(name) {
       <div class="perf-kpi"><div class="pv" style="color:#185fa5">${pd.cnt}건</div><div class="pl">신계약건수</div></div>
       <div class="perf-kpi"><div class="pv">${fmtW(pd.prem)}</div><div class="pl">월납보험료</div></div>
       <div class="perf-kpi"><div class="pv">${fmtW(pd.perf)}</div><div class="pl">인정실적</div></div>
-      <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStrRaw}</div><div class="pl">분기 성장 (25.4Q→26.1Q)</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStrRaw}</div><div class="pl">${growthKpiLabel}</div></div>
     </div>
     ${tHas?`<div class="perf-kpis" style="grid-template-columns:repeat(5,1fr)">
       <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#185fa5'}">${kang?'—':td.db+'건'}</div><div class="pl">누적 DB배정</div></div>
@@ -1516,7 +1518,7 @@ function renderPerfView(agents) {
             <th onclick="perfSort('prem')" class="${perfSortCol==='prem'?'asc':''}">월납보험료<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='prem'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
             <th onclick="perfSort('perf')" class="${perfSortCol==='perf'?'asc':''}">인정실적<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='perf'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
             <th onclick="perfSort('unit')" class="${perfSortCol==='unit'?'asc':''}">건당단가<span class="si2">${perfSortCol==='unit'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
-            <th onclick="perfSort('growth')" class="${perfSortCol==='growth'?'asc':''}">분기성장<br><span style="font-weight:400;font-size:9px;color:#a09f98">25.4Q→26.1Q</span><span class="si2">${perfSortCol==='growth'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
+            <th onclick="perfSort('growth')" class="${perfSortCol==='growth'?'asc':''}">성장률<br><span style="font-weight:400;font-size:9px;color:#a09f98">직전3M↔최근3M</span><span class="si2">${perfSortCol==='growth'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
             <th onclick="perfSort('db')" class="${perfSortCol==='db'?'asc':''}">DB<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='db'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
             <th onclick="perfSort('ext')" class="${perfSortCol==='ext'?'asc':''}">외활<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='ext'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
             <th onclick="perfSort('fb')" class="${perfSortCol==='fb'?'asc':''}">피드백<div style="font-size:9px;color:#a09f98;font-weight:400">(누적/평균)</div><span class="si2">${perfSortCol==='fb'?(perfSortDir==='desc'?'▼':'▲'):'⇅'}</span></th>
@@ -1601,7 +1603,7 @@ function renderPerfView(agents) {
                 <div class="pmc-kpi"><span class="pmc-num">${pd?pd.cnt+'건':'—'}</span><span class="pmc-label">신계약</span></div>
                 <div class="pmc-kpi"><span class="pmc-num">${pd?fmtW(pd.prem):'—'}</span><span class="pmc-label">월납</span></div>
                 <div class="pmc-kpi"><span class="pmc-num">${pd?fmtW(pd.perf):'—'}</span><span class="pmc-label">실적</span></div>
-                <div class="pmc-kpi"><span class="pmc-num ${growthCls}">${growthStr}</span><span class="pmc-label">분기성장</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${growthCls}">${growthStr}</span><span class="pmc-label">성장률</span></div>
               </div>
               <canvas class="pmc-spark" id="spp${id}"></canvas>
             </div>
