@@ -394,11 +394,16 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     <button class="cbtn" onclick="clearAll()">전체 해제</button>
     <select class="sort-sel" id="sortSel" onchange="render()">
       <option value="name">이름순</option>
-      <option value="rate_d">유지율 높은순</option>
-      <option value="rate_a">유지율 낮은순</option>
-      <option value="drop">하락폭 큰순</option>
-      <option value="cnt">계약건수순</option>
-      <option value="lost">이탈건수순</option>
+      <option value="perf">누적 인정실적 ↓</option>
+      <option value="cnt">누적 신계약건수 ↓</option>
+      <option value="db">누적 DB배정 ↓</option>
+      <option value="act">누적 외활 ↓</option>
+      <option value="fb">누적 피드백 ↓</option>
+      <option value="recent_perf">최근월 실적 ↓</option>
+      <option value="ach">목표달성률 ↓</option>
+      <option value="last_rate">마지막월 유지율 ↓</option>
+      <option value="growth">성장률 ↓</option>
+      <option value="team">팀별 그룹</option>
     </select>
   </div>
   <div class="cr"><span class="cl"></span><div class="pills" id="pillsWrap"></div></div>
@@ -575,16 +580,55 @@ function gradeStyle(g){
   };
   return map[g]||map.n;
 }
+// 정렬 헬퍼 — D[name].months 의 마지막 rate_25 (selMonths 무관)
+function lastDataRate(name){
+  const d=D&&D[name]; if(!d||!d.months) return null;
+  const ms=Object.keys(d.months).filter(m=>d.months[m]?.rate_25!=null)
+    .sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
+  return ms.length?d.months[ms[ms.length-1]].rate_25:null;
+}
+// 누적 TARGET 합계 (전체 월)
+function targetTotalsAll(name){
+  const t=TARGET&&TARGET[name]; if(!t) return {db:0,act:0,goal:0,premSum:0,ach:null};
+  let db=0,act=0,goal=0,premSum=0;
+  Object.keys(t).forEach(m=>{const v=t[m];if(!v)return;db+=v.db||0;act+=v.act||0;goal+=v.goal||0;});
+  Object.keys(t).forEach(m=>{premSum+=PERF[name]?.months?.[m]?.prem||0;});
+  const ach=goal>0?(premSum/goal*100):null;
+  return {db,act,goal,premSum,ach};
+}
+function feedbackTotalAll(name){
+  const f=FEEDBACK&&FEEDBACK[name]; if(!f) return 0;
+  return Object.values(f).reduce((s,v)=>s+(v?.done||0)+(v?.hold||0),0);
+}
+// 최근월 (PERF/D 합산 마지막 데이터 월)
+function recentMonthOfFA(name){
+  const months=new Set([
+    ...Object.keys(D[name]?.months||{}),
+    ...Object.keys(PERF[name]?.months||{})
+  ]);
+  const sorted=[...months].sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
+  return sorted.length?sorted[sorted.length-1]:null;
+}
+// 팀 정렬 우선순위 (작은 값 = 먼저)
+const TEAM_RANK={'Team 0':0,'Team 1':1,'Team 2':2,'Team 3':3,'강서지사':4,'서울지사':5,'미배정':6,'기타':7};
+
 function sortedFiltered(){
   const s=document.getElementById('sortSel').value;
   let list=allFAs().filter(d=>sel.has(d.name)&&passesFilters(d));
+  // 강서지사 룰 적용 컬럼 — 강서지사를 항상 최하로 보냄
+  const kangFirst=(a,b)=>{const ak=isKangseo(a.name),bk=isKangseo(b.name);if(ak&&!bk)return 1;if(!ak&&bk)return -1;return 0;};
   return list.sort((a,b)=>{
     if(s==='name')return a.name.localeCompare(b.name,'ko');
-    if(s==='rate_d')return(lr(b)??-1)-(lr(a)??-1);
-    if(s==='rate_a')return(lr(a)??999)-(lr(b)??999);
-    if(s==='drop')return(chg(a)??0)-(chg(b)??0);
-    if(s==='cnt')return(lmd(b).total_contracts||0)-(lmd(a).total_contracts||0);
-    if(s==='lost')return totalLostN(b.name)-totalLostN(a.name);
+    if(s==='perf'){const va=PERF[a.name]?.totals?.perf||0,vb=PERF[b.name]?.totals?.perf||0;return vb-va;}
+    if(s==='cnt'){const va=PERF[a.name]?.totals?.cnt||0,vb=PERF[b.name]?.totals?.cnt||0;return vb-va;}
+    if(s==='db'){const k=kangFirst(a,b);if(k)return k;const ta=targetTotalsAll(a.name),tb=targetTotalsAll(b.name);return tb.db-ta.db;}
+    if(s==='act'){const k=kangFirst(a,b);if(k)return k;const ta=targetTotalsAll(a.name),tb=targetTotalsAll(b.name);return tb.act-ta.act;}
+    if(s==='fb'){const k=kangFirst(a,b);if(k)return k;return feedbackTotalAll(b.name)-feedbackTotalAll(a.name);}
+    if(s==='recent_perf'){const ma=recentMonthOfFA(a.name),mb=recentMonthOfFA(b.name);const va=ma?(PERF[a.name]?.months?.[ma]?.perf||0):-1;const vb=mb?(PERF[b.name]?.months?.[mb]?.perf||0):-1;return vb-va;}
+    if(s==='ach'){const k=kangFirst(a,b);if(k)return k;const ta=targetTotalsAll(a.name).ach,tb=targetTotalsAll(b.name).ach;return (tb??-1)-(ta??-1);}
+    if(s==='last_rate'){const ra=lastDataRate(a.name),rb=lastDataRate(b.name);return (rb??-1)-(ra??-1);}
+    if(s==='growth'){const ga=PERF[a.name]?.totals?.growth,gb=PERF[b.name]?.totals?.growth;return (gb??-9999)-(ga??-9999);}
+    if(s==='team'){const ra=TEAM_RANK[a.team]??99,rb=TEAM_RANK[b.team]??99;if(ra!==rb)return ra-rb;return a.name.localeCompare(b.name,'ko');}
     return 0;
   });
 }
