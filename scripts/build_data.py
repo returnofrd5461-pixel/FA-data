@@ -43,6 +43,10 @@ LOG_DIR = ROOT / "logs"
 Q4_MONTHS = ["10", "11", "12"]
 Q1_MONTHS = ["01", "02", "03"]
 
+# DB 배정 산정에서 무조건 제외할 FA.
+# manual.json 에 db 값이 있어도 강제로 0 으로 덮어씀.
+DB_EXCLUDE = {"신지원", "정민욱", "이연식", "김성한"}
+
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
@@ -340,6 +344,56 @@ def merge_PERF(existing: dict, fragment: dict, D_merged: dict) -> dict:
     return out
 
 
+def merge_manual(TARGET: dict, FEEDBACK: dict, path: Path) -> dict:
+    """
+    manual.json 한 개 파일을 TARGET / FEEDBACK 에 머지.
+    - TARGET[FA][month] = {db, act, goal} — goal 은 기존 값 보존
+    - FEEDBACK[FA][month] = {done, hold}
+    - DB_EXCLUDE FA 는 db 값 강제 0
+    - 기존에 없는 FA 는 자동 생성
+    반환: 통계 dict (month, target_count, feedback_count, db_excluded)
+    """
+    data = json.loads(path.read_text(encoding="utf-8"))
+    month = str(data.get("month", "")).strip().zfill(2)
+    if not month:
+        print(f"[WARN] {path}: 'month' 필드 없음 — 스킵")
+        return {"path": str(path), "month": "", "target_count": 0,
+                "feedback_count": 0, "db_excluded": 0}
+
+    target_in   = data.get("target")   or {}
+    feedback_in = data.get("feedback") or {}
+
+    db_excluded_count = 0
+    for name, vals in target_in.items():
+        if not isinstance(vals, dict):
+            continue
+        db  = num(vals.get("db"))
+        act = num(vals.get("act"))
+        if name in DB_EXCLUDE:
+            db = 0
+            db_excluded_count += 1
+        existing_month = (TARGET.get(name) or {}).get(month) or {}
+        goal = existing_month.get("goal", 0)
+        TARGET.setdefault(name, {})
+        TARGET[name][month] = {"db": db, "act": act, "goal": goal}
+
+    for name, vals in feedback_in.items():
+        if not isinstance(vals, dict):
+            continue
+        done = num(vals.get("done"))
+        hold = num(vals.get("hold"))
+        FEEDBACK.setdefault(name, {})
+        FEEDBACK[name][month] = {"done": done, "hold": hold}
+
+    return {
+        "path": str(path),
+        "month": month,
+        "target_count": len(target_in),
+        "feedback_count": len(feedback_in),
+        "db_excluded": db_excluded_count,
+    }
+
+
 def recompute_totals(entry: dict) -> None:
     """PERF[name] 의 totals 를 months 데이터로부터 새로 계산."""
     months = entry.get("months", {}) or {}
@@ -392,16 +446,18 @@ def main():
                         help="머지·정제만 시뮬레이션, 파일 쓰기 안 함")
     args = parser.parse_args()
 
-    print("▶ 파일 탐색 중 (raw/**/*.xlsx 재귀)...")
-    f_d    = find_files("손생보합산*.xlsx")
-    f_lost = find_files("통산유지율*.xlsx")
-    f_perf = find_files("건별실적*.xlsx")
+    print("▶ 파일 탐색 중 (raw/ 재귀)...")
+    f_d      = find_files("손생보합산*.xlsx")
+    f_lost   = find_files("통산유지율*.xlsx")
+    f_perf   = find_files("건별실적*.xlsx")
+    f_manual = find_files("manual.json")
 
-    for label, files in [("D", f_d), ("LOST", f_lost), ("PERF", f_perf)]:
+    for label, files in [("D", f_d), ("LOST", f_lost), ("PERF", f_perf),
+                         ("Manual", f_manual)]:
         if files:
-            print(f"  {label:<5} ← {[p.name for p in files]}")
+            print(f"  {label:<6} ← {[p.name for p in files]}")
         else:
-            print(f"  {label:<5} (입력 파일 없음 — 기존 데이터 유지)")
+            print(f"  {label:<6} (입력 파일 없음 — 기존 데이터 유지)")
 
     print("\n▶ 기존 data.json 로드...")
     existing: dict = {}
@@ -414,11 +470,15 @@ def main():
     existing.setdefault("D", {})
     existing.setdefault("LOST", {})
     existing.setdefault("PERF", {})
+    existing.setdefault("TARGET", {})
+    existing.setdefault("FEEDBACK", {})
 
     print("\n▶ 머지 진행...")
-    D_merged    = existing["D"]
-    LOST_merged = existing["LOST"]
-    PERF_merged = existing["PERF"]
+    D_merged        = existing["D"]
+    LOST_merged     = existing["LOST"]
+    PERF_merged     = existing["PERF"]
+    TARGET_merged   = existing["TARGET"]
+    FEEDBACK_merged = existing["FEEDBACK"]
     exclude_log: list = []
 
     for path in f_d:
@@ -428,6 +488,18 @@ def main():
     for path in f_perf:
         frag = build_PERF_fragment(path, exclude_log)
         PERF_merged = merge_PERF(PERF_merged, frag, D_merged)
+
+    # manual.json — TARGET / FEEDBACK 머지
+    if f_manual:
+        print(f"\n[manual] {len(f_manual)}개 파일 처리")
+    for path in f_manual:
+        stats = merge_manual(TARGET_merged, FEEDBACK_merged, path)
+        rel = path.relative_to(ROOT).as_posix()
+        m = stats["month"] or "??"
+        print(f"  ← {rel}")
+        print(f"    TARGET 갱신:   {m}월, FA {stats['target_count']}명 "
+              f"(DB 강제 0: {stats['db_excluded']}명)")
+        print(f"    FEEDBACK 갱신: {m}월, FA {stats['feedback_count']}명")
 
     # 일시납 요약
     print()
@@ -458,13 +530,12 @@ def main():
             "lastUpdated": now_kst.isoformat(),
             "dataMonths":  sorted(all_months),
         },
-        "D":    D_merged,
-        "LOST": LOST_merged,
-        "PERF": PERF_merged,
+        "D":        D_merged,
+        "LOST":     LOST_merged,
+        "PERF":     PERF_merged,
+        "TARGET":   TARGET_merged,
+        "FEEDBACK": FEEDBACK_merged,
     }
-    for k in ("TARGET", "FEEDBACK"):
-        if k in existing:
-            out[k] = existing[k]
 
     if args.dry_run:
         print("\n[DRY-RUN] 파일 쓰기 생략. 머지 결과 요약:")
