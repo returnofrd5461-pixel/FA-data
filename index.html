@@ -236,7 +236,7 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 </head>
 <body>
 <div class="ph">
-  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub"><span id="phSub">법인전략사업단 · 25회 통산유지율 (25.4분기 + 26.1분기)</span><span class="sub-divider">|</span><span id="phUpdated">📅 최종 업데이트: —</span></div></div>
+  <div class="ph-l"><h1 class="main-title"><span class="title-accent">TOP 0.01%</span><br><span class="title-main">통합 관리 시스템</span></h1><div class="sub"><span id="phSub">인카금융서비스 법인전략사업단</span><span class="sub-divider">|</span><span id="phUpdated">📅 최종 업데이트: —</span></div></div>
   <div class="ph-r">
     <div class="vtog">
       <button id="vCard" class="vtbtn on" onclick="setView('card')">카드 뷰</button>
@@ -627,7 +627,7 @@ function quickSelect(t){
 function updatePeriodBadge(){
   const a=actMths();const lbl=a.length===AVAIL_MONTHS.length?'전체 기간':a.map(m=>ML_MAP[m]||m).join(' · ');
   document.getElementById('periodBadge').textContent=lbl;
-  document.getElementById('phSub').textContent='법인전략사업단 · 25회 통산유지율 · '+lbl;
+  document.getElementById('phSub').textContent='인카금융서비스 법인전략사업단';
 }
 function updateQuickBtns(){
   const a=actMths(),av=AVAIL_MONTHS;
