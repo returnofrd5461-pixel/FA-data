@@ -472,14 +472,21 @@ def merge_manual(TARGET: dict, FEEDBACK: dict, path: Path) -> dict:
     }
 
 
-def get_recent_window(months: dict) -> dict | None:
+def compute_global_window(D: dict, PERF: dict) -> dict | None:
     """
-    months keys 를 회계년도 순 정렬 후 마지막 6개월에 데이터가 있으면
-    {prev3, last3, label} 반환. 6개월 미만이면 None.
-    label: 'YY.M~YY.M' (prev3 첫 월 ~ last3 마지막 월)
+    전체 캘린더 기준 윈도우. D∪PERF 에서 등장한 모든 월 회계순 정렬 후
+    마지막 6개월이 확보되면 prev3 / last3 / label 반환. 미만이면 None.
+
+    개별 FA 의 활동 0월(missing month)도 0으로 합산되도록 윈도우 자체는
+    글로벌 캘린더 기반으로 고정. 모든 FA 가 동일 라벨/동일 윈도우 사용.
     """
+    months_set: set = set()
+    for name, dd in (D or {}).items():
+        months_set.update((dd.get("months") or {}).keys())
+    for name, p in (PERF or {}).items():
+        months_set.update((p.get("months") or {}).keys())
     sorted_keys = sorted(
-        [m for m in months.keys() if m in MONTH_ORDER],
+        [m for m in months_set if m in MONTH_ORDER],
         key=lambda m: MONTH_ORDER[m]
     )
     if len(sorted_keys) < 6:
@@ -490,9 +497,10 @@ def get_recent_window(months: dict) -> dict | None:
     return {"prev3": prev3, "last3": last3, "label": label}
 
 
-def recompute_totals(entry: dict) -> None:
+def recompute_totals(entry: dict, global_window: dict | None = None) -> None:
     """PERF[name] 의 totals 를 months 데이터로부터 새로 계산.
-    growth 는 6개월 슬라이딩 윈도우 (prev 3개월 vs 최근 3개월) 기준."""
+    growth 는 글로벌 캘린더 윈도우 기준 (모든 FA 동일 윈도우).
+    global_window=None 이면 growth/growth_label = None."""
     months = entry.get("months", {}) or {}
 
     cnt     = sum(m.get("cnt", 0)     for m in months.values())
@@ -512,13 +520,12 @@ def recompute_totals(entry: dict) -> None:
     life_ratio = round(life / (life + nonlife) * 100, 1) if (life + nonlife) > 0 else 0
     lost_rate  = round(lost / cnt * 100, 1) if cnt > 0 else 0
 
-    # 슬라이딩 윈도우 성장률 (6개월 미만이면 null)
-    window = get_recent_window(months)
-    if window:
-        prev_perf = sum(months.get(m, {}).get("perf", 0) for m in window["prev3"])
-        last_perf = sum(months.get(m, {}).get("perf", 0) for m in window["last3"])
+    # 글로벌 윈도우 기준 성장률 — 활동 0월은 0으로 합산
+    if global_window:
+        prev_perf = sum(months.get(m, {}).get("perf", 0) for m in global_window["prev3"])
+        last_perf = sum(months.get(m, {}).get("perf", 0) for m in global_window["last3"])
         growth = round((last_perf - prev_perf) / prev_perf * 100) if prev_perf > 0 else None
-        growth_label = window["label"]
+        growth_label = global_window["label"]
     else:
         growth = None
         growth_label = None
@@ -615,6 +622,16 @@ def main():
     fixed = sync_team(PERF_merged, D_merged, fa_team_all)
     if fixed:
         print(f"[team sync] {fixed}명의 PERF.team 갱신 (manual fa_team 우선)")
+
+    # 글로벌 캘린더 윈도우 기반 성장률 — 모든 FA 동일 윈도우 적용
+    global_window = compute_global_window(D_merged, PERF_merged)
+    if global_window:
+        print(f"[성장률 윈도우] {global_window['label']} "
+              f"(prev3={global_window['prev3']}, last3={global_window['last3']})")
+    else:
+        print("[성장률 윈도우] 데이터 6개월 미만 — 모든 FA growth=null")
+    for name in PERF_merged:
+        recompute_totals(PERF_merged[name], global_window)
 
     # 일시납 요약
     print()
