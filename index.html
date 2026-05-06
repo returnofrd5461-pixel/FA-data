@@ -354,7 +354,8 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
   </div>
   <div class="cr">
     <span class="cl">기간 선택</span>
-    <button class="qbtn" id="qAll" onclick="quickSelect('all')">전체</button>
+    <button class="qbtn" id="qAll" onclick="quickSelect('all')">전체선택</button>
+    <button class="qbtn" id="qNone" onclick="quickSelect('none')">전체해제</button>
     <button class="qbtn" id="qQ4" onclick="quickSelect('q4')">25.4분기</button>
     <button class="qbtn" id="qQ1" onclick="quickSelect('q1')">26.1분기</button>
     <button class="qbtn" id="qRecent" onclick="quickSelect('recent2')">최근2개월</button>
@@ -619,10 +620,11 @@ function toggleMonth(m){
 function quickSelect(t){
   const Q1=['01','02','03'],Q4=['10','11','12'];
   if(t==='all')selMonths=new Set(AVAIL_MONTHS);
+  else if(t==='none')selMonths=new Set();
   else if(t==='q1')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q1.includes(m)));
   else if(t==='q4')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q4.includes(m)));
   else if(t==='recent2'){const a=AVAIL_MONTHS;selMonths=new Set(a.slice(-2));}
-  buildMonthBtns();computeKings();render();
+  updatePeriodBadge();updateQuickBtns();buildMonthBtns();computeKings();render();
 }
 function updatePeriodBadge(){
   const a=actMths();const lbl=a.length===AVAIL_MONTHS.length?'전체 기간':a.map(m=>ML_MAP[m]||m).join(' · ');
