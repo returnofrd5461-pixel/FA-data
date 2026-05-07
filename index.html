@@ -957,7 +957,7 @@ function computeKings(){
     '🚶 외활왕':   findTops('act', s=>!isKangseo(s.name)),
     '💬 피드백왕': findTops('fb', s=>!isKangseo(s.name)),
     '🛡️ 유지왕':   findTops('rate', s=>s.cntForRate>=50&&s.rate!=null),
-    '🚀 성장왕':   findTops('growth', s=>s.growth!=null)
+    '🚀 성장왕':   findTops('growth', s=>{const g=perfGrade(s.name);return s.growth!=null&&(g==='s'||g==='a');})
   };
   Object.entries(kings).forEach(([title,names])=>{
     names.forEach(n=>{
