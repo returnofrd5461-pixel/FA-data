@@ -814,6 +814,14 @@ function metaBadges(name, pd) {
       badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, bg:'#fcebeb', color:'#a32d2d', type:'neg'});
     if(td.dbUse!=null&&td.dbUse<30&&td.db>0&&!isKangseo(name))
       badges.push({label:'📋 DB 활용 부진', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+
+    // ── 피드백 활용 부진 (DB 활용 부진 미러: 외활 대비 피드백 비율) ──
+    const fd=feedbackOfMths(name);
+    const fbTotal=fd?(fd.done||0)+(fd.hold||0):0;
+    const actCnt=td.act||0;
+    if(!isKangseo(name)&&actCnt>=5&&(fbTotal/actCnt)<0.3){
+      badges.push({label:`📵 피드백 활용 부진 ${Math.round(fbTotal/actCnt*100)}%`, bg:'#fcebeb', color:'#a32d2d', type:'neg'});
+    }
   }
 
   return badges;
