@@ -882,8 +882,20 @@ function metaBadges(name, pd) {
       badges.push({label:`🎯 목표초과달성 +${(td.ach-100).toFixed(0)}%`, kw:'goal_exceed', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
     else if(td.ach!=null&&td.ach<70)
       badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, kw:'goal_miss', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
-    if(td.dbUse!=null&&td.dbUse<30&&td.db>0&&!isKangseo(name))
-      badges.push({label:'📋 DB 활용 부진', kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+    if(!isKangseo(name)){
+      let dbInactive=false, ratio=0;
+      if(td.db>0&&td.dbUse!=null&&td.dbUse<30){
+        dbInactive=true;
+        ratio=Math.round(td.dbUse);
+      } else if(td.db===0){
+        // 강서지사 외 DB 0건 = 활용 0%로 부진 부여
+        dbInactive=true;
+        ratio=0;
+      }
+      if(dbInactive){
+        badges.push({label:`📋 DB 활용 부진 ${ratio}%`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+      }
+    }
 
     // ── 피드백 활용 부진 (DB 활용 부진 미러: 외활 대비 피드백 비율) ──
     const fd=feedbackOfMths(name);
