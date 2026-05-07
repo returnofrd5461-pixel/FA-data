@@ -838,8 +838,16 @@ function metaBadges(name, pd) {
   // ── 성장성 ──
   if(pd.growth!==null){
     const gw=pd.growthLabel?`(${pd.growthLabel})`:'';
-    if(pd.growth>=100) badges.push({label:`🚀 폭발성장${gw} +${pd.growth}%`, kw:'growth_explosive', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
-    else if(pd.growth>=50) badges.push({label:`📈 고성장${gw} +${pd.growth}%`, kw:'growth_high', bg:'#eaf3de', color:'#3b6d11', type:'pos'});
+    const grade=perfGrade(name);
+    // 폭발성장: 성과 B 이상 (s/a/b)
+    if(pd.growth>=100 && (grade==='s'||grade==='a'||grade==='b')){
+      badges.push({label:`🚀 폭발성장${gw} +${pd.growth}%`, kw:'growth_explosive', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
+    }
+    // 고성장: 성과 C 이상 (s/a/b/c) — 폭발성장 등급 미달자도 흡수
+    else if(pd.growth>=50 && (grade==='s'||grade==='a'||grade==='b'||grade==='c')){
+      badges.push({label:`📈 고성장${gw} +${pd.growth}%`, kw:'growth_high', bg:'#eaf3de', color:'#3b6d11', type:'pos'});
+    }
+    // 급감/하락(부정 배지)은 등급 무관 — 약한 신호도 경고로 잡아야 함
     else if(pd.growth<=-50) badges.push({label:`📉 급감${gw} ${pd.growth}%`, kw:'growth_crash', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
     else if(pd.growth<=-25) badges.push({label:`📉 하락${gw} ${pd.growth}%`, kw:'growth_fall', bg:'#fff0f0', color:'#c45050', type:'neg'});
   }
