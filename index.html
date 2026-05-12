@@ -197,9 +197,11 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 .pmc-row{display:grid;grid-template-columns:80px 1fr 60px;gap:10px;align-items:center;padding:10px 12px;border-radius:6px}
 .pmc-row.pmc-maint{background:linear-gradient(90deg,#fdf6f0 0%,#faf2e8 100%);border-left:3px solid #c8975c}
 .pmc-row.pmc-perf{background:linear-gradient(90deg,#f0f7fd 0%,#e8f1fb 100%);border-left:3px solid #5c93c8}
+.pmc-row.pmc-act{background:linear-gradient(90deg,#f0faf3 0%,#e8f5ec 100%);border-left:3px solid #5cb87a}
 .pmc-section-label{font-size:10px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase}
 .pmc-row.pmc-maint .pmc-section-label{color:#854f0b}
 .pmc-row.pmc-perf .pmc-section-label{color:#1a4d7d}
+.pmc-row.pmc-act .pmc-section-label{color:#1c6b3a}
 .pmc-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .pmc-kpi{display:flex;flex-direction:column;gap:2px;min-width:0}
 .pmc-num{font-size:15px;font-weight:800;color:#1a1816;font-variant-numeric:tabular-nums;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1718,6 +1720,21 @@ function renderPerfView(agents) {
         const growthStr=pd?.growth==null?'—':(pd.growth>=0?`+${pd.growth}%`:`${pd.growth}%`);
         const growthCls=pd?.growth==null?'muted':pd.growth>0?'success':pd.growth<0?'danger':'';
 
+        // 활동관리 데이터 (강서지사는 룰상 미산정 → 모든 셀 '—')
+        const td=targetOfMths(d.name);
+        const fd=feedbackOfMths(d.name);
+        const kang=isKangseo(d.name);
+        const dbStr=kang?'—':(td?.db??0)+'건';
+        const actStr=kang?'—':(td?.act??0)+'건';
+        const fbTotal=fd?(fd.done||0)+(fd.hold||0):0;
+        const fbStr=kang?'—':fbTotal+'건';
+        const achV=td?.ach;
+        const achStr=achV==null?'—':achV.toFixed(0)+'%';
+        const achCls=achV==null?'muted':achV>=110?'success':achV<70?'danger':achV<90?'warning':'';
+        const dbCls=kang?'muted':(td?.db>0?'':'muted');
+        const actCls=kang?'muted':(td?.act>0?'':'muted');
+        const fbCls=kang?'muted':(fbTotal>0?'':'muted');
+
         // 영예칭호(왕) 우선 + 긍정/교차 + 부정 순서, 최대 4개
         const badges=metaBadges(d.name, pd);
         const KING_LABELS=['실적왕','신계약왕','보험료왕','DB왕','외활왕','피드백왕','유지왕','성장왕'];
@@ -1766,6 +1783,16 @@ function renderPerfView(agents) {
               </div>
               <canvas class="pmc-spark" id="spp${id}"></canvas>
             </div>
+            <div class="pmc-row pmc-act">
+              <div class="pmc-section-label">🚶 활동관리</div>
+              <div class="pmc-kpis">
+                <div class="pmc-kpi"><span class="pmc-num ${dbCls}">${dbStr}</span><span class="pmc-label">DB</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${actCls}">${actStr}</span><span class="pmc-label">외활</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${fbCls}">${fbStr}</span><span class="pmc-label">피드백</span></div>
+                <div class="pmc-kpi"><span class="pmc-num ${achCls}">${achStr}</span><span class="pmc-label">달성률</span></div>
+              </div>
+              <canvas class="pmc-spark" id="spa${id}"></canvas>
+            </div>
           </div>
         </div>`;
       }).join('');
@@ -1813,6 +1840,23 @@ function renderPerfView(agents) {
               plugins:{legend:{display:false},tooltip:{enabled:false}},
               scales:{x:{display:false},y:{display:false}}}});
         }
+      }
+
+      // 외활 sparkline (bar) — 강서지사 또는 데이터 없으면 빈 차트
+      const t=TARGET&&TARGET[d.name];
+      const cidA='spa'+id;
+      const elA=document.getElementById(cidA);
+      if(elA){
+        const actArr=aM.map(m=>t&&t[m]?(t[m].act||0):0);
+        if(charts[cidA]){try{charts[cidA].destroy();}catch(e){}}
+        charts[cidA]=new Chart(elA,{type:'bar',
+          data:{labels:mL,datasets:[{
+            data:actArr,backgroundColor:'#5cb87a',borderRadius:1
+          }]},
+          options:{responsive:true,maintainAspectRatio:false,animation:false,
+            devicePixelRatio:window.devicePixelRatio||2,
+            plugins:{legend:{display:false},tooltip:{enabled:false}},
+            scales:{x:{display:false},y:{display:false}}}});
       }
     });
   },60);
