@@ -23,7 +23,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .vtbtn.on{background:#1a1816;color:#fff}
 .btn-dl{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;background:#f0eee9;color:#1a1816;border:1px solid #e0dfd8;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap}
 .btn-dl:hover{background:#e8e5dc}
-.ctrl{background:#fff;border-bottom:1px solid #e0dfd8;padding:11px 24px;display:flex;flex-direction:column;gap:8px}
+.ctrl-wrap{background:#fff;border-bottom:1px solid #e0dfd8;display:flex;align-items:stretch}
+.ctrl{flex:1;min-width:0;padding:11px 24px;display:flex;flex-direction:column;gap:8px}
+.update-note{width:260px;flex-shrink:0;padding:10px 14px;background:linear-gradient(180deg,#faf8f3 0%,#fff 100%);border-left:1px solid #e8e5dc;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.update-note .un-hd{display:flex;align-items:baseline;gap:6px;font-size:11px;font-weight:700;color:#854f0b;letter-spacing:0.5px}
+.update-note .un-hd .un-hd-sub{font-size:9px;font-weight:500;color:#a09f98;letter-spacing:0}
+.update-note .un-entry{padding-top:4px;border-top:1px dashed #ede9dd}
+.update-note .un-entry:first-of-type{border-top:none;padding-top:0}
+.update-note .un-date{font-size:11px;font-weight:600;color:#1a1816;margin-bottom:3px;display:flex;align-items:center;gap:5px}
+.update-note .un-date .un-today{background:#c8975c;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;letter-spacing:0.3px}
+.update-note .un-items{display:flex;flex-direction:column;gap:2px;list-style:none;padding:0;margin:0}
+.update-note .un-item{font-size:10.5px;color:#5f5e5a;line-height:1.45;padding-left:9px;position:relative}
+.update-note .un-item::before{content:'·';position:absolute;left:0;color:#c8975c;font-weight:900}
+.update-note .un-more{font-size:10px;color:#a09f98;cursor:pointer;text-align:right;margin-top:auto;padding-top:4px;border-top:1px dashed #ede9dd}
+.update-note .un-more:hover{color:#5f5e5a}
+@media (max-width:1100px){.update-note{display:none}}
 .cr{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .cl{font-size:11px;font-weight:500;color:#73726c;min-width:56px;flex-shrink:0}
 .divv{width:1px;height:16px;background:#d3d1c7;margin:0 1px;flex-shrink:0}
@@ -349,6 +363,7 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     </div>
   </div>
 </aside>
+<div class="ctrl-wrap">
 <div class="ctrl">
   <div class="cr"><span class="cl">팀 필터</span><div id="teamBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div></div>
   <div class="cr">
@@ -428,6 +443,11 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     </select>
   </div>
   <div class="cr"><span class="cl"></span><div class="pills" id="pillsWrap"></div></div>
+</div>
+<aside class="update-note" id="updateNote">
+  <div class="un-hd">📌 최근 업데이트 <span class="un-hd-sub">UPDATE NOTES</span></div>
+  <div id="updateNoteBody"></div>
+</aside>
 </div>
 <div class="sumbar" id="sumbar"></div>
 <div class="main" id="captureArea">
@@ -2264,6 +2284,45 @@ function downloadImg(){
     btn.textContent='↓ 이미지 저장';
   });
 }
+
+// 업데이트 노트 렌더 — data/updates.json fetch (최신 1건만 풀로, 이전 2건은 접힌 헤더로)
+function fmtUpdateDate(s){
+  const d=new Date(s+'T00:00:00+09:00');
+  const t=new Date(); t.setHours(0,0,0,0);
+  const diff=Math.floor((t-d)/86400000);
+  const yy=d.getFullYear().toString().slice(2),mm=String(d.getMonth()+1).padStart(2,'0'),dd=String(d.getDate()).padStart(2,'0');
+  const ymd=`${yy}.${mm}.${dd}`;
+  if(diff===0) return {label:ymd, today:true};
+  if(diff===1) return {label:ymd, hint:'어제'};
+  if(diff<7) return {label:ymd, hint:diff+'일 전'};
+  return {label:ymd};
+}
+function renderUpdateNote(entries){
+  const body=document.getElementById('updateNoteBody');
+  if(!body||!entries||!entries.length) return;
+  const first=entries[0];
+  const f=fmtUpdateDate(first.date);
+  let html=`<div class="un-entry">
+    <div class="un-date">${f.label}${f.today?'<span class="un-today">TODAY</span>':(f.hint?'<span style="font-size:9px;color:#a09f98;font-weight:500">'+f.hint+'</span>':'')}</div>
+    <ul class="un-items">${(first.items||[]).map(it=>`<li class="un-item">${it}</li>`).join('')}</ul>
+  </div>`;
+  const older=entries.slice(1,4);
+  if(older.length){
+    html+=`<details style="margin-top:4px"><summary style="font-size:10px;color:#a09f98;cursor:pointer;list-style:none;padding-top:4px;border-top:1px dashed #ede9dd">▾ 이전 업데이트 ${older.length}건</summary>`;
+    older.forEach(e=>{
+      const fd=fmtUpdateDate(e.date);
+      html+=`<div class="un-entry" style="margin-top:6px">
+        <div class="un-date" style="font-size:10px;color:#73726c">${fd.label}${fd.hint?' <span style="color:#a09f98;font-weight:400">('+fd.hint+')</span>':''}</div>
+        <ul class="un-items">${(e.items||[]).map(it=>`<li class="un-item" style="font-size:10px">${it}</li>`).join('')}</ul>
+      </div>`;
+    });
+    html+='</details>';
+  }
+  body.innerHTML=html;
+}
+fetch('./data/updates.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(u=>{
+  if(u&&u.entries) renderUpdateNote(u.entries);
+}).catch(()=>{});
 
 fetch('./data/data.json?v='+Date.now())
   .then(r=>r.json())
