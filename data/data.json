@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-06T22:10:10+09:00",
+    "lastUpdated": "2026-05-12T19:20:01+09:00",
     "dataMonths": [
       "01",
       "02",
@@ -67,6 +67,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 1322755.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1306836.0
         }
       },
       "team": "Team 3",
@@ -83,6 +92,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 457437.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "서울지사",
+          "total_contracts": 10,
+          "normal": 10,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1651652.0
         }
       },
       "team": "서울지사",
@@ -144,9 +162,18 @@
           "lapsed": 3,
           "cancelled": 0,
           "total_prem": 634264.0
+        },
+        "04": {
+          "rate_25": 70.04,
+          "team": "MA",
+          "total_contracts": 10,
+          "normal": 7,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 676503.0
         }
       },
-      "team": "Team 1",
+      "team": "MA",
       "name": "이은정",
       "status": "MA"
     },
@@ -205,6 +232,15 @@
           "lapsed": 4,
           "cancelled": 13,
           "total_prem": 11796338.0
+        },
+        "04": {
+          "rate_25": 89.17,
+          "team": "Team 1",
+          "total_contracts": 141,
+          "normal": 126,
+          "lapsed": 2,
+          "cancelled": 13,
+          "total_prem": 9334935.0
         }
       },
       "team": "Team 1",
@@ -266,6 +302,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 483212.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 7,
+          "normal": 7,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 483212.0
         }
       },
       "team": "Team 2",
@@ -315,6 +360,9 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 1913006.0
+        },
+        "04": {
+          "team": "Team 0"
         }
       },
       "team": "Team 0",
@@ -358,6 +406,9 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 10846.0
+        },
+        "04": {
+          "team": "Team 0"
         }
       },
       "team": "Team 0",
@@ -383,6 +434,15 @@
           "lapsed": 3,
           "cancelled": 0,
           "total_prem": 702294.0
+        },
+        "04": {
+          "rate_25": 75.09,
+          "team": "Team 2",
+          "total_contracts": 13,
+          "normal": 10,
+          "lapsed": 3,
+          "cancelled": 0,
+          "total_prem": 806319.0
         }
       },
       "team": "Team 2",
@@ -426,6 +486,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 31070.0
+        },
+        "04": {
+          "rate_25": 75.28,
+          "team": "서울지사",
+          "total_contracts": 24,
+          "normal": 20,
+          "lapsed": 0,
+          "cancelled": 4,
+          "total_prem": 2604896.0
         }
       },
       "team": "서울지사",
@@ -487,6 +556,15 @@
           "lapsed": 3,
           "cancelled": 2,
           "total_prem": 16087279.0
+        },
+        "04": {
+          "rate_25": 97.17,
+          "team": "강서지사",
+          "total_contracts": 180,
+          "normal": 174,
+          "lapsed": 4,
+          "cancelled": 2,
+          "total_prem": 22782008.0
         }
       },
       "team": "강서지사",
@@ -548,6 +626,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 3357909.0
+        },
+        "04": {
+          "rate_25": 90.91,
+          "team": "Team 3",
+          "total_contracts": 94,
+          "normal": 89,
+          "lapsed": 5,
+          "cancelled": 0,
+          "total_prem": 7450352.0
         }
       },
       "team": "Team 3",
@@ -573,6 +660,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 68340.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 3,
+          "normal": 3,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 454969.0
         }
       },
       "team": "Team 1",
@@ -634,6 +730,15 @@
           "lapsed": 5,
           "cancelled": 4,
           "total_prem": 12805645.0
+        },
+        "04": {
+          "rate_25": 80.56,
+          "team": "Team 1",
+          "total_contracts": 78,
+          "normal": 64,
+          "lapsed": 5,
+          "cancelled": 9,
+          "total_prem": 9622268.0
         }
       },
       "team": "Team 1",
@@ -695,6 +800,15 @@
           "lapsed": 9,
           "cancelled": 21,
           "total_prem": 12291472.0
+        },
+        "04": {
+          "rate_25": 66.55,
+          "team": "Team 1",
+          "total_contracts": 120,
+          "normal": 90,
+          "lapsed": 4,
+          "cancelled": 26,
+          "total_prem": 10459619.0
         }
       },
       "team": "Team 1",
@@ -756,6 +870,15 @@
           "lapsed": 3,
           "cancelled": 4,
           "total_prem": 5004244.0
+        },
+        "04": {
+          "rate_25": 92.28,
+          "team": "Team 1",
+          "total_contracts": 128,
+          "normal": 121,
+          "lapsed": 3,
+          "cancelled": 4,
+          "total_prem": 13985547.0
         }
       },
       "team": "Team 1",
@@ -817,6 +940,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 13072333.0
+        },
+        "04": {
+          "rate_25": 99.82,
+          "team": "Team 1",
+          "total_contracts": 125,
+          "normal": 125,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 13414815.0
         }
       },
       "team": "Team 1",
@@ -878,9 +1010,18 @@
           "cancelled": 0,
           "total_prem": 36966.0,
           "team": "Team 0"
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "기타",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 36966.0
         }
       },
-      "team": "Team 0",
+      "team": "기타",
       "name": "황지영",
       "status": "MA"
     },
@@ -912,6 +1053,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 730130.0
+        },
+        "04": {
+          "rate_25": 99.94,
+          "team": "Team 3",
+          "total_contracts": 23,
+          "normal": 23,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 1135634.0
         }
       },
       "team": "Team 3",
@@ -973,6 +1123,15 @@
           "lapsed": 1,
           "cancelled": 4,
           "total_prem": 15876466.0
+        },
+        "04": {
+          "rate_25": 93.27,
+          "team": "Team 3",
+          "total_contracts": 156,
+          "normal": 149,
+          "lapsed": 0,
+          "cancelled": 7,
+          "total_prem": 19193236.0
         }
       },
       "team": "Team 3",
@@ -1027,6 +1186,15 @@
           "total_prem": 73850.0
         },
         "12": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 73850.0
+        },
+        "04": {
           "rate_25": 100.0,
           "team": "강서지사",
           "total_contracts": 1,
@@ -1095,6 +1263,15 @@
           "lapsed": 13,
           "cancelled": 11,
           "total_prem": 4973152.0
+        },
+        "04": {
+          "rate_25": 99.49,
+          "team": "Team 1",
+          "total_contracts": 27,
+          "normal": 26,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 1996713.0
         }
       },
       "team": "Team 1",
@@ -1156,6 +1333,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 1942566.0
+        },
+        "04": {
+          "rate_25": 98.92,
+          "team": "Team 1",
+          "total_contracts": 15,
+          "normal": 15,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2091147.0
         }
       },
       "team": "Team 1",
@@ -1217,6 +1403,15 @@
           "lapsed": 6,
           "cancelled": 31,
           "total_prem": 44036511.0
+        },
+        "04": {
+          "rate_25": 81.85,
+          "team": "강서지사",
+          "total_contracts": 340,
+          "normal": 290,
+          "lapsed": 15,
+          "cancelled": 35,
+          "total_prem": 42839377.0
         }
       },
       "team": "강서지사",
@@ -1278,6 +1473,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 307977.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 2,
+          "normal": 2,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 307977.0
         }
       },
       "team": "Team 0",
@@ -1294,6 +1498,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 170415.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 2",
+          "total_contracts": 5,
+          "normal": 5,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 237239.0
         }
       },
       "team": "Team 2",
@@ -1355,6 +1568,15 @@
           "lapsed": 8,
           "cancelled": 4,
           "total_prem": 17999889.0
+        },
+        "04": {
+          "rate_25": 95.39,
+          "team": "Team 1",
+          "total_contracts": 133,
+          "normal": 122,
+          "lapsed": 9,
+          "cancelled": 2,
+          "total_prem": 14128164.0
         }
       },
       "team": "Team 1",
@@ -1416,6 +1638,15 @@
           "lapsed": 5,
           "cancelled": 4,
           "total_prem": 5280452.0
+        },
+        "04": {
+          "rate_25": 46.92,
+          "team": "Team 0",
+          "total_contracts": 25,
+          "normal": 10,
+          "lapsed": 11,
+          "cancelled": 4,
+          "total_prem": 4788172.0
         }
       },
       "team": "Team 0",
@@ -1477,9 +1708,18 @@
           "lapsed": 1,
           "cancelled": 1,
           "total_prem": 513700.0
+        },
+        "04": {
+          "rate_25": 0.0,
+          "team": "MA",
+          "total_contracts": 2,
+          "normal": 0,
+          "lapsed": 1,
+          "cancelled": 1,
+          "total_prem": 431508.0
         }
       },
-      "team": "Team 1",
+      "team": "MA",
       "name": "신수정",
       "status": "MA"
     },
@@ -1502,9 +1742,18 @@
           "cancelled": 0,
           "total_prem": 11000.0,
           "team": "Team 0"
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "MA",
+          "total_contracts": 1,
+          "normal": 1,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 11000.0
         }
       },
-      "team": "Team 0",
+      "team": "MA",
       "name": "변호인",
       "status": "MA"
     },
@@ -1563,6 +1812,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 3897104.0
+        },
+        "04": {
+          "rate_25": 88.76,
+          "team": "Team 3",
+          "total_contracts": 63,
+          "normal": 53,
+          "lapsed": 2,
+          "cancelled": 8,
+          "total_prem": 6594449.0
         }
       },
       "team": "Team 3",
@@ -1624,6 +1882,15 @@
           "lapsed": 0,
           "cancelled": 6,
           "total_prem": 6676339.0
+        },
+        "04": {
+          "rate_25": 67.2,
+          "team": "Team 3",
+          "total_contracts": 124,
+          "normal": 91,
+          "lapsed": 18,
+          "cancelled": 15,
+          "total_prem": 11801502.0
         }
       },
       "team": "Team 3",
@@ -1685,6 +1952,15 @@
           "lapsed": 8,
           "cancelled": 2,
           "total_prem": 22204973.0
+        },
+        "04": {
+          "rate_25": 77.1,
+          "team": "Team 0",
+          "total_contracts": 91,
+          "normal": 80,
+          "lapsed": 9,
+          "cancelled": 2,
+          "total_prem": 8622649.0
         }
       },
       "team": "Team 0",
@@ -1746,6 +2022,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 2548274.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "강서지사",
+          "total_contracts": 42,
+          "normal": 42,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 3633108.0
         }
       },
       "team": "강서지사",
@@ -1807,6 +2092,15 @@
           "lapsed": 2,
           "cancelled": 1,
           "total_prem": 2419999.0
+        },
+        "04": {
+          "rate_25": 85.44,
+          "team": "Team 1",
+          "total_contracts": 23,
+          "normal": 19,
+          "lapsed": 3,
+          "cancelled": 1,
+          "total_prem": 2578421.0
         }
       },
       "team": "Team 1",
@@ -1868,6 +2162,15 @@
           "lapsed": 0,
           "cancelled": 1,
           "total_prem": 6720689.0
+        },
+        "04": {
+          "rate_25": 93.0,
+          "team": "Team 3",
+          "total_contracts": 92,
+          "normal": 86,
+          "lapsed": 3,
+          "cancelled": 3,
+          "total_prem": 13218037.0
         }
       },
       "team": "Team 3",
@@ -1929,6 +2232,15 @@
           "lapsed": 11,
           "cancelled": 21,
           "total_prem": 30402713.0
+        },
+        "04": {
+          "rate_25": 82.06,
+          "team": "Team 2",
+          "total_contracts": 142,
+          "normal": 111,
+          "lapsed": 8,
+          "cancelled": 23,
+          "total_prem": 18311620.0
         }
       },
       "team": "Team 2",
@@ -1990,9 +2302,18 @@
           "lapsed": 1,
           "cancelled": 3,
           "total_prem": 12053890.0
+        },
+        "04": {
+          "rate_25": 95.93,
+          "team": "MA",
+          "total_contracts": 147,
+          "normal": 141,
+          "lapsed": 1,
+          "cancelled": 5,
+          "total_prem": 11203500.0
         }
       },
-      "team": "Team 1",
+      "team": "MA",
       "name": "성윤석",
       "status": "MA"
     },
@@ -2051,6 +2372,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 1572851.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 1",
+          "total_contracts": 33,
+          "normal": 33,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 2195618.0
         }
       },
       "team": "Team 1",
@@ -2112,9 +2442,18 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 1576642.0
+        },
+        "04": {
+          "rate_25": 95.32,
+          "team": "MA",
+          "total_contracts": 27,
+          "normal": 26,
+          "lapsed": 0,
+          "cancelled": 1,
+          "total_prem": 2321436.0
         }
       },
-      "team": "Team 1",
+      "team": "MA",
       "name": "손이삭",
       "status": "MA"
     },
@@ -2146,6 +2485,15 @@
           "lapsed": 0,
           "cancelled": 0,
           "total_prem": 867340.0
+        },
+        "04": {
+          "rate_25": 100.0,
+          "team": "Team 0",
+          "total_contracts": 8,
+          "normal": 8,
+          "lapsed": 0,
+          "cancelled": 0,
+          "total_prem": 985843.0
         }
       },
       "team": "Team 0",
@@ -2288,6 +2636,48 @@
           "start_date": "2025-04-30",
           "paid_round": 7
         }
+      ],
+      "03_04": [
+        {
+          "insurer": "한화손보",
+          "product": "더건강한 한아름종합보험",
+          "holder": "윤상원",
+          "first_perf": 200768,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-25",
+          "start_date": "2025-01-24",
+          "paid_round": 15
+        },
+        {
+          "insurer": "KDB생명",
+          "product": "버팀목New케어보험",
+          "holder": "김금옥",
+          "first_perf": 67274,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-24",
+          "start_date": "2025-02-20",
+          "paid_round": 14
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "안용구",
+          "first_perf": 34440,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-03",
+          "start_date": "2024-05-24",
+          "paid_round": 23
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "유혁재",
+          "first_perf": 32710,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-14",
+          "start_date": "2024-05-31",
+          "paid_round": 23
+        }
       ]
     },
     "손영준": {
@@ -2425,6 +2815,118 @@
           "cancel_date": "",
           "start_date": "2024-12-31",
           "paid_round": 10
+        }
+      ],
+      "03_04": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "공해주",
+          "first_perf": 379344,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-28",
+          "paid_round": 5
+        },
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "권임자",
+          "first_perf": 219105,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-12-29",
+          "paid_round": 3
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "(무)치매담은시니어보장보험(해약환급금 일부지급형)",
+          "holder": "신인숙",
+          "first_perf": 147937,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-26",
+          "paid_round": 4
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "권임자",
+          "first_perf": 145159,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2026-01-29",
+          "paid_round": 2
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "권임자",
+          "first_perf": 92130,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2026-01-29",
+          "paid_round": 2
+        },
+        {
+          "insurer": "신한라이프",
+          "product": "신한치매간병보험 ONE더케어",
+          "holder": "정란영",
+          "first_perf": 50434,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-17",
+          "start_date": "2025-04-30",
+          "paid_round": 12
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "정란숙",
+          "first_perf": 45510,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-09-29",
+          "paid_round": 6
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보장보험",
+          "holder": "정란숙",
+          "first_perf": 41960,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-04",
+          "paid_round": 4
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "정란숙",
+          "first_perf": 39740,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-31",
+          "paid_round": 5
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "(무)흥국생명다(多)사랑통합보험(해약환급금 미지급형)",
+          "holder": "정란숙",
+          "first_perf": 39664,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-31",
+          "paid_round": 5
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "오튼튼5.10.5건강보험(해약환급금미지급형)",
+          "holder": "정란숙",
+          "first_perf": 36370,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-04",
+          "paid_round": 4
         }
       ]
     },
@@ -2730,6 +3232,18 @@
           "start_date": "2024-02-28",
           "paid_round": 22
         }
+      ],
+      "03_04": [
+        {
+          "insurer": "동양생명",
+          "product": "(무)수호천사 NEW 알뜰플러스종신보험_해약환급금일부지급형",
+          "holder": "김형준",
+          "first_perf": 846720,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-09",
+          "start_date": "2024-03-28",
+          "paid_round": 24
+        }
       ]
     },
     "성윤석": {
@@ -2755,6 +3269,28 @@
           "cancel_date": "",
           "start_date": "2024-09-30",
           "paid_round": 14
+        }
+      ],
+      "03_04": [
+        {
+          "insurer": "한화손보",
+          "product": "무배당 한화 처음부터 함께하는 어린이보험",
+          "holder": "배희정",
+          "first_perf": 34394,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-20",
+          "start_date": "2024-09-26",
+          "paid_round": 19
+        },
+        {
+          "insurer": "KB손보",
+          "product": "KB닥터실속건강보험",
+          "holder": "조신일",
+          "first_perf": 33084,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-11-22",
+          "paid_round": 16
         }
       ]
     },
@@ -2882,6 +3418,18 @@
           "start_date": "2024-08-30",
           "paid_round": 15
         }
+      ],
+      "03_04": [
+        {
+          "insurer": "하나손보",
+          "product": "(무) 하나 가득담은 운전자상해종합보험",
+          "holder": "정유림",
+          "first_perf": 10429,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-03-31",
+          "paid_round": 12
+        }
       ]
     },
     "정소희": {
@@ -2907,6 +3455,18 @@
           "cancel_date": "",
           "start_date": "2025-08-21",
           "paid_round": 6
+        }
+      ],
+      "03_04": [
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나더넥스트케어보험(무해지)",
+          "holder": "조봉순",
+          "first_perf": 116032,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-12-31",
+          "paid_round": 3
         }
       ]
     },
@@ -2998,6 +3558,48 @@
           "start_date": "2025-07-31",
           "paid_round": 5
         }
+      ],
+      "03_04": [
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 통합간편건강보험",
+          "holder": "고춘자",
+          "first_perf": 218780,
+          "curr_status": "해지",
+          "cancel_date": "2026-03-31",
+          "start_date": "2025-03-28",
+          "paid_round": 13
+        },
+        {
+          "insurer": "미래에셋",
+          "product": "M-케어 건강보험[해지환급금이 없는 유형]",
+          "holder": "경기숙",
+          "first_perf": 187551,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-08-26",
+          "paid_round": 7
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "JI ZHENSHUN",
+          "first_perf": 104714,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-27",
+          "start_date": "2026-01-28",
+          "paid_round": 3
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "(무)다사랑355간편건강보험(해약환급금 미지급형)",
+          "holder": "이민숙",
+          "first_perf": 61399,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-09",
+          "start_date": "2026-01-16",
+          "paid_round": 3
+        }
       ]
     },
     "민선경": {
@@ -3044,6 +3646,28 @@
           "start_date": "2025-08-31",
           "paid_round": 6
         }
+      ],
+      "03_04": [
+        {
+          "insurer": "메트라이프",
+          "product": "(무)백만인을위한 달러종신보험Plus",
+          "holder": "이유진",
+          "first_perf": 860353,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-28",
+          "start_date": "2025-02-21",
+          "paid_round": 13
+        },
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나로 THE 연결된 종신보험",
+          "holder": "이유진",
+          "first_perf": 425538,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-28",
+          "start_date": "2025-02-17",
+          "paid_round": 13
+        }
       ]
     },
     "유수환": {
@@ -3077,6 +3701,28 @@
           "cancel_date": "",
           "start_date": "2025-05-30",
           "paid_round": 9
+        }
+      ],
+      "03_04": [
+        {
+          "insurer": "삼성생명",
+          "product": "다모은 건강보험",
+          "holder": "박은비",
+          "first_perf": 120741,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2024-08-29",
+          "paid_round": 19
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "메리츠 운전자 상해 종합보험",
+          "holder": "조보현",
+          "first_perf": 12340,
+          "curr_status": "실효",
+          "cancel_date": "2026-04-15",
+          "start_date": "2025-08-08",
+          "paid_round": 7
         }
       ]
     },
@@ -3155,6 +3801,38 @@
           "cancel_date": "2025-11-25",
           "start_date": "2025-04-24",
           "paid_round": 7
+        }
+      ],
+      "03_04": [
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 당신곁에 치매간병보험",
+          "holder": "황명숙",
+          "first_perf": 165354,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2026-01-30",
+          "paid_round": 2
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 내Mom대로 5.10.5 보장보험",
+          "holder": "배양희",
+          "first_perf": 132420,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-09-30",
+          "paid_round": 6
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "박도원",
+          "first_perf": 65050,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-27",
+          "paid_round": 4
         }
       ]
     },
@@ -3240,6 +3918,28 @@
           "start_date": "2024-08-14",
           "paid_round": 15
         }
+      ],
+      "03_04": [
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 간편N 내가고른 건강보험",
+          "holder": "한영순",
+          "first_perf": 157646,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-02",
+          "start_date": "2024-12-30",
+          "paid_round": 16
+        },
+        {
+          "insurer": "DB생명",
+          "product": "백년친구 New 내가고른 건강보험",
+          "holder": "한영순",
+          "first_perf": 155839,
+          "curr_status": "해지",
+          "cancel_date": "2026-04-01",
+          "start_date": "2025-01-31",
+          "paid_round": 15
+        }
       ]
     },
     "심예영": {
@@ -3293,6 +3993,60 @@
           "cancel_date": "",
           "start_date": "2024-01-31",
           "paid_round": 22
+        }
+      ]
+    },
+    "배수현": {
+      "03_04": [
+        {
+          "insurer": "미래에셋",
+          "product": "M-케어 건강보험[해지환급금이 없는 유형]",
+          "holder": "전찬수",
+          "first_perf": 219721,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-03",
+          "paid_round": 4
+        },
+        {
+          "insurer": "하나생명",
+          "product": "(무)하나더넥스트케어보험(저해지)",
+          "holder": "전찬수",
+          "first_perf": 142932,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-12-15",
+          "paid_round": 3
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "오튼튼5.10.5건강보험(해약환급금미지급형)",
+          "holder": "전찬수",
+          "first_perf": 113550,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-24",
+          "paid_round": 5
+        },
+        {
+          "insurer": "흥국생명",
+          "product": "(무)치매담은시니어보장보험(표준형)",
+          "holder": "전찬수",
+          "first_perf": 113339,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-11-14",
+          "paid_round": 4
+        },
+        {
+          "insurer": "메리츠화재",
+          "product": "(무) 메리츠 The건강한 5.10.5 보장보험",
+          "holder": "전찬수",
+          "first_perf": 86370,
+          "curr_status": "실효",
+          "cancel_date": "",
+          "start_date": "2025-10-24",
+          "paid_round": 5
         }
       ]
     }
