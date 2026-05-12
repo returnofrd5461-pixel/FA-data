@@ -357,10 +357,9 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     <span class="cl">기간 선택</span>
     <button class="qbtn" id="qAll" onclick="quickSelect('all')">전체선택</button>
     <button class="qbtn" id="qNone" onclick="quickSelect('none')">전체해제</button>
-    <button class="qbtn" id="qQ4" onclick="quickSelect('q4')">25.4분기</button>
-    <button class="qbtn" id="qQ1" onclick="quickSelect('q1')">26.1분기</button>
-    <button class="qbtn" id="qRecent" onclick="quickSelect('recent2')">최근2개월</button>
     <button class="qbtn" id="qRecent6" onclick="quickSelect('recent6')">최근6개월</button>
+    <button class="qbtn" id="qRecent3" onclick="quickSelect('recent3')">최근3개월</button>
+    <button class="qbtn" id="qRecent1" onclick="quickSelect('recent1')">최근1개월</button>
     <div class="divv"></div>
     <div id="monthBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div>
     <div class="divv"></div>
@@ -751,13 +750,11 @@ function toggleMonth(m){
   updatePeriodBadge();updateQuickBtns();computeKings();render();
 }
 function quickSelect(t){
-  const Q1=['01','02','03'],Q4=['10','11','12'];
   if(t==='all')selMonths=new Set(AVAIL_MONTHS);
   else if(t==='none')selMonths=new Set();
-  else if(t==='q1')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q1.includes(m)));
-  else if(t==='q4')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q4.includes(m)));
-  else if(t==='recent2'){const a=AVAIL_MONTHS;selMonths=new Set(a.slice(-2));}
-  else if(t==='recent6'){const a=AVAIL_MONTHS;selMonths=new Set(a.slice(-6));}
+  else if(t==='recent1')selMonths=new Set(AVAIL_MONTHS.slice(-1));
+  else if(t==='recent3')selMonths=new Set(AVAIL_MONTHS.slice(-3));
+  else if(t==='recent6')selMonths=new Set(AVAIL_MONTHS.slice(-6));
   updatePeriodBadge();updateQuickBtns();buildMonthBtns();computeKings();render();
 }
 function updatePeriodBadge(){
@@ -767,12 +764,11 @@ function updatePeriodBadge(){
 }
 function updateQuickBtns(){
   const a=actMths(),av=AVAIL_MONTHS;
-  const Q1=av.filter(m=>['01','02','03'].includes(m)),Q4=av.filter(m=>['10','11','12'].includes(m));
   document.getElementById('qAll').classList.toggle('on',a.length===av.length);
-  document.getElementById('qQ1').classList.toggle('on',a.length===Q1.length&&Q1.every(m=>selMonths.has(m))&&a.every(m=>Q1.includes(m)));
-  document.getElementById('qQ4').classList.toggle('on',a.length===Q4.length&&Q4.every(m=>selMonths.has(m))&&a.every(m=>Q4.includes(m)));
-  const r2=av.slice(-2);document.getElementById('qRecent').classList.toggle('on',a.length===2&&r2.every(m=>selMonths.has(m))&&a.every(m=>r2.includes(m)));
-  const r6=av.slice(-6);document.getElementById('qRecent6').classList.toggle('on',a.length===r6.length&&r6.every(m=>selMonths.has(m))&&a.every(m=>r6.includes(m)));
+  const match=(slc)=>a.length===slc.length&&slc.every(m=>selMonths.has(m))&&a.every(m=>slc.includes(m));
+  document.getElementById('qRecent6').classList.toggle('on',match(av.slice(-6)));
+  document.getElementById('qRecent3').classList.toggle('on',match(av.slice(-3)));
+  document.getElementById('qRecent1').classList.toggle('on',match(av.slice(-1)));
 }
 
 // ═══════════════════════════════════════════
