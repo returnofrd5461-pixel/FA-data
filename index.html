@@ -173,8 +173,8 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 .mbadge{font-size:11px;padding:3px 8px;border-radius:12px;font-weight:500;line-height:1.4}
 .mbadge.king{background:linear-gradient(135deg,#fef4e0 0%,#fbe6b8 100%)!important;color:#7a4500!important;border:1px solid #f5d97c;font-weight:700}
 
-/* ── Bloomberg-Lite 미니카드 (2열) ── */
-.perf-view-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* ── Bloomberg-Lite 미니카드 (3열 자동 축소) ── */
+.perf-view-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px}
 .pmc{background:#fff;border:1px solid #e8e5dc;border-radius:8px;overflow:hidden}
 .pmc-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(90deg,#faf8f3 0%,#fff 100%);border-bottom:1px solid #ede9dd}
 .pmc-rank{background:#1a1816;color:#f5d97c;width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;font-variant-numeric:tabular-nums}
