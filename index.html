@@ -360,6 +360,7 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
     <button class="qbtn" id="qQ4" onclick="quickSelect('q4')">25.4분기</button>
     <button class="qbtn" id="qQ1" onclick="quickSelect('q1')">26.1분기</button>
     <button class="qbtn" id="qRecent" onclick="quickSelect('recent2')">최근2개월</button>
+    <button class="qbtn" id="qRecent6" onclick="quickSelect('recent6')">최근6개월</button>
     <div class="divv"></div>
     <div id="monthBtns" style="display:flex;gap:5px;flex-wrap:wrap"></div>
     <div class="divv"></div>
@@ -756,6 +757,7 @@ function quickSelect(t){
   else if(t==='q1')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q1.includes(m)));
   else if(t==='q4')selMonths=new Set(AVAIL_MONTHS.filter(m=>Q4.includes(m)));
   else if(t==='recent2'){const a=AVAIL_MONTHS;selMonths=new Set(a.slice(-2));}
+  else if(t==='recent6'){const a=AVAIL_MONTHS;selMonths=new Set(a.slice(-6));}
   updatePeriodBadge();updateQuickBtns();buildMonthBtns();computeKings();render();
 }
 function updatePeriodBadge(){
@@ -770,6 +772,7 @@ function updateQuickBtns(){
   document.getElementById('qQ1').classList.toggle('on',a.length===Q1.length&&Q1.every(m=>selMonths.has(m))&&a.every(m=>Q1.includes(m)));
   document.getElementById('qQ4').classList.toggle('on',a.length===Q4.length&&Q4.every(m=>selMonths.has(m))&&a.every(m=>Q4.includes(m)));
   const r2=av.slice(-2);document.getElementById('qRecent').classList.toggle('on',a.length===2&&r2.every(m=>selMonths.has(m))&&a.every(m=>r2.includes(m)));
+  const r6=av.slice(-6);document.getElementById('qRecent6').classList.toggle('on',a.length===r6.length&&r6.every(m=>selMonths.has(m))&&a.every(m=>r6.includes(m)));
 }
 
 // ═══════════════════════════════════════════
@@ -2242,7 +2245,7 @@ fetch('./data/data.json?v='+Date.now())
       ...Object.values(D).flatMap(d=>Object.keys(d.months||{})),
       ...Object.values(PERF||{}).flatMap(p=>Object.keys(p.months||{}))
     ])].sort((a,b)=>(MONTH_ORDER[a]??99)-(MONTH_ORDER[b]??99));
-    selMonths=new Set(AVAIL_MONTHS);
+    selMonths=new Set(AVAIL_MONTHS.length>=6?AVAIL_MONTHS.slice(-6):AVAIL_MONTHS);
     sel=new Set([...Object.keys(D),...Object.keys(PERF||{})]);
     computeKings();
     buildTeams();buildPills();buildMonthBtns();render();
