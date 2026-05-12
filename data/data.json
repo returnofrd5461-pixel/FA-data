@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "lastUpdated": "2026-05-12T19:20:01+09:00",
+    "lastUpdated": "2026-05-12T19:28:33+09:00",
     "dataMonths": [
       "01",
       "02",
@@ -1346,7 +1346,7 @@
       },
       "team": "Team 1",
       "name": "오하늘",
-      "status": "FA"
+      "status": "MA"
     },
     "정민욱": {
       "months": {
@@ -6170,7 +6170,7 @@
         "흥국화재": 5
       },
       "team": "Team 1",
-      "status": "FA"
+      "status": "MA"
     },
     "용은정": {
       "name": "용은정",
