@@ -472,6 +472,7 @@ const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#fa
 const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
 const LOST_CHIP={'01_02':'background:#faeeda;color:#633806','02_03':'background:#fcebeb;color:#a32d2d','03_04':'background:#fde7e7;color:#7a0000','10_11':'background:#eeedfe;color:#3c3489','11_12':'background:#e1f5ee;color:#085041'};
 const KANGSEO='강서지사';
+const ACTIVITY_EXCLUDED_NAMES=new Set(['민선경']);
 function getTeam(name){
   if(D&&D[name]?.months){
     const m=Object.values(D[name].months)[0];
@@ -479,7 +480,12 @@ function getTeam(name){
   }
   return PERF&&PERF[name]?.team||null;
 }
-function isKangseo(name){return getTeam(name)===KANGSEO;}
+function isActivityExcluded(name,team){
+  if(team===KANGSEO) return true;
+  if(ACTIVITY_EXCLUDED_NAMES.has(name)) return true;
+  return false;
+}
+function isKangseo(name){return isActivityExcluded(name,getTeam(name));}
 function kangseoLastSort(a,b){
   const ak=isKangseo(a.name),bk=isKangseo(b.name);
   if(ak&&!bk) return 1;
@@ -1567,9 +1573,9 @@ function renderPerfView(agents) {
       const td2=targetOfMths(d.name);
       const tHas2=td2&&td2.anyMonthHasData;
       const kang2=isKangseo(d.name);
-      const ach2=tHas2&&td2.ach!=null?td2.ach.toFixed(0)+'%':'—';
-      const achC2=tHas2&&td2.ach!=null?achColor(td2.ach):'#a09f98';
-      const achB2=tHas2&&td2.ach!=null?achBg(td2.ach):'transparent';
+      const ach2=kang2||!(tHas2&&td2.ach!=null)?'—':td2.ach.toFixed(0)+'%';
+      const achC2=kang2||!(tHas2&&td2.ach!=null)?'#a09f98':achColor(td2.ach);
+      const achB2=kang2||!(tHas2&&td2.ach!=null)?'transparent':achBg(td2.ach);
       const pgs2=gradeStyle('n');
       const fdR2=feedbackOfMths(d.name);
       return `<tr class="grade-empty" style="opacity:.55">
@@ -1606,9 +1612,9 @@ function renderPerfView(agents) {
     const td=targetOfMths(d.name);
     const tHas=td&&td.anyMonthHasData;
     const kang=isKangseo(d.name);
-    const achStr=tHas&&td.ach!=null?td.ach.toFixed(0)+'%':'—';
-    const achC=tHas&&td.ach!=null?achColor(td.ach):'#a09f98';
-    const achB=tHas&&td.ach!=null?achBg(td.ach):'transparent';
+    const achStr=kang||!(tHas&&td.ach!=null)?'—':td.ach.toFixed(0)+'%';
+    const achC=kang||!(tHas&&td.ach!=null)?'#a09f98':achColor(td.ach);
+    const achB=kang||!(tHas&&td.ach!=null)?'transparent':achBg(td.ach);
     const pg=perfGrade(d.name);
     const pgs=gradeStyle(pg||'n');
     const pgCls=`grade-${pg||'empty'}`;
@@ -1751,8 +1757,8 @@ function renderPerfView(agents) {
         const fbTotal=fd?(fd.done||0)+(fd.hold||0):0;
         const fbStr=kang?'—':fbTotal+'건';
         const achV=td?.ach;
-        const achStr=achV==null?'—':achV.toFixed(0)+'%';
-        const achCls=achV==null?'muted':achV>=110?'success':achV<70?'danger':achV<90?'warning':'';
+        const achStr=kang||achV==null?'—':achV.toFixed(0)+'%';
+        const achCls=kang||achV==null?'muted':achV>=110?'success':achV<70?'danger':achV<90?'warning':'';
         const dbCls=kang?'muted':(td?.db>0?'':'muted');
         const actCls=kang?'muted':(td?.act>0?'':'muted');
         const fbCls=kang?'muted':(fbTotal>0?'':'muted');
