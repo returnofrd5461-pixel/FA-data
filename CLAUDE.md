@@ -1,28 +1,61 @@
 # FA-data — 프로젝트 가이드
 
-## 1. 프로젝트 개요
+> 클로드 코드 ↔ Claude 웹 양쪽이 공유하는 **단일 소스 컨텍스트**.
+> 새로운 세션 시작 시 이 파일을 먼저 참조하면 프로젝트 전체 상태를 빠르게 동기화할 수 있다.
 
-FA(금융설계사) 성과·유지율 통합 관리 대시보드. 인카금융서비스 법인전략사업단 운영용.
+---
 
-- **구조**: 단일 페이지(`index.html`) + 외부 데이터(`data/data.json`) 분리
-- **빌드 없음**: 정적 HTML/JS. fetch로 data.json 로드.
-- **차트**: Chart.js (CDN)
-- **데이터 출처**: `raw/YYYY-MM/` 엑셀 원본을 `scripts/build_data.py`로 머지하여 `data/data.json` 생성
+## 프로젝트 개요
 
-## 2. 데이터 구조 (`data/data.json`)
+- **목적**: FA(Financial Advisor) 성과·유지율·신계약·활동 통합 대시보드. 인카금융서비스 법인전략사업단 내부 운영용.
+- **구조**: 단일 페이지 HTML(`index.html`) + 외부 데이터 파일(`data/data.json`). 빌드 없음, 정적 호스팅.
+- **호스팅**: GitHub Pages — https://returnofrd5461-pixel.github.io/FA-data/
+- **대상 인원**: 약 30~40명. 팀 구성:
+  - `Team 0` / `Team 1` / `Team 2` / `Team 3` — 4개 본부 팀
+  - `강서지사` — 별도 정책(활동데이터 제외) 적용
+  - `서울지사` — 코드 라벨. 실무에서는 **프라임지사**로 호칭하기도 함
+  - `기타` / `미배정` — 폴백
+- **차트 라이브러리**: Chart.js (CDN)
 
-최상위 키:
+---
+
+## 파일 구조
+
+```
+FA-data/
+├── index.html              # 메인 대시보드 (단일 페이지, ~2,360 라인)
+├── CLAUDE.md               # 본 파일 (프로젝트 컨텍스트)
+├── README.md               # 외부용 짧은 안내
+├── data/
+│   ├── data.json           # D / LOST / PERF / TARGET / FEEDBACK / _meta
+│   └── updates.json        # 업데이트 노트 (우측 사이드 패널 entries)
+├── raw/
+│   └── YYYY-MM/            # 월별 원본 (xls/xlsx + manual.json)
+├── scripts/
+│   └── build_data.py       # raw/ → data/data.json 머지 스크립트
+└── logs/
+    └── excluded_lump_sum_*.log
+```
+
+`raw/` 폴더는 git 추적 대상이지만 대용량 xls는 .gitignore로 제외될 수 있음(`.gitignore` 참조).
+
+---
+
+## 데이터 구조 (`data/data.json`)
+
+최상위 키: `_meta`, `D`, `LOST`, `PERF`, `TARGET`, `FEEDBACK`.
+(`ACT` 키는 현재 존재하지 않음 — 아래 별도 항목 참조)
 
 ### `_meta`
 ```jsonc
 {
-  "lastUpdated": "ISO 8601",        // 헤더 "📅 최종 업데이트" 표시 원본
-  "dataMonths": ["10","11","12","01","02","03","04", ...]
+  "lastUpdated": "2026-05-12T19:28:33+09:00",  // 헤더 "📅 최종 업데이트" 표시
+  "dataMonths": ["10","11","12","01","02","03","04"]
 }
 ```
 
-### `D` — 통산유지율 (손생보합산 원본)
-FA별 월 단위 유지율·계약 통계. **모든 FA의 기준이 되는 메인 키.**
+### `D[name]` — 통산유지율 (손생보합산 원본)
+모든 FA의 베이스 키. 팀 정보는 여기서 우선 조회됨(`getTeam()` 참조).
 ```jsonc
 "FA명": {
   "name": "...",
@@ -30,8 +63,8 @@ FA별 월 단위 유지율·계약 통계. **모든 FA의 기준이 되는 메�
   "status": "FA|MA|...",
   "months": {
     "MM": {
-      "rate_25": 100.0,        // 25회차 유지율
-      "team": "...",            // 월별 팀(이동 추적용)
+      "rate_25": 100.0,        // 25회차 유지율 (%)
+      "team": "...",            // 월별 팀(이동 추적)
       "total_contracts": 23,
       "normal": 23,
       "lapsed": 0,              // 실효
@@ -42,27 +75,26 @@ FA별 월 단위 유지율·계약 통계. **모든 FA의 기준이 되는 메�
 }
 ```
 
-### `LOST` — 이탈 건별 (유지율 계약리스트 원본)
-FA별 월 구간(`mm1_mm2`)에 발생한 실효·해지 건별 raw.
+### `LOST[name][period]` — 이탈 계약 상세
+`period` 키 형식: `'MM_MM'` (예: `"01_02"` = 1→2월 사이 신규 이탈).
 ```jsonc
 "FA명": {
   "01_02": [
     {
-      "insurer": "...",
+      "insurer": "DB생명",
       "product": "...",
-      "holder": "...",          // 계약자
-      "first_perf": 75902,      // 초회실적
+      "holder": "전수민",         // 계약자
+      "first_perf": 75902,        // 초회실적 (원)
       "curr_status": "실효|해지",
       "cancel_date": "YYYY-MM-DD",
       "start_date": "YYYY-MM-DD",
-      "paid_round": 20          // 납입회차
+      "paid_round": 20            // 납입회차
     }
   ]
 }
 ```
 
-### `PERF` — 신계약 실적 (건별실적 원본을 월 집계)
-FA별 월 단위 신계약 통계 + 누적(`totals`).
+### `PERF[name]` — 신계약 성과 (건별실적 원본 → 월 집계)
 ```jsonc
 "FA명": {
   "name": "...",
@@ -74,8 +106,7 @@ FA별 월 단위 신계약 통계 + 누적(`totals`).
       "prem": 516832,           // 월납보험료 (원)
       "perf": 488923,           // 인정실적 (원)
       "hwan": 803424,           // 환산월초 (원)
-      "life": 5,                // 생보 건
-      "nonlife": 2,             // 손보 건
+      "life": 5, "nonlife": 2,
       "status": { "정상":7, "유예":0, "해지":0, "실효":0 },
       "products": { "보장성":2, "종신/CI":1, ... }
     }
@@ -85,7 +116,7 @@ FA별 월 단위 신계약 통계 + 누적(`totals`).
     "life", "nonlife", "lost", "delay",
     "avg_perf",                 // 건당 평균 인정실적
     "life_ratio", "lost_rate",
-    "growth": null|숫자,        // 직전 3개월 vs 최근 3개월 증감률 %
+    "growth": null|숫자,        // 직전 3개월 vs 최근 3개월 증감률 (%)
     "growth_label": "25.11~26.4",
     "top_products": { ... }
   },
@@ -93,149 +124,222 @@ FA별 월 단위 신계약 통계 + 누적(`totals`).
 }
 ```
 
-### `TARGET` — 활동·목표 (manual.json 기반)
-FA·월 단위 DB배정/외활/마감목표.
+### `TARGET[name][month]` — 활동·목표
 ```jsonc
 "FA명": {
   "MM": {
-    "db": 15,        // DB 배정 건
+    "db": 15,        // DB 배정 건수
     "act": 6,        // 외활 건수
-    "goal": 1000000  // 월 마감목표 (원 단위, 월납보험료 기준)
+    "goal": 1000000  // 월 마감목표 (원, 월납보험료 기준)
   }
 }
 ```
-입력 소스: `raw/YYYY-MM/manual.json` 의 `target` 객체 + `goal` 별도 입력.
+- `db`/`act`는 `raw/YYYY-MM/manual.json` 의 `target` 객체에서 빌드.
+- `goal`은 별도 수동 입력 (현재 `data/data.json` 직접 편집).
 
-### `FEEDBACK` — 피드백 활동 (manual.json 기반)
+### `FEEDBACK[name][month]`
 ```jsonc
 "FA명": {
   "MM": { "done": 2, "hold": 0 }
 }
 ```
+`raw/YYYY-MM/manual.json` 의 `feedback` 객체에서 빌드.
 
 ### `ACT` (현재 미사용)
-`index.html` 에 `let ACT={}` 로 선언되어 있으나 data.json 에 해당 키 없음. 외활 데이터는 `TARGET.MM.act` 에 통합되어 처리됨. 향후 별도 활동량 데이터 도입 시 사용 예정.
+- `index.html:539` 에 `let ACT={}` 로만 선언.
+- 활동량(고객 미팅 등) 데이터를 **Notion DB → MCP/Anthropic API**로 동적 로드하는 자리표시자.
+- 현재 외활/피드백 등 모든 활동성 지표는 `TARGET.MM.act` 와 `FEEDBACK` 에 통합되어 있어 ACT는 사실상 비어 있음.
+- 향후 Notion 연계 활성화 시 `loadActivityData()` (`index.html:2200`) 가 ACT를 채움.
 
-## 3. 활동데이터 제외 정책
+---
 
-DB배정/외활/피드백/마감목표 4영역의 산정·표시에서 제외되는 대상:
+## 활동데이터 제외 정책
 
-- **강서지사 팀 전원** (D 또는 PERF 의 team === '강서지사')
-- **`ACTIVITY_EXCLUDED_NAMES` Set 에 명시된 FA** (현재: 민선경)
+### 대상
+- **강서지사 소속 FA 전원** (`getTeam(name) === '강서지사'`)
+- **`ACTIVITY_EXCLUDED_NAMES` Set에 등록된 이름**
+  - 현재: `new Set(['민선경'])` (`index.html:475`)
 
-판정 함수: `isActivityExcluded(name, team)` (`index.html:483`)
+### 판정 함수 (`index.html:483-488`)
 ```js
 function isActivityExcluded(name, team) {
   if (team === KANGSEO) return true;
   if (ACTIVITY_EXCLUDED_NAMES.has(name)) return true;
   return false;
 }
-function isKangseo(name) { return isActivityExcluded(name, getTeam(name)); }
+function isKangseo(name) {
+  return isActivityExcluded(name, getTeam(name));
+}
 ```
+기존 호출처는 `isKangseo(name)` 로 유지되어 있고 내부에서 `isActivityExcluded` 로 위임. **신규 제외 대상 추가 시 `ACTIVITY_EXCLUDED_NAMES` Set 한 곳만 수정**하면 전체 일관 적용됨.
 
-기존 호출처는 `isKangseo(name)` 로 유지되어 있고, 내부적으로 `isActivityExcluded` 로 위임. 신규 제외 대상 추가 시 `ACTIVITY_EXCLUDED_NAMES` Set 한 곳만 수정하면 전체 일관 적용됨.
-
-**제외 적용 범위**:
-- 카드 KPI 4셀 (DB/외활/피드백/달성률) → '—'
-- 차트 pc4/pc5/pc7/pc6 → '🚫 표시 제외' 노티스
-- 통합뷰/랭킹 테이블 셀 → '—'
-- 영예 칭호 후보(DB왕/외활왕/피드백왕) 제외
+### 제외 적용 범위 (4개 영역)
+DB배정 / 외활 / 피드백 / 마감목표 — 다음 모든 위치에서:
+- 카드 KPI 4셀 → `'—'`
+- 차트 pc4/pc5/pc7/pc6 → `🚫 표시 제외` 노티스
+- 통합뷰 / 랭킹 테이블 셀 → `'—'`
+- 영예 칭호 후보: 🎯 DB왕 / 🚶 외활왕 / 💬 피드백왕 후보 풀에서 제외
 - 자동 랭킹 배지 풀 제외
-- 부정 배지(`db_inactive`, `fb_inactive`) 제외
+- 부정 배지 (`db_inactive`, `fb_inactive`) 제외
 - 정렬 시 `kangseoLastSort` 로 최하단 배치
 
-**제외되지 않는 영역** (정상 처리):
-- 실적/유지율/신계약/성장률/생손비중
-- 실적왕/신계약왕/보험료왕/유지왕/성장왕 후보
+### 제외되지 않는 영역 (정상 처리)
+- 실적 / 유지율 / 신계약 / 성장률 / 생손비중
+- 실적왕 / 신계약왕 / 보험료왕 / 유지왕 / 성장왕 후보
 
-## 4. 서범석(사번 2335304) D 제외 정책
+---
 
-서범석은 단장으로 FA 풀에서 제외. `data/data.json` 의 `D` 키에 포함되지 않음 (raw 추출 단계에서 제외).
+## 데이터 정제 정책
 
-- raw 파일명에 등장하는 `2335304` 는 데이터 추출 계정 사번(서범석 본인)이며, FA 본인 데이터로 사용하지 않음.
-- TARGET/FEEDBACK 에도 추가하지 않음.
+### 서범석 (사번 2335304, 단장) 제외
+- 사용자(서범석) 본인은 단장으로 FA 풀에서 제외.
+- `D` / `PERF` / `TARGET` / `FEEDBACK` 어디에도 추가하지 않음.
+- raw 파일명에 등장하는 `2335304` 는 **데이터 추출 계정 사번**(본인)이며 FA 데이터로 사용하지 않음.
+- 원본 xls에 행이 있어도 build_data.py 또는 후처리 단계에서 제외.
 
-## 5. 일시납 보험료 정제 정책
-
-`scripts/build_data.py` 의 PERF 빌드 단계에서 일시납 건을 행 단위로 제외 (`_check_lump_sum`):
-
-- **룰 A** (연금일시납): 상품명/보험종목에 '연금' 포함 AND 영수보험료 ≥ 1천만원 AND 납입회차 = 1 AND 영수유형 = '초회'
+### 일시납 보험료 제거
+`scripts/build_data.py` 의 `_check_lump_sum()` (~L202) 에서 PERF 행 단위로 검사 후 제외:
+- **룰 A** (연금일시납): 상품명/보험종목에 `'연금'` 포함 AND 영수보험료 ≥ 1천만원 AND 납입회차 = 1 AND 영수유형 = `'초회'`
 - **룰 B** (고액안전망): 영수보험료 ≥ 5천만원 AND 납입회차 = 1
 
-제외된 행은 `logs/excluded_lump_sum_YYYYMMDD.log` 에 기록 (FA, 계약자, 보험료, 상품명, 사유 코드).
+제외 행은 `logs/excluded_lump_sum_YYYYMMDD.log` 에 (FA, 계약자, 보험료, 상품명, 사유 코드) 형식으로 기록.
 
-## 6. 호스팅
+이유: 일시납은 월납 KPI/실적/단가를 왜곡함. 대시보드는 **월납 보장성 신계약 기준**이라 일시납은 제거해야 정합성이 맞음.
 
-- **URL**: https://returnofrd5461-pixel.github.io/FA-data/
-- **방식**: GitHub Pages (main 브랜치 루트)
-- **배포**: `git push` 즉시 반영 (수동 빌드 없음)
-- `data.json` / `updates.json` fetch 시 `?v=Date.now()` 쿼리스트링으로 캐시 무효화
+---
 
-## 7. 주요 함수 위치 (`index.html`)
+## 단위 컨벤션
 
-| 함수 | 라인 근처 | 역할 |
+코드 직접 확인 (`index.html`, `data/data.json`):
+
+| 항목 | 원본 단위 | 표시 단위 | 변환 |
+|---|---|---|---|
+| `PERF.prem` (월납보험료) | **원** | **만원** | `fmtW()` → `Math.round(v/10000) + '만'` |
+| `PERF.perf` (인정실적) | **원** | **만원** | 동일 |
+| `PERF.hwan` (환산월초) | **원** | **만원** | 동일 |
+| `D.total_prem` | **원** | **만원** | 동일 |
+| `TARGET.goal` (마감목표) | **원** | **만원** | 동일. pc6 차트는 `Math.round(goal/10000)` |
+| `TARGET.db` / `TARGET.act` | **건** | **건** | — |
+| `FEEDBACK.done` / `hold` | **건** | **건** | — |
+| `LOST.first_perf` (초회실적) | **원** | **만원** | 동일 |
+| 유지율 / 생보비중 / 손보비중 / 이탈률 | **%** | **%** | 0~100 |
+| 성장률 (`growth`) | **%** | **%** | 직전 3개월 vs 최근 3개월 |
+
+**달성률(ach) 계산**: `targetOfMths(name)` 에서 선택월 누적 `PERF.prem ÷ TARGET.goal × 100`. **인정실적이 아닌 월납보험료 기준**(실무 관행).
+
+**회계년도**: 10월 시작. `MONTH_ORDER` (`index.html:466`):
+- 25.4Q = `10` / `11` / `12`
+- 26.1Q = `01` / `02` / `03`
+- 이후 `04` / `05` / ...
+
+---
+
+## 주요 함수·로직 위치 (`index.html`)
+
+| 함수 | 라인 | 역할 |
 |---|---|---|
 | `getTeam(name)` | 475 | D → PERF 순으로 팀 조회 |
-| `isActivityExcluded(name, team)` | 483 | 활동데이터 제외 판정 (강서지사 + EXCLUDED_NAMES) |
+| `isActivityExcluded(name, team)` | 483 | 활동데이터 제외 판정 |
 | `isKangseo(name)` | 488 | `isActivityExcluded` 래퍼 (구 호출처 호환) |
 | `kangseoLastSort(a, b)` | 489 | 정렬 시 제외 대상 최하단 |
+| `actMths()` | 543 | 선택월 배열 반환 |
 | `allFAs()` | 597 | D∪PERF 의 FA 풀 |
+| `getGrade(d)` | 664 | 유지율 등급 (s/a/b/c/d/n) |
 | `perfOfMths(name)` | 821 | 선택월 PERF 집계 (cnt/prem/perf/...) |
-| `metaBadges(name, pd)` | 845 | 메타분석 배지 산출 (긍정/부정/교차) |
-| `targetOfMths(name)` | 948 | 선택월 TARGET 집계 + 달성률(ach) 계산 |
-| `feedbackOfMths(name)` | 1133 | 선택월 FEEDBACK 집계 |
+| `metaBadges(name, pd)` | 845 | 자동분석 배지 산출 (긍정/부정/교차) |
+| `targetOfMths(name)` | 948 | 선택월 TARGET 집계 + ach 계산 (prem ÷ goal × 100) |
 | `computeKings()` | 969 | 영예 칭호(왕) 1위 계산 |
+| `feedbackOfMths(name)` | 1133 | 선택월 FEEDBACK 집계 |
 | `newFASectionHTML(name)` | 1164 | 신규 합류 FA(`PERF.totals.cnt===0`) 카드 |
-| `perfSectionHTML(name)` | 1206 | 일반 FA 카드 (실적+활동 통합) |
-| `renderPerfView(agents)` | 1526 | 통합뷰(랭킹 테이블 + 상세카드 그리드) |
-| `render()` | 2169 | 진입점, 필터·정렬 후 view 분기 |
+| `perfSectionHTML(name)` | 1206 | 일반 FA 카드뷰 성과 섹션 (실적+활동 통합) |
+| `renderPerfView(agents)` | 1526 | 통합뷰(랭킹 테이블 + FA별 상세카드 그리드) |
+| `rankSort(agents)` | 2140 | 유지율 랭킹 정렬 |
+| `perfSort(col)` | 2163 | 통합뷰 표 정렬 진입점 (헤더 클릭 핸들러) |
+| `render()` | 2169 | 메인 진입점 (필터·정렬 → view 분기) |
+| `actOfMths(name)` | 2193 | ACT 집계 (현재 미사용) |
+| `loadActivityData()` | 2200 | Notion MCP + Anthropic API로 ACT 로드 (현재 비활성) |
+| `downloadImg()` | 2286 | 현재 화면 PNG 이미지 저장 (HTML 다운로드 아님) |
 | `renderUpdateNote(entries)` | 2308 | 우측 사이드 업데이트 노트 렌더 |
 
-핵심 상수:
+### 활동 관련 차트
+| Canvas ID | 내용 | 제외 정책 |
+|---|---|---|
+| `pc1` | 신계약 건수 | 적용 안 함 |
+| `pc2` | 월납보험료 (만원) | 적용 안 함 |
+| `pc3` | 인정실적 (만원) | 적용 안 함 |
+| **`pc4`** | DB 배정 (건) | ✓ 제외 대상 |
+| **`pc5`** | 외활 (건) | ✓ 제외 대상 |
+| **`pc6`** | 마감목표·달성률 (만원) | ✓ 제외 대상 |
+| **`pc7`** | 피드백 (건) | ✓ 제외 대상 |
+
+### 핵심 상수
 - `KANGSEO = '강서지사'` (474)
 - `ACTIVITY_EXCLUDED_NAMES = new Set(['민선경'])` (475)
-- `MONTH_ORDER` (466): 회계년도 10월 시작 정렬
-- `ML_MAP` (470): 월 코드 → '26.4월' 라벨
+- `MONTH_ORDER` (466), `ML_MAP` (470)
+- `TC` / `TT` (471, 472): 팀 배경/텍스트 색상
+- `ALL_TEAMS` (581), `TEAM_RANK` (715)
 
-## 8. 작업 폴더 구조
+---
 
-```
-FA-data/
-├── index.html              # 대시보드 단일 페이지 (~2,360 라인)
-├── data/
-│   ├── data.json           # 빌드 결과 (D/LOST/PERF/TARGET/FEEDBACK/_meta)
-│   └── updates.json        # 우측 사이드 업데이트 노트 entries
-├── raw/
-│   └── YYYY-MM/            # 월별 원본 폴더
-│       ├── 손생보합산_*.xlsx           → D
-│       ├── 통산유지율_계약리스트_*.xlsx → LOST
-│       ├── 건별실적_*.xlsx              → PERF
-│       └── manual.json                  → TARGET(db/act) + FEEDBACK + fa_team
-├── scripts/
-│   └── build_data.py       # raw/ 머지 → data.json
-├── logs/
-│   └── excluded_lump_sum_*.log
-├── README.md
-└── CLAUDE.md               # 이 문서
+## 워크플로우
+
+### 데이터 갱신 주기
+**월 단위**. 매월 초 전월 데이터가 확정되면 갱신.
+
+### 작업 PC
+- **회사 PC**: `C:\Users\SEO\Documents\GitHub\FA-data\`
+- **집 PC**: `C:\Users\서범석\Documents\GitHub\FA-data\`
+- 양쪽 작업으로 인해 **pull 누락 시 커밋 갭 누적** 위험. 항상 작업 시작 시 `git pull --ff-only` 먼저.
+
+### 클로드 코드 실행
+```bash
+cd C:\Users\SEO\Documents\GitHub\FA-data
+claude --dangerously-skip-permissions
 ```
 
-**머지 원칙**: `build_data.py` 는 (FA, 월) 단위 덮어쓰기. 기존 월/기간 보존. `TARGET.goal` 과 `FEEDBACK` 은 manual.json 기반이며, `TARGET.goal` 만 수동으로 별도 입력(현재 `data/data.json` 직접 편집).
+### Git 컨벤션
+- **작업 시작**: 무조건 `git pull --ff-only` 먼저. 충돌 시 즉시 보고·대기.
+- **작업 완료**: `git add → git commit -m "type(scope): 요약" → git push` 로 마무리.
+- **커밋 메시지**: `feat | fix | chore | docs | refactor (scope): 한 줄 요약`
 
-## 9. 단위 컨벤션
+---
 
-| 항목 | 단위 | 비고 |
+## 유지율 데이터 갱신 시 필수 파일 3종
+
+`raw/YYYY-MM/` 에 다음 파일 배치:
+
+1. **이번 달 통산유지율 현황** (`.xls`)
+   - 손생보합산 사원_통산유지율현황_YYYYMMDD.xls
+   - → `D` 빌드
+2. **이번 달 계약 리스트** (`.xlsx`)
+   - 통산유지율_계약리스트_YYYYMMDDhhmmss_*.xlsx
+   - → `LOST` 빌드 (이번 달 시점 기준 실효/해지 raw)
+3. **전월 계약 리스트** (`.xlsx`)
+   - 직전 월의 `통산유지율_계약리스트_*.xlsx`
+   - → `LOST` 신규 이탈 추출에 **전월과의 diff** 필요
+4. (보조) **건별실적** (`.xlsx`)
+   - 건별실적_YYYYMMDDhhmmss_2335304.xlsx
+   - → `PERF` 빌드
+5. (보조) **manual.json**
+   - DB배정/외활/피드백/팀 매핑 수동 입력
+
+저장 후 `python scripts/build_data.py` 실행 → `data/data.json` 갱신.
+
+---
+
+## Claude 웹 ↔ Claude Code 분업
+
+| 역할 | Claude 웹 | Claude Code |
 |---|---|---|
-| `PERF.prem` (월납보험료) | **원** | 표시 시 `fmtW()` 로 `÷10000` 후 '만' 표기 |
-| `PERF.perf` (인정실적) | **원** | 동일 |
-| `PERF.hwan` (환산월초) | **원** | 동일 |
-| `D.total_prem` | **원** | |
-| `TARGET.goal` (마감목표) | **원** | 월납보험료 기준. 표시 시 `÷10000` 후 '만원' |
-| `TARGET.db` / `TARGET.act` | **건** | |
-| `FEEDBACK.done` / `hold` | **건** | |
-| `LOST.first_perf` | **원** | 초회실적 |
-| 유지율 (`rate_25`, `lost_rate`, `life_ratio`) | **%** | 0~100 |
-| 성장률 (`growth`) | **%** | 직전 3개월 vs 최근 3개월 |
+| 이미지/PDF 변환·파싱 | ✓ | △ |
+| 새 기능 기획·명세화 | ✓ | △ |
+| 데이터 정합성 분석 | ✓ | △ |
+| 의사결정 (정책/단위/제외 대상) | ✓ | — |
+| 명세 기반 코드 구현 | — | ✓ |
+| 데이터 처리 스크립트 작성 | — | ✓ |
+| Git 작업 (pull/commit/push) | — | ✓ |
+| 파일 검증·diff 확인 | — | ✓ |
 
-**달성률(ach) 계산**: `targetOfMths` 에서 선택월 누적 `PERF.prem ÷ TARGET.goal × 100`. 인정실적이 아닌 **월납보험료** 기준 (실무 관행).
+**Claude Design**: 디자인 시안. 사용자가 별도 도구로 만들어 보내면 Claude Code가 구현에 반영.
 
-회계년도: **10월 시작** (10/11/12/01/02/03/04/...). 25.4Q = 10·11·12월, 26.1Q = 01·02·03월.
+기본 원칙: **Claude 웹이 "무엇을"을 정하고, Claude Code가 "어떻게"를 실행**. 본 CLAUDE.md는 둘 사이 컨텍스트 동기화 매개체.
