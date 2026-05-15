@@ -2,6 +2,14 @@
   "_note": "최신 업데이트가 위에 오도록 entries 배열 맨 앞에 추가. date는 YYYY-MM-DD.",
   "entries": [
     {
+      "date": "2026-05-15",
+      "items": [
+        "26.4월 마감목표(TARGET) 24명 입력 (합계 18,100,000)",
+        "민선경 활동데이터(DB/외활/피드백/마감목표) 표시 제외 — 강서지사와 동일 정책 적용",
+        "isKangseo → isActivityExcluded(name, team) 함수로 확장"
+      ]
+    },
+    {
       "date": "2026-05-12",
       "items": [
         "26.4월 유지데이터 업데이트",
