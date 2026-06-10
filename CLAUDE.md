@@ -325,6 +325,15 @@ claude --dangerously-skip-permissions
 
 저장 후 `python scripts/build_data.py` 실행 → `data/data.json` 갱신.
 
+### 데이터 갱신 후 필수 단계 (누락 주의)
+`data/data.json` 을 갱신했으면 **반드시 `data/updates.json` 에 항목을 추가**한다. 우측 사이드 업데이트 노트(`renderUpdateNote`)에 표시되는 변경 이력으로, 빠지면 사용자가 무엇이 바뀌었는지 알 수 없다.
+- `entries` 배열 **맨 앞**에 `{ "date": "YYYY-MM-DD", "items": [...] }` 추가 (최신이 위).
+- `items` 는 간결한 한 줄 bullet. 무엇을(월/대상), 규모(인원/건수/합계), 부수효과(예: 성장률 윈도우 이동)를 기재.
+- data.json 과 **같은 커밋**으로 묶는 것을 권장 (별도 커밋으로 뒤늦게 기록하면 누락되기 쉬움).
+
+### PERF 원본 파일 주의
+`PERF` 빌드는 **계약 행 단위 `건별실적_*.xlsx`** 만 사용한다. 시스템에서 비슷하게 보이는 **`인정 실적조회(사원)_*.xls`** 는 FA별 **집계 요약표**(HTML 위장 .xls)라 월보험료·환산월초·계약상태·보험회사·계약별 일시납 판정이 없어 사용 불가. `build_data.py` 도 `건별실적*.xlsx` 패턴으로만 검색한다.
+
 ---
 
 ## Claude 웹 ↔ Claude Code 분업
