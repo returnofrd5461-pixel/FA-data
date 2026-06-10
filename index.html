@@ -1273,7 +1273,7 @@ function perfSectionHTML(name) {
       <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#0f6e56'}">${kang?'—':td.act+'건'}</div><div class="pl">누적 외활</div></div>
       <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#a04848'}">${kang?'—':(fd?fd.total:0)+'건'}</div><div class="pl">누적 피드백</div></div>
       <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'inherit'}">${kang?'—':(td.goal>0?fmtW(td.goal):'—')}</div><div class="pl">누적 마감목표</div></div>
-      <div class="perf-kpi"><div class="pv" style="color:${achColor(td.ach)}">${td.ach!=null?td.ach.toFixed(0)+'%':'—'}</div><div class="pl">평균 목표달성률</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':achColor(td.ach)}">${kang?'—':(td.ach!=null?td.ach.toFixed(0)+'%':'—')}</div><div class="pl">평균 목표달성률</div></div>
     </div>`:''}
     <div class="perf-charts">
       <div class="perf-cw"><div class="perf-ct">신계약 건수</div><div class="perf-cwrap"><canvas id="pc1${id}"></canvas></div></div>
