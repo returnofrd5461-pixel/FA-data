@@ -467,6 +467,7 @@ const MONTH_ORDER={'10':0,'11':1,'12':2,'01':3,'02':4,'03':5,'04':6,'05':7,'06':
 let PERF;
 let TARGET;
 let FEEDBACK;
+let _actCollectedCache=null; // 외활(act) 전체 수집 월 Set 캐시 (미수집 달 판별용). 데이터 로드 시 null 로 무효화.
 const ML_MAP={'01':'26.1월','02':'26.2월','03':'26.3월','04':'26.4월','05':'26.5월','06':'26.6월','07':'26.7월','08':'26.8월','09':'26.9월','10':'25.10월','11':'25.11월','12':'25.12월'};
 const TC={'Team 0':'#e6f1fb','Team 1':'#e1f5ee','Team 2':'#faece7','Team 3':'#faeeda','강서지사':'#eeedfe','서울지사':'#fbeaf0','기타':'#f1efe8'};
 const TT={'Team 0':'#0c447c','Team 1':'#085041','Team 2':'#993c1d','Team 3':'#633806','강서지사':'#3c3489','서울지사':'#72243e','기타':'#444441'};
@@ -923,11 +924,14 @@ function metaBadges(name, pd) {
       badges.push({label:`🎯 목표초과달성 +${(td.ach-100).toFixed(0)}%`, kw:'goal_exceed', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
     else if(td.ach!=null&&td.ach<70)
       badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, kw:'goal_miss', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
-    if(!isKangseo(name)){
-      if(td.db>0&&td.dbUse!=null&&td.dbUse<30){
-        badges.push({label:`📭 DB 활용 부진 ${Math.round(td.dbUse)}%`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+    // db_inactive 는 '외활 수집 달' 기준으로만 판정 (외활 미수집 달은 산정 스킵 — 전원 act=0 오탐 방지).
+    // 활용부진(외활/DB 비율)은 수집달만(dbC), 미배정(진짜 DB 0)은 전체 db 로 판정.
+    // → DB 를 미수집 달에만 받은 경우(dbC=0, db>0)는 둘 다 아니므로 배지 없음.
+    if(!isKangseo(name)&&td.hasActCollectedMonth){
+      if(td.dbC>0&&td.dbUseC!=null&&td.dbUseC<30){
+        badges.push({label:`📭 DB 활용 부진 ${Math.round(td.dbUseC)}%`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
       } else if(td.db===0){
-        const actLabel=td.act>0?` (외활 ${td.act}건)`:'';
+        const actLabel=td.actC>0?` (외활 ${td.actC}건)`:'';
         badges.push({label:`📭 DB 미배정${actLabel}`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
       }
     }
@@ -945,21 +949,41 @@ function metaBadges(name, pd) {
 }
 
 // ─── 활동/목표 헬퍼 ─────────────────────────────────
+// 외활(act) 데이터가 전체 인원 기준 1건이라도 수집된 '외활 수집 달' 집합.
+// 어느 FA도 act>0 이 없는 달 = '외활 미수집 달' → db_inactive 판정에서 제외한다.
+function actCollectedMonths(){
+  if(_actCollectedCache) return _actCollectedCache;
+  const s=new Set();
+  if(TARGET){
+    for(const nm in TARGET){
+      const mm=TARGET[nm]; if(!mm) continue;
+      for(const m in mm){ if((mm[m]&&mm[m].act||0)>0) s.add(m); }
+    }
+  }
+  _actCollectedCache=s;
+  return s;
+}
 function targetOfMths(name) {
   const t=TARGET&&TARGET[name];
   if(!t) return null;
   const aM=actMths();
+  const collected=actCollectedMonths();
   let db=0,act=0,goal=0,anyMonthHasData=false;
+  let dbC=0,actC=0; // 외활 수집된 달만 합산 (db_inactive 판정 전용)
   aM.forEach(m=>{
     const v=t[m];if(!v)return;
     db+=v.db||0; act+=v.act||0; goal+=v.goal||0;
     if((v.db||0)||(v.act||0)||(v.goal||0)) anyMonthHasData=true;
+    if(collected.has(m)){ dbC+=v.db||0; actC+=v.act||0; }
   });
+  // 선택 구간에 '외활 수집 달' 이 하나라도 포함되는지 (미수집 달만 선택되면 db_inactive 산정 불가)
+  const hasActCollectedMonth=aM.some(m=>collected.has(m));
   // 목표달성률은 월납보험료(prem) 기준 (인정실적이 아닌 보험 실무 기준)
   const premSum=aM.reduce((s,m)=>s+(PERF[name]?.months[m]?.prem||0),0);
   const ach=goal>0?(premSum/goal*100):null;
   const dbUse=db>0?(act/db*100):null;
-  return {db,act,goal,premSum,ach,dbUse,anyMonthHasData,
+  const dbUseC=dbC>0?(actC/dbC*100):null;
+  return {db,act,goal,premSum,ach,dbUse,dbC,actC,dbUseC,hasActCollectedMonth,anyMonthHasData,
           avgDb:aM.length?Math.round(db/aM.length):0,
           avgAct:aM.length?Math.round(act/aM.length):0};
 }
@@ -2336,6 +2360,7 @@ fetch('./data/data.json?v='+Date.now())
   .then(r=>r.json())
   .then(data=>{
     D=data.D; LOST=data.LOST; PERF=data.PERF; TARGET=data.TARGET||{}; FEEDBACK=data.FEEDBACK||{};
+    _actCollectedCache=null; // 외활 수집월 캐시 무효화
     // 최종 업데이트 시각 표시
     const lu=data._meta&&data._meta.lastUpdated;
     if(lu){
