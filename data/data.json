@@ -10822,6 +10822,121 @@
       "insurers": {
         "하나손보": 2
       }
+    },
+    "박민주": {
+      "name": "박민주",
+      "team": "Team 2",
+      "status": "FA",
+      "months": {},
+      "totals": {
+        "cnt": 0,
+        "prem": 0,
+        "perf": 0,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 0,
+        "life_ratio": 0,
+        "lost_rate": 0,
+        "growth": null,
+        "growth_label": "26.1~26.6",
+        "top_products": {}
+      },
+      "insurers": {}
+    },
+    "박정주": {
+      "name": "박정주",
+      "team": "Team 3",
+      "status": "FA",
+      "months": {},
+      "totals": {
+        "cnt": 0,
+        "prem": 0,
+        "perf": 0,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 0,
+        "life_ratio": 0,
+        "lost_rate": 0,
+        "growth": null,
+        "growth_label": "26.1~26.6",
+        "top_products": {}
+      },
+      "insurers": {}
+    },
+    "서영지": {
+      "name": "서영지",
+      "team": "Team 3",
+      "status": "FA",
+      "months": {},
+      "totals": {
+        "cnt": 0,
+        "prem": 0,
+        "perf": 0,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 0,
+        "life_ratio": 0,
+        "lost_rate": 0,
+        "growth": null,
+        "growth_label": "26.1~26.6",
+        "top_products": {}
+      },
+      "insurers": {}
+    },
+    "이연서": {
+      "name": "이연서",
+      "team": "서울지사",
+      "status": "FA",
+      "months": {},
+      "totals": {
+        "cnt": 0,
+        "prem": 0,
+        "perf": 0,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 0,
+        "life_ratio": 0,
+        "lost_rate": 0,
+        "growth": null,
+        "growth_label": "26.1~26.6",
+        "top_products": {}
+      },
+      "insurers": {}
+    },
+    "김지연": {
+      "name": "김지연",
+      "team": "서울지사",
+      "status": "FA",
+      "months": {},
+      "totals": {
+        "cnt": 0,
+        "prem": 0,
+        "perf": 0,
+        "hwan": 0,
+        "life": 0,
+        "nonlife": 0,
+        "lost": 0,
+        "delay": 0,
+        "avg_perf": 0,
+        "life_ratio": 0,
+        "lost_rate": 0,
+        "growth": null,
+        "growth_label": "26.1~26.6",
+        "top_products": {}
+      },
+      "insurers": {}
     }
   },
   "TARGET": {
