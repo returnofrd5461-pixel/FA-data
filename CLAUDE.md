@@ -287,13 +287,13 @@ DB배정 / 외활 / 피드백 / 마감목표 — 다음 모든 위치에서:
 **월 단위**. 매월 초 전월 데이터가 확정되면 갱신.
 
 ### 작업 PC
-- **회사 PC**: `C:\Users\SEO\Documents\GitHub\FA-data\`
-- **집 PC**: `C:\Users\서범석\Documents\GitHub\FA-data\`
-- 양쪽 작업으로 인해 **pull 누락 시 커밋 갭 누적** 위험. 항상 작업 시작 시 `git pull --ff-only` 먼저.
+- **회사·집 PC 모두**: `C:\Users\서범석\Documents\GitHub\FA-data\` (26.7월 회사 PC 계정 `SEO`→`서범석` 변경으로 경로 통일)
+- 두 PC 경로가 동일해 **경로만으로는 구분 불가**. 양쪽 작업으로 인해 **pull 누락 시 커밋 갭 누적** 위험. 항상 작업 시작 시 `git pull --ff-only` 먼저.
+- **환경 특이사항 (회사 PC)**: git/python 이 PATH 에 없음 → **GitHub Desktop 번들 git** + **winget user-scope Python 3.12(openpyxl 설치)** 사용.
 
 ### 클로드 코드 실행
 ```bash
-cd C:\Users\SEO\Documents\GitHub\FA-data
+cd C:\Users\서범석\Documents\GitHub\FA-data
 claude --dangerously-skip-permissions
 ```
 
@@ -301,6 +301,11 @@ claude --dangerously-skip-permissions
 - **작업 시작**: 무조건 `git pull --ff-only` 먼저. 충돌 시 즉시 보고·대기.
 - **작업 완료**: `git add → git commit -m "type(scope): 요약" → git push` 로 마무리.
 - **커밋 메시지**: `feat | fix | chore | docs | refactor (scope): 한 줄 요약`
+
+### 월별 데이터 추가 방식 (targeted merge 권장)
+- `build_data.py` **전체 재실행은 지양**. `merge_PERF` 가 insurers 를 누적 add 하므로 전체 재스캔 시 기존 월 insurers 가 **이중 누적**됨.
+- 대신 **해당 월·해당 영역만 대상으로 targeted merge**: 신월 데이터만 계산해 `data.json` 에 병합하고, 그 외(다른 월/PERF/D/LOST/TARGET/FEEDBACK)는 불변 유지. 병합 후 빌드 전/후 diff 로 "타 영역 불변 + 신월만 추가" 검증.
+- 커밋도 영역별 분리(PERF / 유지 D·LOST / 활동 TARGET·FEEDBACK). PERF 만 재빌드할 땐 신월 `건별실적` 만 스캔 범위에 두어 insurers 재누적 방지.
 
 ---
 
