@@ -46,9 +46,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .qbtn{padding:3px 9px;border-radius:4px;font-size:11px;font-weight:500;cursor:pointer;border:1px solid #d3d1c7;background:#f5f4f0;color:#5f5e5a;transition:all .12s}
 .qbtn.on{background:#378add;color:#fff;border-color:#378add}
 .mbtn{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1.5px solid #d3d1c7;background:#f5f4f0;color:#5f5e5a;transition:all .12s}
-.mbtn.on{color:#fff;border-color:transparent}
-.mbtn.on.m01{background:#185fa5}.mbtn.on.m02{background:#0f6e56}.mbtn.on.m03{background:#854f0b}.mbtn.on.m04{background:#6B5B95}
-.mbtn.on.m10{background:#3c3489}.mbtn.on.m11{background:#993c1d}.mbtn.on.m12{background:#72243e}
+.mbtn.on{color:#fff;border-color:transparent;background:var(--mc,#185fa5)}
 .period-badge{font-size:11px;color:#73726c;padding:2px 8px;border-radius:4px;background:#f0efe9;border:0.5px solid #d3d1c7;white-space:nowrap}
 .lfbtn{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;border:1.5px solid #d3d1c7;background:#f5f4f0;color:#5f5e5a;transition:all .12s}
 .lfbtn.on{background:#1a1a18;color:#fff;border-color:#1a1a18}
@@ -464,6 +462,10 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 let D;
 let LOST;
 const MONTH_ORDER={'10':0,'11':1,'12':2,'01':3,'02':4,'03':5,'04':6,'05':7,'06':8,'07':9,'08':10,'09':11};
+// 기간 칩 활성 색상 팔레트 — 회계월 순서(MONTH_ORDER) 인덱스 기준 자동 순환 할당.
+// 앞 7색은 기존 25.10~26.4 색상 그대로(회귀 방지), 이후 신규 월은 팔레트 순환으로 자동 부여(코드 수정 불필요).
+const MONTH_PALETTE=['#3c3489','#993c1d','#72243e','#185fa5','#0f6e56','#854f0b','#6B5B95','#1f7a8c','#556b2f','#6a3d9a','#b03a2e','#2c6e49'];
+function monthColor(m){const i=MONTH_ORDER[m]??0;return MONTH_PALETTE[i%MONTH_PALETTE.length];}
 let PERF;
 let TARGET;
 let FEEDBACK;
@@ -775,7 +777,7 @@ function setLostFilter(v){
 }
 function buildMonthBtns(){
   const c=document.getElementById('monthBtns');c.innerHTML='';
-  AVAIL_MONTHS.forEach(m=>{const b=document.createElement('button');b.className='mbtn m'+m+(selMonths.has(m)?' on':'');b.textContent=ML_MAP[m]||m;b.id='mbtn_'+m;b.onclick=()=>toggleMonth(m);c.appendChild(b);});
+  AVAIL_MONTHS.forEach(m=>{const b=document.createElement('button');b.className='mbtn m'+m+(selMonths.has(m)?' on':'');b.style.setProperty('--mc',monthColor(m));b.textContent=ML_MAP[m]||m;b.id='mbtn_'+m;b.onclick=()=>toggleMonth(m);c.appendChild(b);});
   updatePeriodBadge();updateQuickBtns();
 }
 function toggleMonth(m){
