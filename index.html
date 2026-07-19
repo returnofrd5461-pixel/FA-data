@@ -1249,6 +1249,11 @@ function perfSectionHTML(name) {
   const fd=feedbackOfMths(name);
   const kang=isKangseo(name);
   const kangNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">🚫 표시 제외</div>';
+  const noDataNotice='<div style="padding:24px 16px;text-align:center;font-size:11px;color:#73726c;background:#f5f4f0;border-radius:6px;border:1px dashed #c9c7be">— 활동 데이터 없음</div>';
+  // 활동/목표(DB·외활·피드백·마감목표) 미표시 조건: 제외 대상(kang) 또는 TARGET 부재(!tHas).
+  // 두 경우 모두 섹션 골격은 렌더하고 값만 '—'/노티스 처리해 카드 레이아웃을 통일한다.
+  const actHidden=kang||!tHas;
+  const actNotice=kang?kangNotice:noDataNotice;
   const badges=metaBadges(name,pd);
   const posBadges=badges.filter(b=>b.type==='pos');
   const negBadges=badges.filter(b=>b.type==='neg');
@@ -1302,27 +1307,27 @@ function perfSectionHTML(name) {
       <div class="perf-kpi"><div class="pv">${fmtW(pd.perf)}</div><div class="pl">인정실적</div></div>
       <div class="perf-kpi"><div class="pv" style="color:${gc||'#5f5e5a'}">${growthStrRaw}</div><div class="pl">${growthKpiLabel}</div></div>
     </div>
-    ${tHas?`<div class="perf-kpis" style="grid-template-columns:repeat(5,1fr)">
-      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#185fa5'}">${kang?'—':td.db+'건'}</div><div class="pl">누적 DB배정</div></div>
-      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#0f6e56'}">${kang?'—':td.act+'건'}</div><div class="pl">누적 외활</div></div>
-      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'#a04848'}">${kang?'—':(fd?fd.total:0)+'건'}</div><div class="pl">누적 피드백</div></div>
-      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':'inherit'}">${kang?'—':(td.goal>0?fmtW(td.goal):'—')}</div><div class="pl">누적 마감목표</div></div>
-      <div class="perf-kpi"><div class="pv" style="color:${kang?'#a09f98':achColor(td.ach)}">${kang?'—':(td.ach!=null?td.ach.toFixed(0)+'%':'—')}</div><div class="pl">평균 목표달성률</div></div>
-    </div>`:''}
+    <div class="perf-kpis" style="grid-template-columns:repeat(5,1fr)">
+      <div class="perf-kpi"><div class="pv" style="color:${actHidden?'#a09f98':'#185fa5'}">${actHidden?'—':td.db+'건'}</div><div class="pl">누적 DB배정</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${actHidden?'#a09f98':'#0f6e56'}">${actHidden?'—':td.act+'건'}</div><div class="pl">누적 외활</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${actHidden?'#a09f98':'#a04848'}">${actHidden?'—':(fd?fd.total:0)+'건'}</div><div class="pl">누적 피드백</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${actHidden?'#a09f98':'inherit'}">${actHidden?'—':(td.goal>0?fmtW(td.goal):'—')}</div><div class="pl">누적 마감목표</div></div>
+      <div class="perf-kpi"><div class="pv" style="color:${actHidden?'#a09f98':achColor(td.ach)}">${actHidden?'—':(td.ach!=null?td.ach.toFixed(0)+'%':'—')}</div><div class="pl">평균 목표달성률</div></div>
+    </div>
     <div class="perf-charts">
       <div class="perf-cw"><div class="perf-ct">신계약 건수</div><div class="perf-cwrap"><canvas id="pc1${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">월납보험료 (만원)</div><div class="perf-cwrap"><canvas id="pc2${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">인정실적 (만원)</div><div class="perf-cwrap"><canvas id="pc3${id}"></canvas></div></div>
     </div>
-    ${tHas?(kang?`<div style="padding:8px 18px">${kangNotice}</div>`:`<div class="perf-charts">
+    ${actHidden?`<div style="padding:8px 18px">${actNotice}</div>`:`<div class="perf-charts">
       <div class="perf-cw"><div class="perf-ct">DB배정</div><div class="perf-cwrap"><canvas id="pc4${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">외활</div><div class="perf-cwrap"><canvas id="pc5${id}"></canvas></div></div>
       <div class="perf-cw"><div class="perf-ct">피드백</div><div class="perf-cwrap"><canvas id="pc7${id}"></canvas></div></div>
-    </div>`):''}
-    ${tHas?`<div class="perf-bottom has-target">
+    </div>`}
+    <div class="perf-bottom has-target">
       <div class="perf-bottom-left">
         <div class="perf-ct" style="margin-bottom:6px">마감목표 (만원) · 달성률</div>
-        ${kang?kangNotice:`<div class="perf-cwrap-lg"><canvas id="pc6${id}"></canvas></div>`}
+        ${actHidden?actNotice:`<div class="perf-cwrap-lg"><canvas id="pc6${id}"></canvas></div>`}
       </div>
       <div class="perf-bottom-right">
         <div class="perf-products">
@@ -1342,24 +1347,7 @@ function perfSectionHTML(name) {
           </div>
         </div>
       </div>
-    </div>`:`<div class="perf-bottom">
-      <div class="perf-portfolio">
-        <div class="perf-ct" style="margin-bottom:5px">생/손보 구성 · 이탈 ${pd.lostRate}%${pd.delay>0?' · 유예 '+pd.delay+'건':''}</div>
-        <div class="portfolio-bar">
-          <div class="seg" style="width:${lifeW}%;background:rgba(133,58,165,.75)">${lifeW>20?'생보':''}  </div>
-          <div class="seg" style="width:${nlW}%;background:rgba(55,138,221,.75)">${nlW>20?'손보':''}  </div>
-        </div>
-        <div class="portfolio-legend">
-          <div class="pleg"><div class="pleg-dot" style="background:rgba(133,58,165,.75)"></div>생명 ${pd.life}건 (${lifeW}%)</div>
-          <div class="pleg"><div class="pleg-dot" style="background:rgba(55,138,221,.75)"></div>손해 ${pd.nonlife}건 (${nlW}%)</div>
-          ${pd.lostRate>0?`<div class="pleg" style="color:#a32d2d"><div class="pleg-dot" style="background:#fcebeb;border:1px solid #e24b4a"></div>조기이탈 ${pd.lostRate}%</div>`:''}
-        </div>
-      </div>
-      <div class="perf-products">
-        <div class="perf-ct" style="margin-bottom:5px">상품군 분포</div>
-        ${topProdHTML}
-      </div>
-    </div>`}
+    </div>
     ${allBadgeHTML?`<div class="meta-badges">${allBadgeHTML}</div>`:''}
   </div>`;
 }
