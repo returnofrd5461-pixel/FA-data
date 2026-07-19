@@ -85,9 +85,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-ser
 .ctrend{padding:9px 16px;background:#f9f8f5;display:flex;align-items:center;gap:5px;flex-wrap:wrap;font-size:11px;color:#5f5e5a;border-bottom:1px solid #f0efe9}
 .tm{display:flex;align-items:center;gap:3px}.tr{font-weight:500;font-size:12px}.ta{color:#c0bfba;font-size:11px}
 .lost-hd{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;background:#fff}
-.lost-title{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;color:#5f5e5a;letter-spacing:-0.2px}
-.lost-title .dot{width:6px;height:6px;border-radius:50%}
-.lost-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.lost-title{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;color:#5f5e5a;letter-spacing:-0.2px;white-space:nowrap;flex-shrink:0;word-break:keep-all}
+.lost-title .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.lost-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:flex-end;min-width:0}
 .lchip{font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500}
 .lc-none{background:#f1efe8;color:#73726c}
 .lost-bd{border-top:1px solid #f0efe9}
@@ -148,10 +148,10 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 
 /* ── 성과 섹션 구분선 (카드 내) ── */
 .perf-divider{display:flex;align-items:center;justify-content:space-between;padding:9px 16px 8px;background:linear-gradient(135deg,#eef5ff 0%,#f0f9f5 100%);border-top:2px solid #185fa5;margin-top:0}
-.perf-divider-left{display:flex;align-items:center;gap:8px}
-.perf-divider-icon{font-size:14px}
-.perf-divider-title{font-size:15px;font-weight:700;color:#185fa5;letter-spacing:-0.2px}
-.perf-chips{display:flex;gap:5px;flex-wrap:wrap}
+.perf-divider-left{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.perf-divider-icon{font-size:14px;flex-shrink:0}
+.perf-divider-title{font-size:15px;font-weight:700;color:#185fa5;letter-spacing:-0.2px;white-space:nowrap;word-break:keep-all}
+.perf-chips{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;min-width:0}
 .pchip2{font-size:11px;padding:2px 7px;border-radius:12px;font-weight:500}
 .perf-body{background:#fff}
 .perf-kpis{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #f0efe9}
@@ -212,7 +212,7 @@ table.rtbl tr.grade-empty td:first-child{border-left:3px solid #ddd}
 .pmc-row.pmc-maint{background:linear-gradient(90deg,#fdf6f0 0%,#faf2e8 100%);border-left:3px solid #c8975c}
 .pmc-row.pmc-perf{background:linear-gradient(90deg,#f0f7fd 0%,#e8f1fb 100%);border-left:3px solid #5c93c8}
 .pmc-row.pmc-act{background:linear-gradient(90deg,#f0faf3 0%,#e8f5ec 100%);border-left:3px solid #5cb87a}
-.pmc-section-label{font-size:10px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase}
+.pmc-section-label{font-size:10px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;word-break:keep-all;overflow-wrap:break-word}
 .pmc-row.pmc-maint .pmc-section-label{color:#854f0b}
 .pmc-row.pmc-perf .pmc-section-label{color:#1a4d7d}
 .pmc-row.pmc-act .pmc-section-label{color:#1c6b3a}
@@ -867,8 +867,8 @@ function metaBadges(name, pd) {
   allPerfs.sort((a,b)=>b.v-a.v);
   const rank=allPerfs.findIndex(x=>x.n===name)+1;
   const topPct=rank>0?rank/allPerfs.length:1;
-  if(topPct<=0.1) badges.push({label:'🏆 실적 상위 TOP'+rank, kw:'perf_top10', bg:'#fef4e0', color:'#7a4500', type:'pos'});
-  else if(topPct<=0.25) badges.push({label:'🥇 실적 양호 TOP'+rank, kw:'perf_top25', bg:'#fef9ec', color:'#854f0b', type:'pos'});
+  if(topPct<=0.1) badges.push({label:'🏆 실적 상위 TOP'+rank, kw:'perf_top10', bg:'#fef4e0', color:'#7a4500', type:'pos', cat:'perf'});
+  else if(topPct<=0.25) badges.push({label:'🥇 실적 양호 TOP'+rank, kw:'perf_top25', bg:'#fef9ec', color:'#854f0b', type:'pos', cat:'perf'});
 
   // ── 성장성 ──
   if(pd.growth!==null){
@@ -876,65 +876,67 @@ function metaBadges(name, pd) {
     const grade=perfGrade(name);
     // 폭발성장: 성과 B 이상 (s/a/b)
     if(pd.growth>=100 && (grade==='s'||grade==='a'||grade==='b')){
-      badges.push({label:`🚀 폭발성장${gw} +${pd.growth}%`, kw:'growth_explosive', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
+      badges.push({label:`🚀 폭발성장${gw} +${pd.growth}%`, kw:'growth_explosive', bg:'#e6f9f0', color:'#0f6e56', type:'pos', cat:'perf'});
     }
     // 고성장: 성과 C 이상 (s/a/b/c) — 폭발성장 등급 미달자도 흡수
     else if(pd.growth>=50 && (grade==='s'||grade==='a'||grade==='b'||grade==='c')){
-      badges.push({label:`📈 고성장${gw} +${pd.growth}%`, kw:'growth_high', bg:'#eaf3de', color:'#3b6d11', type:'pos'});
+      badges.push({label:`📈 고성장${gw} +${pd.growth}%`, kw:'growth_high', bg:'#eaf3de', color:'#3b6d11', type:'pos', cat:'perf'});
     }
     // 급감/하락(부정 배지)은 등급 무관 — 약한 신호도 경고로 잡아야 함
-    else if(pd.growth<=-50) badges.push({label:`📉 급감${gw} ${pd.growth}%`, kw:'growth_crash', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
-    else if(pd.growth<=-25) badges.push({label:`📉 하락${gw} ${pd.growth}%`, kw:'growth_fall', bg:'#fff0f0', color:'#c45050', type:'neg'});
+    else if(pd.growth<=-50) badges.push({label:`📉 급감${gw} ${pd.growth}%`, kw:'growth_crash', bg:'#fcebeb', color:'#a32d2d', type:'neg', cat:'perf'});
+    else if(pd.growth<=-25) badges.push({label:`📉 하락${gw} ${pd.growth}%`, kw:'growth_fall', bg:'#fff0f0', color:'#c45050', type:'neg', cat:'perf'});
   }
 
   // ── 포트폴리오 편중 (생보/손보 동등 처리 — 모두 부정) ──
-  if(pd.lifeRatio>=80&&pd.cnt>=10) badges.push({label:'🏗 생보 편중 '+pd.lifeRatio+'%', kw:'life_heavy', bg:'#eeedfe', color:'#3c3489', type:'neg'});
-  if(pd.nonlife/(pd.cnt||1)>=0.8&&pd.cnt>=10) badges.push({label:'🏗 손보 편중 '+(100-pd.lifeRatio)+'%', kw:'nonlife_heavy', bg:'#faeeda', color:'#633806', type:'neg'});
+  if(pd.lifeRatio>=80&&pd.cnt>=10) badges.push({label:'🏗 생보 편중 '+pd.lifeRatio+'%', kw:'life_heavy', bg:'#eeedfe', color:'#3c3489', type:'neg', cat:'perf'});
+  if(pd.nonlife/(pd.cnt||1)>=0.8&&pd.cnt>=10) badges.push({label:'🏗 손보 편중 '+(100-pd.lifeRatio)+'%', kw:'nonlife_heavy', bg:'#faeeda', color:'#633806', type:'neg', cat:'perf'});
   // 생손 균형형은 60~80% 구간에서만 (편중과 배타) — 긍정 유지
-  if(pd.lifeRatio>=60&&pd.lifeRatio<80&&pd.lostRate<=2&&pd.cnt>=10) badges.push({label:'⚖️ 생손 균형형', kw:'life_balanced', bg:'#e6f1fb', color:'#185fa5', type:'pos'});
+  if(pd.lifeRatio>=60&&pd.lifeRatio<80&&pd.lostRate<=2&&pd.cnt>=10) badges.push({label:'⚖️ 생손 균형형', kw:'life_balanced', bg:'#e6f1fb', color:'#185fa5', type:'pos', cat:'perf'});
 
   // ── 건당 단가 ──
-  if(pd.avgPerf>=1000000) badges.push({label:`💎 초고단가 건당 ${fmtW(pd.avgPerf)}`, kw:'price_premium', bg:'#f5f0ff', color:'#5b21b6', type:'pos'});
-  else if(pd.avgPerf>=500000) badges.push({label:`💵 고단가 건당 ${fmtW(pd.avgPerf)}`, kw:'price_high', bg:'#eeedfe', color:'#3c3489', type:'pos'});
-  else if(pd.avgPerf<100000&&pd.cnt>=10) badges.push({label:`💸 저단가 건당 ${fmtW(pd.avgPerf)}`, kw:'price_low', bg:'#f5f4f0', color:'#73726c', type:'neg'});
+  if(pd.avgPerf>=1000000) badges.push({label:`💎 초고단가 건당 ${fmtW(pd.avgPerf)}`, kw:'price_premium', bg:'#f5f0ff', color:'#5b21b6', type:'pos', cat:'perf'});
+  else if(pd.avgPerf>=500000) badges.push({label:`💵 고단가 건당 ${fmtW(pd.avgPerf)}`, kw:'price_high', bg:'#eeedfe', color:'#3c3489', type:'pos', cat:'perf'});
+  else if(pd.avgPerf<100000&&pd.cnt>=10) badges.push({label:`💸 저단가 건당 ${fmtW(pd.avgPerf)}`, kw:'price_low', bg:'#f5f4f0', color:'#73726c', type:'neg', cat:'perf'});
 
   // ── 계약 안정성 ──
-  if(pd.lostRate===0&&pd.cnt>=10) badges.push({label:'🛡️ 조기이탈 0% 완벽', kw:'lost_perfect', bg:'#eaf3de', color:'#3b6d11', type:'pos'});
-  else if(pd.lostRate>=10) badges.push({label:`🚨 조기이탈 ${pd.lostRate}% 위험`, kw:'lost_critical', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
-  else if(pd.lostRate>=5) badges.push({label:`⚠️ 조기이탈 ${pd.lostRate}% 주의`, kw:'lost_warning', bg:'#fff0f0', color:'#c45050', type:'neg'});
-  if(pd.delay>=5) badges.push({label:`⏰ 유예 ${pd.delay}건 점검필요`, kw:'delay_check', bg:'#fff8e1', color:'#854f0b', type:'neg'});
+  if(pd.lostRate===0&&pd.cnt>=10) badges.push({label:'🛡️ 조기이탈 0% 완벽', kw:'lost_perfect', bg:'#eaf3de', color:'#3b6d11', type:'pos', cat:'retain'});
+  else if(pd.lostRate>=10) badges.push({label:`🚨 조기이탈 ${pd.lostRate}% 위험`, kw:'lost_critical', bg:'#fcebeb', color:'#a32d2d', type:'neg', cat:'retain'});
+  else if(pd.lostRate>=5) badges.push({label:`⚠️ 조기이탈 ${pd.lostRate}% 주의`, kw:'lost_warning', bg:'#fff0f0', color:'#c45050', type:'neg', cat:'retain'});
+  if(pd.delay>=5) badges.push({label:`⏰ 유예 ${pd.delay}건 점검필요`, kw:'delay_check', bg:'#fff8e1', color:'#854f0b', type:'neg', cat:'retain'});
 
-  // ── 활동 균등성 ──
+  // ── 활동 균등성 (소스는 신계약 건수 PERF.months.cnt — 활동데이터 아님, 제외 대상 아님) ──
   const activeMths=aM.filter(m=>p&&p.months[m]&&p.months[m].cnt>0).length;
   if(activeMths===aM.length&&aM.length>=3&&pd.cnt>=15)
-    badges.push({label:'🔄 매월 꾸준한 활동', kw:'active_consistent', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
+    badges.push({label:'🔄 매월 꾸준한 활동', kw:'active_consistent', bg:'#e6f9f0', color:'#0f6e56', type:'pos', cat:'perf'});
   if(activeMths<=1&&aM.length>=3)
-    badges.push({label:'⏸ 활동월 부족 ('+activeMths+'개월)', kw:'active_focused', bg:'#f5f4f0', color:'#73726c', type:'neg'});
+    badges.push({label:'⏸ 활동월 부족 ('+activeMths+'개월)', kw:'active_focused', bg:'#f5f4f0', color:'#73726c', type:'neg', cat:'perf'});
 
   // ── 유지율 교차 분석 ──
   if(ret!=null){
-    if(ret>=90&&pd.perf>=5000000) badges.push({label:'✅ 모집·유지 모두 우수', kw:'cross_excellent', bg:'#e6f9f0', color:'#0f6e56', type:'cross'});
-    else if(ret<90&&pd.cnt>=20) badges.push({label:'⚠️ 고모집-저유지 점검', kw:'cross_high_low', bg:'#fcebeb', color:'#a32d2d', type:'cross'});
-    else if(ret>=90&&topPct>0.6) badges.push({label:'🔍 유지 우수 · 모집 확대 여지', kw:'cross_retain_grow', bg:'#fff8e1', color:'#854f0b', type:'cross'});
-    else if(ret<80&&pd.lostRate>=5) badges.push({label:'🚩 유지·이탈 복합 위험', kw:'cross_complex_risk', bg:'#fcebeb', color:'#7a0000', type:'cross'});
+    if(ret>=90&&pd.perf>=5000000) badges.push({label:'✅ 모집·유지 모두 우수', kw:'cross_excellent', bg:'#e6f9f0', color:'#0f6e56', type:'cross', cat:'cross'});
+    else if(ret<90&&pd.cnt>=20) badges.push({label:'⚠️ 고모집-저유지 점검', kw:'cross_high_low', bg:'#fcebeb', color:'#a32d2d', type:'cross', cat:'cross'});
+    else if(ret>=90&&topPct>0.6) badges.push({label:'🔍 유지 우수 · 모집 확대 여지', kw:'cross_retain_grow', bg:'#fff8e1', color:'#854f0b', type:'cross', cat:'cross'});
+    else if(ret<80&&pd.lostRate>=5) badges.push({label:'🚩 유지·이탈 복합 위험', kw:'cross_complex_risk', bg:'#fcebeb', color:'#7a0000', type:'cross', cat:'cross'});
   }
 
   // ── 목표/활동 분석 (TARGET 데이터 있을 때만) ──
+  // cat:'goal'(마감목표 파생) / cat:'activity'(DB·외활·피드백 파생) 로 태깅.
+  // 제외 대상자(isKangseo)는 함수 말미에서 카테고리 단위로 일괄 스킵한다 (개별 가드 불필요).
   const td=targetOfMths(name);
   if(td&&td.anyMonthHasData){
     if(td.ach!=null&&td.ach>=110)
-      badges.push({label:`🎯 목표초과달성 +${(td.ach-100).toFixed(0)}%`, kw:'goal_exceed', bg:'#e6f9f0', color:'#0f6e56', type:'pos'});
+      badges.push({label:`🎯 목표초과달성 +${(td.ach-100).toFixed(0)}%`, kw:'goal_exceed', bg:'#e6f9f0', color:'#0f6e56', type:'pos', cat:'goal'});
     else if(td.ach!=null&&td.ach<70)
-      badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, kw:'goal_miss', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
+      badges.push({label:`⚠️ 목표미달 ${td.ach.toFixed(0)}%`, kw:'goal_miss', bg:'#fcebeb', color:'#a32d2d', type:'neg', cat:'goal'});
     // db_inactive 는 '외활 수집 달' 기준으로만 판정 (외활 미수집 달은 산정 스킵 — 전원 act=0 오탐 방지).
     // 활용부진(외활/DB 비율)은 수집달만(dbC), 미배정(진짜 DB 0)은 전체 db 로 판정.
     // → DB 를 미수집 달에만 받은 경우(dbC=0, db>0)는 둘 다 아니므로 배지 없음.
-    if(!isKangseo(name)&&td.hasActCollectedMonth){
+    if(td.hasActCollectedMonth){
       if(td.dbC>0&&td.dbUseC!=null&&td.dbUseC<30){
-        badges.push({label:`📭 DB 활용 부진 ${Math.round(td.dbUseC)}%`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+        badges.push({label:`📭 DB 활용 부진 ${Math.round(td.dbUseC)}%`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg', cat:'activity'});
       } else if(td.db===0){
         const actLabel=td.actC>0?` (외활 ${td.actC}건)`:'';
-        badges.push({label:`📭 DB 미배정${actLabel}`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg'});
+        badges.push({label:`📭 DB 미배정${actLabel}`, kw:'db_inactive', bg:'#fff3cd', color:'#854f0b', type:'neg', cat:'activity'});
       }
     }
 
@@ -942,10 +944,16 @@ function metaBadges(name, pd) {
     const fd=feedbackOfMths(name);
     const fbTotal=fd?(fd.done||0)+(fd.hold||0):0;
     const actCnt=td.act||0;
-    if(!isKangseo(name)&&actCnt>=5&&(fbTotal/actCnt)<0.3){
-      badges.push({label:`📵 피드백 활용 부진 ${Math.round(fbTotal/actCnt*100)}%`, kw:'fb_inactive', bg:'#fcebeb', color:'#a32d2d', type:'neg'});
+    if(actCnt>=5&&(fbTotal/actCnt)<0.3){
+      badges.push({label:`📵 피드백 활용 부진 ${Math.round(fbTotal/actCnt*100)}%`, kw:'fb_inactive', bg:'#fcebeb', color:'#a32d2d', type:'neg', cat:'activity'});
     }
   }
+
+  // ── 활동데이터 제외 정책 (카테고리 단위 가드) ──
+  // 제외 대상자(강서지사 동적 판정 + ACTIVITY_EXCLUDED_NAMES)는 마감목표 파생(cat:'goal')과
+  // 활동 파생(cat:'activity') 배지를 긍정/부정 불문 전부 스킵. 실적/유지/신계약/성장(cat:'perf'/'retain'/'cross')은 유지.
+  // 신규 배지는 cat 태그만 부여하면 자동으로 이 가드가 적용된다.
+  if(isKangseo(name)) return badges.filter(b=>b.cat!=='goal'&&b.cat!=='activity');
 
   return badges;
 }
