@@ -281,6 +281,32 @@ DB배정 / 외활 / 피드백 / 마감목표 — 다음 모든 위치에서:
 
 ---
 
+## UI/스타일 컨벤션
+
+### 카드 헤더 라벨 줄바꿈 (한글 글자 단위 줄바꿈 방지)
+"라벨 + 칩 병렬" 구조의 섹션 헤더(`.lost-hd`·`.perf-divider` 등, `justify-content:space-between` flex)는 다음 규칙을 지킨다:
+- **라벨**(`.lost-title`·`.perf-divider-title`): `white-space:nowrap` + `flex-shrink:0` — 라벨은 절대 접히지 않음. 추가로 `word-break:keep-all`.
+- **칩 컨테이너**(`.lost-chips`·`.perf-chips`): `flex-wrap:wrap` + `justify-content:flex-end` + `min-width:0` — 줄바꿈은 칩만 담당.
+- **전역 예방**: 카드 내 한글 라벨 텍스트 블록(`.pmc-section-label` 등)에 `word-break:keep-all; overflow-wrap:break-word`.
+- 이유: 월 칩이 늘어나면(5개월분 등) 라벨이 squeeze 되어 "이탈 계약 상/세"처럼 글자 단위로 줄바꿈되는 문제 방지.
+
+### 기간 칩 활성 색상 (`MONTH_PALETTE`, `monthColor()`)
+- 월별 칩 배경색은 CSS 하드코딩이 아니라 `MONTH_PALETTE`(12색) 배열을 `MONTH_ORDER` 인덱스로 순환 할당(`monthColor(m)`).
+- 칩 생성 시 인라인 `--mc` CSS 변수 지정, CSS는 `.mbtn.on{background:var(--mc)}` 한 줄. **월이 늘어도 코드 수정 불필요** (신규 월 색상 누락 재발 방지).
+- 팔레트 앞 7색은 기존 25.10~26.4 색상 순서 그대로(회귀 방지).
+
+### 배지 카테고리 가드 (`metaBadges` `cat` 태그)
+- 각 배지는 소스 카테고리로 태깅: `cat:'perf'`(실적·성장·단가·생손·활동균등) / `'retain'`(이탈·유예) / `'cross'`(교차) / `'goal'`(마감목표) / `'activity'`(DB·외활·피드백).
+- 제외 대상자(`isKangseo`)는 `metaBadges` 말미에서 `cat ∈ {goal, activity}` 배지를 **일괄 스킵** — 개별 배지에 `!isKangseo` 가드 넣지 말 것. 신규 배지는 `cat`만 부여하면 자동 적용.
+- 주의: "매월 꾸준한 활동"(`active_consistent`)은 라벨과 달리 소스가 **신계약 건수(PERF.months.cnt)** 라 `cat:'perf'` (제외 대상 아님).
+
+### TARGET 부재 시 카드 골격 통일 (`actHidden`)
+- `perfSectionHTML` 은 `actHidden = isKangseo(name) || !tHas` 로 활동/목표 섹션을 판정.
+- **TARGET 데이터가 없어도(`tHas=false`) 누적 KPI 5셀 행·활동 차트·마감목표 섹션 골격은 항상 렌더**하고 값만 처리 → 카드 레이아웃 통일(김성한처럼 TARGET 없는 강서지사도 이연식과 동일 구조).
+- 노티스: 제외 대상(`kang`) → `🚫 표시 제외`(`kangNotice`), 비제외·데이터부재 → `— 활동 데이터 없음`(`noDataNotice`).
+
+---
+
 ## 워크플로우
 
 ### 데이터 갱신 주기
